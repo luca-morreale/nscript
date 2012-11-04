@@ -14,8 +14,11 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import java.awt.*;
-import DMObject;
+
+import edu.virginia.patek.nscript.DMObject;
 
 /** Defines an interface to be implemented by objects that want to be controlled
  *  by the DMControl object for visual editing.

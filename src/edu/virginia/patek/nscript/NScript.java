@@ -10,14 +10,17 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
-import TclLibraryManager;
-import TclLibrary;
-import SObjectBrowser;
-import SArrayDialog;
-import SAboutDialog;
-import SToolBar;
-import NSIconPane;
-import NSWorldView;
+package edu.virginia.patek.nscript;
+
+import edu.virginia.patek.nscript.TclLibraryManager;
+import edu.virginia.patek.nscript.TclLibrary;
+import edu.virginia.patek.nscript.SObjectBrowser;
+import edu.virginia.patek.nscript.SArrayDialog;
+import edu.virginia.patek.nscript.SAboutDialog;
+import edu.virginia.patek.nscript.SToolBar;
+import edu.virginia.patek.nscript.NSIconPane;
+import edu.virginia.patek.nscript.NSWorldView;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

@@ -10,11 +10,14 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
-import NSWorld;
+
+import edu.virginia.patek.nscript.NSWorld;
 
 /** Implements the AbstractTableModel to display the index Arrays that are part of the 
  *  simulation. */

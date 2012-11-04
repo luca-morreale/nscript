@@ -8,11 +8,14 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import javax.swing.*;
 import java.awt.*;
-import DMObject;
-import DMModel;
-import DMControl;
+
+import edu.virginia.patek.nscript.DMObject;
+import edu.virginia.patek.nscript.DMModel;
+import edu.virginia.patek.nscript.DMControl;
 
 /** Implements the View part of the MVC paradigm by extending the JPanel object to
  *  handle mouse and key event handlers.  Implements the functionality related to

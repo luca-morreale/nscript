@@ -10,6 +10,8 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import java.lang.*;
 
 /** A TclPatterns embodies the part of a snippet that translates the information into

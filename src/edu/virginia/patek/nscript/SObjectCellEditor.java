@@ -10,7 +10,10 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
-import NSObject;
+package edu.virginia.patek.nscript;
+
+import edu.virginia.patek.nscript.NSObject;
+
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
