@@ -67,7 +67,7 @@ public class SArrayDialog extends JDialog implements ActionListener
 	buttonPane . add( closeBtn );
 	this . getContentPane() . add( buttonPane, BorderLayout.EAST );
 	setSize(350,200);
-	show();
+	setVisible(true);
     }
 
 	/** Responds to the actions of all buttons. 

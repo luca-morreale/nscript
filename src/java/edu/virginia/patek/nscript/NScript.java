@@ -124,7 +124,7 @@ public class NScript extends JFrame
 	setSize(800,600);
 	setLocation(0,0);
 	ad . setMessage("Done.");
-	show();
+	setVisible(true);
 	ad . dispose();
     }
 
