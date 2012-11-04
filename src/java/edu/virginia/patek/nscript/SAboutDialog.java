@@ -52,11 +52,11 @@ public class SAboutDialog extends JDialog implements ActionListener
 	    closePane . add( closeBtn );
 	    closePane . add( new JLabel("") );
 	    this . getContentPane() . add( closePane, BorderLayout.SOUTH );
-	    setSize(294,241);
+	    setSize(400,210);
 	} else {
 	    ad = new JLabel("Loading...");
 	    this . getContentPane() . add( ad, BorderLayout.SOUTH );
-	    setSize(294,241);
+	    setSize(400,210);
 	}
 	
 	Dimension dialogDim = getSize();
