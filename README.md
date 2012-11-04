@@ -3,7 +3,7 @@ NOTICE
 
 The lines below refer to the original version of the software and have been
 left for documentation purpose. Refer to `README.updates.md` for recent
-information. The two files will be merged, eventually.
+information. Eventually, the two files will be merged.
 
 
 nscript-1.0
