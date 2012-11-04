@@ -5,6 +5,16 @@ The lines below refer to the original version of the software and have been
 left for documentation purpose. Refer to `README.updates.md` for recent
 information. Eventually, the two files will be merged.
 
+I decided to adopt and refine the code as there was no trace of a website
+and it had remained untouched since 2000. All credit for legacy structure
+(i.e. what was present at the "Initial Commit" stage) goes to
+Enrique Campos-Nanez.
+
+This project is hosted at [GitHub](https://github.com/satufk/nscript): refer
+to that page for opening tickets, requesting features and contacting
+the author (well, the present author, Stefano Sanfilippo - Enrique Campos
+should be reachable at the email address at the bottom of this file).
+
 
 nscript-1.0
 ===========
@@ -43,11 +53,18 @@ Version 1.0.2
 * Scheduler view.
 
 
-Enrique Campos-Nanez
-Department of Systems Engineering
-University of Virginia
-------------------------------------
-e-mail: ec3z@virginia.edu
-http://www.people.virginia.edu/~ec3z
-------------------------------------
+> Enrique Campos-Nanez
+> Department of Systems Engineering
+> University of Virginia
+> ------------------------------------
+> e-mail: ec3z@virginia.edu
+> http://www.people.virginia.edu/~ec3z
+> ------------------------------------
+
+> Stefano Sanfilippo
+> Department of Computer Science
+> Politecnico di Milano
+> ------------------------------------
+> e-mail: a dot. little dot coder at gmail dot. com.
+> ------------------------------------
 
