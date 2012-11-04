@@ -63,7 +63,7 @@ public class SAboutDialog extends JDialog implements ActionListener
 	Dimension screenSize = getToolkit().getScreenSize();
 	setLocation( (screenSize.width - dialogDim.width)/2, 
 		     (screenSize.height - dialogDim.height)/2 );
-	show();
+	setVisible(true);
     }
 
 	/** Sets the message of the status label when the dialog box is used as a progress
