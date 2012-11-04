@@ -21,6 +21,8 @@ to that page for opening tickets, requesting features and contacting
 the author (well, the present author, Stefano Sanfilippo - Enrique Campos
 should be reachable at the email address at the bottom of this file).
 
+The new icon set is taken from GNOME 3 icons, released under GPL.
+
 
 nscript-1.0
 ===========
