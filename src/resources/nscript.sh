@@ -4,4 +4,4 @@
 # package for more information
 #
 
-java -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ./nscript.jar
+java -jar ./nscript.jar
