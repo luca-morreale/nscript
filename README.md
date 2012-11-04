@@ -1,13 +1,21 @@
+NOTICE
+======
+
+The lines below refer to the original version of the software and it's
+left for documentation purpose. Refer to `README.updates.md` for recent
+information. The two files will be merged, eventually.
+
+
 nscript-1.0
 ===========
 
 Visual interface for building ns-tcl scripts. Specifically, it allows you to:
 
-+ Build the topology by drawing it.
-+ Configure elements in the network, such as transport 
+* Build the topology by drawing it.
+* Configure elements in the network, such as transport 
   agents, and applications.
-+ Handle event scheduling for your simulation script.
-+ Trace and plot simulation information (you'll need gnuplot).
+* Handle event scheduling for your simulation script.
+* Trace and plot simulation information (you'll need gnuplot).
 
 The information on how to add classes to the graphical environment is
 detailed in the CUSTOMIZING file under the doc directory. In the same a
