@@ -42,7 +42,7 @@ public class NSWorld extends Object
     }
 
     /** Returns the ns environment for the simulation. 
-     *  @returns the ns environment object. */
+     *  @return the ns environment object. */
     public NSObject getEnvironment()
     {
 	return ((NSObject)objects.get(0));

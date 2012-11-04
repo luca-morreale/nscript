@@ -64,7 +64,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer
     }
 
     /** Returns a component in which the element is displayed.
-     *  @returns components that displays the element. */
+     *  @return components that displays the element. */
     public Component getListCellRendererComponent(
 						  JList list,
 						  Object value,
