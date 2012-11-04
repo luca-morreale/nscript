@@ -54,7 +54,7 @@ public class NScript extends JFrame
      *  the objects browser. */
     public NScript() 
     {
-	super("nscripter-1.0a");
+	super("NScript 1.1");
 	SAboutDialog ad = new SAboutDialog( null, false );
 	Container c = this.getContentPane();
 	
