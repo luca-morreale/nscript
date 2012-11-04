@@ -55,7 +55,7 @@ public class SToolBar extends JPanel implements ActionListener
 	JPanel panel = new JPanel( new BorderLayout());
 	panel.add(action,BorderLayout.NORTH);
 	JPanel panel2 = new JPanel( new BorderLayout() );
-	JButton b = new JButton(new ImageIcon("figs/select.gif"));
+	JButton b = new JButton(new ImageIcon("figs/select.png"));
 	b . setPreferredSize(new Dimension(22,22));
 	b . addActionListener( this );
 	panel2.add( b, BorderLayout.NORTH );
