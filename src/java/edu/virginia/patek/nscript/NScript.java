@@ -163,13 +163,13 @@ public class NScript extends JFrame
     /** Prepares the toolbar and menu items, and relates them to the handling routines. */
     void prepareToolBarAndMenu( JToolBar toolbar, JMenuBar menuBar )
     {
-	Icon newIcon = new ImageIcon("figs/new.gif");
-	Icon openIcon = new ImageIcon("figs/open.gif");
-	Icon saveIcon = new ImageIcon("figs/save.gif");
-	Icon openLibIcon = new ImageIcon("figs/openlib.gif");
-	Icon indexIcon = new ImageIcon("figs/index.gif");
-	Icon exportIcon = new ImageIcon("figs/nsexport.gif");
-	Icon runIcon = new ImageIcon("figs/run.gif");
+	Icon newIcon = new ImageIcon("figs/new.png");
+	Icon openIcon = new ImageIcon("figs/open.png");
+	Icon saveIcon = new ImageIcon("figs/save.png");
+	Icon openLibIcon = new ImageIcon("figs/openlib.png");
+	Icon indexIcon = new ImageIcon("figs/index.png");
+	Icon exportIcon = new ImageIcon("figs/nsexport.png");
+	Icon runIcon = new ImageIcon("figs/run.png");
 	
 	NewAction newA = new NewAction( "New", newIcon );
 	OpenAction openA = new OpenAction( "Open", openIcon );
