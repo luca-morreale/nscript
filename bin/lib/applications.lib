@@ -1,0 +1,85 @@
+applications
+Applications
+1.0
+
+entity class ExpOnOff application 2:
+  Packet Size=1000;
+  Burst Time=1.0;
+  Idle Time=1.0;
+  Rate=10.0;
+begin
+  set #name# [new Application/Traffic/Exponential];
+  ?Packet Size=1000::$#name# set packetSize_ #Packet Size#;
+  ?Burst Time=1.0::$#name# set burst_time_ #Burst Time#;
+  ?Idle Time=1.0::$#name# set idle_time_ #Idle Time#;
+  ?Rate=10.0::$#name# set rate_ #Rate#;
+end
+
+entity class Poisson application 2:
+  Packet Size=1000;
+  Interarrival=1.0;
+begin
+  set #name# [new Application/Traffic/Exponential];
+  $#name# set burst_time_ 0s;
+  $#name# set rate_ 1000M;
+  $#name# set packetSize_ #Packet Size#;
+  ?Interarrival=1.0::$#name# set idle_time_ #Interarrival#;
+end
+
+entity class Pareto application 2:
+  Packet Size=1000;
+  Burst Time=1.0;
+  Idle Time=1.0;
+  Rate=10.0;
+  Shape=1.5;
+begin
+  set #name# [new Application/Traffic/Pareto];
+  ?Packet Size=1000::$#name# set packetSize_ #Packet Size#;
+  ?Burst Time=1.0::$#name# set burst_time_ #Burst Time#;
+  ?Idle Time=1.0::$#name# set idle_time_ #Idle Time#;
+  ?Rate=10.0::$#name# set rate_ #Rate#;
+  ?Shape=1.5::$#name# set shape_ #Shape#;
+end
+
+entity class CBR application 2:
+  Rate=64Kb;
+  Interval=.1;
+  Packet Size=1000;
+  Random=Off:On Off;
+begin
+  set #name# [new Application/Traffic/CBR];
+  ?Interval=.1::$#name# set interval_ #interval#;
+  ?Rate=64Kb::$#name# set rate_ #Rate#;
+  ?Packet Size=1000::$#name# set packetSize_ #Packet Size#;
+  ?Random=On:$#name# set random_ 1:$#name# set random_ 0;
+end
+
+entity class TraceFile traceFile 4:
+  File Name=Untitled;
+begin
+  set #name# [new Tracefile];
+  $#name# filename #File Name#;
+end
+
+entity class Trace application 2:
+begin
+  set #name# [new Application/Traffic/Trace];
+end
+
+relation class AttachTraceFile application traceFile 2 2 1 2:
+begin
+  $#from# attach-tracefile $#to#;
+end
+
+entity class FTP application 2:
+begin
+  set #name# [new Application/FTP];
+end
+
+entity class Telnet application 2:
+  Interarrivals=TcpLib:TcpLib Exponential;
+  Exponential Interval=0;
+begin
+  set #name# [new Application/Telnet];
+  ?Interrivals=TcpLib::$#name# set interval_ #Exponential Interval#;
+end

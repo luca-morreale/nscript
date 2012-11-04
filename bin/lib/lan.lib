@@ -1,0 +1,18 @@
+lan library
+LAN
+1.0a
+
+element class LanNode lannode 2:
+  Bandwidth=10Mb;
+  Delay=20ms;
+begin
+  set #name#lan [$#env.name# make-lan "" #Bandwidth# #Delay#];
+end
+
+relation class LinkToLan node lannode 0 0 1 0:
+  Bandwidth=10Mb;
+  Delay=20ms;
+begin
+  $#to#lan addNode "$#from#" #Bandwidth# #Delay#;
+end
+

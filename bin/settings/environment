@@ -1,0 +1,33 @@
+!entity class Environment Environment 3:
+  Routing Protocol=Static:Static Session DV LS Manual;
+  Model Size=Small:Small Large;
+  End Time=10.0;
+  Trace=No:Yes No;
+  Trace File=trace.out;
+  Animation=Yes:Yes No;
+  Animation File=trace.nam;
+  Play Animation=Yes:Yes No;
+begin
+  set #name# [new Simulator];
+  ?Model Size=Small::$#name# set-address-format expanded;
+  ?Routing Protocol=Static::$#name# rtproto #Routing Protocol#;
+  ?Trace=No::set traceFile [open #Trace File# w];
+  ?Trace=No::$#name# trace-all $traceFile;
+  ?Animation=No::set namFile [open #Animation File# w];
+  ?Animation=No::$#name# namtrace-all $namFile;
+  $#name# at #End Time# "finish";
+  proc finish {} {;
+    global #name#;
+    ?Trace=No::global traceFile;
+    ?Animation=No::global namFile;
+    $#name# flush-trace;
+    ?Trace=No::close $#Trace File#;
+    ?Animation=No::close $namFile;
+    ?Play Animation=No::exec nam #Animation File# &;
+    exit 0;
+  };
+end
+
+
+
+
