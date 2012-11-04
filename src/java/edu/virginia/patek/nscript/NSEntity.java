@@ -94,10 +94,15 @@ public class NSEntity extends NSEditableObject
      *  (selected object are drawn in blue color), the scale of the drawing, 
      *  the size of the output view, the icon used to represent the object in
      *  the screen, and the multiplicity of the object (through the use of arrays). 
-     *  @param g a graphics context. 
+     *  @param g_ a graphics context. 
      *  @param r the size of the view pane.*/
-    public void drawSelf( Graphics g, Dimension r)
+    public void drawSelf( Graphics g_, Dimension r)
     {
+
+	Graphics2D g = (Graphics2D)g_;
+	g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                            RenderingHints.VALUE_ANTIALIAS_ON);
+
 	Color color = Color.black;
 	Color oc = Color.white;
 	double scaleX = r.width;
