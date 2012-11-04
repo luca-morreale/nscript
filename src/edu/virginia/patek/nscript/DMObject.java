@@ -14,6 +14,8 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import java.awt.*;
 
 /** Defines an interface to be implemented by any objects that wants to act as

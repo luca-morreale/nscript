@@ -10,11 +10,14 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
-import NSObject;
+
+import edu.virginia.patek.nscript.NSObject;
 
 /** Implements the AbstractTableModel interfaces to edit the attributes of a simulation
  *  object in the SObjectBrowser view. */

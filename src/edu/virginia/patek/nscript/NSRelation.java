@@ -10,9 +10,12 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
-import TclSnippet;
-import NSEditableObject;
-import NSEntity;
+package edu.virginia.patek.nscript;
+
+import edu.virginia.patek.nscript.TclSnippet;
+import edu.virginia.patek.nscript.NSEditableObject;
+import edu.virginia.patek.nscript.NSEntity;
+
 import java.awt.*;
 import javax.swing.*;
 import java.lang.*;

@@ -10,9 +10,12 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
-import NSModel;
-import SObjectTableModel;
-import SObjectCellEditor;
+package edu.virginia.patek.nscript;
+
+import edu.virginia.patek.nscript.NSModel;
+import edu.virginia.patek.nscript.SObjectTableModel;
+import edu.virginia.patek.nscript.SObjectCellEditor;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

@@ -10,7 +10,10 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
-import TclSnippet;
+package edu.virginia.patek.nscript;
+
+import edu.virginia.patek.nscript.TclSnippet;
+
 import java.lang.*;
 import java.util.*;
 import java.io.*;

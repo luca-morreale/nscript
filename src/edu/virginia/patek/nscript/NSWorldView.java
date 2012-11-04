@@ -10,10 +10,13 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import java.awt.*;
 import javax.swing.*;
-import NSWorld;
-import NSWorldPane;
+
+import edu.virginia.patek.nscript.NSWorld;
+import edu.virginia.patek.nscript.NSWorldPane;
 
 /** Implements a view that lists the elements (objects) that are part of the current simulation
  *  script. */

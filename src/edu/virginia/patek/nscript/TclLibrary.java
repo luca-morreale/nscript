@@ -10,9 +10,12 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import java.io.*;
 import java.util.*;
-import TclSnippet;
+
+import edu.virginia.patek.nscript.TclSnippet;
 
 /** A library is a collection of classes or TclSnippets, that can be used to build simulation
  *  scripts. nscript has four default libraries: "Topology", "Transport", "Application", "Utilities".

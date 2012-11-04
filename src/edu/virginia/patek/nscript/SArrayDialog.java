@@ -10,11 +10,13 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
 import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import NSModel;
+
+import edu.virginia.patek.nscript.NSModel;
 
 /** Extends the JDialog object to implement the manipulation of index Arrays, that are
  *  part of the simulation interface. Arrays are used to create several objects that

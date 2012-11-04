@@ -10,10 +10,13 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import java.lang.*;
 import java.util.*;
-import NSObject;
-import NSArray;
+
+import edu.virginia.patek.nscript.NSObject;
+import edu.virginia.patek.nscript.NSArray;
 
 /** Defines storage for the elements in a simulation. Stores objects, as well as arrays 
  *  (index definitions). */

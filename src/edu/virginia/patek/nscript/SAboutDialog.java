@@ -10,11 +10,14 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
-import NSModel;
+
+import edu.virginia.patek.nscript.NSModel;
 
 /** Implements an "About..." dialog box that serves two purposes: 
  *  1) Work as a presentation dialog box showing the progress of the startup process. 

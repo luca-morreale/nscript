@@ -10,10 +10,13 @@
  * 			e-mail: patek@virginia.edu
  * -------------------------------------------------------------------------------------------- */
 
+package edu.virginia.patek.nscript;
+
 import java.awt.*;
 import java.awt.event.*;
-import DMObject;
-import DMModel;
+
+import edu.virginia.patek.nscript.DMObject;
+import edu.virginia.patek.nscript.DMModel;
 
 /** DMControl.java
  *  
