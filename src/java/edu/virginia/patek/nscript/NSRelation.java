@@ -33,7 +33,7 @@ class NSRelation extends NSEditableObject implements DMObject
     /** A constant that represents the selection distance to a line that qualifies a click as a selection. In
      *  these case the radios is in terms of the width of the line. The default value is 2.0 which means that
      *  if a line has a width of 1 pixel, the selection tolerance is 2 pixels. */
-    public static final double SELECTION_RADIUS = 2.0;
+    public static final double SELECTION_RADIUS = 5.0;
 
     /** Requires a base class definition (TclSnippet), a name, and the origin and destination entity that
      *  it relates. 
