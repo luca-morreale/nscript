@@ -32,7 +32,7 @@ public class NSEditableObject extends NSObject implements DMObject
     }
 
     /** True if the object is selected for edition, false otherwise. 
-     *  @returns true if selected, false otherwise. */
+     *  @return true if selected, false otherwise. */
     public boolean isSelected()
     {
 	return selected;
@@ -66,7 +66,7 @@ public class NSEditableObject extends NSObject implements DMObject
     }
 
     /** False by default, since the class is still abstract. 
-     *  @returns false. */
+     *  @return false. */
     public boolean isHit( Dimension r, Point p )
     {
 	return false;

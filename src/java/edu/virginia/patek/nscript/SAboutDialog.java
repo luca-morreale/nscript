@@ -32,7 +32,7 @@ public class SAboutDialog extends JDialog implements ActionListener
 	/** Only constructor. Creates the frame and the interface elements depending
 	 *  on the kind of dialog required.
 	 *  @param pFrame the main frame of the application. 
-	 *  @param model a flag indicating the type of dialog that must be shown. true
+	 *  @param modal a flag indicating the type of dialog that must be shown. true
 	 *     implies that a regular "About" dialog box (one that will wait for the 
 	 *     user to hit "OK". Otherwise a 'modaless' dialog will be created. */
     public SAboutDialog( JFrame pFrame, boolean modal )

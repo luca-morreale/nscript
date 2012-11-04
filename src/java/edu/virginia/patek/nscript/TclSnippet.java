@@ -282,7 +282,7 @@ public class TclSnippet extends Object
     }
     
     /** Sets the style used to draw the end of a relation line. 
-     *  @param the new style of the line. */
+     *  @param inEndStyle the new style of the line. */
     public void setEndStyle( int inEndStyle ) 
     {
 		endStyle = inEndStyle;
