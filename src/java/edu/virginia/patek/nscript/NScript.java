@@ -221,7 +221,7 @@ public class NScript extends JFrame
 		
 	// Help menu
 	JMenu helpMenu = new JMenu("Help");
-	helpMenu . add( new AboutAction("About nscript-1.0a...", null ) );
+	helpMenu . add( new AboutAction("About NScript 1.1...", null ) );
 		
 	menuBar.add(fileMenu);	
 	menuBar.add(editMenu);

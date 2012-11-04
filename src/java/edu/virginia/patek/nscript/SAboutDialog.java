@@ -38,7 +38,7 @@ public class SAboutDialog extends JDialog implements ActionListener
     public SAboutDialog( JFrame pFrame, boolean modal )
     {
    	// Calls the father constructor.
-	super( pFrame, "nscript-1.0a...", modal );
+	super( pFrame, "nscript 1.1...", modal );
 	// Creates the interface
 	Icon icon = new ImageIcon("pixmaps/start.png");
 
