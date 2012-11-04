@@ -1,7 +1,7 @@
 NOTICE
 ======
 
-The lines below refer to the original version of the software and it's
+The lines below refer to the original version of the software and have been
 left for documentation purpose. Refer to `README.updates.md` for recent
 information. The two files will be merged, eventually.
 
