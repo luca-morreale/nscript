@@ -1,0 +1,143 @@
+utils
+Utilities
+1.0
+
+entity class Tracer Timer 3:
+  start=0.0;
+  dt=.1;
+  Object=<Object_Name>;
+  Data Member=<data member>;
+begin
+  $#env.name# at #start# "#name#_trace";
+  set #name# [open #name#.trc w];
+  close $#name#;
+  proc #name#_trace {} {;
+    global #env.name# #Object#;
+    set #name# [open #name#.trc a];
+    puts $#name# "[$#env.name# now] [$#Object# set #Data Member#]";
+    close $#name#;
+    $#env.name# after #dt# "#name#_trace";
+  };
+end
+
+
+entity class QueueMonitor Link 4:
+  From Node=<Node_Name>;
+  To Node=<Node_Name>;
+  Delay stats=Off:On Off;
+  Delay Samples Name: delay0 delay1 delay2 delay3 delay4 delay5 delay6 delay7 delay8 delay9;
+begin
+  set #name# [$ns monitor-queue $#From Node# $#To Node# [$ns get-ns-traceall]];
+  ?Delay stats=Off::set #Delay Samples Name# [new Samples];
+  ?Delay stats=Off::$#name# set-delay-samples $#Delay Samples Name#;
+end
+
+entity class ResultPrinter Timer 4:
+  File=results.txt;
+  Time=10.0;
+  Results Header=" ";
+  Result 1 name=<name>;
+  Result 1 object=<object>;
+  Result 1 variable=<function> or set <var>;
+begin
+  $#env.name# at #Time# "#name#_proc";
+  proc #name#_proc {} {;
+    set #name#_file [open #File# w];
+    global #env.name#;
+    puts $#name#_file "#Results Header#";
+    ?Result 1 name=<name>::global #Result 1 object#;
+    ?Result 1 name=<name>::set var1 [$#Result 1 object# #Result 1 variable#];
+    ?Result 1 name=<name>::puts $#name#_file "#Result 1 name# $var1";
+    $#env.name# flush-trace; 
+    close $#name#_file;
+    };
+end
+
+
+
+entity class Colors Colors 4:
+  Color1=black:black white red green blue yellow pink orange;
+  Color2=white:black white red green blue yellow pink orange;
+  Color3=red:black white red green blue yellow pink orange;
+  Color4=green:black white red green blue yellow pink orange;
+  Color5=blue:black white red green blue yellow pink orange;
+  Color6=yellow:black white red green blue yellow pink orange;
+  Color7=pink:black white red green blue yellow pink orange;
+  Color8=orange:black white red green blue yellow pink orange;
+  Color9=cyan:black white red green blue yellow pink orange;
+  Color10=magenta:black white red green blue yellow pink orange;
+begin
+  $#env.name# color 1 #Color1#;
+  $#env.name# color 2 #Color2#;
+  $#env.name# color 3 #Color3#;
+  $#env.name# color 4 #Color4#;
+  $#env.name# color 5 #Color5#;
+  $#env.name# color 6 #Color6#;
+  $#env.name# color 7 #Color7#;
+  $#env.name# color 8 #Color8#;
+  $#env.name# color 9 #Color9#;
+  $#env.name# color 10 #Color10#;
+end
+
+entity class Timer time 3:
+begin
+end  
+
+relation class AgentEvent time agent 2 2 1 1:
+  Event=start;
+begin
+  $#env.name# at #from# "$#to# #Event#";
+end
+
+relation class ApplicationEvent time application 2 2 1 1:
+  Event=start;
+begin
+  $#env.name# at #from# "$#to# #Event#";
+end
+
+entity class LinkEvent LinkEvent 3:
+  Time=1.0;
+  Event=down:down up;
+  Link=DuplexLink0;
+begin
+  $#env.name# rtmodel-at #Time# #Event# [$#Link# set fromNode_] [$#Link# set toNode_];
+end
+
+entity class GenericEvent event 3:
+  At Time 1=1.0;
+  Event1=None;
+  At Time 2=1.0;
+  Event2=None;
+  At Time 3=1.0;
+  Event3=None;
+  At Time 4=1.0;
+  Event4=None;
+  At Time 5=1.0;
+  Event5=None;
+  At Time 6=1.0;
+  Event6=None;
+  At Time 7=1.0;
+  Event7=None;
+  At Time 8=1.0;
+  Event8=None;
+  At Time 9=1.0;
+  Event9=None;
+  At Time 10=1.0;
+  Event10=None;
+begin
+  ?Event1=None::$#env.name# at #At Time 1# "#Event1#";
+  ?Event2=None::$#env.name# at #At Time 2# "#Event2#";
+  ?Event3=None::$#env.name# at #At Time 3# "#Event3#";
+  ?Event4=None::$#env.name# at #At Time 4# "#Event4#";
+  ?Event5=None::$#env.name# at #At Time 5# "#Event5#";
+  ?Event6=None::$#env.name# at #At Time 6# "#Event6#";
+  ?Event7=None::$#env.name# at #At Time 7# "#Event7#";
+  ?Event8=None::$#env.name# at #At Time 8# "#Event8#";
+  ?Event9=None::$#env.name# at #At Time 9# "#Event9#";
+  ?Event10=None::$#env.name# at #At Time 10# "#Event10#";
+end
+
+
+
+
+

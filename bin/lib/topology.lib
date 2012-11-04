@@ -1,0 +1,43 @@
+topology
+Topology
+1.0a
+
+element class Node node 0:
+begin
+  set #name# [$#env.name# node];
+end
+
+relation class DuplexLink node node 0 0 4 0:
+  Bandwidth=10Mb;
+  Delay=20ms;
+  Forward Cost=1.0;
+  Backward Cost=1.0;
+  Queue Discipline=DropTail:DropTail RED CBQ FQ SFQ DRR;
+  Queue Capacity=50;
+  Display Queue=Off:On Off;
+begin
+  $#env.name# duplex-link $#from# $#to# #Bandwidth# #Delay# #Queue Discipline#;
+  set #name# [$#env.name# link $#from# $#to#];
+  ?Queue Capacity=50::$#env.name# queue-limit $#from# $#to# #Queue Capacity#;
+  ?Forward Cost=1.0::$#env.name# cost $#from# $#to# #Forward Cost#;
+  ?Backward Cost=1.0::$#env.name# cost $#to# $#from# #Backward Cost#;
+  ?Display Queue=Off::$#env.name# duplex-link-op $#from# $#to# queuePos 0.5;
+end
+
+relation class SimplexLink node node 0 0 4 1:
+  Bandwidth=10Mb;
+  Delay=20ms;
+  Cost=1.0;
+  Queue Discipline=DropTail:DropTail RED CBQ FQ SFQ DRR;
+  Queue Capacity=50;
+  Display Queue=Off:On Off;
+begin
+  $#env.name# simplex-link $#from# $#to# #Bandwidth# #Delay# #Queue Discipline#;
+  set #name# [$#env.name# link $#from# $#to#];
+  ?Queue Capacity=50::$#env.name# queue-limit $#from# $#to# #Queue Capacity#;
+  ?Cost=1.0::$#env.name# cost $#from# $#to# #Cost#;
+  ?Display Queue=Off::$#env.name# duplex-link-op $#from# $#to# queuePos 0.5;
+end
+
+
+

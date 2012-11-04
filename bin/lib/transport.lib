@@ -1,0 +1,69 @@
+transport
+Transport
+1.0a
+
+entity class UDP agent 1:
+  Packet Size=1000;
+  FlowID=None;
+begin
+  set #name# [new Agent/UDP];
+  ?Packet Size=1000::$#name# set packetSize_ #Packet Size#;
+  ?FlowID=None::$#name# set fid_ #FlowID#;
+end
+
+entity class Null agent 1:
+begin
+  set #name# [new Agent/Null];
+end
+
+entity class LossMonitor agent 1:
+begin
+  set #name# [new Agent/LossMonitor];
+end
+
+entity class TCP agent 1:
+  Max Window Size=20;
+  Initial Window=1;
+  Packet Size=1000;
+  FlowID=None:None 1 2 3 4 5 6 7 8 9 10;
+begin
+  set #name# [new Agent/TCP];
+  ?Max Window Size=20::$#name# set window_ #Max Window Size#;
+  ?Initial Window=1::$#name# set windowInit_ #Initial Window#;
+  ?Packet Size=1000::$#name# set packetSize_ #Packet Size#;
+  ?FlowID=None::$#name# set fid_ #FlowID#;
+end
+
+entity class TCPSink agent 1:
+begin
+  set #name# [new Agent/TCPSink];
+end
+
+relation class AttachToNode !agent node 1 0 1 1:
+begin
+  $#env.name# attach-agent $#to# $#from#;
+end
+
+relation class Connect !agent !agent 3 2 1 1:
+begin
+  $#env.name# connect $#from# $#to#;
+end
+
+relation class AttachToApp !agent !application 1 0 1 1:
+begin
+  $#to# attach-agent $#from#;
+end
+
+entity class TCPedu agent 1:
+  Max Window Size=20;
+  Initial Window=1;
+  Packet Size=1000;
+  FlowID=None:None 1 2 3 4 5 6 7 8 9 10;
+begin
+  set #name# [new Agent/TCP/RFC793edu];
+  ?Max Window Size=20::$#name# set window_ #Max Window Size#;
+  ?Initial Window=1::$#name# set windowInit_ #Initial Window#;
+  ?Packet Size=1000::$#name# set packetSize_ #Packet Size#;
+  ?FlowID=None::$#name# set fid_ #FlowID#;
+end
+
