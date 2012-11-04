@@ -1,0 +1,48 @@
+<!--
+
+Copyright (C) 2012 Stefano Sanfilippo
+<a dot little dot coder at gmail dot com>
+
+See COPYING at top level for more information.
+
+-->
+<project name="nscript" basedir="." default="main">
+    <property name="src.dir"     value="java"/>
+    <property name="res.dir"     value="resources"/>
+    <property name="build.dir"   value="build"/>
+    <property name="doc.dir"     value="${build.dir}/javadoc"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir"     value="${build.dir}"/>
+    <property name="main-class"  value="edu.virginia.patek.nscript.NScript"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+<!--            <fileset dir="${res.dir}" />-->
+        </jar>
+    </target>
+    
+    <target name="javadoc">
+        <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+    </target>
+    
+    <target name="run" depends="jar">
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    </target>
+
+    <target name="clean-build" depends="clean,jar"/>
+
+    <target name="main" depends="clean,run"/>
+</project>
