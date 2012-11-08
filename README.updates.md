@@ -11,19 +11,9 @@ compliance (e.g. all source files were moved in a package)
 * All dot files (.DS_store &co.) have been removed: obviously they 
 weren't part of the source - they were rather unintentional leaves.
 
-* The package contains no license (seriously): I've dropped a line to 
-the email address specified in the source code, but no evidence whatsoever 
-of an answer. Given that - and provided that the source is attached - I 
-assume that the original intentions were to open source this piece of 
-software and so I will do.
-
-* With reference to the point above, I declare my good faith in open sourcing
-this application. I shall not be liable to any extent. Should the original
-author want me to withdraw the code from the Internet, I will comply.
-Anyway, all the patches, modifications and bug fixes are in my copyright,
-so in case of source withdraw the original author will have to remove all of
-them from his copy of the software and explicitly renounce to make any profit
-over this modifications.
+* The package contained no license (seriously): I've assigned a BSD-permissive
+license to the package. The original author (Enrique Campos-Nunez) agreed
+with this choice.
 
 * Old docs were stripped as outdated and so were the javadocs (and all of the
 generated resources).
