@@ -1,18 +1,11 @@
-/* ----------------------------------------------------------------------------
- * DMModel.java
+/*
+ * This source file is part of NScript, released under BSD-modern.
  *
- * Defines DMModel as an interface to be implemented by any objects
- * that require manipulation by the DMControl object.
+ * Copyright (C) 2000-2001 Enrique Campos-Nanez
+ * Copyright (C) 2012 Stefano Sanfilippo
  *
- * nscript Project
- *
- * Contact information: Dr. Stephen D. Patek
- *                      Department of Systems and Information Engineering
- *                      101-C Olsson Hall
- *                      Charlottesville, VA 22904
- *                      University of Virginia
- *                      e-mail: patek@virginia.edu
- * ------------------------------------------------------------------------- */
+ * See README.* at top level for copying, contacts, history and notes.
+ */
 
 package edu.virginia.patek.nscript;
 
