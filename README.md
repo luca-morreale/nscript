@@ -28,9 +28,9 @@ Please remember to download *latest* version, i.e. the first of the list
 Building
 ========
 
-Files are installed in the `./bin` directory at top level.
-The build system does not support root installation, but I am definitely
-going to add that.
+Files are installed in the `./nscript` directory at top level and prebuilt
+zip is placed there too. The build system does not support root installation,
+but I am definitely going to add that.
 
 Prerequisites
 -------------
@@ -51,9 +51,15 @@ JUST DO IT!
 
 Issue:
 
+    ant clean prebuilt
+
+and you will get a nice `nscript-*.zip` file ready to ship, unpack, send &co.
+
+If you'd rather have your files installed in the top level folder, use:
+
     ant clean install
 
-in the terminal. The build process should last less than a minute (much less).
+The build process should last less than a minute (much less).
 
 Note for *nix lovers
 --------------------
