@@ -29,6 +29,8 @@ import java.io.*;
  *  model is created.
  */
 public class NScript extends JFrame {
+  static final long serialVersionUID = 42L;
+
   /** Library manager for the application. Contains the opened libraries. */
   TclLibraryManager libManager;
   /** An object representing the ns simulation environment, present in every
@@ -504,6 +506,8 @@ public class NScript extends JFrame {
 
   /** Action definitions for the 'New' action. */
   class NewAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public NewAction( String label, Icon icon )
     {
       super( label, icon );
@@ -521,6 +525,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Open' option. */
   class OpenAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public OpenAction( String label, Icon icon )
     {
       super( label, icon );
@@ -538,6 +544,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Open Library' option. */
   class OpenLibAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public OpenLibAction( String label, Icon icon )
     {
       super( label, icon );
@@ -551,6 +559,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Save' option. */
   class SaveAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public SaveAction( String label, Icon icon )
     {
       super( label, icon );
@@ -564,6 +574,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Quit' option. */
   class QuitAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public QuitAction( String label, Icon icon )
     {
       super( label, icon );
@@ -581,6 +593,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Clear' option. */
   class ClearAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public ClearAction( String label, Icon icon )
     {
       super( label, icon );
@@ -594,6 +608,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'About...' option. */
   class AboutAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public AboutAction( String label, Icon icon )
     {
       super( label, icon );
@@ -607,6 +623,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Edit Array...' menu option. */
   class EditArrayAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public EditArrayAction( String label, Icon icon )
     {
       super( label, icon );
@@ -620,6 +638,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Export...' menu option. */
   class ExportAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public ExportAction( String label, Icon icon )
     {
       super( label, icon );
@@ -633,6 +653,8 @@ public class NScript extends JFrame {
 
   /** Action implementation of the 'Run...' menu option. */
   class RunAction extends AbstractAction {
+    static final long serialVersionUID = 42L;
+
     public RunAction( String label, Icon icon )
     {
       super( label, icon );

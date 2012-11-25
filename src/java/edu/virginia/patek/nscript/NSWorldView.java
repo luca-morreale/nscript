@@ -19,6 +19,8 @@ import edu.virginia.patek.nscript.NSWorldPane;
  * the current simulation script.
  */
 public class NSWorldView extends JPanel {
+  static final long serialVersionUID = 42L;
+
   /** A reference to the simulation model. */
   NSWorld w;
   /** The list GUI element. */
@@ -48,6 +50,8 @@ public class NSWorldView extends JPanel {
    *  in the list.
    */
   class SWPListModel extends AbstractListModel {
+    static final long serialVersionUID = 42L;
+
     /** A reference to the model. */
     NSWorld W;
     /** The constructor takes a reference to the model.

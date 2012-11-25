@@ -25,6 +25,8 @@ import edu.virginia.patek.nscript.DMControl;
  *  context.
  */
 public class DMView extends JPanel {
+  static final long serialVersionUID = 42L;
+
   /** A reference to the model object. */
   DMModel M;
   /** A referebce to the control object. */

@@ -15,6 +15,8 @@ import java.awt.*;
 /** A view that holds a list of the objects involved in a simulation.
  *  Not yet implemented. */
 public class NSWorldPane extends JLabel implements ListCellRenderer {
+  static final long serialVersionUID = 42L;
+
   /** Default constructor. */
   public NSWorldPane()
   {

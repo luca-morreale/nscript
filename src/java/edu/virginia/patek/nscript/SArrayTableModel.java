@@ -20,6 +20,8 @@ import edu.virginia.patek.nscript.NSWorld;
  *  are part of the simulation.
  */
 public class SArrayTableModel extends AbstractTableModel {
+  static final long serialVersionUID = 42L;
+
   /** A reference to the simulation model. */
   NSWorld M;
 
