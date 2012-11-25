@@ -15,4 +15,3 @@ relation class LinkToLan node lannode 0 0 1 0:
 begin
   $#to#lan addNode "$#from#" #Bandwidth# #Delay#;
 end
-

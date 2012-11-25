@@ -38,6 +38,3 @@ begin
   ?Cost=1.0::$#env.name# cost $#from# $#to# #Cost#;
   ?Display Queue=Off::$#env.name# duplex-link-op $#from# $#to# queuePos 0.5;
 end
-
-
-
