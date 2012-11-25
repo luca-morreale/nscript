@@ -8,7 +8,7 @@
 12 years ago. First step was to rationalize source code and move to JDK 1.7
 compliance (e.g. all source files were moved in a package)
 
-* All dot files (.DS_store &co.) have been removed: obviously they 
+* All dot files (.DS_store &co.) have been removed: obviously they
 weren't part of the source - they were rather unintentional leaves.
 
 * The package contained no license (seriously): I've assigned a BSD-permissive
