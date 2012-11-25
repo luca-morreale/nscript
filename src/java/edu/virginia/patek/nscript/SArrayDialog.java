@@ -21,6 +21,8 @@ import edu.virginia.patek.nscript.NSModel;
  *  several objects that share the same behavior.
  */
 public class SArrayDialog extends JDialog implements ActionListener {
+  static final long serialVersionUID = 42L;
+
   /** A reference to the simulation model. */
   NSModel M;
   /** A table where the information about the current arrays will be shown. */

@@ -26,6 +26,8 @@ import edu.virginia.patek.nscript.NSIconPane;
  *  its elements are displayed, and where the user can select an
  *  object to create. */
 public class SToolBar extends JPanel implements ActionListener {
+  static final long serialVersionUID = 42L;
+
   /** A reference to the main application frame. */
   NScript frame;
   /** A reference to a Library Manager which stores libraries and their
@@ -127,6 +129,8 @@ public class SToolBar extends JPanel implements ActionListener {
    *  elements of a library as a list.
    */
   class STBListModel extends AbstractListModel {
+    static final long serialVersionUID = 42L;
+
     /** A reference to the library that corresponds to the list. */
     TclLibrary lib;
 

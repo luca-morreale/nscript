@@ -22,6 +22,8 @@ import javax.swing.event.*;
  *  It creates the interface required to do so.
  */
 public class SObjectCellEditor extends AbstractCellEditor implements TableCellEditor {
+  static final long serialVersionUID = 42L;
+
   /** The object to be edited. */
   NSObject o;
   /** A pull down for fields with limited options. */

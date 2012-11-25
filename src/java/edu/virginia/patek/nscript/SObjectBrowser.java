@@ -22,6 +22,8 @@ import javax.swing.border.*;
 /** Creates a panel that allows the user to modify the properties of an
  *  object. */
 public class SObjectBrowser extends JPanel implements ActionListener {
+  static final long serialVersionUID = 42L;
+
   /** A reference to the simulation model. */
   NSModel M;
   /** The default button from the interface. */

@@ -17,6 +17,8 @@ import java.awt.*;
 /** Implements the representation of a class of objects (TclSnippet) in the
  *  ToolBox view. */
 public class NSIconPane extends JLabel implements ListCellRenderer {
+  static final long serialVersionUID = 42L;
+
   /** Constant to represent an OVAL icon. */
   public static final int OVAL = 0;
   /** Constant to represent an AGENT icon. */

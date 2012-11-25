@@ -20,6 +20,8 @@ import edu.virginia.patek.nscript.NSObject;
  *  simulation object in the SObjectBrowser view.
  */
 public class SObjectTableModel extends AbstractTableModel {
+  static final long serialVersionUID = 42L;
+
   /** A reference to the object being edited. */
   NSObject o;
 

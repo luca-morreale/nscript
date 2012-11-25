@@ -23,6 +23,8 @@ import edu.virginia.patek.nscript.NSModel;
  *     itself.
  */
 public class SAboutDialog extends JDialog implements ActionListener {
+  static final long serialVersionUID = 42L;
+
   /** The close button (for the "About..." functionality). */
   JButton closeBtn;
   /** A status string (for the progress dialog functionality). */
