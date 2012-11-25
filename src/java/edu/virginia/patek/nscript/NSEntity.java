@@ -123,8 +123,8 @@ public class NSEntity extends NSEditableObject {
     int dx = (int) Math.round( r.width * x);
     int dy = (int) Math.round( r.height * y);
     // Calculate the size of the element according to the scale.
-    int size = (int) Math.round(NSEntity.SIZE * r.width / NSEntity.NOMINAL_WIDTH);
-    int size2 = (int) Math.round( size / 2 );
+    int size = Math.round(NSEntity.SIZE * r.width / NSEntity.NOMINAL_WIDTH);
+    int size2 = Math.round( size / 2 );
 
     // If the element is indexed by an array, display it with a 'shadow'
     // to give the impresion of a stack of objects.

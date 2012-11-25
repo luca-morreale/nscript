@@ -59,7 +59,7 @@ See COPYING at top level for more information.
     <mkdir dir="${install.dir}/doc"/>
 
     <copy todir="${install.dir}/pixmaps">
-      <fileset dir="reso|urces/pixmaps" includes="*.png"/>
+      <fileset dir="resources/pixmaps" includes="*.png"/>
     </copy>
     <copy todir="${install.dir}/lib">
       <fileset dir="resources/lib" includes="*.lib"/>

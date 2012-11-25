@@ -80,9 +80,9 @@ public class TclSnippet extends Object {
   int endStyle;
 
   /** The collection of attributes of the snippet. */
-  ArrayList attributes;
+  ArrayList<TclAttribute> attributes;
   /** The collection of patterns of the snippet. */
-  ArrayList patterns;
+  ArrayList<TclPattern> patterns;
 
   /** Constant indicating a SOLID line style (for relation objects, only). */
   static final int SOLID = 0;
@@ -95,8 +95,8 @@ public class TclSnippet extends Object {
    *  @param s the string from which to read the snippet definition. */
   public TclSnippet( String s )
   {
-    attributes = new ArrayList();
-    patterns = new ArrayList();
+    attributes = new ArrayList<TclAttribute>();
+    patterns = new ArrayList<TclPattern>();
     parseSelf(s);
   }
 
@@ -330,7 +330,7 @@ public class TclSnippet extends Object {
   public TclAttribute getAttribute( int inIndex )
   {
     if (inIndex>=0 && inIndex<attributes.size())
-      return (TclAttribute) (attributes.get(inIndex));
+      return attributes.get(inIndex);
     else
       return null;
   }
@@ -362,7 +362,7 @@ public class TclSnippet extends Object {
     int i;
 
     for(i=0; i<attributes.size(); i++) {
-      o . setAttribute(i,((TclAttribute)attributes.get(i)).defaultValue);
+      o.setAttribute(i,attributes.get(i).defaultValue);
     }
   }
 
@@ -423,7 +423,7 @@ public class TclSnippet extends Object {
     // Now pattern substitution
     s = "";
     for (i=0; i<patterns.size(); i++) {
-      p = (TclPattern) patterns.get(i);
+      p = patterns.get(i);
       if (p.isConditional) {
         if (p.attributeValue.equals(valueOf(w,o,p.attribute)))
           sApp = patternToTcl(p.pattern,w,o,sep);
@@ -493,7 +493,7 @@ public class TclSnippet extends Object {
 
     // Variable attributes
     for (i=0; i<attributes.size(); i++) {
-      if (((TclAttribute)attributes.get(i)).name.equals(attrName))
+      if (attributes.get(i).name.equals(attrName))
         return o.getAttribute(i);
     }
 
