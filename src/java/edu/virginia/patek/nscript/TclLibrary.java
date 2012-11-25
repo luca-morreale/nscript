@@ -27,14 +27,14 @@ public class TclLibrary extends Object {
   /** The version number of the library. */
   String version;
   /** The collection of TclSnippets. */
-  ArrayList snippets;
+  ArrayList<TclSnippet> snippets;
 
   /** Constructs itself from a buffer.
    *  @param br a buffer (file) from which the library parses itself.
    */
   public TclLibrary( BufferedReader br )
   {
-    snippets = new ArrayList();
+    snippets = new ArrayList<TclSnippet>();
     readFromDisk(br);
   }
 
@@ -45,7 +45,7 @@ public class TclLibrary extends Object {
   {
     setName( libName );
     setTBName( tbName );
-    snippets = new ArrayList();
+    snippets = new ArrayList<TclSnippet>();
   }
 
   public String getTBName()
@@ -81,7 +81,7 @@ public class TclLibrary extends Object {
   public TclSnippet getSnippet( int index )
   {
     if (index>=0 && index<snippets.size())
-      return (TclSnippet) snippets.get(index);
+      return snippets.get(index);
     else
       return null;
   }
@@ -89,9 +89,9 @@ public class TclLibrary extends Object {
   public TclSnippet getSnippet( String theName )
   {
     TclSnippet t;
-    Iterator iter = snippets.iterator();
+    Iterator<TclSnippet> iter = snippets.iterator();
     while (iter.hasNext()) {
-      t = (TclSnippet) iter.next();
+      t = iter.next();
       if (t.getName().equals(theName))
         return t;
     }
@@ -111,11 +111,11 @@ public class TclLibrary extends Object {
   public boolean nameExists( String theName )
   {
     TclSnippet t;
-    Iterator iter = snippets.iterator();
+    Iterator<TclSnippet> iter = snippets.iterator();
     if (iter==null) return false;
 
     while (iter.hasNext()) {
-      t = (TclSnippet) iter.next();
+      t = iter.next();
       if (t.getName().equals(theName))
         return true;
     }
@@ -169,7 +169,7 @@ public class TclLibrary extends Object {
 
     s = getName() + " : " + getTBName() + " : " + getVersion() + "\n";
     for (i=0; i<snippets.size(); i++) {
-      s = s + ((TclSnippet)snippets.get(i)).toString() + "\n";
+      s = s + (snippets.get(i)).toString() + "\n";
     }
     return s;
   }

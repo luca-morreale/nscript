@@ -22,12 +22,12 @@ import java.io.*;
  */
 public class TclLibraryManager extends Object {
   /** The collection of libraries. */
-  ArrayList libraries;
+  ArrayList<TclLibrary> libraries;
 
   /** Default constructor, creates the container for libraries. */
   public TclLibraryManager()
   {
-    libraries = new ArrayList();
+    libraries = new ArrayList<TclLibrary>();
   }
 
   /** Verifies if a given name is already being used for a snippet.
@@ -38,11 +38,11 @@ public class TclLibraryManager extends Object {
   public boolean snippetNameExists(String snippetName)
   {
     TclLibrary l;
-    Iterator i;
+    Iterator<TclLibrary> i;
 
     i = libraries.iterator();
     while (i.hasNext()) {
-      l = (TclLibrary) i.next();
+      l = i.next();
       if (l.nameExists(snippetName))
         return true;
     }
@@ -57,11 +57,11 @@ public class TclLibraryManager extends Object {
   public boolean libNameExists(String libName)
   {
     TclLibrary l;
-    Iterator i;
+    Iterator<TclLibrary> i;
 
     i = libraries.iterator();
     while (i.hasNext()) {
-      l = (TclLibrary) i.next();
+      l = i.next();
       if (libName.equals(l.getName()))
         return true;
     }
@@ -122,7 +122,7 @@ public class TclLibraryManager extends Object {
   public TclLibrary getLibrary( int inIndex )
   {
     if (inIndex >=0 && inIndex<libraries.size())
-      return (TclLibrary)libraries.get(inIndex);
+      return libraries.get(inIndex);
     else
       return null;
   }
@@ -134,12 +134,12 @@ public class TclLibraryManager extends Object {
    */
   public TclLibrary getLibrary( String inLibName )
   {
-    Iterator i;
+    Iterator<TclLibrary> i;
     TclLibrary l;
 
     i = libraries.iterator();
     while (i.hasNext()) {
-      l = (TclLibrary)i.next();
+      l = i.next();
       if (inLibName.equals(l.getName()))
         return l;
     }
@@ -159,7 +159,7 @@ public class TclLibraryManager extends Object {
     TclLibrary l;
 
     if (inLibIndex>=0 && inLibIndex<libraries.size()) {
-      l = (TclLibrary)libraries.get(inLibIndex);
+      l = libraries.get(inLibIndex);
       if (inSnippetIndex>=0 && inSnippetIndex<l.getSnippetCount())
         return l.getSnippet(inSnippetIndex);
       else
@@ -178,12 +178,12 @@ public class TclLibraryManager extends Object {
    */
   public TclSnippet getSnippet( String sName )
   {
-    Iterator i = libraries.iterator();
+    Iterator<TclLibrary> i = libraries.iterator();
     TclLibrary l;
     TclSnippet s;
 
     while (i.hasNext()) {
-      l = (TclLibrary)i.next();
+      l = i.next();
       s = l.getSnippet(sName);
       if (s!=null)
         return s;

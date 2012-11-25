@@ -19,11 +19,11 @@ import edu.virginia.patek.nscript.NSArray;
  *  (index definitions). */
 public class NSWorld extends Object {
   /** The objects that are part of a simulation script are stored here. */
-  ArrayList objects;
+  ArrayList<NSObject> objects;
   /** The arrays that are part of the simulation script are stored here. */
-  ArrayList arrays;
-  /** Iterates over the list of objects for purposes of searching, saving, etc. */
-  Iterator objIter;
+  ArrayList<NSArray> arrays;
+//   /** Iterates over the list of objects for purposes of searching, saving, etc. */
+//   Iterator objIter;
 
   /** Only constructor requires the 'environment' object, which contains the
    *  default values for any simulation script.
@@ -32,16 +32,16 @@ public class NSWorld extends Object {
   public NSWorld ( NSObject inEnvironment )
   {
     // For convenience, the environment is always at index 0, and cannot be deleted.
-    objects = new ArrayList();
+    objects = new ArrayList<NSObject>();
     addObject( inEnvironment );
-    arrays = new ArrayList();
+    arrays = new ArrayList<NSArray>();
   }
 
   /** Returns the ns environment for the simulation.
    *  @return the ns environment object. */
   public NSObject getEnvironment()
   {
-    return ((NSObject)objects.get(0));
+    return objects.get(0);
   }
 
   /** Adds a new index array. Remember an array is defined by a name
@@ -80,7 +80,7 @@ public class NSWorld extends Object {
   public NSArray getArray( int inIndex )
   {
     if (inIndex>=0 && inIndex<arrays.size())
-      return ((NSArray)arrays.get(inIndex));
+      return arrays.get(inIndex);
     else {
       System.out.println("Error: array index out of bounds.");
       return null;
@@ -101,11 +101,11 @@ public class NSWorld extends Object {
   public boolean isValidName( String theName )
   {
     NSObject o;
-    Iterator i = objects.iterator();
+    Iterator<NSObject> i = objects.iterator();
     int j;
 
     while (i.hasNext()) {
-      o = (NSObject) i.next();
+      o = i.next();
       if ( o . getName() . equals( theName ) )
         return false;
     }
@@ -133,10 +133,10 @@ public class NSWorld extends Object {
   public NSObject getObject( String theName )
   {
     NSObject o;
-    Iterator i = objects.iterator();
+    Iterator<NSObject> i = objects.iterator();
 
     while (i.hasNext()) {
-      o = (NSObject) i.next();
+      o = i.next();
       if ( o . getName() . equals( theName ) )
         return o;
     }
@@ -150,7 +150,7 @@ public class NSWorld extends Object {
   public NSObject getObject( int index )
   {
     if (index>=0 && index<objects.size())
-      return (NSObject) objects.get( index );
+      return objects.get( index );
     else
       return null;
   }

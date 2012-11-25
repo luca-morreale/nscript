@@ -26,7 +26,7 @@ class NSObject extends Object {
   /** The name of the object. */
   String name;
   /** Attributes of the current object. */
-  ArrayList attributes;
+  ArrayList<String> attributes;
   /** An object can be indexed by an array. arrayIndex stores a reference
    *  to this array, or -1 if no array is in use. */
   int arrayIndex;
@@ -38,7 +38,7 @@ class NSObject extends Object {
     snippet = inSnippet;
 
     // Initialize the objects data structure
-    attributes = new ArrayList();
+    attributes = new ArrayList<String>();
     arrayIndex = -1;
     setName( inName );
   }
@@ -124,7 +124,7 @@ class NSObject extends Object {
     if (inAttrIndex >= attributes.size())
       return "";
     else
-      return ((String) attributes.get( inAttrIndex ));
+      return attributes.get(inAttrIndex);
   }
 
   /** Converts the object to a string. This option is used to store the

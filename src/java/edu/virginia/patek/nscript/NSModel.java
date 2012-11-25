@@ -61,7 +61,7 @@ public class NSModel extends NSWorld implements DMModel {
   public void setViews( DMView inEView, JTextArea inTclView,  SObjectBrowser inObjectPanel, NSWorldView inWorldView )
   {
     editView = inEView;
-    tclView = (JTextArea) inTclView;
+    tclView = inTclView;
     objectPanel = inObjectPanel;
     worldView = inWorldView;
   }
@@ -250,7 +250,7 @@ public class NSModel extends NSWorld implements DMModel {
 
     editView.repaint();
 
-    Iterator iter = objects.iterator();
+    Iterator<NSObject> iter = objects.iterator();
 
     iter.next();
     while (iter.hasNext()) {
@@ -273,7 +273,7 @@ public class NSModel extends NSWorld implements DMModel {
     while (arrays.size()>0)
       arrays.remove(0);
 
-    Iterator iter = objects.iterator();
+    Iterator<NSObject> iter = objects.iterator();
 
     iter.next();
     while (iter.hasNext()) {
