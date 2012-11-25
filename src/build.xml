@@ -7,80 +7,81 @@ See COPYING at top level for more information.
 
 -->
 <project name="nscript" basedir="." default="jar">
-    <property name="install.dir" value="../bin"/> <!--FIXME-->
+  <property name="install.dir" value="../bin"/> <!--FIXME-->
 
-    <property name="src.dir"     value="java"/>
-    <property name="res.dir"     value="resources"/>
-    <property name="build.dir"   value="build"/>
-    <property name="doc.dir"     value="${build.dir}/javadoc"/>
-    <property name="classes.dir" value="${build.dir}/classes"/>
-    <property name="jar.dir"     value="${build.dir}"/>
-    <property name="main-class"  value="edu.virginia.patek.nscript.NScript"/>
+  <property name="src.dir"     value="java"/>
+  <property name="res.dir"     value="resources"/>
+  <property name="build.dir"   value="build"/>
+  <property name="doc.dir"     value="${build.dir}/javadoc"/>
+  <property name="classes.dir" value="${build.dir}/classes"/>
+  <property name="jar.dir"     value="${build.dir}"/>
+  <property name="main-class"  value="edu.virginia.patek.nscript.NScript"/>
 
-    <target name="clean">
-        <delete dir="${build.dir}"/>
-        <delete dir="${install.dir}"/>
-    </target>
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <delete dir="${install.dir}"/>
+  </target>
 
-    <target name="compile">
-        <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}"
-               includeantruntime="false"/>
-    </target>
+  <target name="compile">
+    <mkdir dir="${classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+    <!--target="1.6" source="1.6">-->
+      <compilerarg value="-Xlint"/>
+    </javac>
+  </target>
 
-    <target name="jar" depends="compile">
-        <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/${ant.project.name}.jar"
-             basedir="${classes.dir}">
-            <manifest>
-                <attribute name="Main-Class" value="${main-class}"/>
-            </manifest>
-<!--            <fileset dir="${res.dir}"/>-->
-        </jar>
-    </target>
+  <target name="jar" depends="compile">
+    <mkdir dir="${jar.dir}"/>
+    <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="${main-class}"/>
+      </manifest>
+      <!--<fileset dir="${res.dir}"/>-->
+    </jar>
+  </target>
 
-    <target name="javadoc">
-        <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
-    </target>
+  <target name="javadoc">
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+  </target>
 
-    <target name="run" depends="jar">
-        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
-    </target>
+  <target name="run" depends="jar">
+    <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+  </target>
 
-    <target name="clean-build" depends="clean,jar"/>
+  <target name="clean-build" depends="clean,jar"/>
 
-    <target name="main" depends="clean,run"/>
+  <target name="main" depends="clean,run"/>
 
-    <target name="install" depends="jar">
-        <mkdir dir="${install.dir}/pixmaps"/>
-        <mkdir dir="${install.dir}/lib"/>
-        <mkdir dir="${install.dir}/settings"/>
-        <mkdir dir="${install.dir}/doc"/>
+  <target name="install" depends="jar">
+    <mkdir dir="${install.dir}/pixmaps"/>
+    <mkdir dir="${install.dir}/lib"/>
+    <mkdir dir="${install.dir}/settings"/>
+    <mkdir dir="${install.dir}/doc"/>
 
-        <copy todir="${install.dir}/pixmaps">
-            <fileset dir="resources/pixmaps" includes="*.png"/>
-        </copy>
-        <copy todir="${install.dir}/lib">
-            <fileset dir="resources/lib" includes="*.lib"/>
-        </copy>
-        <copy todir="${install.dir}/settings">
-            <fileset dir="resources/settings" includes="deflibs,environment"/>
-        </copy>
-        <copy todir="${install.dir}">
-            <fileset dir="resources" includes="nscript.bat,nscript.sh"/>
-            <fileset dir="${build.dir}" includes="*.jar"/>
-        </copy>
-        <copy todir="${install.dir}/doc">
-            <fileset dir=".." includes="README.*,COPYING"/>
-        </copy>
+    <copy todir="${install.dir}/pixmaps">
+      <fileset dir="reso|urces/pixmaps" includes="*.png"/>
+    </copy>
+    <copy todir="${install.dir}/lib">
+      <fileset dir="resources/lib" includes="*.lib"/>
+    </copy>
+    <copy todir="${install.dir}/settings">
+      <fileset dir="resources/settings" includes="deflibs,environment"/>
+    </copy>
+    <copy todir="${install.dir}">
+      <fileset dir="resources" includes="nscript.bat,nscript.sh"/>
+      <fileset dir="${build.dir}" includes="*.jar"/>
+    </copy>
+    <copy todir="${install.dir}/doc">
+      <fileset dir=".." includes="README.*,COPYING"/>
+    </copy>
 
-        <!-- General permission -->
-        <chmod perm="0644">
-            <fileset dir="${install.dir}" includes="**"/>
-        </chmod>
-        <!-- And then we punchs some holes... -->
-        <chmod perm="0755">
-            <fileset dir="${install.dir}" includes="nscript.sh"/>
-        </chmod>
-    </target>
+    <!-- General permission -->
+    <chmod perm="0644">
+      <fileset dir="${install.dir}" includes="**"/>
+    </chmod>
+    <!-- And then we punch some holes... -->
+    <chmod perm="0755">
+      <fileset dir="${install.dir}" includes="nscript.sh"/>
+    </chmod>
+  </target>
 </project>
