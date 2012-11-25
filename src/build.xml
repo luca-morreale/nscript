@@ -72,7 +72,7 @@ See COPYING at top level for more information.
       <fileset dir="${build.dir}" includes="*.jar"/>
     </copy>
     <copy todir="${install.dir}/doc">
-      <fileset dir=".." includes="README.*,COPYING"/>
+      <fileset dir=".." includes="README.md,COPYING,ChangeLog,AUTHORS"/>
     </copy>
 
     <!-- General permission -->
