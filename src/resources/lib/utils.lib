@@ -48,7 +48,7 @@ begin
     ?Result 1 name=<name>::global #Result 1 object#;
     ?Result 1 name=<name>::set var1 [$#Result 1 object# #Result 1 variable#];
     ?Result 1 name=<name>::puts $#name#_file "#Result 1 name# $var1";
-    $#env.name# flush-trace; 
+    $#env.name# flush-trace;
     close $#name#_file;
     };
 end
@@ -81,7 +81,7 @@ end
 
 entity class Timer time 3:
 begin
-end  
+end
 
 relation class AgentEvent time agent 2 2 1 1:
   Event=start;
@@ -136,8 +136,3 @@ begin
   ?Event9=None::$#env.name# at #At Time 9# "#Event9#";
   ?Event10=None::$#env.name# at #At Time 10# "#Event10#";
 end
-
-
-
-
-
