@@ -1,14 +1,11 @@
-/* ----------------------------------------------------------------------------
- * NSCRIPT
- * version 1.0.2
- * Author:              Enrique Campos-Nanez
- * Contact information: Dr. Stephen D. Patek
- *                      Department of Systems and Information Engineering
- *                      101-C Olsson Hall
- *                      Charlottesville, VA 22904
- *                      University of Virginia
- *                      e-mail: patek@virginia.edu
- * ------------------------------------------------------------------------- */
+/*
+ * This source file is part of NScript, released under BSD-modern.
+ *
+ * Copyright (C) 2000-2001 Enrique Campos-Nanez
+ * Copyright (C) 2012 Stefano Sanfilippo
+ *
+ * See README.* at top level for copying, contacts, history and notes.
+ */
 
 package edu.virginia.patek.nscript;
 
