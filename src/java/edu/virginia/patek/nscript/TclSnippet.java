@@ -164,7 +164,7 @@ public class TclSnippet extends Object {
     // Now, read the attribute definitions.
 
     int iStart = 0, iEnd;
-    while ((iEnd = attr . indexOf(';', iStart)) >= 0) {
+    while ((iEnd = attr.indexOf(';', iStart)) >= 0) {
       attributes.add(new TclAttribute(attr.substring(iStart, iEnd)));
       iStart = iEnd + 1;
     }
@@ -172,7 +172,7 @@ public class TclSnippet extends Object {
     // Finally, read the patterns.
 
     iStart = 0;
-    while ((iEnd = patt . indexOf(';', iStart)) >= 0) {
+    while ((iEnd = patt.indexOf(';', iStart)) >= 0) {
       patterns.add(new TclPattern(patt.substring(iStart, iEnd)));
       iStart = iEnd + 1;
     }
@@ -453,16 +453,16 @@ public class TclSnippet extends Object {
     int i, iLast = 0;
     String sNew = "";
 
-    while ((i = pattern . indexOf(sep, iLast)) >= 0) {
-      sNew = sNew + pattern . substring(iLast, i);
-      iLast = pattern . indexOf(sep, i + 1);
+    while ((i = pattern.indexOf(sep, iLast)) >= 0) {
+      sNew = sNew + pattern.substring(iLast, i);
+      iLast = pattern.indexOf(sep, i + 1);
       if (iLast < 0)
         return "ERROR: Bad formed pattern.";
-      sNew = sNew + valueOf(w, o, pattern . substring(i + 1, iLast));
+      sNew = sNew + valueOf(w, o, pattern.substring(i + 1, iLast));
       iLast++;
     }
     if (iLast < pattern.length())
-      sNew = sNew + pattern . substring(iLast);
+      sNew = sNew + pattern.substring(iLast);
     return sNew;
   }
 

@@ -50,7 +50,7 @@ public class NSWorld extends Object {
    *  @param inNumberOfElements the number of elements of the array. */
   public void addArray(String inArrayName, int inNumberOfElements)
   {
-    arrays . add(new NSArray(inArrayName, inNumberOfElements));
+    arrays.add(new NSArray(inArrayName, inNumberOfElements));
   }
 
   /** Removes the array stored at a specified position. Notice that if the
@@ -106,7 +106,7 @@ public class NSWorld extends Object {
 
     while (i.hasNext()) {
       o = i.next();
-      if (o . getName() . equals(theName))
+      if (o.getName().equals(theName))
         return false;
     }
     return true;
@@ -117,14 +117,14 @@ public class NSWorld extends Object {
    *  @return true if the object was correctly stored, false otherwise. */
   public boolean addObject(NSObject newObject)
   {
-    return (objects . add(newObject));
+    return (objects.add(newObject));
   }
 
   /** Counts the number of objects in the current simulation script.
    *  @return the number of simulation objects. */
   public int getObjectCount()
   {
-    return objects . size();
+    return objects.size();
   }
 
   /** Obtains an object using its name, Null if the name is not found.
@@ -137,7 +137,7 @@ public class NSWorld extends Object {
 
     while (i.hasNext()) {
       o = i.next();
-      if (o . getName() . equals(theName))
+      if (o.getName().equals(theName))
         return o;
     }
     return null;

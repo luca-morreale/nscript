@@ -131,37 +131,37 @@ public class NSEntity extends NSEditableObject {
     if (arrayIndex >= 0) {
       switch (getSnippet().getIcon()) {
         case NSEntity.NODE:
-          g . drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
+          g.drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
           g.setColor(Color.white);
-          g . fillOval(dx - size2, dy - size2, size, size);
+          g.fillOval(dx - size2, dy - size2, size, size);
           break;
 
         case NSEntity.AGENT:
-          g . drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
-          g . drawLine(dx - size2 + 2, dy + 2, dx + size2 + 2, dy + 2);
+          g.drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
+          g.drawLine(dx - size2 + 2, dy + 2, dx + size2 + 2, dy + 2);
           g.setColor(Color.white);
-          g . fillRect(dx - size2, dy - size2, size, size);
+          g.fillRect(dx - size2, dy - size2, size, size);
           break;
 
         case NSEntity.APPLICATION:
-          g . drawLine(dx, dy - size2 + 2, dx + size2, dy + 2);
-          g . drawLine(dx + size2, dy + 2, dx, dy + size2 + 2);
-          g . drawLine(dx, dy + size2 + 2, dx - size2, dy + 2);
-          g . drawLine(dx - size2, dy + 2, dx, dy - size2 + 2);
+          g.drawLine(dx, dy - size2 + 2, dx + size2, dy + 2);
+          g.drawLine(dx + size2, dy + 2, dx, dy + size2 + 2);
+          g.drawLine(dx, dy + size2 + 2, dx - size2, dy + 2);
+          g.drawLine(dx - size2, dy + 2, dx, dy - size2 + 2);
           break;
 
         case NSEntity.TIMER:
-          g . drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
-          g . drawLine(dx + size2 / 2 + 2, dy - size2 / 2 + 2, dx + 2, dy + 2);
-          g . drawLine(dx + 2, dy + 2, dx + 2, dy + size2 + 2);
+          g.drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
+          g.drawLine(dx + size2 / 2 + 2, dy - size2 / 2 + 2, dx + 2, dy + 2);
+          g.drawLine(dx + 2, dy + 2, dx + 2, dy + size2 + 2);
           g.setColor(Color.white);
-          g . fillOval(dx - size2, dy - size2, size, size);
+          g.fillOval(dx - size2, dy - size2, size, size);
           break;
 
         case NSEntity.GENERIC:
-          g . drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
+          g.drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
           g.setColor(Color.white);
-          g . fillRect(dx - size2, dy - size2, size, size);
+          g.fillRect(dx - size2, dy - size2, size, size);
           break;
       }
     }
@@ -175,36 +175,36 @@ public class NSEntity extends NSEditableObject {
     // Obtain the icon of this element, and display the element accordingly.
     switch (getSnippet().getIcon()) {
       case NSEntity.NODE:
-        g . drawOval(dx - size2, dy - size2, size, size);
+        g.drawOval(dx - size2, dy - size2, size, size);
         break;
 
       case NSEntity.AGENT:
-        g . drawRect(dx - size2, dy - size2, size, size);
-        g . drawLine(dx - size2, dy, dx + size2, dy);
+        g.drawRect(dx - size2, dy - size2, size, size);
+        g.drawLine(dx - size2, dy, dx + size2, dy);
         break;
 
       case NSEntity.APPLICATION:
-        g . drawLine(dx, dy - size2, dx + size2, dy);
-        g . drawLine(dx + size2, dy, dx, dy + size2);
-        g . drawLine(dx, dy + size2, dx - size2, dy);
-        g . drawLine(dx - size2, dy, dx, dy - size2);
+        g.drawLine(dx, dy - size2, dx + size2, dy);
+        g.drawLine(dx + size2, dy, dx, dy + size2);
+        g.drawLine(dx, dy + size2, dx - size2, dy);
+        g.drawLine(dx - size2, dy, dx, dy - size2);
         break;
 
       case NSEntity.TIMER:
-        g . drawOval(dx - size2, dy - size2, size, size);
-        g . drawLine(dx + size2 / 2, dy - size2 / 2, dx, dy);
-        g . drawLine(dx, dy, dx, dy + size2);
+        g.drawOval(dx - size2, dy - size2, size, size);
+        g.drawLine(dx + size2 / 2, dy - size2 / 2, dx, dy);
+        g.drawLine(dx, dy, dx, dy + size2);
         break;
 
       case NSEntity.GENERIC:
-        g . drawOval(dx - size2, dy - size2, size, size);
-        g . drawRect(dx - size2, dy - size2, size, size);
+        g.drawOval(dx - size2, dy - size2, size, size);
+        g.drawRect(dx - size2, dy - size2, size, size);
         break;
 
     }
 
     // Draw the name of the object to its right.
-    g . drawString(getName(), dx + size, dy);
+    g.drawString(getName(), dx + size, dy);
     if (isSelected())
       g.setColor(color);
   }

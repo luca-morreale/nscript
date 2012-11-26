@@ -130,11 +130,11 @@ class NSRelation extends NSEditableObject implements DMObject {
         pen = new BasicStroke((float) lineWidth, 0, 0, 1, dash, 0);
         break;
     }
-    g2 . setStroke(pen);
+    g2.setStroke(pen);
 
     // Draw the freekin' line
 
-    g2 . drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
+    g2.drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
                   (int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height));
 
     g2.setStroke(new BasicStroke(lineWidth));
@@ -142,9 +142,9 @@ class NSRelation extends NSEditableObject implements DMObject {
       case 0:
         break;
       case 1:
-        g2 . drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
+        g2.drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
                       (int)Math.round(x1 * r.width + 2 * ux - 2 * uy), (int)Math.round(y1 * r.height + 2 * uy + aSize * ux));
-        g2 . drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
+        g2.drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
                       (int)Math.round(x1 * r.width + 2 * ux + 2 * uy), (int)Math.round(y1 * r.height + 2 * uy - aSize * ux));
         break;
       case 2:
@@ -160,9 +160,9 @@ class NSRelation extends NSEditableObject implements DMObject {
       case 0:
         break;
       case 1:
-        g2 . drawLine((int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height),
+        g2.drawLine((int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height),
                       (int)Math.round(x2 * r.width - aSize * ux - aSize * uy), (int)Math.round(y2 * r.height - aSize * uy + aSize * ux));
-        g2 . drawLine((int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height),
+        g2.drawLine((int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height),
                       (int)Math.round(x2 * r.width - aSize * ux + aSize * uy), (int)Math.round(y2 * r.height - aSize * uy - aSize * ux));
         break;
       case 2:
@@ -174,7 +174,7 @@ class NSRelation extends NSEditableObject implements DMObject {
         break;
     }
 
-    g2 . setStroke(new BasicStroke());
+    g2.setStroke(new BasicStroke());
 
     if (isSelected())
       g.setColor(color);
@@ -275,9 +275,9 @@ class NSRelation extends NSEditableObject implements DMObject {
   public void fromString(BufferedReader br, NSModel M)
   {
     try {
-      super . fromString(br);
-      from = (NSEntity) M . getObject(br.readLine());
-      to = (NSEntity) M . getObject(br.readLine());
+      super.fromString(br);
+      from = (NSEntity) M.getObject(br.readLine());
+      to = (NSEntity) M.getObject(br.readLine());
     } catch (IOException ioe) {
       System.out.println("Error reading relation object: " + ioe.toString());
     }

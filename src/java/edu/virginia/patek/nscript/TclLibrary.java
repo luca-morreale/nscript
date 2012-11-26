@@ -105,7 +105,7 @@ public class TclLibrary extends Object {
 
   public void addSnippet(TclSnippet snippet)
   {
-    snippets . add(snippet);
+    snippets.add(snippet);
   }
 
   public boolean nameExists(String theName)

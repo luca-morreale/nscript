@@ -45,20 +45,20 @@ public class SAboutDialog extends JDialog implements ActionListener {
     // Creates the interface
     Icon icon = new ImageIcon("pixmaps/start.png");
 
-    this . getContentPane() . add(new JLabel(icon), BorderLayout.CENTER);
+    this.getContentPane().add(new JLabel(icon), BorderLayout.CENTER);
     if (modal) {
       JPanel closePane = new JPanel();
-      closePane . setLayout(new GridLayout(1, 3));
-      closePane . add(new JLabel(""));
+      closePane.setLayout(new GridLayout(1, 3));
+      closePane.add(new JLabel(""));
       closeBtn = new JButton("Close");
       closeBtn.addActionListener(this);
-      closePane . add(closeBtn);
-      closePane . add(new JLabel(""));
-      this . getContentPane() . add(closePane, BorderLayout.SOUTH);
+      closePane.add(closeBtn);
+      closePane.add(new JLabel(""));
+      this.getContentPane().add(closePane, BorderLayout.SOUTH);
       setSize(400, 210);
     } else {
       ad = new JLabel("Loading...");
-      this . getContentPane() . add(ad, BorderLayout.SOUTH);
+      this.getContentPane().add(ad, BorderLayout.SOUTH);
       setSize(400, 210);
     }
 
@@ -74,7 +74,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
    */
   public void setMessage(String inMsg)
   {
-    ad . setText(inMsg);
+    ad.setText(inMsg);
   }
 
   /** Responds to the button click (Continue button) action.

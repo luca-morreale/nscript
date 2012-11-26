@@ -74,7 +74,7 @@ public class DMView extends JPanel {
     //	System.out.println("Ending paint...");
 
     // Draws the auxiliary controls (line or rectangle being drawn).
-    C . drawControls(g);
+    C.drawControls(g);
   }
 
   /** Set a new scale for the drawing. Effectively, it resets the size of the

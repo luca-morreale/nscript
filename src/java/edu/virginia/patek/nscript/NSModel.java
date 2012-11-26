@@ -73,12 +73,12 @@ public class NSModel extends NSWorld implements DMModel {
   public int getEditionMode()
   {
     String inst;
-    TclSnippet s = toolBox . getSelectedSnippet();
+    TclSnippet s = toolBox.getSelectedSnippet();
 
     if (s == null)
       return DMModel.SELECT_MODE;
 
-    if (s . isRelation)
+    if (s.isRelation)
       return DMModel.RELATION_MODE;
     else
       return DMModel.ICON_MODE;
@@ -93,7 +93,7 @@ public class NSModel extends NSWorld implements DMModel {
   public void addSimpleObject(Dimension r, Point p, boolean unselectOther)
   {
     String inst, newName;
-    TclSnippet s = toolBox . getSelectedSnippet();
+    TclSnippet s = toolBox.getSelectedSnippet();
     NSObject o;
     double x, y;
 
@@ -116,10 +116,10 @@ public class NSModel extends NSWorld implements DMModel {
     } while (!isValidName(newName));
 
     o = new NSEntity(s, newName, x, y);
-    s . instantiateNSObject(o);
+    s.instantiateNSObject(o);
     addObject(o);
-    tclView . setText(toTcl());
-    worldView . updateList();
+    tclView.setText(toTcl());
+    worldView.updateList();
   }
 
   /** Adds a new relation.
@@ -133,7 +133,7 @@ public class NSModel extends NSWorld implements DMModel {
     NSObject oF, oT;
     String inst, newName;
     int i;
-    TclSnippet s = toolBox . getSelectedSnippet();
+    TclSnippet s = toolBox.getSelectedSnippet();
     NSRelation o;
 
     if (s == null || !s.isRelation)
@@ -156,10 +156,10 @@ public class NSModel extends NSWorld implements DMModel {
     if (((NSEntity) oFrom).getSnippet().getBase().equals(s.getFromBase()) &&
         ((NSEntity)  oTo).getSnippet().getBase().equals(s.getToBase())) {
       o = new NSRelation(s, newName, (NSEntity) oFrom, (NSEntity) oTo);
-      s . instantiateNSObject(o);
+      s.instantiateNSObject(o);
       addObject(o);
-      tclView . setText(toTcl());
-      worldView . updateList();
+      tclView.setText(toTcl());
+      worldView.updateList();
     }
   }
 
@@ -168,9 +168,9 @@ public class NSModel extends NSWorld implements DMModel {
    */
   public void updateAllViews()
   {
-    editView . repaint();
-    objectPanel . selectionChanged();
-    tclView . setText(toTcl());
+    editView.repaint();
+    objectPanel.selectionChanged();
+    tclView.setText(toTcl());
     worldView.updateList();
   }
 

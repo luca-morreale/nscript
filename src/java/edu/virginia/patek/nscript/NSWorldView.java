@@ -33,7 +33,7 @@ public class NSWorldView extends JPanel {
 
     w = inW;
     l = new JList(new SWPListModel(w));
-    l . setCellRenderer(new NSWorldPane());
+    l.setCellRenderer(new NSWorldPane());
     JScrollPane sp = new JScrollPane(l);
     setLayout(new BorderLayout());
     add(sp, BorderLayout.CENTER);
@@ -42,7 +42,7 @@ public class NSWorldView extends JPanel {
   /** Updates the view when the model suffers changes. */
   public void updateList()
   {
-    l . setModel(new SWPListModel(w));
+    l.setModel(new SWPListModel(w));
     updateUI();
   }
 
