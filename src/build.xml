@@ -75,7 +75,7 @@ See COPYING at top level for more information.
       <fileset dir="${build.dir}" includes="*.jar"/>
     </copy>
     <copy todir="${install.dir}/doc">
-      <fileset dir=".." includes="README.md,COPYING,ChangeLog,AUTHORS"/>
+      <fileset dir=".." includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
     </copy>
     <copy todir="${install.dir}/examples">
       <fileset dir="resources/examples" includes="*.nss"/>

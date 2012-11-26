@@ -1,5 +1,5 @@
-nscript-1.0
-===========
+Version 1.0.0
+=============
 
 Visual interface for building ns-tcl scripts. Specifically, it allows you to:
 
