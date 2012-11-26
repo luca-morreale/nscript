@@ -56,16 +56,16 @@ public class NSEntity extends NSEditableObject {
    *  @param inName the name of the object.
    *  @param inX the initial x coordinate of the object.
    *  @param inY the initial y coordinate of the object. */
-  public NSEntity( TclSnippet inSnippet, String inName, double inX, double inY )
+  public NSEntity(TclSnippet inSnippet, String inName, double inX, double inY)
   {
-    super( inSnippet, inName );
+    super(inSnippet, inName);
 
-    setX( inX );
-    setY( inY );
+    setX(inX);
+    setY(inY);
   }
 
   /** Sets the x coordinate position of the object. */
-  public void setX( double inX )
+  public void setX(double inX)
   {
     x = inX;
   }
@@ -79,7 +79,7 @@ public class NSEntity extends NSEditableObject {
 
   /** Sets the y coordinate position of the object.
    *  @param inY the new position. */
-  public void setY( double inY )
+  public void setY(double inY)
   {
     y = inY;
   }
@@ -98,7 +98,7 @@ public class NSEntity extends NSEditableObject {
    *  use of arrays).
    *  @param g_ a graphics context.
    *  @param r the size of the view pane.*/
-  public void drawSelf( Graphics g_, Dimension r)
+  public void drawSelf(Graphics g_, Dimension r)
   {
 
     Graphics2D g = (Graphics2D)g_;
@@ -120,49 +120,49 @@ public class NSEntity extends NSEditableObject {
 
     // Transform the position of the object from the interval [0,1]
     // using the height and width of the view pane.
-    int dx = (int) Math.round( r.width * x);
-    int dy = (int) Math.round( r.height * y);
+    int dx = (int) Math.round(r.width * x);
+    int dy = (int) Math.round(r.height * y);
     // Calculate the size of the element according to the scale.
     int size = Math.round(NSEntity.SIZE * r.width / NSEntity.NOMINAL_WIDTH);
-    int size2 = Math.round( size / 2 );
+    int size2 = Math.round(size / 2);
 
     // If the element is indexed by an array, display it with a 'shadow'
     // to give the impresion of a stack of objects.
-    if (arrayIndex>=0) {
-      switch(getSnippet().getIcon()) {
-      case NSEntity.NODE:
-        g . drawOval( dx - size2+2, dy - size2+2, size, size );
-        g.setColor(Color.white);
-        g . fillOval( dx - size2, dy - size2, size, size );
-        break;
+    if (arrayIndex >= 0) {
+      switch (getSnippet().getIcon()) {
+        case NSEntity.NODE:
+          g . drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
+          g.setColor(Color.white);
+          g . fillOval(dx - size2, dy - size2, size, size);
+          break;
 
-      case NSEntity.AGENT:
-        g . drawRect( dx - size2+2, dy - size2+2, size, size );
-        g . drawLine( dx - size2+2, dy+2, dx + size2+2, dy+2 );
-        g.setColor(Color.white);
-        g . fillRect( dx - size2, dy - size2, size, size );
-        break;
+        case NSEntity.AGENT:
+          g . drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
+          g . drawLine(dx - size2 + 2, dy + 2, dx + size2 + 2, dy + 2);
+          g.setColor(Color.white);
+          g . fillRect(dx - size2, dy - size2, size, size);
+          break;
 
-      case NSEntity.APPLICATION:
-        g . drawLine( dx, dy - size2+2, dx + size2, dy+2 );
-        g . drawLine( dx + size2, dy+2, dx, dy + size2+2 );
-        g . drawLine( dx, dy + size2+2, dx - size2, dy+2 );
-        g . drawLine( dx - size2, dy+2, dx, dy - size2+2 );
-        break;
+        case NSEntity.APPLICATION:
+          g . drawLine(dx, dy - size2 + 2, dx + size2, dy + 2);
+          g . drawLine(dx + size2, dy + 2, dx, dy + size2 + 2);
+          g . drawLine(dx, dy + size2 + 2, dx - size2, dy + 2);
+          g . drawLine(dx - size2, dy + 2, dx, dy - size2 + 2);
+          break;
 
-      case NSEntity.TIMER:
-        g . drawOval( dx - size2+2, dy - size2+2, size, size );
-        g . drawLine( dx + size2/2+2, dy - size2/2+2, dx+2, dy+2 );
-        g . drawLine( dx + 2, dy + 2, dx + 2, dy+size2 + 2 );
-        g.setColor(Color.white);
-        g . fillOval( dx - size2, dy - size2, size, size );
-        break;
+        case NSEntity.TIMER:
+          g . drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
+          g . drawLine(dx + size2 / 2 + 2, dy - size2 / 2 + 2, dx + 2, dy + 2);
+          g . drawLine(dx + 2, dy + 2, dx + 2, dy + size2 + 2);
+          g.setColor(Color.white);
+          g . fillOval(dx - size2, dy - size2, size, size);
+          break;
 
-      case NSEntity.GENERIC:
-        g . drawRect( dx - size2+2, dy - size2+2, size, size );
-        g.setColor(Color.white);
-        g . fillRect( dx - size2, dy - size2, size, size );
-        break;
+        case NSEntity.GENERIC:
+          g . drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
+          g.setColor(Color.white);
+          g . fillRect(dx - size2, dy - size2, size, size);
+          break;
       }
     }
 
@@ -173,40 +173,40 @@ public class NSEntity extends NSEditableObject {
     }
 
     // Obtain the icon of this element, and display the element accordingly.
-    switch(getSnippet().getIcon()) {
-    case NSEntity.NODE:
-      g . drawOval( dx - size2, dy - size2, size, size );
-      break;
+    switch (getSnippet().getIcon()) {
+      case NSEntity.NODE:
+        g . drawOval(dx - size2, dy - size2, size, size);
+        break;
 
-    case NSEntity.AGENT:
-      g . drawRect( dx - size2, dy - size2, size, size );
-      g . drawLine( dx - size2, dy, dx + size2, dy );
-      break;
+      case NSEntity.AGENT:
+        g . drawRect(dx - size2, dy - size2, size, size);
+        g . drawLine(dx - size2, dy, dx + size2, dy);
+        break;
 
-    case NSEntity.APPLICATION:
-      g . drawLine( dx, dy - size2, dx + size2, dy );
-      g . drawLine( dx + size2, dy, dx, dy + size2 );
-      g . drawLine( dx, dy + size2, dx - size2, dy );
-      g . drawLine( dx - size2, dy, dx, dy - size2 );
-      break;
+      case NSEntity.APPLICATION:
+        g . drawLine(dx, dy - size2, dx + size2, dy);
+        g . drawLine(dx + size2, dy, dx, dy + size2);
+        g . drawLine(dx, dy + size2, dx - size2, dy);
+        g . drawLine(dx - size2, dy, dx, dy - size2);
+        break;
 
-    case NSEntity.TIMER:
-      g . drawOval( dx - size2, dy - size2, size, size );
-      g . drawLine( dx + size2/2, dy - size2/2, dx, dy );
-      g . drawLine( dx, dy, dx, dy+size2 );
-      break;
+      case NSEntity.TIMER:
+        g . drawOval(dx - size2, dy - size2, size, size);
+        g . drawLine(dx + size2 / 2, dy - size2 / 2, dx, dy);
+        g . drawLine(dx, dy, dx, dy + size2);
+        break;
 
-    case NSEntity.GENERIC:
-      g . drawOval( dx - size2, dy - size2, size, size );
-      g . drawRect( dx - size2, dy - size2, size, size );
-      break;
+      case NSEntity.GENERIC:
+        g . drawOval(dx - size2, dy - size2, size, size);
+        g . drawRect(dx - size2, dy - size2, size, size);
+        break;
 
     }
 
     // Draw the name of the object to its right.
-    g . drawString( getName(), dx + size, dy );
+    g . drawString(getName(), dx + size, dy);
     if (isSelected())
-      g.setColor( color );
+      g.setColor(color);
   }
 
   /** True if the position of the object is 'close' to the given mouse point.
@@ -214,13 +214,13 @@ public class NSEntity extends NSEditableObject {
    *  @param r the size of the view pane.
    *  @param p the position of the mouse in view coordinates.
    *  @return true if the element was hit by the point p, false otherwise. */
-  public boolean isHit( Dimension r, Point p )
+  public boolean isHit(Dimension r, Point p)
   {
-    double inX, inY, distance, size2 = (double) NSEntity.SIZE /NSEntity.NOMINAL_WIDTH / 2;
+    double inX, inY, distance, size2 = (double) NSEntity.SIZE / NSEntity.NOMINAL_WIDTH / 2;
 
-    inX = p.getX()/r.width;
-    inY = p.getY()/r.height;
-    distance = Math.sqrt( Math.pow(getX()-inX,2) + Math.pow(getY()-inY,2) );
+    inX = p.getX() / r.width;
+    inY = p.getY() / r.height;
+    distance = Math.sqrt(Math.pow(getX() - inX, 2) + Math.pow(getY() - inY, 2));
 
     if (distance < size2) {
       return true;
@@ -236,24 +236,24 @@ public class NSEntity extends NSEditableObject {
    *  @return true if the element is contained by the rectangle,
    *          false otherwise.
    */
-  public boolean isContained( Dimension r, Point p1, Point p2 )
+  public boolean isContained(Dimension r, Point p1, Point p2)
   {
     double x1, y1, x2, y2;
     double minX, maxX, minY, maxY;
 
-    x1 = p1.getX()/r.width;
-    y1 = p1.getY()/r.height;
-    x2 = p2.getX()/r.width;
-    y2 = p2.getY()/r.height;
+    x1 = p1.getX() / r.width;
+    y1 = p1.getY() / r.height;
+    x2 = p2.getX() / r.width;
+    y2 = p2.getY() / r.height;
 
-    if (x1<x2) {
+    if (x1 < x2) {
       minX = x1;
       maxX = x2;
     } else {
       minX = x2;
       maxX = x1;
     }
-    if (y1<y2) {
+    if (y1 < y2) {
       minY = y1;
       maxY = y2;
     } else {
@@ -270,15 +270,15 @@ public class NSEntity extends NSEditableObject {
   /** Moves the position of the object by the given amount.
    *  @param r the size of the view pane.
    *  @param byWhat the size of the translation. */
-  public void moveBy( Dimension r, Dimension byWhat )
+  public void moveBy(Dimension r, Dimension byWhat)
   {
     double dx, dy;
 
-    dx = (double) byWhat.width/r.width;
-    dy = (double) byWhat.height/r.height;
+    dx = (double) byWhat.width / r.width;
+    dy = (double) byWhat.height / r.height;
 
-    setX( getX() + dx );
-    setY( getY() + dy );
+    setX(getX() + dx);
+    setY(getY() + dy);
   }
 
   /** Returns the element represented as a string. This routine is used to
@@ -300,12 +300,12 @@ public class NSEntity extends NSEditableObject {
    *  @param br the stream that contains the object information, tipically a
    *            file.
    */
-  public void fromString( BufferedReader br )
+  public void fromString(BufferedReader br)
   {
-    super.fromString( br );
+    super.fromString(br);
     try {
-      setX( Double.parseDouble( br.readLine() ) );
-      setY( Double.parseDouble( br.readLine() ) );
+      setX(Double.parseDouble(br.readLine()));
+      setY(Double.parseDouble(br.readLine()));
     } catch (IOException ioe) {
       System.out.println("Error reading the object: " + ioe.toString());
     }

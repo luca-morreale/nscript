@@ -43,33 +43,33 @@ public class SArrayDialog extends JDialog implements ActionListener {
    *  @param inM a reference to the simulation model.
    *  @param pFrame the main frame of the application.
    */
-  public SArrayDialog( NSModel inM, JFrame pFrame )
+  public SArrayDialog(NSModel inM, JFrame pFrame)
   {
-    super( pFrame, "Index Configuration...", true );
+    super(pFrame, "Index Configuration...", true);
     M = inM;
-    AT = new JTable( new SArrayTableModel( M ) );
-    this . getContentPane() . add( new JLabel("Available indices:"), BorderLayout.NORTH );
-    this . getContentPane() . add( new JScrollPane( AT ), BorderLayout.CENTER );
+    AT = new JTable(new SArrayTableModel(M));
+    this . getContentPane() . add(new JLabel("Available indices:"), BorderLayout.NORTH);
+    this . getContentPane() . add(new JScrollPane(AT), BorderLayout.CENTER);
 
     // Pane for buttons on the right of the dialog box
     JPanel buttonPane = new JPanel();
-    buttonPane.setLayout( new GridLayout(5,1) );
+    buttonPane.setLayout(new GridLayout(5, 1));
 
-    addBtn = new JButton( "Add" );
-    addBtn . addActionListener( this );
-    removeBtn = new JButton( "Remove..." );
-    removeBtn . addActionListener( this );
-    removeAllBtn = new JButton( "Remove all..." );
-    removeAllBtn . addActionListener( this );
+    addBtn = new JButton("Add");
+    addBtn . addActionListener(this);
+    removeBtn = new JButton("Remove...");
+    removeBtn . addActionListener(this);
+    removeAllBtn = new JButton("Remove all...");
+    removeAllBtn . addActionListener(this);
     closeBtn = new JButton("Close");
-    closeBtn . addActionListener( this );
-    buttonPane . add( addBtn );
-    buttonPane . add( removeBtn );
-    buttonPane . add( removeAllBtn );
-    buttonPane . add( new JLabel() );
-    buttonPane . add( closeBtn );
-    this . getContentPane() . add( buttonPane, BorderLayout.EAST );
-    setSize(350,200);
+    closeBtn . addActionListener(this);
+    buttonPane . add(addBtn);
+    buttonPane . add(removeBtn);
+    buttonPane . add(removeAllBtn);
+    buttonPane . add(new JLabel());
+    buttonPane . add(closeBtn);
+    this . getContentPane() . add(buttonPane, BorderLayout.EAST);
+    setSize(350, 200);
     setVisible(true);
   }
 
@@ -77,23 +77,23 @@ public class SArrayDialog extends JDialog implements ActionListener {
    *
    *  @param ae stores the information of the current event.
    */
-  public void actionPerformed( ActionEvent ae )
+  public void actionPerformed(ActionEvent ae)
   {
     JButton b = (JButton) ae.getSource();
-    if (b==closeBtn) {
+    if (b == closeBtn) {
       dispose();
     }
-    if (b==addBtn) {
-      M.addArray("UntitledIndex",10);
-      AT . setModel( new SArrayTableModel( M ) );
+    if (b == addBtn) {
+      M.addArray("UntitledIndex", 10);
+      AT . setModel(new SArrayTableModel(M));
     }
-    if (b==removeBtn) {
-      M . removeArray( AT.getSelectedRow());
-      AT . setModel( new SArrayTableModel( M ) );
+    if (b == removeBtn) {
+      M . removeArray(AT.getSelectedRow());
+      AT . setModel(new SArrayTableModel(M));
     }
-    if (b==removeAllBtn) {
+    if (b == removeAllBtn) {
       M . removeAllArrays();
-      AT . setModel( new SArrayTableModel( M ) );
+      AT . setModel(new SArrayTableModel(M));
     }
   }
 }

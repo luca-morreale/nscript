@@ -36,7 +36,7 @@ public class NSWorldPane extends JLabel implements ListCellRenderer {
   )
   {
     String s = (String) value;
-    setText( s );
+    setText(s);
 
     if (isSelected) {
       setBackground(list.getSelectionBackground());

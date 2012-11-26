@@ -26,14 +26,14 @@ public class TclAttribute extends Object {
 
   /** Constructor takes a string and parses the information.
    *  @param s a string, usually read from a file. */
-  public TclAttribute( String s )
+  public TclAttribute(String s)
   {
     parseSelf(s);
   }
 
   // Access methods
   /** @return the name  of the attribute. */
-  public String getName( )
+  public String getName()
   {
     return name;
   }
@@ -54,7 +54,7 @@ public class TclAttribute extends Object {
    *  attribute name, its default value, and (optionally) list of options.
    *  @param s the string containing the information.
    */
-  void parseSelf( String s )
+  void parseSelf(String s)
   {
     int defaultIndex, optionsIndex;
 
@@ -64,12 +64,12 @@ public class TclAttribute extends Object {
     s = s.trim();
     defaultIndex = s.indexOf('=');
     optionsIndex = s.indexOf(':');
-    if (defaultIndex>=0) {
+    if (defaultIndex >= 0) {
       hasDefault = true;
     } else {
       hasDefault = false;
     }
-    if (optionsIndex>=0) {
+    if (optionsIndex >= 0) {
       hasOptions = true;
     } else {
       hasOptions = false;
@@ -77,18 +77,18 @@ public class TclAttribute extends Object {
 
     // Ok, now read
     if (hasDefault) {
-      name = s.substring(0,defaultIndex);
+      name = s.substring(0, defaultIndex);
       if (hasOptions) {
-        defaultValue = s.substring(defaultIndex+1,optionsIndex);
-        options = s.substring(optionsIndex+1);
+        defaultValue = s.substring(defaultIndex + 1, optionsIndex);
+        options = s.substring(optionsIndex + 1);
       } else {
 
-        defaultValue = s.substring(defaultIndex+1);
+        defaultValue = s.substring(defaultIndex + 1);
       }
     } else {
       if (hasOptions) {
-        name = s.substring(0,optionsIndex);
-        options = s.substring(optionsIndex+1);
+        name = s.substring(0, optionsIndex);
+        options = s.substring(optionsIndex + 1);
       } else {
         name = s;
       }

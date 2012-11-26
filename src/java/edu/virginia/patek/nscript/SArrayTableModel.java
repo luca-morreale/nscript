@@ -27,7 +27,7 @@ public class SArrayTableModel extends AbstractTableModel {
 
   /** Constructor the stores a reference to the simulation model.
    *  @param inM a reference to the current simulation model. */
-  public SArrayTableModel( NSWorld inM )
+  public SArrayTableModel(NSWorld inM)
   {
     M = inM;
   }
@@ -37,7 +37,7 @@ public class SArrayTableModel extends AbstractTableModel {
    *  @return the number of arrays in the current model. */
   public int getRowCount()
   {
-    if (M==null)
+    if (M == null)
       return 0;
     else
       return M . getArrayCount();
@@ -47,7 +47,7 @@ public class SArrayTableModel extends AbstractTableModel {
    *  @return 2 if the model has array elements, 0 otherwise. */
   public int getColumnCount()
   {
-    if (M==null)
+    if (M == null)
       return 0;
     else
       return 2;
@@ -57,15 +57,15 @@ public class SArrayTableModel extends AbstractTableModel {
    *  @param row the row position in the table.
    *  @param col the col position in the table.
    *  @return a string with element. */
-  public Object getValueAt( int row, int col )
+  public Object getValueAt(int row, int col)
   {
     if (M == null)
       return new String("");
 
     if (col == 0) {
-      return M . getArray( row ) . name;
+      return M . getArray(row) . name;
     } else {
-      return Integer.toString(M . getArray( row ) . elements);
+      return Integer.toString(M . getArray(row) . elements);
     }
   }
 
@@ -73,24 +73,24 @@ public class SArrayTableModel extends AbstractTableModel {
    *  @param value the new value for the object, stored as a String.
    *  @param row the row position of the table where the update applies.
    *  @param column the column of the table where the update applies. */
-  public void setValueAt( Object value, int row, int column )
+  public void setValueAt(Object value, int row, int column)
   {
-    if ( M == null)
+    if (M == null)
       return;
 
-    if (column==0)
-      M . getArray( row ) . name = value . toString();
+    if (column == 0)
+      M . getArray(row) . name = value . toString();
     else
-      M . getArray( row ) . elements = Integer.parseInt( value.toString() );
+      M . getArray(row) . elements = Integer.parseInt(value.toString());
   }
 
   /** Returns the column headers. In this case, the first header will
    *  be 'Index Name', and the second 'Size'.
    *
    *  @param columnIndex the index of the column of interest. */
-  public String getColumnName( int columnIndex )
+  public String getColumnName(int columnIndex)
   {
-    if (columnIndex==0)
+    if (columnIndex == 0)
       return "Index Name";
     else
       return "Size";

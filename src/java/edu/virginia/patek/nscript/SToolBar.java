@@ -49,39 +49,39 @@ public class SToolBar extends JPanel implements ActionListener {
    *  @param inFrame a reference to the main application frame.
    *  @param inLibManager a referemce to the library manager.
    */
-  public SToolBar( NScript inFrame, TclLibraryManager inLibManager )
+  public SToolBar(NScript inFrame, TclLibraryManager inLibManager)
   {
-    super( new BorderLayout() );
+    super(new BorderLayout());
     frame = inFrame;
     libManager = inLibManager;
     action = new JLabel("Selection tool:");
-    JPanel panel = new JPanel( new BorderLayout());
-    panel.add(action,BorderLayout.NORTH);
-    JPanel panel2 = new JPanel( new BorderLayout() );
+    JPanel panel = new JPanel(new BorderLayout());
+    panel.add(action, BorderLayout.NORTH);
+    JPanel panel2 = new JPanel(new BorderLayout());
     JButton b = new JButton(new ImageIcon("pixmaps/select.png"));
-    b . setPreferredSize(new Dimension(22,22));
-    b . addActionListener( this );
-    panel2.add( b, BorderLayout.NORTH );
-    panel.add(panel2,BorderLayout.WEST);
-    tabPane = new JTabbedPane( JTabbedPane.BOTTOM );
-    panel.add(tabPane,BorderLayout.CENTER);
-    nip = new NSIconPane(0,"NO ICON");
-    add( panel, BorderLayout.CENTER );
-    setBorder( new EmptyBorder(5,5,5,5));
+    b . setPreferredSize(new Dimension(22, 22));
+    b . addActionListener(this);
+    panel2.add(b, BorderLayout.NORTH);
+    panel.add(panel2, BorderLayout.WEST);
+    tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
+    panel.add(tabPane, BorderLayout.CENTER);
+    nip = new NSIconPane(0, "NO ICON");
+    add(panel, BorderLayout.CENTER);
+    setBorder(new EmptyBorder(5, 5, 5, 5));
   }
 
   /** Adds a new library to the interface by creating a new tabbed pane,
    *  and configuring it to store that libraries classes.
    *
    *  @param lib a reference to the library. */
-  public void addLibraryPane( TclLibrary lib )
+  public void addLibraryPane(TclLibrary lib)
   {
     int i;
 
     JList c = new JList(new STBListModel(lib));
     c . setCellRenderer(nip);
-    JScrollPane sp = new JScrollPane( c );
-    tabPane . addTab(lib.getTBName(),sp);
+    JScrollPane sp = new JScrollPane(c);
+    tabPane . addTab(lib.getTBName(), sp);
     action.setText("Select an object");
   }
 
@@ -95,15 +95,15 @@ public class SToolBar extends JPanel implements ActionListener {
     int libIndex, snippetIndex;
 
     libIndex = tabPane . getSelectedIndex();
-    if (libIndex<0)
+    if (libIndex < 0)
       return null;
 
     snippetIndex = ((JList)(((JScrollPane) tabPane . getSelectedComponent()).getViewport().getView())).getSelectedIndex();
 
-    if (snippetIndex<0)
+    if (snippetIndex < 0)
       return null;
     else
-      return libManager.getSnippet(libIndex,snippetIndex);
+      return libManager.getSnippet(libIndex, snippetIndex);
   }
 
   /** Clears the selection in the current pane. This is a hack in response
@@ -120,7 +120,7 @@ public class SToolBar extends JPanel implements ActionListener {
    *  @param ae an object containing the information about the current
    *            event.
    */
-  public void actionPerformed( ActionEvent ae )
+  public void actionPerformed(ActionEvent ae)
   {
     clearSelection();
   }
@@ -136,7 +136,7 @@ public class SToolBar extends JPanel implements ActionListener {
 
     /** Constructor receives the reference to the library.
      *  @param inLib a reference to the library. */
-    public STBListModel( TclLibrary inLib )
+    public STBListModel(TclLibrary inLib)
     {
       lib = inLib;
     }
@@ -146,9 +146,9 @@ public class SToolBar extends JPanel implements ActionListener {
      *  @return a reference to the object, in this case the TclSnippet
      *          object that corresponds to the entry.
      */
-    public Object getElementAt( int index )
+    public Object getElementAt(int index)
     {
-      return lib . getSnippet( index );// . getName();
+      return lib . getSnippet(index);  // . getName();
     }
 
     /** Obtains the size of a library in terms of number of classes

@@ -34,7 +34,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
   /** The constructor takes the object to be edited as an input, creates
    *  and initializes the components in the application.
    */
-  public SObjectCellEditor( NSObject inO )
+  public SObjectCellEditor(NSObject inO)
   {
     o = inO;
     cb = new JComboBox();
@@ -71,18 +71,18 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
 
     cb.removeAllItems();
     cb.setPopupVisible(false);
-    if (column>0) {
-      if (o!=null) {
+    if (column > 0) {
+      if (o != null) {
         if (o . getSnippet() . getAttribute(row) . hasOptions) {
           st = new StringTokenizer(o . getSnippet() . getAttribute(row) . getOptions());
           cb . setEditable(false);
           while (st . hasMoreTokens())
-            cb . addItem( st . nextToken() );
-          cb . setSelectedItem( o . getAttribute(row) );
+            cb . addItem(st . nextToken());
+          cb . setSelectedItem(o . getAttribute(row));
           return ((Component) cb);
         } else {
           cb . setEditable(true);
-          tf . setText( o . getAttribute(row) );
+          tf . setText(o . getAttribute(row));
           return ((Component) tf);
         }
       } else {

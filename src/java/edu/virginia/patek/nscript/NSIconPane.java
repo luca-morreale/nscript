@@ -45,9 +45,9 @@ public class NSIconPane extends JLabel implements ListCellRenderer {
 
   /** Constructor that calls the father's constructor (JLabel), and
    * initializes the values of the icon and the label. */
-  public NSIconPane( int inIconID, String inLabel )
+  public NSIconPane(int inIconID, String inLabel)
   {
-    super( inLabel );
+    super(inLabel);
     icon = inIconID;
     label = inLabel;
     setOpaque(true);
@@ -56,9 +56,9 @@ public class NSIconPane extends JLabel implements ListCellRenderer {
   /** Displays the entry as an icon. */
   public void paintMe(Graphics g)
   {
-    paintIcon(g,new Point(0,0),getBounds().getSize(),icon);
+    paintIcon(g, new Point(0, 0), getBounds().getSize(), icon);
     int w = (int) getBounds().getHeight();
-    g.drawString(label,w+w/10,w+2-10);
+    g.drawString(label, w + w / 10, w + 2 - 10);
   }
 
   /** Returns a component in which the element is displayed.
@@ -74,9 +74,9 @@ public class NSIconPane extends JLabel implements ListCellRenderer {
     TclSnippet s = (TclSnippet)value;
     icon = s.getIcon();
     if (!s.isRelation)
-      setText( s.getName() + "(" + s.getBase() + ")");
+      setText(s.getName() + "(" + s.getBase() + ")");
     else
-      setText( s.getName() + "(" + s.getFromBase() + "," + s.getToBase() + ")");
+      setText(s.getName() + "(" + s.getFromBase() + "," + s.getToBase() + ")");
     label = s.getName();
 
     if (isSelected) {
@@ -84,74 +84,74 @@ public class NSIconPane extends JLabel implements ListCellRenderer {
       setForeground(list.getSelectionForeground());
     } else {
       setBackground(list.getBackground());
-      setForeground( list.getForeground());
+      setForeground(list.getForeground());
     }
 
     return this;
   }
 
   /** Displays the icon in the screen. */
-  public void paintIcon( Graphics g, Point p, Dimension r, int iconIndex )
+  public void paintIcon(Graphics g, Point p, Dimension r, int iconIndex)
   {
     int x, y;
     int h = (int) r.getHeight();
-    int h2 = h/2;
-    int h10 = h/10;
+    int h2 = h / 2;
+    int h10 = h / 10;
     x = (int) p.getX();
     y = (int) p.getY();
 
     switch (iconIndex) {
-    case OVAL:
-      g.drawOval(x,y,h,h);
-      break;
+      case OVAL:
+        g.drawOval(x, y, h, h);
+        break;
 
-    case AGENT:
-      g.drawRect(x,y,h,h);
-      g.drawLine(x,y+h2,x+h,y+h2);
-      break;
+      case AGENT:
+        g.drawRect(x, y, h, h);
+        g.drawLine(x, y + h2, x + h, y + h2);
+        break;
 
-    case APPLICATION:
-      g.drawLine(x+h2,y,x+h,y+h2);
-      g.drawLine(x+h,y+h2,x+h2,y+h);
-      g.drawLine(x+h2,y+h,x,y+h2);
-      g.drawLine(x,y+h2,x+h2,y);
-      break;
+      case APPLICATION:
+        g.drawLine(x + h2, y, x + h, y + h2);
+        g.drawLine(x + h, y + h2, x + h2, y + h);
+        g.drawLine(x + h2, y + h, x, y + h2);
+        g.drawLine(x, y + h2, x + h2, y);
+        break;
 
-    case TRACE:
-      g.drawRect(x,y,h-1,h-1);
-      g.drawLine(x+1,y+h,x+h,y+h);
-      g.drawLine(x+h,y+h,x+h,y+1);
-      g.drawLine(x+h10,y+h10,x+h10,y+h-h10);
-      break;
+      case TRACE:
+        g.drawRect(x, y, h - 1, h - 1);
+        g.drawLine(x + 1, y + h, x + h, y + h);
+        g.drawLine(x + h, y + h, x + h, y + 1);
+        g.drawLine(x + h10, y + h10, x + h10, y + h - h10);
+        break;
 
-    case TIMER:
-      g.drawRect(x,y,h,h);
-      g.drawString("0:00",x+h10,y+h10);
-      break;
+      case TIMER:
+        g.drawRect(x, y, h, h);
+        g.drawString("0:00", x + h10, y + h10);
+        break;
 
-    case UTILS:
-      g.drawRoundRect(x,y,h,h,h10,h10);
-      break;
+      case UTILS:
+        g.drawRoundRect(x, y, h, h, h10, h10);
+        break;
 
-    case LINK:
-      g.drawLine(x,y+h,x+h,y);
-      break;
+      case LINK:
+        g.drawLine(x, y + h, x + h, y);
+        break;
 
-    case ATTACH:
-      g.drawLine(x,y+h,x+h,y);
-      g.drawLine(x+h,y,x+h-h10,y);
-      g.drawLine(x+h,y,x+h,y+h10);
-      g.drawOval(x+h10,y-h10+h,h10,h10);
-      break;
+      case ATTACH:
+        g.drawLine(x, y + h, x + h, y);
+        g.drawLine(x + h, y, x + h - h10, y);
+        g.drawLine(x + h, y, x + h, y + h10);
+        g.drawOval(x + h10, y - h10 + h, h10, h10);
+        break;
 
-    case CONNECT:
-      g.drawLine(x,y+h,x+h,y);
-      g.drawLine(x+h,y,x+h-h10,y);
-      g.drawLine(x+h,y,x+h,y+h10);
-      break;
+      case CONNECT:
+        g.drawLine(x, y + h, x + h, y);
+        g.drawLine(x + h, y, x + h - h10, y);
+        g.drawLine(x + h, y, x + h, y + h10);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 }

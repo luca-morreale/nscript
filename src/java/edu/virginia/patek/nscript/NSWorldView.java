@@ -27,22 +27,22 @@ public class NSWorldView extends JPanel {
   JList l;
 
   /** Constructor that copies a reference to the simulation model. */
-  public NSWorldView( NSWorld inW )
+  public NSWorldView(NSWorld inW)
   {
     super();
 
     w = inW;
-    l = new JList( new SWPListModel(w) );
-    l . setCellRenderer( new NSWorldPane() );
-    JScrollPane sp = new JScrollPane( l );
-    setLayout( new BorderLayout() );
-    add(sp,BorderLayout.CENTER);
+    l = new JList(new SWPListModel(w));
+    l . setCellRenderer(new NSWorldPane());
+    JScrollPane sp = new JScrollPane(l);
+    setLayout(new BorderLayout());
+    add(sp, BorderLayout.CENTER);
   }
 
   /** Updates the view when the model suffers changes. */
   public void updateList()
   {
-    l . setModel( new SWPListModel( w ) );
+    l . setModel(new SWPListModel(w));
     updateUI();
   }
 
@@ -56,16 +56,16 @@ public class NSWorldView extends JPanel {
     NSWorld W;
     /** The constructor takes a reference to the model.
      *  @param inW a reference to the simulation model. */
-    public SWPListModel( NSWorld inW )
+    public SWPListModel(NSWorld inW)
     {
       W = inW;
     }
 
     /** Returns a string with a description of the ith model.
      *  @return the description of the ith model as text. */
-    public Object getElementAt( int index )
+    public Object getElementAt(int index)
     {
-      return W.getObject(index).getName()+'('+W.getObject(index).getSnippet().getName()+')';
+      return W.getObject(index).getName() + '(' + W.getObject(index).getSnippet().getName() + ')';
     }
 
     /** Obtains the size of the array (in this case the size of the model.

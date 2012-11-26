@@ -38,51 +38,51 @@ public class SAboutDialog extends JDialog implements ActionListener {
    *     (one that will wait for the user to hit "OK").
          *     Otherwise a 'modaless' dialog will be created.
          */
-  public SAboutDialog( JFrame pFrame, boolean modal )
+  public SAboutDialog(JFrame pFrame, boolean modal)
   {
     // Calls the father constructor.
-    super( pFrame, "nscript 1.1...", modal );
+    super(pFrame, "nscript 1.1...", modal);
     // Creates the interface
     Icon icon = new ImageIcon("pixmaps/start.png");
 
-    this . getContentPane() . add( new JLabel(icon), BorderLayout.CENTER );
+    this . getContentPane() . add(new JLabel(icon), BorderLayout.CENTER);
     if (modal) {
       JPanel closePane = new JPanel();
-      closePane . setLayout( new GridLayout(1,3) );
-      closePane . add( new JLabel("") );
+      closePane . setLayout(new GridLayout(1, 3));
+      closePane . add(new JLabel(""));
       closeBtn = new JButton("Close");
-      closeBtn.addActionListener( this );
-      closePane . add( closeBtn );
-      closePane . add( new JLabel("") );
-      this . getContentPane() . add( closePane, BorderLayout.SOUTH );
-      setSize(400,210);
+      closeBtn.addActionListener(this);
+      closePane . add(closeBtn);
+      closePane . add(new JLabel(""));
+      this . getContentPane() . add(closePane, BorderLayout.SOUTH);
+      setSize(400, 210);
     } else {
       ad = new JLabel("Loading...");
-      this . getContentPane() . add( ad, BorderLayout.SOUTH );
-      setSize(400,210);
+      this . getContentPane() . add(ad, BorderLayout.SOUTH);
+      setSize(400, 210);
     }
 
     Dimension dialogDim = getSize();
     Dimension screenSize = getToolkit().getScreenSize();
-    setLocation( (screenSize.width - dialogDim.width)/2,
-                 (screenSize.height - dialogDim.height)/2 );
+    setLocation((screenSize.width - dialogDim.width) / 2,
+                (screenSize.height - dialogDim.height) / 2);
     setVisible(true);
   }
 
   /** Sets the message of the status label when the dialog box is used
    *  as a progress bar (at startup to be specific.
    */
-  public void setMessage( String inMsg )
+  public void setMessage(String inMsg)
   {
-    ad . setText( inMsg );
+    ad . setText(inMsg);
   }
 
   /** Responds to the button click (Continue button) action.
    *  @param ae information about the event. */
-  public void actionPerformed( ActionEvent ae )
+  public void actionPerformed(ActionEvent ae)
   {
     JButton b = (JButton) ae.getSource();
-    if (b==closeBtn) {
+    if (b == closeBtn) {
       dispose();
     }
   }

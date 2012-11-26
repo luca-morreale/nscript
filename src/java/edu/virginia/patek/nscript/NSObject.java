@@ -33,14 +33,14 @@ class NSObject extends Object {
 
   /** Only constructor that requires a name and a class definition (Snippet).
    */
-  public NSObject( TclSnippet inSnippet, String inName )
+  public NSObject(TclSnippet inSnippet, String inName)
   {
     snippet = inSnippet;
 
     // Initialize the objects data structure
     attributes = new ArrayList<String>();
     arrayIndex = -1;
-    setName( inName );
+    setName(inName);
   }
 
   /** Returns the class definition snippet for this object.
@@ -52,7 +52,7 @@ class NSObject extends Object {
 
   /** Changes the name of the object.
    *  @param inName the new name for the object. */
-  public void setName( String inName )
+  public void setName(String inName)
   {
     name = inName;
   }
@@ -74,7 +74,7 @@ class NSObject extends Object {
 
   /** Changes the array reference for the object.
    *  @param newArrayIndex the (new) number of the array that indices. */
-  public void setArrayIndex( int newArrayIndex )
+  public void setArrayIndex(int newArrayIndex)
   {
     arrayIndex = newArrayIndex;
   }
@@ -94,24 +94,24 @@ class NSObject extends Object {
    *
    *  @param aig the index that was erased.
    */
-  public void arrayIndexGone( int aig )
+  public void arrayIndexGone(int aig)
   {
-    if (arrayIndex>aig) {
+    if (arrayIndex > aig) {
       arrayIndex--;
-    } else if (arrayIndex==aig) {
-      arrayIndex=-1;
+    } else if (arrayIndex == aig) {
+      arrayIndex = -1;
     }
   }
 
   /** Sets the value of an attribute stored at a given position.
    *  @param inAttrIndex the index of the attribute being edited.
    *  @param inNewValue a String containing the new value. */
-  public void setAttribute( int inAttrIndex, String inNewValue )
+  public void setAttribute(int inAttrIndex, String inNewValue)
   {
     if (inAttrIndex >= attributes.size())
-      attributes.add( inAttrIndex, inNewValue );
+      attributes.add(inAttrIndex, inNewValue);
     else
-      attributes.set( inAttrIndex, inNewValue );
+      attributes.set(inAttrIndex, inNewValue);
   }
 
   /** Returns the value of the attribute stored at a given position.
@@ -119,7 +119,7 @@ class NSObject extends Object {
    *  @return a String with the value of the attribute, if the index is
    *          valid, and an empty String otherwise.
    */
-  public String getAttribute( int inAttrIndex )
+  public String getAttribute(int inAttrIndex)
   {
     if (inAttrIndex >= attributes.size())
       return "";
@@ -141,24 +141,24 @@ class NSObject extends Object {
     str = str + name + "\n";
     str = str + Integer.toString(arrayIndex) + "\n";
 
-    for (i=0; i<attributes.size(); i++) {
-      str = str + attributes.get( i ) + "\n";
+    for (i = 0; i < attributes.size(); i++) {
+      str = str + attributes.get(i) + "\n";
     }
     return str;
   }
 
   /** Reads the attributes for the object from an input stream.
    *  @param br a BufferedReader object from which the values are read. */
-  public void fromString( BufferedReader br )
+  public void fromString(BufferedReader br)
   {
     int i;
     try {
-      setArrayIndex( Integer.parseInt( br.readLine() ) );
-      for (i=0; i<attributes.size(); i++) {
-        setAttribute( i, br.readLine() );
+      setArrayIndex(Integer.parseInt(br.readLine()));
+      for (i = 0; i < attributes.size(); i++) {
+        setAttribute(i, br.readLine());
       }
     } catch (IOException ioe) {
-      System.out.println("Error reading object: " + ioe.toString() );
+      System.out.println("Error reading object: " + ioe.toString());
     }
   }
 

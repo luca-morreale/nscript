@@ -24,9 +24,9 @@ public class NSEditableObject extends NSObject implements DMObject {
   boolean selected;
 
   /** Uses the constructor from NSObject. */
-  public NSEditableObject( TclSnippet inSnippet, String inName )
+  public NSEditableObject(TclSnippet inSnippet, String inName)
   {
-    super( inSnippet, inName );
+    super(inSnippet, inName);
   }
 
   /** True if the object is selected for edition, false otherwise.
@@ -60,13 +60,13 @@ public class NSEditableObject extends NSObject implements DMObject {
   /** Command to draw itself on a view. Empty implementation, since these
    *  class is still abstract.
    */
-  public void drawSelf( Graphics g, Dimension r )
+  public void drawSelf(Graphics g, Dimension r)
   {
   }
 
   /** False by default, since the class is still abstract.
    *  @return false. */
-  public boolean isHit( Dimension r, Point p )
+  public boolean isHit(Dimension r, Point p)
   {
     return false;
   }
@@ -76,7 +76,7 @@ public class NSEditableObject extends NSObject implements DMObject {
    *  @param p1 one of the corners of the rectangle.
    *  @param p2 the other corner of the rectangle.
    *  @return false (abstract). */
-  public boolean isContained( Dimension r, Point p1, Point p2 )
+  public boolean isContained(Dimension r, Point p1, Point p2)
   {
     return false;
   }
@@ -84,7 +84,7 @@ public class NSEditableObject extends NSObject implements DMObject {
   /** Translates the position of the object by a given dimension.
    *  @param r the size of the drawing canvas.
    *  @param byWhat the amount of translation. */
-  public void moveBy( Dimension r, Dimension byWhat )
+  public void moveBy(Dimension r, Dimension byWhat)
   {
   }
 }
