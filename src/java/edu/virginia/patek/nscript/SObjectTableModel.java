@@ -26,13 +26,13 @@ public class SObjectTableModel extends AbstractTableModel {
   NSObject o;
 
   /** Constructor that takes a reference to the object to be edited. */
-  public SObjectTableModel( NSObject inObject )
+  public SObjectTableModel(NSObject inObject)
   {
     o = inObject;
   }
 
   /** Updates the view by changing the object to be edited. */
-  public void updateView( NSObject inNewObject )
+  public void updateView(NSObject inNewObject)
   {
     o = inNewObject;
   }
@@ -44,7 +44,7 @@ public class SObjectTableModel extends AbstractTableModel {
    */
   public int getRowCount()
   {
-    if (o==null)
+    if (o == null)
       return 0;
     else
       return o . getAttributeCount();
@@ -54,7 +54,7 @@ public class SObjectTableModel extends AbstractTableModel {
    *  @return the number of columns. */
   public int getColumnCount()
   {
-    if (o==null)
+    if (o == null)
       return 0;
     else
       return 2;
@@ -67,7 +67,7 @@ public class SObjectTableModel extends AbstractTableModel {
    *          No validation is done so (row,col) MUST be in the correct
    *          ranges.
    */
-  public Object getValueAt( int row, int col )
+  public Object getValueAt(int row, int col)
   {
     if (o == null)
       return new String("");
@@ -86,19 +86,19 @@ public class SObjectTableModel extends AbstractTableModel {
    *  Again, no validation takes place, so (row,column) indexes must be in
    *  their correct ranges.
    */
-  public void setValueAt( Object value, int row, int column )
+  public void setValueAt(Object value, int row, int column)
   {
-    if (column==1 && o!=null)
-      o . setAttribute( row, value.toString() );
+    if (column == 1 && o != null)
+      o . setAttribute(row, value.toString());
   }
 
   /** Obtains the name for a column. In this case "Attribute" or "Value".
    *  @param columnIndex the column of interest.
    *  @return the name of the column.
    */
-  public String getColumnName( int columnIndex )
+  public String getColumnName(int columnIndex)
   {
-    if (columnIndex==0)
+    if (columnIndex == 0)
       return "Attribute";
     else
       return "Value";
@@ -112,7 +112,7 @@ public class SObjectTableModel extends AbstractTableModel {
    *  @return true if the cell can be edited, false otherwise. */
   public boolean isCellEditable(int rowIndex, int columnIndex)
   {
-    if (columnIndex==0)
+    if (columnIndex == 0)
       return false;
     else
       return true;

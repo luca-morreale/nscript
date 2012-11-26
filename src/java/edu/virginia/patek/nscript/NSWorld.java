@@ -29,11 +29,11 @@ public class NSWorld extends Object {
    *  default values for any simulation script.
    *  @param inEnvironment the ns environment object. See the bin/settings/environment
    *  for the exact definition of this object. */
-  public NSWorld ( NSObject inEnvironment )
+  public NSWorld(NSObject inEnvironment)
   {
     // For convenience, the environment is always at index 0, and cannot be deleted.
     objects = new ArrayList<NSObject>();
-    addObject( inEnvironment );
+    addObject(inEnvironment);
     arrays = new ArrayList<NSArray>();
   }
 
@@ -48,18 +48,18 @@ public class NSWorld extends Object {
    *  (string), and a number.
    *  @param inArrayName a string containing the name of the new array.
    *  @param inNumberOfElements the number of elements of the array. */
-  public void addArray( String inArrayName, int inNumberOfElements )
+  public void addArray(String inArrayName, int inNumberOfElements)
   {
-    arrays . add( new NSArray( inArrayName, inNumberOfElements ) );
+    arrays . add(new NSArray(inArrayName, inNumberOfElements));
   }
 
   /** Removes the array stored at a specified position. Notice that if the
    *  position is incorrect no notification is done.
    *  @param inIndex the 0-based position of the array to remove. */
-  public void removeArray( int inIndex )
+  public void removeArray(int inIndex)
   {
-    if (inIndex>=0 && inIndex < arrays.size()) {
-      arrays.remove( inIndex );
+    if (inIndex >= 0 && inIndex < arrays.size()) {
+      arrays.remove(inIndex);
     }
   }
 
@@ -67,7 +67,7 @@ public class NSWorld extends Object {
    *  the user selects 'New' option of the 'File' menuu. */
   public void removeAllArrays()
   {
-    while (arrays.size()>0)
+    while (arrays.size() > 0)
       arrays.remove(0);
   }
 
@@ -77,9 +77,9 @@ public class NSWorld extends Object {
    *  @param inIndex the 0-based position of the array.
    *  @return the requested array if 0<=inIndex<=NoOfArrays-1, Null
    *  otherwise. */
-  public NSArray getArray( int inIndex )
+  public NSArray getArray(int inIndex)
   {
-    if (inIndex>=0 && inIndex<arrays.size())
+    if (inIndex >= 0 && inIndex < arrays.size())
       return arrays.get(inIndex);
     else {
       System.out.println("Error: array index out of bounds.");
@@ -98,7 +98,7 @@ public class NSWorld extends Object {
    *  @param theName the name to be verified.
    *  @return true if the name is not taken by any of the existing object,
    *  false otherwise. */
-  public boolean isValidName( String theName )
+  public boolean isValidName(String theName)
   {
     NSObject o;
     Iterator<NSObject> i = objects.iterator();
@@ -106,7 +106,7 @@ public class NSWorld extends Object {
 
     while (i.hasNext()) {
       o = i.next();
-      if ( o . getName() . equals( theName ) )
+      if (o . getName() . equals(theName))
         return false;
     }
     return true;
@@ -115,9 +115,9 @@ public class NSWorld extends Object {
   /** Adds a new object to the model.
    *  @param newObject the object to be stored.
    *  @return true if the object was correctly stored, false otherwise. */
-  public boolean addObject( NSObject newObject )
+  public boolean addObject(NSObject newObject)
   {
-    return (objects . add( newObject ));
+    return (objects . add(newObject));
   }
 
   /** Counts the number of objects in the current simulation script.
@@ -130,14 +130,14 @@ public class NSWorld extends Object {
   /** Obtains an object using its name, Null if the name is not found.
    *  @param theName a string with the name of the object being looked.
    *  @return the object if the string was found, NULL otherwise. */
-  public NSObject getObject( String theName )
+  public NSObject getObject(String theName)
   {
     NSObject o;
     Iterator<NSObject> i = objects.iterator();
 
     while (i.hasNext()) {
       o = i.next();
-      if ( o . getName() . equals( theName ) )
+      if (o . getName() . equals(theName))
         return o;
     }
     return null;
@@ -147,17 +147,17 @@ public class NSWorld extends Object {
    * a bad position returns a Null object with no warnings.
    *  @param index the 0-based position of the object.
    *  @return the NSObject if the index was appropiate, null otherwise. */
-  public NSObject getObject( int index )
+  public NSObject getObject(int index)
   {
-    if (index>=0 && index<objects.size())
-      return objects.get( index );
+    if (index >= 0 && index < objects.size())
+      return objects.get(index);
     else
       return null;
   }
 
   /** Returns the name of the environment variable.
    *  @return the name of the model's environment. (Unused). */
-  public String toString( int dos )
+  public String toString(int dos)
   {
     return getEnvironment().getName();
   }

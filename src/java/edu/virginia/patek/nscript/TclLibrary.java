@@ -32,7 +32,7 @@ public class TclLibrary extends Object {
   /** Constructs itself from a buffer.
    *  @param br a buffer (file) from which the library parses itself.
    */
-  public TclLibrary( BufferedReader br )
+  public TclLibrary(BufferedReader br)
   {
     snippets = new ArrayList<TclSnippet>();
     readFromDisk(br);
@@ -41,10 +41,10 @@ public class TclLibrary extends Object {
   /** Constructs itself as an empty library. This was used for testing only,
    *  not in use anymore.
    */
-  public TclLibrary( String libName, String tbName )
+  public TclLibrary(String libName, String tbName)
   {
-    setName( libName );
-    setTBName( tbName );
+    setName(libName);
+    setTBName(tbName);
     snippets = new ArrayList<TclSnippet>();
   }
 
@@ -78,15 +78,15 @@ public class TclLibrary extends Object {
     return snippets.size();
   }
 
-  public TclSnippet getSnippet( int index )
+  public TclSnippet getSnippet(int index)
   {
-    if (index>=0 && index<snippets.size())
+    if (index >= 0 && index < snippets.size())
       return snippets.get(index);
     else
       return null;
   }
 
-  public TclSnippet getSnippet( String theName )
+  public TclSnippet getSnippet(String theName)
   {
     TclSnippet t;
     Iterator<TclSnippet> iter = snippets.iterator();
@@ -98,21 +98,21 @@ public class TclLibrary extends Object {
     return null;
   }
 
-  public void setSnippet( int index, TclSnippet  snippet )
+  public void setSnippet(int index, TclSnippet  snippet)
   {
-    snippets.set( index, snippet );
+    snippets.set(index, snippet);
   }
 
-  public void addSnippet( TclSnippet snippet )
+  public void addSnippet(TclSnippet snippet)
   {
-    snippets . add( snippet );
+    snippets . add(snippet);
   }
 
-  public boolean nameExists( String theName )
+  public boolean nameExists(String theName)
   {
     TclSnippet t;
     Iterator<TclSnippet> iter = snippets.iterator();
-    if (iter==null) return false;
+    if (iter == null) return false;
 
     while (iter.hasNext()) {
       t = iter.next();
@@ -122,7 +122,7 @@ public class TclLibrary extends Object {
     return false;
   }
 
-  public boolean readFromDisk( BufferedReader br )
+  public boolean readFromDisk(BufferedReader br)
   {
     try {
       name = br.readLine();
@@ -132,13 +132,13 @@ public class TclLibrary extends Object {
       while (readSnippet(br))
         ;
     } catch (IOException ioe) {
-      System.out.println("Error reading library: "+ioe.toString());
+      System.out.println("Error reading library: " + ioe.toString());
       return false;
     }
     return true;
   }
 
-  public boolean readSnippet( BufferedReader br )
+  public boolean readSnippet(BufferedReader br)
   {
     TclSnippet t;
     String s, newLine;
@@ -146,19 +146,19 @@ public class TclLibrary extends Object {
     try {
       do {
         newLine = br.readLine();
-        if (newLine==null)
+        if (newLine == null)
           return false;
         else
-          s = s+newLine;
-      } while (newLine.indexOf("end")<0);
+          s = s + newLine;
+      } while (newLine.indexOf("end") < 0);
     } catch (IOException ioe) {
-      System.out.println("Error reading: "+ioe.toString());
+      System.out.println("Error reading: " + ioe.toString());
     }
     t = new TclSnippet(s);
     if (!nameExists(t.getName()))
       addSnippet(t);
     else
-      System.out.println("Error: snippet("+t.getName()+") already in library");
+      System.out.println("Error: snippet(" + t.getName() + ") already in library");
     return true;
   }
 
@@ -168,7 +168,7 @@ public class TclLibrary extends Object {
     int i;
 
     s = getName() + " : " + getTBName() + " : " + getVersion() + "\n";
-    for (i=0; i<snippets.size(); i++) {
+    for (i = 0; i < snippets.size(); i++) {
       s = s + (snippets.get(i)).toString() + "\n";
     }
     return s;

@@ -41,28 +41,28 @@ public class TclPattern extends Object {
 
   /** Constructor requires a string from which the pattern is parsed.
    *  @param s a string containing the pattern information. */
-  public TclPattern( String s )
+  public TclPattern(String s)
   {
     parseSelf(s);
   }
 
   /** Parses the pattern from a string.
    *  @param s a string with the pattern information. */
-  void parseSelf( String s )
+  void parseSelf(String s)
   {
     int equals, firstColon, secondColon;
     s = s.trim();
-    if (s.charAt(0)=='?') {
-      isConditional=true;
+    if (s.charAt(0) == '?') {
+      isConditional = true;
       equals = s.indexOf('=');
       firstColon = s.indexOf(':');
-      secondColon = s.indexOf(':',firstColon+1);
-      attribute = s.substring(1,equals).trim();
-      attributeValue = s.substring(equals+1,firstColon).trim();
-      pattern = s.substring(firstColon+1,secondColon);
-      alternativePattern = s.substring(secondColon+1);
+      secondColon = s.indexOf(':', firstColon + 1);
+      attribute = s.substring(1, equals).trim();
+      attributeValue = s.substring(equals + 1, firstColon).trim();
+      pattern = s.substring(firstColon + 1, secondColon);
+      alternativePattern = s.substring(secondColon + 1);
     } else {
-      isConditional=false;
+      isConditional = false;
       pattern = s;
     }
   }

@@ -38,13 +38,13 @@ public class DMView extends JPanel {
    *  controller object, and registers it as a listener for mouse, mouse
    *  motion, and keyboard events.
    */
-  public DMView( DMModel inM )
+  public DMView(DMModel inM)
   {
     M = inM;
-    C = new DMControl( this, inM ); // Creates a new controller object.
-    addMouseListener( C );		// Register the new control as a handler
-    addMouseMotionListener( C );	// for mouse and key events.
-    addKeyListener( C );
+    C = new DMControl(this, inM);   // Creates a new controller object.
+    addMouseListener(C);		// Register the new control as a handler
+    addMouseMotionListener(C);	// for mouse and key events.
+    addKeyListener(C);
     scale = 1.0;			// Set the default scale of the drawing.
     setBackground(Color.white);	// Set the colors for the background of the view.
     setForeground(Color.black);	// Set the foreground color.
@@ -55,7 +55,7 @@ public class DMView extends JPanel {
    *  It also calls the control so that it can display any auxiliary lines
    *  used in the edition process.
    */
-  public void paint( Graphics g )
+  public void paint(Graphics g)
   {
     super.paint(g);
     Dimension r;
@@ -63,29 +63,29 @@ public class DMView extends JPanel {
 
     // Set the font, and obtain the context information so that each
     // of the objects can draw themselves.
-    g.setFont(new Font("Helvetica",Font.PLAIN,9));
+    g.setFont(new Font("Helvetica", Font.PLAIN, 9));
     //	System.out.println("Starting paint...");
     r = getBounds().getSize();
 
     // Call each of the objects in the model, and tell them to draw
     // themselves on the screen.
-    for(i=0; i<M.getSize(); i++)
-      M.getObjectAt(i).drawSelf(g,r);
+    for (i = 0; i < M.getSize(); i++)
+      M.getObjectAt(i).drawSelf(g, r);
     //	System.out.println("Ending paint...");
 
     // Draws the auxiliary controls (line or rectangle being drawn).
-    C . drawControls( g );
+    C . drawControls(g);
   }
 
   /** Set a new scale for the drawing. Effectively, it resets the size of the
    *  drawing pane, which is the used by the objects to rescale themselves
    *  accordingly.
    */
-  public void changeScale( double inNewScale )
+  public void changeScale(double inNewScale)
   {
     Dimension r = getBounds().getSize();
 
-    setSize( (int) (r.getWidth()*inNewScale/scale), (int) (r.getHeight()*inNewScale/scale) );
+    setSize((int)(r.getWidth() * inNewScale / scale), (int)(r.getHeight() * inNewScale / scale));
     scale = inNewScale;
     validate();
   }

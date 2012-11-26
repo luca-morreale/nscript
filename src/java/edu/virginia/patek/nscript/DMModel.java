@@ -37,7 +37,7 @@ public interface DMModel {
    *  @param unselectOthers a flag that tells if the model should unselect
    *                        other objects after adding the new one.
    */
-  public void addSimpleObject( Dimension r, Point p, boolean unselectOthers );
+  public void addSimpleObject(Dimension r, Point p, boolean unselectOthers);
 
   /** Adds a 'relation' node.
    *  @param oFrom a reference to a 'node' object that marks the origin of
@@ -45,7 +45,7 @@ public interface DMModel {
    *  @param oTo a reference to a 'node' object that marks the destination of
    *             the relation.
    */
-  public void addRelationObject( DMObject oFrom, DMObject oTo, boolean unselectOthers );
+  public void addRelationObject(DMObject oFrom, DMObject oTo, boolean unselectOthers);
 
   /** To be called after modifying the model, so that all views dependent
    *  on it render the model correctly.
@@ -61,11 +61,11 @@ public interface DMModel {
    *  @param index the position at which the desired object is stored.
    *  @return the desired object if index is in the correct range,
    *          null otherwise. */
-  public DMObject getObjectAt( int index );
+  public DMObject getObjectAt(int index);
 
   /** Remove currently selected objects. */
   public void removeSelected();
 
   /** Raise a flag if the model has been modified and requires saving. */
-  public void setDirty( boolean dirtyState );
+  public void setDirty(boolean dirtyState);
 }

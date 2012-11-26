@@ -26,7 +26,7 @@ public class NSArray extends Object {
    *                browser view.
    *  @param inNumberOfElements is the size of the array.
    */
-  public NSArray(String inName, int inNumberOfElements )
+  public NSArray(String inName, int inNumberOfElements)
   {
     name = inName;
     elements = inNumberOfElements;

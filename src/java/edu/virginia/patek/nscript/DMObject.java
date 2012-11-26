@@ -20,7 +20,7 @@ public interface DMObject {
    *  @param g environment for painting.
    *  @param r dimension of the actual canvas.
    */
-  public void drawSelf( Graphics g, Dimension r );
+  public void drawSelf(Graphics g, Dimension r);
 
   /** A function that needs to bee implemented so a model that will own an
    *  object can query it to see if it is currently selected.
@@ -50,14 +50,14 @@ public interface DMObject {
    *  @param r the dimension of the canvas in which the object is draw.
    *  @param p position of the mouse.
    *  @return true if the object was 'hit' by the mouse. */
-  public boolean isHit( Dimension r, Point p );
+  public boolean isHit(Dimension r, Point p);
 
   /** Similar to isHit, but in this case we are interested if the object is
    *  contained in a rectangle with corners p1, p2.
    */
-  public boolean isContained( Dimension r, Point p1, Point p2 );
+  public boolean isContained(Dimension r, Point p1, Point p2);
 
 
   /** What exactly are you try */
-  public void moveBy( Dimension r, Dimension byWhat );
+  public void moveBy(Dimension r, Dimension byWhat);
 }

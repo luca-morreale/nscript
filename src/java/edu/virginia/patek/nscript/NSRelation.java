@@ -41,7 +41,7 @@ class NSRelation extends NSEditableObject implements DMObject {
    *  @param inName the name of the relation object.
    *  @param inFrom the object where the relation starts.
    *  @param inTo the object where the relation ends. */
-  public NSRelation( TclSnippet inSnippet, String inName, NSEntity inFrom, NSEntity inTo )
+  public NSRelation(TclSnippet inSnippet, String inName, NSEntity inFrom, NSEntity inTo)
   {
     super(inSnippet, inName);
     from = inFrom;
@@ -70,7 +70,7 @@ class NSRelation extends NSEditableObject implements DMObject {
    *
    *  @param g a Graphics display context.
    *  @param r the dimension of the view pane. */
-  public void drawSelf( Graphics g, Dimension r )
+  public void drawSelf(Graphics g, Dimension r)
   {
     Graphics2D g2 = (Graphics2D) g;
     Color color = Color.black;
@@ -89,7 +89,7 @@ class NSRelation extends NSEditableObject implements DMObject {
     // Get dimensions and stuff
     double scale = r.width / NSEntity.NOMINAL_WIDTH;
     double size = (double) NSEntity.SIZE / NSEntity.NOMINAL_WIDTH;
-    double size2 = size/2.0;
+    double size2 = size / 2.0;
 
     // Get start and end points
     double x1, x2, y1, y2, xa1, ya1, xa2, ya2;
@@ -101,9 +101,9 @@ class NSRelation extends NSEditableObject implements DMObject {
     dx = getTo().getX() - getFrom().getX();
     dy = getTo().getY() - getFrom().getY();
 
-    vsize = Math.sqrt( dx*dx + dy*dy );
-    ux = dx/vsize;
-    uy = dy/vsize;
+    vsize = Math.sqrt(dx * dx + dy * dy);
+    ux = dx / vsize;
+    uy = dy / vsize;
 
     x1 = getFrom().getX() + size2 * ux;
     y1 = getFrom().getY() + size2 * uy;
@@ -115,66 +115,66 @@ class NSRelation extends NSEditableObject implements DMObject {
     BasicStroke pen;
 
     switch (lineStyle) {
-    case TclSnippet.SOLID:
-      pen = new BasicStroke( lineWidth );
-      break;
-    case TclSnippet.DASHED:
-      dash[0]=3;
-      dash[1]=2;
-      pen = new BasicStroke( (float) lineWidth, 0, 0, 1, dash, 0 );
-      break;
-    case TclSnippet.DOTTED:
-    default:
-      dash[0]=1;
-      dash[1]=5;
-      pen = new BasicStroke( (float) lineWidth, 0, 0, 1, dash, 0 );
-      break;
+      case TclSnippet.SOLID:
+        pen = new BasicStroke(lineWidth);
+        break;
+      case TclSnippet.DASHED:
+        dash[0] = 3;
+        dash[1] = 2;
+        pen = new BasicStroke((float) lineWidth, 0, 0, 1, dash, 0);
+        break;
+      case TclSnippet.DOTTED:
+      default:
+        dash[0] = 1;
+        dash[1] = 5;
+        pen = new BasicStroke((float) lineWidth, 0, 0, 1, dash, 0);
+        break;
     }
-    g2 . setStroke( pen );
+    g2 . setStroke(pen);
 
     // Draw the freekin' line
 
-    g2 . drawLine( (int)Math.round(x1*r.width), (int)Math.round(y1 * r.height),
-                   (int)Math.round(x2*r.width), (int)Math.round(y2 * r.height));
+    g2 . drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
+                  (int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height));
 
-    g2.setStroke( new BasicStroke( lineWidth ) );
+    g2.setStroke(new BasicStroke(lineWidth));
     switch (baseStyle) {
-    case 0:
-      break;
-    case 1:
-      g2 . drawLine( (int)Math.round(x1*r.width), (int)Math.round(y1 * r.height),
-                     (int)Math.round(x1*r.width+2*ux-2*uy), (int)Math.round(y1 * r.height+2*uy+aSize*ux));
-      g2 . drawLine( (int)Math.round(x1*r.width), (int)Math.round(y1 * r.height),
-                     (int)Math.round(x1*r.width+2*ux+2*uy), (int)Math.round(y1 * r.height+2*uy-aSize*ux));
-      break;
-    case 2:
-      g2.fillRect( (int)Math.round(x1*r.width)-aSize-1, (int)Math.round(y1 * r.height)-aSize-1,(aSize+1)*2,(aSize+1)*2);
-      break;
-    case 3:
-    default:
-      g2.fillOval( (int)Math.round(x1*r.width)-aSize-1, (int)Math.round(y1 * r.height)-aSize-1,(aSize+1)*2,(aSize+1)*2);
-      break;
+      case 0:
+        break;
+      case 1:
+        g2 . drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
+                      (int)Math.round(x1 * r.width + 2 * ux - 2 * uy), (int)Math.round(y1 * r.height + 2 * uy + aSize * ux));
+        g2 . drawLine((int)Math.round(x1 * r.width), (int)Math.round(y1 * r.height),
+                      (int)Math.round(x1 * r.width + 2 * ux + 2 * uy), (int)Math.round(y1 * r.height + 2 * uy - aSize * ux));
+        break;
+      case 2:
+        g2.fillRect((int)Math.round(x1 * r.width) - aSize - 1, (int)Math.round(y1 * r.height) - aSize - 1, (aSize + 1) * 2, (aSize + 1) * 2);
+        break;
+      case 3:
+      default:
+        g2.fillOval((int)Math.round(x1 * r.width) - aSize - 1, (int)Math.round(y1 * r.height) - aSize - 1, (aSize + 1) * 2, (aSize + 1) * 2);
+        break;
     }
 
     switch (endStyle) {
-    case 0:
-      break;
-    case 1:
-      g2 . drawLine( (int)Math.round(x2*r.width), (int)Math.round(y2 * r.height),
-                     (int)Math.round(x2*r.width-aSize*ux-aSize*uy), (int)Math.round(y2 * r.height-aSize*uy+aSize*ux));
-      g2 . drawLine( (int)Math.round(x2*r.width), (int)Math.round(y2 * r.height),
-                     (int)Math.round(x2*r.width-aSize*ux+aSize*uy), (int)Math.round(y2 * r.height-aSize*uy-aSize*ux));
-      break;
-    case 2:
-      g2.drawRect( (int)Math.round(x1*r.width)-aSize, (int)Math.round(y1 * r.height)-aSize,2*aSize+1,2*aSize+1);
-      break;
-    case 3:
-    default:
-      g2.drawOval( (int)Math.round(x1*r.width)-aSize, (int)Math.round(y1 * r.height)-aSize,2*aSize+1,2*aSize+1);
-      break;
+      case 0:
+        break;
+      case 1:
+        g2 . drawLine((int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height),
+                      (int)Math.round(x2 * r.width - aSize * ux - aSize * uy), (int)Math.round(y2 * r.height - aSize * uy + aSize * ux));
+        g2 . drawLine((int)Math.round(x2 * r.width), (int)Math.round(y2 * r.height),
+                      (int)Math.round(x2 * r.width - aSize * ux + aSize * uy), (int)Math.round(y2 * r.height - aSize * uy - aSize * ux));
+        break;
+      case 2:
+        g2.drawRect((int)Math.round(x1 * r.width) - aSize, (int)Math.round(y1 * r.height) - aSize, 2 * aSize + 1, 2 * aSize + 1);
+        break;
+      case 3:
+      default:
+        g2.drawOval((int)Math.round(x1 * r.width) - aSize, (int)Math.round(y1 * r.height) - aSize, 2 * aSize + 1, 2 * aSize + 1);
+        break;
     }
 
-    g2 . setStroke( new BasicStroke() );
+    g2 . setStroke(new BasicStroke());
 
     if (isSelected())
       g.setColor(color);
@@ -188,7 +188,7 @@ class NSRelation extends NSEditableObject implements DMObject {
    *
    *  @param r the size of the view pane.
    *  @param byWhat the amount of translation. */
-  public void moveBy( Dimension r, Dimension byWhat )
+  public void moveBy(Dimension r, Dimension byWhat)
   {
     if (!getFrom().isSelected())
       getFrom().select();
@@ -203,12 +203,12 @@ class NSRelation extends NSEditableObject implements DMObject {
    *  @param p a set of coordinates.
    *  @return true if the line is hit by the point.
    */
-  public boolean isHit( Dimension r, Point p )
+  public boolean isHit(Dimension r, Point p)
   {
     double t0;
     double x1, y1, x2, y2, xp, yp;
-    double inX = p.getX()/r.width;
-    double inY = p.getY()/r.height;
+    double inX = p.getX() / r.width;
+    double inY = p.getY() / r.height;
     double radius = NSRelation.SELECTION_RADIUS / NSEntity.NOMINAL_WIDTH;
 
     x1 = getFrom().getX();
@@ -222,12 +222,12 @@ class NSRelation extends NSEditableObject implements DMObject {
     // expressed as a multiple (t0) of the (D-F) vector. If t0 is in the
     // interval [0,1], and the distance to the line is less than the
     // radius, return true, otherwise false.
-    t0 = ((inX-x1)*(x2-x1)+(inY-y1)*(y2-y1))/
-         (Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
-    if (t0>0 && t0<1) {
-      xp = x1 + t0*(x2-x1);
-      yp = y1 + t0*(y2-y1);
-      if (Math.sqrt(Math.pow(inX-xp,2)+Math.pow(inY-yp,2))<radius)
+    t0 = ((inX - x1) * (x2 - x1) + (inY - y1) * (y2 - y1)) /
+         (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    if (t0 > 0 && t0 < 1) {
+      xp = x1 + t0 * (x2 - x1);
+      yp = y1 + t0 * (y2 - y1);
+      if (Math.sqrt(Math.pow(inX - xp, 2) + Math.pow(inY - yp, 2)) < radius)
         return true;
     }
     return false;
@@ -243,9 +243,9 @@ class NSRelation extends NSEditableObject implements DMObject {
    *  @return true is both extremes of the relation are contained,
    *          false otherwise.
    */
-  public boolean isContained( Dimension r, Point p1, Point p2 )
+  public boolean isContained(Dimension r, Point p1, Point p2)
   {
-    if (getFrom().isContained( r, p1, p2 ) && getTo().isContained( r, p1, p2 ))
+    if (getFrom().isContained(r, p1, p2) && getTo().isContained(r, p1, p2))
       return true;
     else
       return false;
@@ -272,14 +272,14 @@ class NSRelation extends NSEditableObject implements DMObject {
    *  @param br a BufferedReader object, usually wrapping a disk input stream.
    *  @param M a reference to the model containing the objects related by it.
    */
-  public void fromString( BufferedReader br, NSModel M )
+  public void fromString(BufferedReader br, NSModel M)
   {
     try {
-      super . fromString( br );
-      from = (NSEntity) M . getObject( br.readLine() );
-      to = (NSEntity) M . getObject( br.readLine() );
-    } catch( IOException ioe ) {
-      System.out.println("Error reading relation object: " + ioe.toString() );
+      super . fromString(br);
+      from = (NSEntity) M . getObject(br.readLine());
+      to = (NSEntity) M . getObject(br.readLine());
+    } catch (IOException ioe) {
+      System.out.println("Error reading relation object: " + ioe.toString());
     }
   }
 

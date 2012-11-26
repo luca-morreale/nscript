@@ -93,7 +93,7 @@ public class TclSnippet extends Object {
 
   /** Constructor. Creates the snippet by parsing itself from a given string.
    *  @param s the string from which to read the snippet definition. */
-  public TclSnippet( String s )
+  public TclSnippet(String s)
   {
     attributes = new ArrayList<TclAttribute>();
     patterns = new ArrayList<TclPattern>();
@@ -105,7 +105,7 @@ public class TclSnippet extends Object {
    *
    *  @param s the String containing the information.
    */
-  void parseSelf( String s )
+  void parseSelf(String s)
   {
     int headEndIdx, beginIdx, endIdx;
     String head, attr, patt, a;
@@ -115,16 +115,16 @@ public class TclSnippet extends Object {
     beginIdx = s.indexOf("begin");
     endIdx = s.indexOf("end");
 
-    head = s.substring(0,headEndIdx).trim();
+    head = s.substring(0, headEndIdx).trim();
     // System.out.println("HEAD:\n"+head);
-    attr = s.substring(headEndIdx+1,beginIdx).trim();
+    attr = s.substring(headEndIdx + 1, beginIdx).trim();
     //  System.out.println("ATTRIBUTES:\n"+attr);
-    patt = s.substring(beginIdx+5,endIdx).trim();
+    patt = s.substring(beginIdx + 5, endIdx).trim();
     //  System.out.println("PATTERNS:\n"+patt);
 
-    StringTokenizer st = new StringTokenizer( head );
+    StringTokenizer st = new StringTokenizer(head);
     a = st.nextToken();
-    if (a.indexOf('!')>=0) {
+    if (a.indexOf('!') >= 0) {
       isUnique = true;
       a = a.substring(1);
     } else {
@@ -136,7 +136,7 @@ public class TclSnippet extends Object {
     setName(st.nextToken());
     if (isRelation) {
       a = st.nextToken();
-      if (a.indexOf('!')>=0) {
+      if (a.indexOf('!') >= 0) {
         a = a.substring(1);
         isFromBaseUnique = true;
       } else {
@@ -144,7 +144,7 @@ public class TclSnippet extends Object {
       }
       setFromBase(a);
       a = st.nextToken();
-      if (a.indexOf('!')>=0) {
+      if (a.indexOf('!') >= 0) {
         a = a.substring(1);
         isToBaseUnique = true;
       } else {
@@ -164,24 +164,24 @@ public class TclSnippet extends Object {
     // Now, read the attribute definitions.
 
     int iStart = 0, iEnd;
-    while ((iEnd = attr . indexOf(';',iStart))>=0) {
-      attributes.add(new TclAttribute( attr.substring(iStart,iEnd) ) );
-      iStart = iEnd+1;
+    while ((iEnd = attr . indexOf(';', iStart)) >= 0) {
+      attributes.add(new TclAttribute(attr.substring(iStart, iEnd)));
+      iStart = iEnd + 1;
     }
 
     // Finally, read the patterns.
 
     iStart = 0;
-    while ((iEnd = patt . indexOf(';',iStart))>=0) {
-      patterns.add(new TclPattern( patt.substring(iStart,iEnd) ) );
-      iStart = iEnd+1;
+    while ((iEnd = patt . indexOf(';', iStart)) >= 0) {
+      patterns.add(new TclPattern(patt.substring(iStart, iEnd)));
+      iStart = iEnd + 1;
     }
   }
 
   // Gets & sets for all members
   /** Sets the name of the snippet.
     *  @param inName the new name for the snippet. */
-  public void setName( String inName )
+  public void setName(String inName)
   {
     name = inName;
   }
@@ -197,7 +197,7 @@ public class TclSnippet extends Object {
     *  @param inBase a string containing the class name of the
     *                base class object.
     */
-  public void setBase( String inBase )
+  public void setBase(String inBase)
   {
     base = inBase;
   }
@@ -213,7 +213,7 @@ public class TclSnippet extends Object {
   /** Sets the icon to be used by the objects of this class.
    *  Applies only to entity objects.
    *  @param inIcon the index of the icon to be used. */
-  public void setIcon( int inIcon )
+  public void setIcon(int inIcon)
   {
     icon = inIcon;
   }
@@ -230,7 +230,7 @@ public class TclSnippet extends Object {
    *
    *  @param inFromBase the name of the base class.
    */
-  public void setFromBase( String inFromBase )
+  public void setFromBase(String inFromBase)
   {
     fromBase = inFromBase;
   }
@@ -244,7 +244,7 @@ public class TclSnippet extends Object {
 
   /** Sets the base class of the destination object in a relation object.
    *  @param inToBase the name of the base class for the destination. */
-  public void setToBase( String inToBase )
+  public void setToBase(String inToBase)
   {
     toBase = inToBase;
   }
@@ -309,7 +309,7 @@ public class TclSnippet extends Object {
   /** Sets the style used to draw the end of a relation line.
    *  @param inEndStyle the new style of the line.
    */
-  public void setEndStyle( int inEndStyle )
+  public void setEndStyle(int inEndStyle)
   {
     endStyle = inEndStyle;
   }
@@ -327,9 +327,9 @@ public class TclSnippet extends Object {
    *  @return a reference to the attribute if the index is within limits, NULL
    *  otherwise.
    */
-  public TclAttribute getAttribute( int inIndex )
+  public TclAttribute getAttribute(int inIndex)
   {
-    if (inIndex>=0 && inIndex<attributes.size())
+    if (inIndex >= 0 && inIndex < attributes.size())
       return attributes.get(inIndex);
     else
       return null;
@@ -343,10 +343,10 @@ public class TclSnippet extends Object {
     int i;
 
     s = getName();
-    for(i=0; i<attributes.size(); i++)
+    for (i = 0; i < attributes.size(); i++)
       s = s + "  " + attributes.get(i).toString() + "\n";
     s = s + "begin\n";
-    for(i=0; i<patterns.size(); i++)
+    for (i = 0; i < patterns.size(); i++)
       s = s + "  " + patterns.get(i).toString() + "\n";
     s = s + "end\n";
     return s;
@@ -357,12 +357,12 @@ public class TclSnippet extends Object {
    *
    *  @param o a reference to the object to be initialized.
    */
-  public void instantiateNSObject( NSObject o )
+  public void instantiateNSObject(NSObject o)
   {
     int i;
 
-    for(i=0; i<attributes.size(); i++) {
-      o.setAttribute(i,attributes.get(i).defaultValue);
+    for (i = 0; i < attributes.size(); i++) {
+      o.setAttribute(i, attributes.get(i).defaultValue);
     }
   }
 
@@ -375,43 +375,43 @@ public class TclSnippet extends Object {
    *             the patterns.
    *  @return the Tcl code as a String.
    */
-  public String toTcl( NSWorld w, NSObject o, char sep )
+  public String toTcl(NSWorld w, NSObject o, char sep)
   {
     String preamble = "", s, epilogue = "", aname, aname2;
     TclPattern p;
     NSRelation ro;
     NSArray a;
-    int i, i2,asize,asize2;
+    int i, i2, asize, asize2;
 
     // Get the preamble and epilogue for the snippet.
-    if (o.getArrayIndex()>=0) {
+    if (o.getArrayIndex() >= 0) {
       a = w.getArray(o.getArrayIndex());
       aname = a.name;
       asize = a.elements;
-      preamble = "for {set "+aname+" 0} {$"+aname+"<"+Integer.toString(asize)+"} {incr " + aname + "} {\n";
+      preamble = "for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
       epilogue = "}\n";
     } else {
       if (isRelation) {
         ro = (NSRelation) o;
         i = ro.getFrom().getArrayIndex();
         i2 = ro.getTo().getArrayIndex();
-        if (i>=0 || i2>=0) {
-          if (i==i2) {
+        if (i >= 0 || i2 >= 0) {
+          if (i == i2) {
             aname = w.getArray(i).name;
             asize = w.getArray(i).elements;
-            preamble = "for {set "+aname+" 0} {$"+aname+"<"+Integer.toString(asize)+"} {incr "+aname+"} {\n";
+            preamble = "for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
             epilogue = "}\n";
           } else {
-            if (i>=0) {
+            if (i >= 0) {
               aname = w.getArray(i).name;
               asize = w.getArray(i).elements;
-              preamble = "for {set "+aname+" 0} {$"+aname+"<"+Integer.toString(asize)+"} {incr "+aname+"} {\n";
+              preamble = "for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
               epilogue = "}\n";
             }
-            if (i2>=0) {
+            if (i2 >= 0) {
               aname = w.getArray(i2).name;
               asize = w.getArray(i2).elements;
-              preamble = preamble+"  for {set "+aname+" 0} {$"+aname+"<"+Integer.toString(asize)+"} {incr "+aname+"} {\n";
+              preamble = preamble + "  for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
               epilogue = epilogue + "  }\n";
             }
           }
@@ -422,15 +422,15 @@ public class TclSnippet extends Object {
     String sApp;
     // Now pattern substitution
     s = "";
-    for (i=0; i<patterns.size(); i++) {
+    for (i = 0; i < patterns.size(); i++) {
       p = patterns.get(i);
       if (p.isConditional) {
-        if (p.attributeValue.equals(valueOf(w,o,p.attribute)))
-          sApp = patternToTcl(p.pattern,w,o,sep);
+        if (p.attributeValue.equals(valueOf(w, o, p.attribute)))
+          sApp = patternToTcl(p.pattern, w, o, sep);
         else
-          sApp = patternToTcl(p.alternativePattern,w,o,sep);
+          sApp = patternToTcl(p.alternativePattern, w, o, sep);
       } else {
-        sApp = patternToTcl(p.pattern,w,o,sep);
+        sApp = patternToTcl(p.pattern, w, o, sep);
       }
       if (!sApp.trim().equals(""))
         s = s + sApp + "\n";
@@ -448,20 +448,20 @@ public class TclSnippet extends Object {
    *  @param o a reference to the object being translated to Tcl.
    *  @param sep a character that marks the inline tags in the patterns.
    *  @return a string with Tcl code corresponding to the pattern. */
-  String patternToTcl( String pattern, NSWorld w, NSObject o, char sep )
+  String patternToTcl(String pattern, NSWorld w, NSObject o, char sep)
   {
-    int i,iLast = 0;
+    int i, iLast = 0;
     String sNew = "";
 
-    while (( i = pattern . indexOf(sep,iLast))>=0) {
-      sNew = sNew + pattern . substring( iLast, i );
-      iLast = pattern . indexOf(sep,i+1);
-      if ( iLast < 0 )
+    while ((i = pattern . indexOf(sep, iLast)) >= 0) {
+      sNew = sNew + pattern . substring(iLast, i);
+      iLast = pattern . indexOf(sep, i + 1);
+      if (iLast < 0)
         return "ERROR: Bad formed pattern.";
-      sNew = sNew + valueOf( w, o, pattern . substring(i+1,iLast));
+      sNew = sNew + valueOf(w, o, pattern . substring(i + 1, iLast));
       iLast++;
     }
-    if (iLast<pattern.length())
+    if (iLast < pattern.length())
       sNew = sNew + pattern . substring(iLast);
     return sNew;
   }
@@ -471,42 +471,42 @@ public class TclSnippet extends Object {
    *  @param o a reference to the model being translated.
    *  @param attrName the name of the attribute whose value is wanted.
    *  @return the value of the attribute as a String. */
-  String valueOf( NSWorld w, NSObject o, String attrName )
+  String valueOf(NSWorld w, NSObject o, String attrName)
   {
     int i;
 
     // Special field values
     i = attrName.indexOf("env");
-    if (i>=0) {
+    if (i >= 0) {
       return w.getEnvironment().getSnippet().
-             valueOf(w,w.getEnvironment(),attrName.substring(i+4));
+             valueOf(w, w.getEnvironment(), attrName.substring(i + 4));
     }
     if (attrName.equals("from"))
-      return arrayedName( ((NSRelation) o).getFrom(), w );
+      return arrayedName(((NSRelation) o).getFrom(), w);
     if (attrName.equals("to"))
-      return arrayedName( ((NSRelation) o).getTo(), w );
+      return arrayedName(((NSRelation) o).getTo(), w);
 
     //  It's an array variable
     if (attrName.equals("name")) {
-      return arrayedName( o, w );
+      return arrayedName(o, w);
     }
 
     // Variable attributes
-    for (i=0; i<attributes.size(); i++) {
+    for (i = 0; i < attributes.size(); i++) {
       if (attributes.get(i).name.equals(attrName))
         return o.getAttribute(i);
     }
 
-    return attrName+".NotFound";
+    return attrName + ".NotFound";
   }
 
   /** Constructs the name for an object that is indexed by an array.
     *  @param o a reference to the object.
     *  @param w a reference to the simulation model.
     *  @return the name of the object as a String. */
-  public String arrayedName( NSObject o, NSWorld w )
+  public String arrayedName(NSObject o, NSWorld w)
   {
-    if (o.getArrayIndex()>=0)
+    if (o.getArrayIndex() >= 0)
       return o.getName() + "($" + w.getArray(o.getArrayIndex()).name + ")";
     else
       return o.getName();

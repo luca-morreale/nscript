@@ -77,7 +77,7 @@ public class TclLibraryManager extends Object {
    *  @return true if the file was succesfully opened and library
    *          correctly parsed, false otherwise.
    */
-  public boolean addLibrary( String fileName )
+  public boolean addLibrary(String fileName)
   {
     File f;
     FileReader fr;
@@ -90,20 +90,20 @@ public class TclLibraryManager extends Object {
       f = new File(fileName);
       fr = new FileReader(f);
       br = new BufferedReader(fr);
-      tl = new TclLibrary( br );
+      tl = new TclLibrary(br);
       go = true;
       go = !libNameExists(tl.getName());
-      for (i=0; i<tl.getSnippetCount(); i++) {
+      for (i = 0; i < tl.getSnippetCount(); i++) {
         if (snippetNameExists(tl.getSnippet(i).getName()))
           go = false;
       }
       if (go) {
-        libraries.add( tl );
+        libraries.add(tl);
         return true;
       } else
         return false;
     } catch (FileNotFoundException e) {
-      System.out.println("Library file not found:"+e.toString());
+      System.out.println("Library file not found:" + e.toString());
       return false;
     }
   }
@@ -119,9 +119,9 @@ public class TclLibraryManager extends Object {
    *  @param inIndex 0-based index of the library.
    *  @return a reference to the library. Note that if the index is incorrect
    *  NULL is returned. */
-  public TclLibrary getLibrary( int inIndex )
+  public TclLibrary getLibrary(int inIndex)
   {
-    if (inIndex >=0 && inIndex<libraries.size())
+    if (inIndex >= 0 && inIndex < libraries.size())
       return libraries.get(inIndex);
     else
       return null;
@@ -132,7 +132,7 @@ public class TclLibraryManager extends Object {
    *  @return a reference to the library with the requested name,
    *          NULL if the name does not exist.
    */
-  public TclLibrary getLibrary( String inLibName )
+  public TclLibrary getLibrary(String inLibName)
   {
     Iterator<TclLibrary> i;
     TclLibrary l;
@@ -154,13 +154,13 @@ public class TclLibraryManager extends Object {
    *  @return a reference to the requested snippet if the references are
    *          correct, NULL otherwise.
    */
-  public TclSnippet getSnippet( int inLibIndex, int inSnippetIndex)
+  public TclSnippet getSnippet(int inLibIndex, int inSnippetIndex)
   {
     TclLibrary l;
 
-    if (inLibIndex>=0 && inLibIndex<libraries.size()) {
+    if (inLibIndex >= 0 && inLibIndex < libraries.size()) {
       l = libraries.get(inLibIndex);
-      if (inSnippetIndex>=0 && inSnippetIndex<l.getSnippetCount())
+      if (inSnippetIndex >= 0 && inSnippetIndex < l.getSnippetCount())
         return l.getSnippet(inSnippetIndex);
       else
         return null;
@@ -176,7 +176,7 @@ public class TclLibraryManager extends Object {
    *  @param sName the name of the requested snippet.
    *  @return a reference to the snippet if the name is found, NULL otherwise.
    */
-  public TclSnippet getSnippet( String sName )
+  public TclSnippet getSnippet(String sName)
   {
     Iterator<TclLibrary> i = libraries.iterator();
     TclLibrary l;
@@ -185,7 +185,7 @@ public class TclLibraryManager extends Object {
     while (i.hasNext()) {
       l = i.next();
       s = l.getSnippet(sName);
-      if (s!=null)
+      if (s != null)
         return s;
     }
     return null;

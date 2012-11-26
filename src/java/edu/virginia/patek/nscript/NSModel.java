@@ -50,15 +50,15 @@ public class NSModel extends NSWorld implements DMModel {
    *  environment object (the ns object, that stores the simulation
    *  environment), and a reference to the toolbox.
    */
-  public NSModel( NSObject inEnv, SToolBar inTBar )
+  public NSModel(NSObject inEnv, SToolBar inTBar)
   {
-    super( inEnv );
+    super(inEnv);
     toolBox = inTBar;
     isDirty = false;
   }
 
   /** Stores the references to all the views of the model. */
-  public void setViews( DMView inEView, JTextArea inTclView,  SObjectBrowser inObjectPanel, NSWorldView inWorldView )
+  public void setViews(DMView inEView, JTextArea inTclView,  SObjectBrowser inObjectPanel, NSWorldView inWorldView)
   {
     editView = inEView;
     tclView = inTclView;
@@ -75,7 +75,7 @@ public class NSModel extends NSWorld implements DMModel {
     String inst;
     TclSnippet s = toolBox . getSelectedSnippet();
 
-    if (s==null)
+    if (s == null)
       return DMModel.SELECT_MODE;
 
     if (s . isRelation)
@@ -97,28 +97,28 @@ public class NSModel extends NSWorld implements DMModel {
     NSObject o;
     double x, y;
 
-    x = p.getX()/r.width;
-    y = p.getY()/r.height;
+    x = p.getX() / r.width;
+    y = p.getY() / r.height;
 
-    if (s==null)
+    if (s == null)
       return;
 
     // Check for uniqueness
-    if (s.isUnique && objectOfClassExists( s.getName() ))
+    if (s.isUnique && objectOfClassExists(s.getName()))
       return;
 
     isDirty = true;
     // Get a new unique generic name
-    int i=-1;
+    int i = -1;
     do {
       i++;
-      newName = s.getName()+i;
+      newName = s.getName() + i;
     } while (!isValidName(newName));
 
-    o = new NSEntity( s, newName, x, y);
-    s . instantiateNSObject( o );
-    addObject( o );
-    tclView . setText( toTcl() );
+    o = new NSEntity(s, newName, x, y);
+    s . instantiateNSObject(o);
+    addObject(o);
+    tclView . setText(toTcl());
     worldView . updateList();
   }
 
@@ -128,7 +128,7 @@ public class NSModel extends NSWorld implements DMModel {
    *  @param unSelectOthers if true the editor all other objects should
    *                        be unselected after the addition of the new object.
    */
-  public void addRelationObject( DMObject oFrom, DMObject oTo, boolean unSelectOthers )
+  public void addRelationObject(DMObject oFrom, DMObject oTo, boolean unSelectOthers)
   {
     NSObject oF, oT;
     String inst, newName;
@@ -136,29 +136,29 @@ public class NSModel extends NSWorld implements DMModel {
     TclSnippet s = toolBox . getSelectedSnippet();
     NSRelation o;
 
-    if (s==null || !s.isRelation)
+    if (s == null || !s.isRelation)
       return;
 
-    if (s.isFromBaseUnique && relationOfClassExists(oFrom,s.getName())) {
+    if (s.isFromBaseUnique && relationOfClassExists(oFrom, s.getName())) {
       return;
     }
-    if (s.isToBaseUnique && relationOfClassExists(oTo,s.getName())) {
+    if (s.isToBaseUnique && relationOfClassExists(oTo, s.getName())) {
       return;
     }
 
     isDirty = true;
-    i=-1;
+    i = -1;
     do {
       i++;
-      newName = s.getName()+i;
+      newName = s.getName() + i;
     } while (!isValidName(newName));
 
-    if (((NSEntity) oFrom).getSnippet().getBase().equals( s.getFromBase() ) &&
-        ((NSEntity)  oTo).getSnippet().getBase().equals( s.getToBase() )) {
-      o = new NSRelation( s, newName, (NSEntity) oFrom, (NSEntity) oTo );
-      s . instantiateNSObject( o );
-      addObject( o );
-      tclView . setText( toTcl() );
+    if (((NSEntity) oFrom).getSnippet().getBase().equals(s.getFromBase()) &&
+        ((NSEntity)  oTo).getSnippet().getBase().equals(s.getToBase())) {
+      o = new NSRelation(s, newName, (NSEntity) oFrom, (NSEntity) oTo);
+      s . instantiateNSObject(o);
+      addObject(o);
+      tclView . setText(toTcl());
       worldView . updateList();
     }
   }
@@ -170,19 +170,19 @@ public class NSModel extends NSWorld implements DMModel {
   {
     editView . repaint();
     objectPanel . selectionChanged();
-    tclView . setText( toTcl() );
+    tclView . setText(toTcl());
     worldView.updateList();
   }
 
   /** Verifies if an object of a given type exists.
    *  @return true if such object exists, false otherwise.
    */
-  boolean objectOfClassExists( String theClass )
+  boolean objectOfClassExists(String theClass)
   {
     NSObject o;
     int i;
 
-    for (i=0; i<getSize(); i++) {
+    for (i = 0; i < getSize(); i++) {
       o = (NSObject)getObjectAt(i);
       if (o.getSnippet().getName().equals(theClass))
         return true;
@@ -193,19 +193,19 @@ public class NSModel extends NSWorld implements DMModel {
   /** Verifies if a relation of a given class exists.
    *  @return true if such a relation exists, false otherise.
    */
-  boolean relationOfClassExists( DMObject dmo, String theClass )
+  boolean relationOfClassExists(DMObject dmo, String theClass)
   {
     NSObject o, O;
     NSRelation or;
     int i;
 
     O = (NSObject) dmo;
-    for (i=0; i<getSize(); i++) {
+    for (i = 0; i < getSize(); i++) {
       o = (NSObject)getObjectAt(i);
       if (o.getSnippet().isRelation) {
         or = (NSRelation) o;
-        if (or.getFrom()==O && or.getSnippet().getName().equals(theClass) ||
-            or.getTo()==O && or.getSnippet().getName().equals(theClass)) {
+        if (or.getFrom() == O && or.getSnippet().getName().equals(theClass) ||
+            or.getTo() == O && or.getSnippet().getName().equals(theClass)) {
           return true;
         }
       }
@@ -222,10 +222,10 @@ public class NSModel extends NSWorld implements DMModel {
   }
 
   /** Obtains the object at a given index. */
-  public DMObject getObjectAt( int inIndex )
+  public DMObject getObjectAt(int inIndex)
   {
-    if (inIndex>=0 && inIndex<objects.size())
-      return (DMObject) (objects.get(inIndex));
+    if (inIndex >= 0 && inIndex < objects.size())
+      return (DMObject)(objects.get(inIndex));
     else
       return null;
   }
@@ -238,7 +238,7 @@ public class NSModel extends NSWorld implements DMModel {
     NSRelation or;
 
     // First, select also arcs attached to a entity to be deleted
-    for (i=0; i<getSize(); i++) {
+    for (i = 0; i < getSize(); i++) {
       o = (NSEditableObject)getObjectAt(i);
       if (o.getSnippet().isRelation) {
         or = (NSRelation) o;
@@ -270,7 +270,7 @@ public class NSModel extends NSWorld implements DMModel {
   public void newModel()
   {
     // Clean arrays
-    while (arrays.size()>0)
+    while (arrays.size() > 0)
       arrays.remove(0);
 
     Iterator<NSObject> iter = objects.iterator();
@@ -296,8 +296,8 @@ public class NSModel extends NSWorld implements DMModel {
     int i;
     String s = "";
 
-    for (i=0; i<getSize(); i++)
-      s = s + ((NSObject)getObjectAt(i)).getSnippet().toTcl(this,(NSObject)getObjectAt(i),'#') + '\n';
+    for (i = 0; i < getSize(); i++)
+      s = s + ((NSObject)getObjectAt(i)).getSnippet().toTcl(this, (NSObject)getObjectAt(i), '#') + '\n';
 
     s = s + "$" + ((NSObject)getObjectAt(0)).getName() + " run";
     return s;
@@ -314,11 +314,11 @@ public class NSModel extends NSWorld implements DMModel {
     int i;
 
     s = Integer.toString(getArrayCount()) + "\n";
-    for (i=0; i<getArrayCount(); i++) {
+    for (i = 0; i < getArrayCount(); i++) {
       s = s + getArray(i).toString();
     }
     s = s + Integer.toString(objects.size()) + "\n";
-    for (i=0; i<objects.size(); i++) {
+    for (i = 0; i < objects.size(); i++) {
       s = s + ((NSObject)getObjectAt(i)).toString();
     }
     return s;
@@ -336,7 +336,7 @@ public class NSModel extends NSWorld implements DMModel {
   /** Sets the state of the model to dirty.
    *  Called by all the editing methods.
    */
-  public void setDirty( boolean dirtyState )
+  public void setDirty(boolean dirtyState)
   {
     isDirty = dirtyState;
   }
