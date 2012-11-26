@@ -40,7 +40,7 @@ public class SArrayTableModel extends AbstractTableModel {
     if (M == null)
       return 0;
     else
-      return M . getArrayCount();
+      return M.getArrayCount();
   }
 
   /** Obtains the number of columns of the table (two in this case).
@@ -63,9 +63,9 @@ public class SArrayTableModel extends AbstractTableModel {
       return new String("");
 
     if (col == 0) {
-      return M . getArray(row) . name;
+      return M.getArray(row).name;
     } else {
-      return Integer.toString(M . getArray(row) . elements);
+      return Integer.toString(M.getArray(row).elements);
     }
   }
 
@@ -79,9 +79,9 @@ public class SArrayTableModel extends AbstractTableModel {
       return;
 
     if (column == 0)
-      M . getArray(row) . name = value . toString();
+      M.getArray(row).name = value.toString();
     else
-      M . getArray(row) . elements = Integer.parseInt(value.toString());
+      M.getArray(row).elements = Integer.parseInt(value.toString());
   }
 
   /** Returns the column headers. In this case, the first header will

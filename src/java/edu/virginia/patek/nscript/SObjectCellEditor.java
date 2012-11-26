@@ -73,16 +73,16 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
     cb.setPopupVisible(false);
     if (column > 0) {
       if (o != null) {
-        if (o . getSnippet() . getAttribute(row) . hasOptions) {
-          st = new StringTokenizer(o . getSnippet() . getAttribute(row) . getOptions());
-          cb . setEditable(false);
-          while (st . hasMoreTokens())
-            cb . addItem(st . nextToken());
-          cb . setSelectedItem(o . getAttribute(row));
+        if (o.getSnippet().getAttribute(row).hasOptions) {
+          st = new StringTokenizer(o.getSnippet().getAttribute(row).getOptions());
+          cb.setEditable(false);
+          while (st.hasMoreTokens())
+            cb.addItem(st.nextToken());
+          cb.setSelectedItem(o.getAttribute(row));
           return ((Component) cb);
         } else {
-          cb . setEditable(true);
-          tf . setText(o . getAttribute(row));
+          cb.setEditable(true);
+          tf.setText(o.getAttribute(row));
           return ((Component) tf);
         }
       } else {

@@ -47,7 +47,7 @@ public class SObjectTableModel extends AbstractTableModel {
     if (o == null)
       return 0;
     else
-      return o . getAttributeCount();
+      return o.getAttributeCount();
   }
 
   /** Obtains the numbre of columns in the Attributes table (2).
@@ -73,9 +73,9 @@ public class SObjectTableModel extends AbstractTableModel {
       return new String("");
 
     if (col == 0) {
-      return o . getSnippet().getAttribute(row).name;
+      return o.getSnippet().getAttribute(row).name;
     } else {
-      return o . getAttribute(row);
+      return o.getAttribute(row);
     }
   }
 
@@ -89,7 +89,7 @@ public class SObjectTableModel extends AbstractTableModel {
   public void setValueAt(Object value, int row, int column)
   {
     if (column == 1 && o != null)
-      o . setAttribute(row, value.toString());
+      o.setAttribute(row, value.toString());
   }
 
   /** Obtains the name for a column. In this case "Attribute" or "Value".

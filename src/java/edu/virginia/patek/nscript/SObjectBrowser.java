@@ -59,15 +59,15 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     M = inModel;
     name = new JLabel("Name: ");
     nameField = new JTextField();
-    nameField . addActionListener(this);
+    nameField.addActionListener(this);
     description = new JLabel("No selection.");
     JPanel p = new JPanel(new GridLayout(1, 2));
     JPanel aiPanel = new JPanel(new BorderLayout());
     arrayIndex = new JComboBox();
-    arrayIndex . addActionListener(this);
-    /*	 	arrayIndex . addItemListener( this );*/
-    aiPanel . add(arrayIndex, BorderLayout.CENTER);
-    aiPanel . add(new JLabel("Indexed by:"), BorderLayout.WEST);
+    arrayIndex.addActionListener(this);
+    /*	 	arrayIndex.addItemListener( this );*/
+    aiPanel.add(arrayIndex, BorderLayout.CENTER);
+    aiPanel.add(new JLabel("Indexed by:"), BorderLayout.WEST);
     p.add(name);
     p.add(nameField);
     JPanel p2 = new JPanel(new GridLayout(3, 1));
@@ -84,8 +84,8 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     applyBtn.addActionListener(this);
 
     JPanel p3 = new JPanel(new GridLayout(1, 2));
-    p3 . add(defaultBtn);
-    p3 . add(applyBtn);
+    p3.add(defaultBtn);
+    p3.add(applyBtn);
 
     add(p3, BorderLayout.SOUTH);
 
@@ -120,23 +120,23 @@ public class SObjectBrowser extends JPanel implements ActionListener {
       } else
         description.setText("Entity class: " + o.getSnippet().getName() + " : " + o.getSnippet().getBase());
       // Prepare array list
-      arrayIndex . removeAllItems();
-      arrayIndex . addItem("No Index");
-      for (i = 0; i < M . getArrayCount(); i++)
-        arrayIndex . addItem(M.getArray(i));
+      arrayIndex.removeAllItems();
+      arrayIndex.addItem("No Index");
+      for (i = 0; i < M.getArrayCount(); i++)
+        arrayIndex.addItem(M.getArray(i));
       if (o.getArrayIndex() >= 0) {
-        arrayIndex . setSelectedIndex(o.getArrayIndex() + 1);
+        arrayIndex.setSelectedIndex(o.getArrayIndex() + 1);
       }
     }
     if (oc > 1) {
-      nameField . setText("");
-      description . setText("Multiple selection.");
+      nameField.setText("");
+      description.setText("Multiple selection.");
       arrayIndex.setSelectedIndex(-1);
       o = null;
     }
     if (oc == 0) {
-      nameField . setText("");
-      description . setText("No selection.");
+      nameField.setText("");
+      description.setText("No selection.");
       arrayIndex.setSelectedIndex(-1);
       o = null;
     }
@@ -157,17 +157,17 @@ public class SObjectBrowser extends JPanel implements ActionListener {
 
     if (ae.getSource() == defaultBtn) {
       if (o != null) {
-        o . getSnippet() . instantiateNSObject(o);
+        o.getSnippet().instantiateNSObject(o);
         M.updateAllViews();
         M.setDirty(true);
       }
     }
     if (ae.getSource() == applyBtn) {
       if (o != null) {
-        o . setName(nameField.getText());
-        o . setArrayIndex(arrayIndex.getSelectedIndex() - 1);
+        o.setName(nameField.getText());
+        o.setArrayIndex(arrayIndex.getSelectedIndex() - 1);
         for (i = 0; i < o.getAttributeCount(); i++) {
-          o . setAttribute(i, (String) attrTable.getValueAt(i, 1));
+          o.setAttribute(i, (String) attrTable.getValueAt(i, 1));
         }
         M.updateAllViews();
         M.setDirty(true);
@@ -175,10 +175,10 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     }
     if (ae.getSource() == nameField) {
       if (o != null) {
-        o . setName(nameField.getText());
-        o . setArrayIndex(arrayIndex.getSelectedIndex() - 1);
+        o.setName(nameField.getText());
+        o.setArrayIndex(arrayIndex.getSelectedIndex() - 1);
         for (i = 0; i < o.getAttributeCount(); i++) {
-          o . setAttribute(i, (String) attrTable.getValueAt(i, 1));
+          o.setAttribute(i, (String) attrTable.getValueAt(i, 1));
         }
         M.updateAllViews();
         M.setDirty(true);
@@ -190,10 +190,10 @@ public class SObjectBrowser extends JPanel implements ActionListener {
 //    {
 //    	int i;
 //		if (e.getStateChange()==2 && o!=null) {
-//			o . setName( nameField.getText() );
-//			o . setArrayIndex( arrayIndex.getSelectedIndex()-1 );
+//			o.setName( nameField.getText() );
+//			o.setArrayIndex( arrayIndex.getSelectedIndex()-1 );
 //			for (i=0; i<o.getAttributeCount(); i++) {
-//				o . setAttribute( i, (String) attrTable.getValueAt(i,1) );
+//				o.setAttribute( i, (String) attrTable.getValueAt(i,1) );
 //			}
 //			M.updateAllViews();
 //			M.setDirty(true);

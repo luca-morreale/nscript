@@ -141,27 +141,27 @@ public class DMControl extends KeyAdapter
     DMObject e;
     boolean shift = me.isShiftDown();
 
-    switch (M . getEditionMode()) {
+    switch (M.getEditionMode()) {
 
       case DMModel.SELECT_MODE:
-        e = modelIsHit(V. getBounds(). getSize(), me.getPoint());
+        e = modelIsHit(V.getBounds().getSize(), me.getPoint());
         if (e != null) {
           if (shift) {
-            e . toggleSelect();
+            e.toggleSelect();
           } else {
             unselectAll();
-            e . select();
+            e.select();
           }
         } else {
           if (!shift)
             unselectAll();
         }
-        M . updateAllViews();
+        M.updateAllViews();
         break;
 
       case DMModel.ICON_MODE:
-        M . addSimpleObject(V. getBounds(). getSize(), me.getPoint(), true);
-        M . updateAllViews();
+        M.addSimpleObject(V.getBounds().getSize(), me.getPoint(), true);
+        M.updateAllViews();
         break;
     }
   }

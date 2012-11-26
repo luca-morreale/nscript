@@ -78,26 +78,26 @@ public class NScript extends JFrame {
     toolBox = new SToolBar(this, libManager);
 
     // ------------- CREATE MODEL AND MAIN VIEW ---------------
-    ad . setMessage("Reading environment definitions...");
+    ad.setMessage("Reading environment definitions...");
     model = new NSModel(readEnvironment("settings/environment"), toolBox);
-    ad . setMessage("Adding default libraries...");
+    ad.setMessage("Adding default libraries...");
     addDefaultLibraries("settings/deflibs");
     mainView = new DMView(model);
 
-    ad . setMessage("Creating GUI...");
+    ad.setMessage("Creating GUI...");
     objectBrowser = new SObjectBrowser(model);
 
     worldView = new NSWorldView(model);
     JTabbedPane wv_tp = new JTabbedPane(JTabbedPane.BOTTOM);
-    wv_tp . addTab("Object Browser", objectBrowser);
-    wv_tp . addTab("World View", worldView);
+    wv_tp.addTab("Object Browser", objectBrowser);
+    wv_tp.addTab("World View", worldView);
 
     tclView = new JTextArea(model.toTcl());
     JScrollPane sp_tcl = new JScrollPane(tclView);
 
-    model . setViews(mainView, tclView, objectBrowser, worldView);
+    model.setViews(mainView, tclView, objectBrowser, worldView);
     JScrollPane sp_edit = new JScrollPane(mainView);
-    mainView . setPreferredSize(new Dimension(612, 792));
+    mainView.setPreferredSize(new Dimension(612, 792));
 
     JSplitPane helpers = new JSplitPane(JSplitPane.VERTICAL_SPLIT, toolBox, wv_tp);
     helpers.setOneTouchExpandable(true);
@@ -106,13 +106,13 @@ public class NScript extends JFrame {
 
     // Script view as another tab
     JTabbedPane tp = new JTabbedPane(JTabbedPane.BOTTOM);
-    tp . addTab("Edit", sp_edit);
-    tp . addTab("Tcl/Tk Script", sp_tcl);
+    tp.addTab("Edit", sp_edit);
+    tp.addTab("Tcl/Tk Script", sp_tcl);
 
     // Simultaneous view of the scripts
     // JSplitPane tp = new JSplitPane( JSplitPane.HORIZONTAL_SPLIT, sp_edit, sp_tcl );
-    // tp . setDividerSize(4);
-    // tp . setDividerLocation(400);
+    // tp.setDividerSize(4);
+    // tp.setDividerLocation(400);
 
     JSplitPane mainView = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, tp, helpers);
     mainView.setOneTouchExpandable(true);
@@ -121,9 +121,9 @@ public class NScript extends JFrame {
 
     // Add components to frame
     Container g = new Container();
-    g . setLayout(new BorderLayout());
-    g . add(menuBar, BorderLayout.NORTH);
-    g . add(toolBar, BorderLayout.CENTER);
+    g.setLayout(new BorderLayout());
+    g.add(menuBar, BorderLayout.NORTH);
+    g.add(toolBar, BorderLayout.CENTER);
     c.add(g, BorderLayout.NORTH);
     //	c.add(toolBar,BorderLayout.WEST);
     c.add(mainView, BorderLayout.CENTER);
@@ -132,9 +132,9 @@ public class NScript extends JFrame {
     Dimension screenSize = getToolkit().getScreenSize();
     setSize(800, 600);
     setLocation(0, 0);
-    ad . setMessage("Done.");
+    ad.setMessage("Done.");
     setVisible(true);
-    ad . dispose();
+    ad.dispose();
   }
 
   /** Reads the default values for the simulation environmen (the ns object),
@@ -163,10 +163,10 @@ public class NScript extends JFrame {
       env.instantiateNSObject(o);
       return o;
     } catch (FileNotFoundException fnfe) {
-      System.out.println("Environment defaults file not found: " + fnfe . toString());
+      System.out.println("Environment defaults file not found: " + fnfe.toString());
       return null;
     } catch (IOException ioe) {
-      System.out.println("Error reading environment definition: " + ioe . toString());
+      System.out.println("Error reading environment definition: " + ioe.toString());
       return null;
     }
   }
@@ -193,22 +193,22 @@ public class NScript extends JFrame {
     RunAction runA = new RunAction("Run in ns...", runIcon);
 
     // Add things to the toolbar and menubar
-    JButton b = toolbar . add(newA);
-    b . setToolTipText("New ns script");
-    b = toolbar . add(openA);
-    b . setToolTipText("Open an existing script");
-    b = toolbar . add(openLibA);
-    b . setToolTipText("Open a library");
-    b = toolbar . add(saveA);
-    b . setToolTipText("Save the script");
-    toolbar . addSeparator();
-    b = toolbar . add(editArrayA);
-    b . setToolTipText("Edit object indexes (arrays)");
-    toolbar . addSeparator();
-    b = toolbar . add(exportA);
-    b . setToolTipText("Export the script to ns");
-    b = toolbar . add(runA);
-    b . setToolTipText("Run the script in ns");
+    JButton b = toolbar.add(newA);
+    b.setToolTipText("New ns script");
+    b = toolbar.add(openA);
+    b.setToolTipText("Open an existing script");
+    b = toolbar.add(openLibA);
+    b.setToolTipText("Open a library");
+    b = toolbar.add(saveA);
+    b.setToolTipText("Save the script");
+    toolbar.addSeparator();
+    b = toolbar.add(editArrayA);
+    b.setToolTipText("Edit object indexes (arrays)");
+    toolbar.addSeparator();
+    b = toolbar.add(exportA);
+    b.setToolTipText("Export the script to ns");
+    b = toolbar.add(runA);
+    b.setToolTipText("Run the script in ns");
 
     // Now the menu bar (easy)
 
@@ -228,13 +228,13 @@ public class NScript extends JFrame {
 
     // NS menu
     JMenu scriptMenu = new JMenu("Script");
-    scriptMenu . add(exportA);
-    scriptMenu . addSeparator();
-    scriptMenu . add(runA);
+    scriptMenu.add(exportA);
+    scriptMenu.addSeparator();
+    scriptMenu.add(runA);
 
     // Help menu
     JMenu helpMenu = new JMenu("Help");
-    helpMenu . add(new AboutAction("About NScript 1.1...", null));
+    helpMenu.add(new AboutAction("About NScript 1.1...", null));
 
     menuBar.add(fileMenu);
     menuBar.add(editMenu);
@@ -261,15 +261,15 @@ public class NScript extends JFrame {
       br = new BufferedReader(fr);
 
       while ((newLine = br.readLine()) != null) {
-        if (libManager . addLibrary(newLine)) {
+        if (libManager.addLibrary(newLine)) {
           toolBox.addLibraryPane(
             libManager.getLibrary(libManager.getLibraryCount() - 1));
         }
       }
     } catch (FileNotFoundException fnfe) {
-      System.out.println("Library file: " + newLine + " not found: " + fnfe . toString());
+      System.out.println("Library file: " + newLine + " not found: " + fnfe.toString());
     } catch (IOException ioe) {
-      System.out.println("Error reading library file: " + ioe . toString());
+      System.out.println("Error reading library file: " + ioe.toString());
     }
   }
 
@@ -287,7 +287,7 @@ public class NScript extends JFrame {
     int selected = fch.showOpenDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
       f = fch.getSelectedFile();
-      if (libManager . addLibrary(f . getPath()))
+      if (libManager.addLibrary(f.getPath()))
         toolBox.addLibraryPane(libManager.getLibrary(libManager.getLibraryCount() - 1));
     }
   }
@@ -313,9 +313,9 @@ public class NScript extends JFrame {
         fos = new FileOutputStream(fch.getSelectedFile());
         tScript = model.toTcl();
         dataOut = tScript.getBytes();
-        fos . write(dataOut);
-        fos . flush();
-        fos . close();
+        fos.write(dataOut);
+        fos.flush();
+        fos.close();
         return fch.getSelectedFile().getAbsolutePath();
       } catch (FileNotFoundException e) {
         System.out.println("Problems openning the file: " + e.toString());
@@ -341,7 +341,7 @@ public class NScript extends JFrame {
     byte[] dataOut;
 
     JFileChooser fch = new JFileChooser("../examples");
-    fch . setDialogTitle("Save As");
+    fch.setDialogTitle("Save As");
     //	fch.setFileFilter(ff);
     f = new File("Untitled.nss");
     fch.setSelectedFile(f);
@@ -351,10 +351,10 @@ public class NScript extends JFrame {
         fos = new FileOutputStream(fch.getSelectedFile());
         tScript = model.toString();
         dataOut = tScript.getBytes();
-        fos . write(dataOut);
-        fos . flush();
-        fos . close();
-        model . setDirty(false);
+        fos.write(dataOut);
+        fos.flush();
+        fos.close();
+        model.setDirty(false);
         return fch.getSelectedFile().getAbsolutePath();
       } catch (FileNotFoundException e) {
         System.out.println("Problems creating the file: " + e.toString());
@@ -392,10 +392,10 @@ public class NScript extends JFrame {
     TclSnippet s;
 
     JFileChooser fch = new JFileChooser("../examples");
-    fch . setDialogTitle("Select Script to Open");
+    fch.setDialogTitle("Select Script to Open");
     selected = fch.showOpenDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
-      model . newModel();
+      model.newModel();
       try {
         File f = fch.getSelectedFile();
         FileReader fr = new FileReader(f);
@@ -410,8 +410,8 @@ public class NScript extends JFrame {
         // Read objects (gulp)
         nO = Integer.parseInt(br.readLine());
         br.readLine(); // Skip snippet and name information
-        ((NSObject)model.getObjectAt(0)) . setName(br.readLine());
-        ((NSEntity)model.getObjectAt(0)) . fromString(br);
+        ((NSObject)model.getObjectAt(0)).setName(br.readLine());
+        ((NSEntity)model.getObjectAt(0)).fromString(br);
         for (i = 1; i < nO; i++) {
           sName = br.readLine();
           s = libManager.getSnippet(sName);
@@ -419,25 +419,25 @@ public class NScript extends JFrame {
             s = searchLibAction(sName);
           }
           if (s == null) {
-            model . newModel();
-            model . updateAllViews();
-            model . setDirty(false);
+            model.newModel();
+            model.updateAllViews();
+            model.setDirty(false);
             return;
           }
           if (s.isRelation) {
             or = new NSRelation(s, br.readLine(), null, null);
-            s . instantiateNSObject( or);
-            or . fromString(br, model);
-            model . addObject( or);
+            s.instantiateNSObject( or);
+            or.fromString(br, model);
+            model.addObject( or);
           } else {
             o = new NSEntity(s, br.readLine(), 0.0, 0.0);
-            s . instantiateNSObject(o);
-            o . fromString(br);
-            model . addObject(o);
+            s.instantiateNSObject(o);
+            o.fromString(br);
+            model.addObject(o);
           }
         }
-        model . updateAllViews();
-        model . setDirty(false);
+        model.updateAllViews();
+        model.setDirty(false);
       } catch (FileNotFoundException e) {
         System.out.println("Library file not found:" + e.toString());
       } catch (IOException ioe) {
@@ -461,7 +461,7 @@ public class NScript extends JFrame {
       int selected = fch.showOpenDialog(this.getContentPane());
       if (selected == JFileChooser.APPROVE_OPTION) {
         f = fch.getSelectedFile();
-        if (libManager . addLibrary(f . getPath()))
+        if (libManager.addLibrary(f.getPath()))
           toolBox.addLibraryPane(libManager.getLibrary(libManager.getLibraryCount() - 1));
       } else {
         return null;
@@ -519,7 +519,7 @@ public class NScript extends JFrame {
         if (!reallyClose())
           return;
 
-      model . newModel();
+      model.newModel();
     }
   }
 
@@ -602,7 +602,7 @@ public class NScript extends JFrame {
 
     public void actionPerformed(ActionEvent ae)
     {
-      model . removeSelected();
+      model.removeSelected();
     }
   }
 

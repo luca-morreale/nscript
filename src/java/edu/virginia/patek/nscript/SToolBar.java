@@ -59,8 +59,8 @@ public class SToolBar extends JPanel implements ActionListener {
     panel.add(action, BorderLayout.NORTH);
     JPanel panel2 = new JPanel(new BorderLayout());
     JButton b = new JButton(new ImageIcon("pixmaps/select.png"));
-    b . setPreferredSize(new Dimension(22, 22));
-    b . addActionListener(this);
+    b.setPreferredSize(new Dimension(22, 22));
+    b.addActionListener(this);
     panel2.add(b, BorderLayout.NORTH);
     panel.add(panel2, BorderLayout.WEST);
     tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
@@ -79,9 +79,9 @@ public class SToolBar extends JPanel implements ActionListener {
     int i;
 
     JList c = new JList(new STBListModel(lib));
-    c . setCellRenderer(nip);
+    c.setCellRenderer(nip);
     JScrollPane sp = new JScrollPane(c);
-    tabPane . addTab(lib.getTBName(), sp);
+    tabPane.addTab(lib.getTBName(), sp);
     action.setText("Select an object");
   }
 
@@ -94,11 +94,11 @@ public class SToolBar extends JPanel implements ActionListener {
   {
     int libIndex, snippetIndex;
 
-    libIndex = tabPane . getSelectedIndex();
+    libIndex = tabPane.getSelectedIndex();
     if (libIndex < 0)
       return null;
 
-    snippetIndex = ((JList)(((JScrollPane) tabPane . getSelectedComponent()).getViewport().getView())).getSelectedIndex();
+    snippetIndex = ((JList)(((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).getSelectedIndex();
 
     if (snippetIndex < 0)
       return null;
@@ -111,7 +111,7 @@ public class SToolBar extends JPanel implements ActionListener {
    */
   public void clearSelection()
   {
-    ((JList)(((JScrollPane) tabPane . getSelectedComponent()).getViewport().getView())).clearSelection();
+    ((JList)(((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).clearSelection();
   }
 
   /** Implements the ActionListener interface to respond to the "Select"
@@ -148,7 +148,7 @@ public class SToolBar extends JPanel implements ActionListener {
      */
     public Object getElementAt(int index)
     {
-      return lib . getSnippet(index);  // . getName();
+      return lib.getSnippet(index);  //.getName();
     }
 
     /** Obtains the size of a library in terms of number of classes
