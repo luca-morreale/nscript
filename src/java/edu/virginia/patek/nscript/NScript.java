@@ -77,6 +77,9 @@ public class NScript extends JFrame {
     libManager = new TclLibraryManager();
     toolBox = new SToolBar(this, libManager);
 
+    // Allows for "exit confirm"
+    setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
     // ------------- CREATE MODEL AND MAIN VIEW ---------------
     ad.setMessage("Reading environment definitions...");
     model = new NSModel(readEnvironment("settings/environment"), toolBox);
@@ -497,10 +500,10 @@ public class NScript extends JFrame {
   class WindowEventHandler extends WindowAdapter {
     public void windowClosing(WindowEvent evt)
     {
-      if (model.dirty())
-        if (!reallyClose())
-          return;
-      System.exit(0);
+      if (model.dirty() && reallyClose()) {
+        dispose();
+        System.exit(0);
+      }
     }
   }
 
