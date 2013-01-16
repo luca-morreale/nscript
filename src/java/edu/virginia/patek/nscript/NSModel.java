@@ -155,6 +155,9 @@ public class NSModel extends NSWorld implements DMModel {
 
     if (((NSEntity) oFrom).getSnippet().getBase().equals(s.getFromBase()) &&
         ((NSEntity)  oTo).getSnippet().getBase().equals(s.getToBase())) {
+      if (oFrom == oTo) {
+        return;
+      }
       o = new NSRelation(s, newName, (NSEntity) oFrom, (NSEntity) oTo);
       s.instantiateNSObject(o);
       addObject(o);
