@@ -13,6 +13,9 @@ all:
 clean:
 	ant clean
 
+prebuilt:
+	ant prebuilt
+
 doc:
 	ant javadoc
 
