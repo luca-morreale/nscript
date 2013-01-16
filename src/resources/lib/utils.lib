@@ -35,7 +35,7 @@ end
 entity class ResultPrinter Timer 4:
   File=results.txt;
   Time=10.0;
-  Results Header=" ";
+  Results Header=;
   Result 1 name=<name>;
   Result 1 object=<object>;
   Result 1 variable=<function> or set <var>;
