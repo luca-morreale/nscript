@@ -1,4 +1,4 @@
-nscript
+./nscript
 nscript-*.zip
 src/build
 .junk
