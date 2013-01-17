@@ -394,7 +394,7 @@ public class NScript extends JFrame {
     NSRelation or;
     TclSnippet s;
 
-    JFileChooser fch = new JFileChooser("../examples");
+    JFileChooser fch = new JFileChooser("examples");
     fch.setDialogTitle("Select Script to Open");
     selected = fch.showOpenDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
