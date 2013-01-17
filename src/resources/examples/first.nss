@@ -32,6 +32,7 @@ DuplexLink0
 1.0
 DropTail
 50
+Off
 Node0
 Node1
 UDP
