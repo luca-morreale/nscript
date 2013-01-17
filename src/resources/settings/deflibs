@@ -3,3 +3,4 @@ lib/transport.lib
 lib/applications.lib
 lib/utils.lib
 lib/lan.lib
+lib/ping.lib
