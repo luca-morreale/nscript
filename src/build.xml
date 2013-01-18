@@ -27,8 +27,8 @@ See COPYING at top level for more information.
 
   <target name="compile">
     <mkdir dir="${classes.dir}"/>
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
-    <!--target="1.6" source="1.6">-->
+    <javac srcdir="${src.dir}" destdir="${classes.dir}"
+           includeantruntime="false" target="1.6" source="1.6">
       <compilerarg value="-Xlint"/>
     </javac>
   </target>
