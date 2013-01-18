@@ -1,4 +1,8 @@
 #! /usr/bin/python
+#
+# Copyright (C) 2012 Stefano Sanfilippo.
+# See COPYING in the main source package for more information
+#
 
 from __future__ import with_statement
 import sys
