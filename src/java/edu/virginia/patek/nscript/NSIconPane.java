@@ -16,7 +16,7 @@ import java.awt.*;
 
 /** Implements the representation of a class of objects (TclSnippet) in the
  *  ToolBox view. */
-public class NSIconPane extends JLabel implements ListCellRenderer {
+public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
   static final long serialVersionUID = 42L;
 
   /** Constant to represent an OVAL icon. */
@@ -64,20 +64,19 @@ public class NSIconPane extends JLabel implements ListCellRenderer {
   /** Returns a component in which the element is displayed.
    *  @return components that displays the element. */
   public Component getListCellRendererComponent(
-    JList list,
-    Object value,
+    JList<? extends TclSnippet> list,
+    TclSnippet value,
     int index,
     boolean isSelected,
     boolean cellHasFocus
   )
   {
-    TclSnippet s = (TclSnippet)value;
-    icon = s.getIcon();
-    if (!s.isRelation)
-      setText(s.getName() + "(" + s.getBase() + ")");
+    icon = value.getIcon();
+    if (!value.isRelation)
+      setText(value.getName() + "(" + value.getBase() + ")");
     else
-      setText(s.getName() + "(" + s.getFromBase() + "," + s.getToBase() + ")");
-    label = s.getName();
+      setText(value.getName() + "(" + value.getFromBase() + "," + value.getToBase() + ")");
+    label = value.getName();
 
     if (isSelected) {
       setBackground(list.getSelectionBackground());
