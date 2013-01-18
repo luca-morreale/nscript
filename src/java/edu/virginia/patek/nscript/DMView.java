@@ -41,13 +41,14 @@ public class DMView extends JPanel {
   public DMView(DMModel inM)
   {
     M = inM;
-    C = new DMControl(this, inM);   // Creates a new controller object.
-    addMouseListener(C);		// Register the new control as a handler
-    addMouseMotionListener(C);	// for mouse and key events.
+    C = new DMControl(this, inM); // Creates a new controller object.
+    // Register the new control as a handler for mouse and key events.
+    addMouseListener(C);
+    addMouseMotionListener(C);
     addKeyListener(C);
-    scale = 1.0;			// Set the default scale of the drawing.
-    setBackground(Color.white);	// Set the colors for the background of the view.
-    setForeground(Color.black);	// Set the foreground color.
+    scale = 1.0; // Set the default scale of the drawing.
+    setBackground(Color.white); // Set the colors for the background of the view.
+    setForeground(Color.black); // Set the foreground color.
   }
 
   /** Here the rendering of the model takes places by: obtaining context
@@ -64,14 +65,14 @@ public class DMView extends JPanel {
     // Set the font, and obtain the context information so that each
     // of the objects can draw themselves.
     g.setFont(new Font("Helvetica", Font.PLAIN, 9));
-    //	System.out.println("Starting paint...");
+    // System.out.println("Starting paint...");
     r = getBounds().getSize();
 
     // Call each of the objects in the model, and tell them to draw
     // themselves on the screen.
     for (i = 0; i < M.getSize(); i++)
       M.getObjectAt(i).drawSelf(g, r);
-    //	System.out.println("Ending paint...");
+    // System.out.println("Ending paint...");
 
     // Draws the auxiliary controls (line or rectangle being drawn).
     C.drawControls(g);

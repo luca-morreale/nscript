@@ -128,7 +128,7 @@ public class NScript extends JFrame {
     g.add(menuBar, BorderLayout.NORTH);
     g.add(toolBar, BorderLayout.CENTER);
     c.add(g, BorderLayout.NORTH);
-    //	c.add(toolBar,BorderLayout.WEST);
+    // c.add(toolBar,BorderLayout.WEST);
     c.add(mainView, BorderLayout.CENTER);
 
     addWindowListener(new WindowEventHandler());
@@ -307,7 +307,7 @@ public class NScript extends JFrame {
 
     JFileChooser fch = new JFileChooser("../examples");
     fch.setDialogTitle("Select a File Name for the Script.");
-    //	fch.setFileFilter(ff);
+    // fch.setFileFilter(ff);
     f = new File("Untitled.tcl");
     fch.setSelectedFile(f);
     int selected = fch.showSaveDialog(this.getContentPane());
@@ -345,7 +345,7 @@ public class NScript extends JFrame {
 
     JFileChooser fch = new JFileChooser("../examples");
     fch.setDialogTitle("Save As");
-    //	fch.setFileFilter(ff);
+    // fch.setFileFilter(ff);
     f = new File("Untitled.nss");
     fch.setSelectedFile(f);
     int selected = fch.showSaveDialog(this.getContentPane());

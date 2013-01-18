@@ -65,7 +65,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     JPanel aiPanel = new JPanel(new BorderLayout());
     arrayIndex = new JComboBox();
     arrayIndex.addActionListener(this);
-    /*	 	arrayIndex.addItemListener( this );*/
+    // arrayIndex.addItemListener(this);
     aiPanel.add(arrayIndex, BorderLayout.CENTER);
     aiPanel.add(new JLabel("Indexed by:"), BorderLayout.WEST);
     p.add(name);
@@ -185,18 +185,19 @@ public class SObjectBrowser extends JPanel implements ActionListener {
       }
     }
   }
-//    /** Responds to changes in the selection of the list. */
-//    public void itemStateChanged(ItemEvent e)
-//    {
-//    	int i;
-//		if (e.getStateChange()==2 && o!=null) {
-//			o.setName( nameField.getText() );
-//			o.setArrayIndex( arrayIndex.getSelectedIndex()-1 );
-//			for (i=0; i<o.getAttributeCount(); i++) {
-//				o.setAttribute( i, (String) attrTable.getValueAt(i,1) );
-//			}
-//			M.updateAllViews();
-//			M.setDirty(true);
-//		}
+
+//  /** Responds to changes in the selection of the list. */
+//  public void itemStateChanged(ItemEvent e)
+//  {
+//    int i;
+//    if (e.getStateChange()==2 && o!=null) {
+//      o.setName( nameField.getText() );
+//      o.setArrayIndex( arrayIndex.getSelectedIndex()-1 );
+//      for (i=0; i<o.getAttributeCount(); i++) {
+//        o.setAttribute( i, (String) attrTable.getValueAt(i,1) );
+//      }
+//      M.updateAllViews();
+//      M.setDirty(true);
 //    }
+//  }
 }
