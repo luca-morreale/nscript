@@ -23,6 +23,7 @@ def fix(filename, overwrite=False):
 
     Args:
         filename: the name of the file to be converted.
+        overwrite: will overwrite input file if `True`.
     Returns:
         None
     """
@@ -53,7 +54,6 @@ def main():
     else:
         print('Usage: %s file1.nss [file2.nss [...]]' % sys.argv[0])
         sys.exit(0)
-
 
 
 if __name__ == '__main__':
