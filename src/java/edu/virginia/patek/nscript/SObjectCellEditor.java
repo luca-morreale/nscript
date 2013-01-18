@@ -27,7 +27,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
   /** The object to be edited. */
   NSObject o;
   /** A pull down for fields with limited options. */
-  JComboBox cb;
+  JComboBox<String> cb;
   /** An editable text region for the fields with free input. */
   JTextField tf;
 
@@ -37,7 +37,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
   public SObjectCellEditor(NSObject inO)
   {
     o = inO;
-    cb = new JComboBox();
+    cb = new JComboBox<String>();
     tf = new JTextField();
   }
 

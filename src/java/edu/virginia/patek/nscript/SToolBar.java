@@ -78,7 +78,7 @@ public class SToolBar extends JPanel implements ActionListener {
   {
     int i;
 
-    JList c = new JList(new STBListModel(lib));
+    JList<TclSnippet> c = new JList<TclSnippet>(new STBListModel(lib));
     c.setCellRenderer(nip);
     JScrollPane sp = new JScrollPane(c);
     tabPane.addTab(lib.getTBName(), sp);
@@ -128,7 +128,7 @@ public class SToolBar extends JPanel implements ActionListener {
   /** Class that implements the AbstractListModel behavior to render the
    *  elements of a library as a list.
    */
-  class STBListModel extends AbstractListModel {
+  class STBListModel extends AbstractListModel<TclSnippet> {
     static final long serialVersionUID = 42L;
 
     /** A reference to the library that corresponds to the list. */
@@ -146,7 +146,7 @@ public class SToolBar extends JPanel implements ActionListener {
      *  @return a reference to the object, in this case the TclSnippet
      *          object that corresponds to the entry.
      */
-    public Object getElementAt(int index)
+    public TclSnippet getElementAt(int index)
     {
       return lib.getSnippet(index);  //.getName();
     }
