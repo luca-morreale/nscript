@@ -71,7 +71,7 @@ See COPYING at top level for more information.
       <fileset dir="resources/settings" includes="deflibs,environment"/>
     </copy>
     <copy todir="${install.dir}">
-      <fileset dir="resources" includes="nscript.bat,nscript.sh"/>
+      <fileset dir="scripts" includes="fixnss.py,nscript.bat,nscript.sh"/>
       <fileset dir="${build.dir}" includes="*.jar"/>
     </copy>
     <copy todir="${install.dir}/doc">
@@ -87,12 +87,12 @@ See COPYING at top level for more information.
     </chmod>
     <!-- And then we punch some holes... -->
     <chmod perm="0755">
-      <fileset dir="${install.dir}" includes="nscript.sh"/>
+      <fileset dir="${install.dir}" includes="fixnss.py,nscript.sh"/>
     </chmod>
   </target>
 
   <target name="prebuilt" depends="install">
     <zip destfile="${prebuilt.dir}/nscript-${version}.zip"
-         basedir="${prebuilt.dir}" includes="nscript/**"/>
+         basedir="${prebuilt.dir}" includes="nscript-${version}/**"/>
   </target>
 </project>
