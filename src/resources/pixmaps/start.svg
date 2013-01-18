@@ -14,7 +14,7 @@
    height="200"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="start.svg"
    inkscape:export-filename="start.png"
    inkscape:export-xdpi="90"
@@ -237,9 +237,9 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1366"
-     inkscape:window-height="715"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
+     inkscape:window-height="699"
+     inkscape:window-x="-1"
+     inkscape:window-y="-3"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -248,6 +248,10 @@
        orientation="1,0"
        position="20.422535,180.98592"
        id="guide3983" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="164.52538,158.83027"
+       id="guide3060" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -257,7 +261,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -314,30 +318,48 @@
    id="tspan3104">1.1</tspan></tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:75%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="20.422535"
-       y="889.37628"
+       y="893.37628"
        id="text3965"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan3967"
-         x="20.422535"
-         y="889.37628"
-         style="font-size:12px">Enrique Campos-Nanez</tspan><tspan
+       sodipodi:linespacing="75%"><tspan
          sodipodi:role="line"
          x="20.422535"
-         y="904.37628"
-         id="tspan3973"
-         style="font-size:12px">Stefano Sanfilippo</tspan><tspan
+         y="893.37628"
+         style="font-size:9px;font-style:normal;line-height:75%;-inkscape-font-specification:Droid Sans;font-family:Droid Sans;font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3053"><tspan
+           id="tspan3056"
+           style="font-size:12px;font-style:normal;line-height:75%;-inkscape-font-specification:Droid Sans;font-family:Droid Sans;font-weight:normal;font-stretch:normal;font-variant:normal">Enrique Campos-Nanez, </tspan><tspan
+           style="font-size:12px;-inkscape-font-specification:Droid Sans Italic;font-family:Droid Sans;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal"
+           id="tspan3068">University of Virginia</tspan></tspan><tspan
          sodipodi:role="line"
          x="20.422535"
-         y="919.37628"
-         style="font-size:12px"
-         id="tspan3050" /><tspan
+         y="902.37628"
+         style="font-size:12px;line-height:75%;-inkscape-font-specification:Droid Sans;font-family:Droid Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3055" /><tspan
          sodipodi:role="line"
          x="20.422535"
-         y="934.37628"
-         style="font-size:12px"
+         y="911.37628"
+         style="font-size:9px;font-style:normal;line-height:75%;-inkscape-font-specification:Droid Sans;font-family:Droid Sans;font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3050"><tspan
+           id="tspan3058"
+           style="font-size:12px;font-style:normal;line-height:75%;-inkscape-font-specification:Droid Sans;font-family:Droid Sans;font-weight:normal;font-stretch:normal;font-variant:normal">Stefano Sanfilippo, </tspan><tspan
+           style="font-size:12px;-inkscape-font-specification:Droid Sans Italic;font-family:Droid Sans;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal"
+           id="tspan3070">Politecnico di Milano</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="20.422535"
+         y="920.37628"
+         style="font-size:12px;font-style:italic;line-height:75%;-inkscape-font-specification:Droid Sans Italic;font-family:Droid Sans;font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3064" /><tspan
+         sodipodi:role="line"
+         x="20.422535"
+         y="929.37628"
+         style="font-size:9px;font-style:normal;line-height:75%;-inkscape-font-specification:Droid Sans;font-family:Droid Sans;font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3057" /><tspan
+         sodipodi:role="line"
+         x="20.422535"
+         y="938.37628"
+         style="font-size:12px;line-height:75%;-inkscape-font-specification:Droid Sans Mono;font-family:Droid Sans Mono;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
          id="tspan3052">https://github.com/esseks/nscript/</tspan></text>
     <text
        xml:space="preserve"
