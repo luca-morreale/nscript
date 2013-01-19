@@ -1,9 +1,0 @@
-style=stroustrup
-indent=spaces=2
-indent-switches
-pad-oper
-unpad-paren
-pad-header
-#add-brackets
-mode=java
-lineend=linux
