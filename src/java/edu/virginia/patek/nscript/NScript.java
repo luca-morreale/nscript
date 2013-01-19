@@ -186,13 +186,13 @@ public class NScript extends JFrame {
    */
   void prepareToolBarAndMenu(JToolBar toolbar, JMenuBar menuBar)
   {
-    Icon newIcon = new ImageIcon("pixmaps/new.png");
-    Icon openIcon = new ImageIcon("pixmaps/open.png");
-    Icon saveIcon = new ImageIcon("pixmaps/save.png");
-    Icon openLibIcon = new ImageIcon("pixmaps/openlib.png");
-    Icon indexIcon = new ImageIcon("pixmaps/index.png");
-    Icon exportIcon = new ImageIcon("pixmaps/nsexport.png");
-    Icon runIcon = new ImageIcon("pixmaps/run.png");
+    Icon newIcon = new ImageIcon(NScript.class.getResource("/pixmaps/new.png"));
+    Icon openIcon = new ImageIcon(NScript.class.getResource("/pixmaps/open.png"));
+    Icon saveIcon = new ImageIcon(NScript.class.getResource("/pixmaps/save.png"));
+    Icon openLibIcon = new ImageIcon(NScript.class.getResource("/pixmaps/openlib.png"));
+    Icon indexIcon = new ImageIcon(NScript.class.getResource("/pixmaps/index.png"));
+    Icon exportIcon = new ImageIcon(NScript.class.getResource("/pixmaps/nsexport.png"));
+    Icon runIcon = new ImageIcon(NScript.class.getResource("/pixmaps/run.png"));
 
     NewAction newA = new NewAction("New", newIcon);
     OpenAction openA = new OpenAction("Open", openIcon);

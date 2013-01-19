@@ -39,7 +39,10 @@ See COPYING at top level for more information.
       <manifest>
         <attribute name="Main-Class" value="${main-class}"/>
       </manifest>
-      <!--<fileset dir="${res.dir}"/>-->
+      <fileset dir="${res.dir}">
+        <include name="pixmaps/*.png" />
+      </fileset>
+      <fileset dir="${prebuilt.dir}" includes="AUTHORS,COPYING" />
     </jar>
   </target>
 
@@ -56,14 +59,10 @@ See COPYING at top level for more information.
   <target name="main" depends="clean,run"/>
 
   <target name="install" depends="jar">
-    <mkdir dir="${install.dir}/pixmaps"/>
     <mkdir dir="${install.dir}/lib"/>
     <mkdir dir="${install.dir}/settings"/>
     <mkdir dir="${install.dir}/doc"/>
 
-    <copy todir="${install.dir}/pixmaps">
-      <fileset dir="resources/pixmaps" includes="*.png"/>
-    </copy>
     <copy todir="${install.dir}/lib">
       <fileset dir="resources/lib" includes="*.lib"/>
     </copy>
