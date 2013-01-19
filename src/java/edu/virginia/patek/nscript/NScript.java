@@ -55,6 +55,8 @@ public class NScript extends JFrame {
    *  script.
    */
   JTextArea tclView;
+  /** Last path explored file File Chooser */
+  String lastpath;
 
   /** Main constructor. Its responsibilities include creating the title
    *  dialog box, the menu bar, toolbar, a library manager to store opened
@@ -79,6 +81,9 @@ public class NScript extends JFrame {
 
     // Allows for "exit confirm"
     setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+    // Set initial path
+    this.lastpath = "examples";
 
     // ------------- CREATE MODEL AND MAIN VIEW ---------------
     ad.setMessage("Reading environment definitions...");
@@ -305,7 +310,7 @@ public class NScript extends JFrame {
     String tScript;
     byte[] dataOut;
 
-    JFileChooser fch = new JFileChooser("../examples");
+    JFileChooser fch = new JFileChooser(this.lastpath);
     fch.setDialogTitle("Select a File Name for the Script.");
     // fch.setFileFilter(ff);
     f = new File("Untitled.tcl");
@@ -313,6 +318,7 @@ public class NScript extends JFrame {
     int selected = fch.showSaveDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
       try {
+        this.updateLastPath(fch.getSelectedFile());
         fos = new FileOutputStream(fch.getSelectedFile());
         tScript = model.toTcl();
         dataOut = tScript.getBytes();
@@ -343,7 +349,7 @@ public class NScript extends JFrame {
     String tScript;
     byte[] dataOut;
 
-    JFileChooser fch = new JFileChooser("../examples");
+    JFileChooser fch = new JFileChooser(this.lastpath);
     fch.setDialogTitle("Save As");
     // fch.setFileFilter(ff);
     f = new File("Untitled.nss");
@@ -351,6 +357,7 @@ public class NScript extends JFrame {
     int selected = fch.showSaveDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
       try {
+        this.updateLastPath(fch.getSelectedFile());
         fos = new FileOutputStream(fch.getSelectedFile());
         tScript = model.toString();
         dataOut = tScript.getBytes();
@@ -383,6 +390,12 @@ public class NScript extends JFrame {
     return (selectedValue == 0);
   }
 
+  /** Set directory in which next File Chooser will open */
+  void updateLastPath(File chosenfile)
+  {
+    this.lastpath = chosenfile.getPath();
+  }
+
   /** Implements the "Open" option of the "File" menu. Open a dialog box to
    *  let the user select a file, and opens it. */
   public void openFileAction()
@@ -394,10 +407,11 @@ public class NScript extends JFrame {
     NSRelation or;
     TclSnippet s;
 
-    JFileChooser fch = new JFileChooser("examples");
+    JFileChooser fch = new JFileChooser(this.lastpath);
     fch.setDialogTitle("Select Script to Open");
     selected = fch.showOpenDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
+      this.updateLastPath(fch.getSelectedFile());
       model.newModel();
       try {
         File f = fch.getSelectedFile();
