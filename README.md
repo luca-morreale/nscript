@@ -19,10 +19,8 @@ See AUTHORS for contact information.
 Downloading prebuilts
 =====================
 
-Casual users may download a Java 1.7 compiled version from the
-[download](https://github.com/esseks/nscript/downloads) section.
-Please remember to download *latest* version, i.e. the first of the list
-(or the one with the highest version number ;) )
+The download feature was retired. Now you can grab the last version
+directly from GIT (see above) as nscript-<some version number>.zip
 
 
 Building
@@ -45,6 +43,10 @@ might come into play.
 You must have Apache [Ant](http://ant.apache.org/) installed.
 Most GNU/Linux distributions ship it, so you should use your package manager.
 Windows and Mac users will find prebuilt binaries on ANT website.
+
+You also need [Proguard](http://proguard.sourceforge.net/) installed.
+Adjust the path to `proguard.jar` in the first lines of build.xml to reflect
+your current installation.
 
 JUST DO IT!
 -----------
