@@ -18,7 +18,7 @@ See COPYING at top level for more information.
   <property name="doc.dir"     value="${build.dir}/javadoc"/>
   <property name="classes.dir" value="${build.dir}/classes"/>
   <property name="jar.dir"     value="${build.dir}"/>
-  <property name="main-class"  value="edu.virginia.patek.nscript.NScript"/>
+  <property name="main-class"  value="edu.virginia.patek.nscript.Main"/>
 
   <target name="clean">
     <delete dir="${build.dir}"/>
@@ -71,7 +71,7 @@ See COPYING at top level for more information.
     </copy>
     <copy todir="${install.dir}">
       <fileset dir="scripts" includes="fixnss.py,nscript.bat,nscript.sh"/>
-      <fileset dir="${build.dir}" includes="*.jar"/>
+      <fileset dir="${build.dir}" includes="${ant.project.name}.jar"/>
     </copy>
     <copy todir="${install.dir}/doc">
       <fileset dir=".." includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
