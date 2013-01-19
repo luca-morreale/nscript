@@ -101,6 +101,8 @@ public class NScript extends JFrame {
     wv_tp.addTab("World View", worldView);
 
     tclView = new JTextArea(model.toTcl());
+    Font tclFont = new Font("Monospaced", Font.PLAIN, 14);
+    tclView.setFont(tclFont);
     JScrollPane sp_tcl = new JScrollPane(tclView);
 
     model.setViews(mainView, tclView, objectBrowser, worldView);
