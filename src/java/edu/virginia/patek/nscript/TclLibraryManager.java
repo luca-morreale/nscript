@@ -104,7 +104,7 @@ public class TclLibraryManager extends Object {
       } else
         return false;
     } catch (FileNotFoundException e) {
-      System.out.println(Messages.tr("library_not_found") + e.toString());
+      System.err.println(Messages.tr("library_not_found") + e.toString());
       return false;
     }
   }

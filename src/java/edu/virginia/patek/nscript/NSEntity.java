@@ -308,7 +308,7 @@ public class NSEntity extends NSEditableObject {
       setX(Double.parseDouble(br.readLine()));
       setY(Double.parseDouble(br.readLine()));
     } catch (IOException ioe) {
-      System.out.println(Messages.tr("reading_object_error") + ioe.toString());
+      System.err.println(Messages.tr("reading_object_error") + ioe.toString());
     }
   }
 }

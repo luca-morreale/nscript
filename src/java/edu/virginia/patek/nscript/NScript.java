@@ -174,10 +174,10 @@ public class NScript extends JFrame {
       env.instantiateNSObject(o);
       return o;
     } catch (FileNotFoundException fnfe) {
-      System.out.println("Environment defaults file not found: " + fnfe.toString());
+      System.err.println("Environment defaults file not found: " + fnfe.toString());
       return null;
     } catch (IOException ioe) {
-      System.out.println("Error reading environment definition: " + ioe.toString());
+      System.err.println("Error reading environment definition: " + ioe.toString());
       return null;
     }
   }
@@ -279,9 +279,9 @@ public class NScript extends JFrame {
         }
       }
     } catch (FileNotFoundException fnfe) {
-      System.out.println("Library file: " + newLine + " not found: " + fnfe.toString());
+      System.err.println("Library file: " + newLine + " not found: " + fnfe.toString());
     } catch (IOException ioe) {
-      System.out.println("Error reading library file: " + ioe.toString());
+      System.err.println("Error reading library file: " + ioe.toString());
     }
   }
 
@@ -331,10 +331,10 @@ public class NScript extends JFrame {
         fos.close();
         return fch.getSelectedFile().getAbsolutePath();
       } catch (FileNotFoundException e) {
-        System.out.println("Problems openning the file: " + e.toString());
+        System.err.println("Problems openning the file: " + e.toString());
         return null;
       } catch (IOException ioe) {
-        System.out.println("Problems writing into file: " + ioe.toString());
+        System.err.println("Problems writing into file: " + ioe.toString());
         return null;
       }
     }
@@ -371,10 +371,10 @@ public class NScript extends JFrame {
         model.setDirty(false);
         return fch.getSelectedFile().getAbsolutePath();
       } catch (FileNotFoundException e) {
-        System.out.println("Problems creating the file: " + e.toString());
+        System.err.println("Problems creating the file: " + e.toString());
         return null;
       } catch (IOException ioe) {
-        System.out.println("Problems writing into file: " + ioe.toString());
+        System.err.println("Problems writing into file: " + ioe.toString());
         return null;
       }
     }
@@ -460,9 +460,9 @@ public class NScript extends JFrame {
         model.updateAllViews();
         model.setDirty(false);
       } catch (FileNotFoundException e) {
-        System.out.println("Library file not found:" + e.toString());
+        System.err.println("Library file not found:" + e.toString());
       } catch (IOException ioe) {
-        System.out.println("Error reading the file: " + ioe.toString());
+        System.err.println("Error reading the file: " + ioe.toString());
       }
     }
   }

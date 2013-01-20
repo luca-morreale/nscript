@@ -117,11 +117,11 @@ public class TclSnippet extends Object {
     endIdx = s.indexOf("end");
 
     head = s.substring(0, headEndIdx).trim();
-    // System.out.println("HEAD:\n"+head);
+    // System.err.println("HEAD:\n"+head);
     attr = s.substring(headEndIdx + 1, beginIdx).trim();
-    //  System.out.println("ATTRIBUTES:\n"+attr);
+    //  System.err.println("ATTRIBUTES:\n"+attr);
     patt = s.substring(beginIdx + 5, endIdx).trim();
-    //  System.out.println("PATTERNS:\n"+patt);
+    //  System.err.println("PATTERNS:\n"+patt);
 
     StringTokenizer st = new StringTokenizer(head);
     a = st.nextToken();
@@ -156,7 +156,7 @@ public class TclSnippet extends Object {
       setLineStyle(Integer.parseInt(st.nextToken()));
       setLineWidth(Integer.parseInt(st.nextToken()));
       setEndStyle(Integer.parseInt(st.nextToken()));
-      //   System.out.println("Read relation snippet: " + baseStyle + "," + lineStyle + "," + lineWidth + "," + endStyle );
+      //   System.err.println("Read relation snippet: " + baseStyle + "," + lineStyle + "," + lineWidth + "," + endStyle );
     } else {
       setBase(st.nextToken());
       setIcon(Integer.parseInt(st.nextToken()));

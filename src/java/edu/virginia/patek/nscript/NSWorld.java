@@ -83,7 +83,7 @@ public class NSWorld extends Object {
     if (inIndex >= 0 && inIndex < arrays.size())
       return arrays.get(inIndex);
     else {
-      System.out.println(Messages.tr("array_out_of_bonds"));
+      System.err.println(Messages.tr("array_out_of_bonds"));
       return null;
     }
   }

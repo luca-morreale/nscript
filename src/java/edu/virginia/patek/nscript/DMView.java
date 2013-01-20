@@ -65,14 +65,14 @@ public class DMView extends JPanel {
     // Set the font, and obtain the context information so that each
     // of the objects can draw themselves.
     g.setFont(new Font("Helvetica", Font.PLAIN, 9));
-    // System.out.println("Starting paint...");
+    // System.err.println("Starting paint...");
     r = getBounds().getSize();
 
     // Call each of the objects in the model, and tell them to draw
     // themselves on the screen.
     for (i = 0; i < M.getSize(); i++)
       M.getObjectAt(i).drawSelf(g, r);
-    // System.out.println("Ending paint...");
+    // System.err.println("Ending paint...");
 
     // Draws the auxiliary controls (line or rectangle being drawn).
     C.drawControls(g);
