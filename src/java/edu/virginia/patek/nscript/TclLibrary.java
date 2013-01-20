@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.*;
 
 import edu.virginia.patek.nscript.TclSnippet;
+import edu.virginia.patek.nscript.Messages;
 
 /** A library is a collection of classes or TclSnippets, that can be used to
  *  build simulation scripts. nscript has four default libraries: "Topology",
@@ -132,7 +133,7 @@ public class TclLibrary extends Object {
       while (readSnippet(br))
         ;
     } catch (IOException ioe) {
-      System.out.println("Error reading library: " + ioe.toString());
+      System.out.println(Messages.tr("library_read_error") + ioe.toString());
       return false;
     }
     return true;
@@ -152,13 +153,13 @@ public class TclLibrary extends Object {
           s = s + newLine;
       } while (newLine.indexOf("end") < 0);
     } catch (IOException ioe) {
-      System.out.println("Error reading: " + ioe.toString());
+      System.out.println(Messages.tr("snippet_read_error") + ioe.toString());
     }
     t = new TclSnippet(s);
     if (!nameExists(t.getName()))
       addSnippet(t);
     else
-      System.out.println("Error: snippet(" + t.getName() + ") already in library");
+      System.out.println(Messages.tr("snippet_already_in_library") + t.getName());
     return true;
   }
 

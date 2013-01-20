@@ -11,6 +11,7 @@ package edu.virginia.patek.nscript;
 
 import edu.virginia.patek.nscript.NSObject;
 import edu.virginia.patek.nscript.NSRelation;
+import edu.virginia.patek.nscript.Messages;
 
 import java.util.*;
 
@@ -457,7 +458,7 @@ public class TclSnippet extends Object {
       sNew = sNew + pattern.substring(iLast, i);
       iLast = pattern.indexOf(sep, i + 1);
       if (iLast < 0)
-        return "ERROR: Bad formed pattern.";
+        return Messages.tr("bad_formed_pattern");
       sNew = sNew + valueOf(w, o, pattern.substring(i + 1, iLast));
       iLast++;
     }

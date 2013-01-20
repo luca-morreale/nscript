@@ -11,6 +11,7 @@
 package edu.virginia.patek.nscript;
 
 import edu.virginia.patek.nscript.NScript;
+import edu.virginia.patek.nscript.Messages;
 
 import javax.swing.*;
 
@@ -25,13 +26,13 @@ public class Main {
       UIManager.setLookAndFeel(
         UIManager.getSystemLookAndFeelClassName());
     } catch (UnsupportedLookAndFeelException e) {
-      System.err.println("Couldn't set native LAF!");
+      System.err.println(Messages.tr("no_native_laf_error"));
     } catch (ClassNotFoundException e) {
-      System.err.println("Couldn't set native LAF!");
+      System.err.println(Messages.tr("no_native_laf_error"));
     } catch (InstantiationException e) {
-      System.err.println("Couldn't set native LAF!");
+      System.err.println(Messages.tr("no_native_laf_error"));
     } catch (IllegalAccessException e) {
-      System.err.println("Couldn't set native LAF!");
+      System.err.println(Messages.tr("no_native_laf_error"));
     }
 
     NScript s = new NScript();

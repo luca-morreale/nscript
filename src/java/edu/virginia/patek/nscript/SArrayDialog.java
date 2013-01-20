@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import edu.virginia.patek.nscript.NSModel;
+import edu.virginia.patek.nscript.Messages;
 
 /** Extends the JDialog object to implement the manipulation of index Arrays,
  *  that are part of the simulation interface. Arrays are used to create
@@ -45,23 +46,23 @@ public class SArrayDialog extends JDialog implements ActionListener {
    */
   public SArrayDialog(NSModel inM, JFrame pFrame)
   {
-    super(pFrame, "Index Configuration...", true);
+    super(pFrame, Messages.tr("configure_index"), true);
     M = inM;
     AT = new JTable(new SArrayTableModel(M));
-    this.getContentPane().add(new JLabel("Available indices:"), BorderLayout.NORTH);
+    this.getContentPane().add(new JLabel(Messages.tr("available_indices")), BorderLayout.NORTH);
     this.getContentPane().add(new JScrollPane(AT), BorderLayout.CENTER);
 
     // Pane for buttons on the right of the dialog box
     JPanel buttonPane = new JPanel();
     buttonPane.setLayout(new GridLayout(5, 1));
 
-    addBtn = new JButton("Add");
+    addBtn = new JButton(Messages.tr("add"));
     addBtn.addActionListener(this);
-    removeBtn = new JButton("Remove...");
+    removeBtn = new JButton(Messages.tr("remove"));
     removeBtn.addActionListener(this);
-    removeAllBtn = new JButton("Remove all...");
+    removeAllBtn = new JButton(Messages.tr("remove_all"));
     removeAllBtn.addActionListener(this);
-    closeBtn = new JButton("Close");
+    closeBtn = new JButton(Messages.tr("close"));
     closeBtn.addActionListener(this);
     buttonPane.add(addBtn);
     buttonPane.add(removeBtn);
@@ -84,7 +85,7 @@ public class SArrayDialog extends JDialog implements ActionListener {
       dispose();
     }
     if (b == addBtn) {
-      M.addArray("UntitledIndex", 10);
+      M.addArray(Messages.tr("untitled_index"), 10);
       AT.setModel(new SArrayTableModel(M));
     }
     if (b == removeBtn) {

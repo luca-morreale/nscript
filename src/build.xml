@@ -47,6 +47,7 @@ See COPYING at top level for more information.
       </manifest>
       <fileset dir="${res.dir}">
         <include name="pixmaps/*.png" />
+        <include name="translations/*.properties" />
       </fileset>
       <fileset dir="${prebuilt.dir}" includes="AUTHORS,COPYING" />
     </jar>

@@ -12,6 +12,7 @@ package edu.virginia.patek.nscript;
 import edu.virginia.patek.nscript.NSModel;
 import edu.virginia.patek.nscript.SObjectTableModel;
 import edu.virginia.patek.nscript.SObjectCellEditor;
+import edu.virginia.patek.nscript.Messages;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -57,17 +58,17 @@ public class SObjectBrowser extends JPanel implements ActionListener {
   {
     super();
     M = inModel;
-    name = new JLabel("Name: ");
+    name = new JLabel(Messages.tr("name"));
     nameField = new JTextField();
     nameField.addActionListener(this);
-    description = new JLabel("No selection.");
+    description = new JLabel(Messages.tr("no_selection"));
     JPanel p = new JPanel(new GridLayout(1, 2));
     JPanel aiPanel = new JPanel(new BorderLayout());
     arrayIndex = new JComboBox();
     arrayIndex.addActionListener(this);
     // arrayIndex.addItemListener(this);
     aiPanel.add(arrayIndex, BorderLayout.CENTER);
-    aiPanel.add(new JLabel("Indexed by:"), BorderLayout.WEST);
+    aiPanel.add(new JLabel(Messages.tr("indexed_by")), BorderLayout.WEST);
     p.add(name);
     p.add(nameField);
     JPanel p2 = new JPanel(new GridLayout(3, 1));
@@ -78,9 +79,9 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     setLayout(new BorderLayout());
     add(p2, BorderLayout.NORTH);
 
-    defaultBtn = new JButton("Use defaults");
+    defaultBtn = new JButton(Messages.tr("use_defaults"));
     defaultBtn.addActionListener(this);
-    applyBtn = new JButton("Apply");
+    applyBtn = new JButton(Messages.tr("apply"));
     applyBtn.addActionListener(this);
 
     JPanel p3 = new JPanel(new GridLayout(1, 2));
@@ -116,12 +117,12 @@ public class SObjectBrowser extends JPanel implements ActionListener {
       nameField.setText(o.getName());
       if (o.getSnippet().isRelation) {
         or = (NSRelation)o;
-        description.setText("Relates (" + or.getFrom().getName() + ", " + or.getTo().getName() + ")");
+        description.setText(Messages.tr("relates") + " (" + or.getFrom().getName() + ", " + or.getTo().getName() + ")");
       } else
-        description.setText("Entity class: " + o.getSnippet().getName() + " : " + o.getSnippet().getBase());
+        description.setText(Messages.tr("entity_class") + ": " + o.getSnippet().getName() + " : " + o.getSnippet().getBase());
       // Prepare array list
       arrayIndex.removeAllItems();
-      arrayIndex.addItem("No Index");
+      arrayIndex.addItem(Messages.tr("no_index"));
       for (i = 0; i < M.getArrayCount(); i++)
         arrayIndex.addItem(M.getArray(i));
       if (o.getArrayIndex() >= 0) {
@@ -130,13 +131,13 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     }
     if (oc > 1) {
       nameField.setText("");
-      description.setText("Multiple selection.");
+      description.setText(Messages.tr("multiple_selection"));
       arrayIndex.setSelectedIndex(-1);
       o = null;
     }
     if (oc == 0) {
       nameField.setText("");
-      description.setText("No selection.");
+      description.setText(Messages.tr("no_selection"));
       arrayIndex.setSelectedIndex(-1);
       o = null;
     }

@@ -11,6 +11,7 @@ package edu.virginia.patek.nscript;
 
 import edu.virginia.patek.nscript.TclLibrary;
 import edu.virginia.patek.nscript.TclSnippet;
+import edu.virginia.patek.nscript.Messages;
 
 import java.util.*;
 import java.io.*;
@@ -103,7 +104,7 @@ public class TclLibraryManager extends Object {
       } else
         return false;
     } catch (FileNotFoundException e) {
-      System.out.println("Library file not found:" + e.toString());
+      System.out.println(Messages.tr("library_not_found") + e.toString());
       return false;
     }
   }

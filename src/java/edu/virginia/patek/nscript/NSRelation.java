@@ -12,6 +12,7 @@ package edu.virginia.patek.nscript;
 import edu.virginia.patek.nscript.TclSnippet;
 import edu.virginia.patek.nscript.NSEditableObject;
 import edu.virginia.patek.nscript.NSEntity;
+import edu.virginia.patek.nscript.Messages;
 
 import java.awt.*;
 import javax.swing.*;
@@ -279,7 +280,7 @@ class NSRelation extends NSEditableObject implements DMObject {
       from = (NSEntity) M.getObject(br.readLine());
       to = (NSEntity) M.getObject(br.readLine());
     } catch (IOException ioe) {
-      System.out.println("Error reading relation object: " + ioe.toString());
+      System.out.println(Messages.tr("reading_object_error") + ioe.toString());
     }
   }
 

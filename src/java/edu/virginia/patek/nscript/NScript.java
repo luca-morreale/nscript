@@ -69,15 +69,16 @@ public class NScript extends JFrame {
     SAboutDialog ad = new SAboutDialog(null, false);
     Container c = this.getContentPane();
 
+    // Create a new library manager
+    libManager = new TclLibraryManager();
+    toolBox = new SToolBar(this, libManager);
+
+    // Prepare toolbar and menu (needs an initialized toolBox!)
     JMenuBar menuBar = new JMenuBar();
     menuBar.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
     JToolBar toolBar = new JToolBar();
     prepareToolBarAndMenu(toolBar, menuBar);
     toolBar.setOrientation(JToolBar.HORIZONTAL);
-
-    // Create a new library manager
-    libManager = new TclLibraryManager();
-    toolBox = new SToolBar(this, libManager);
 
     // Allows for "exit confirm"
     setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -193,6 +194,7 @@ public class NScript extends JFrame {
     Icon indexIcon = new ImageIcon(NScript.class.getResource("/pixmaps/index.png"));
     Icon exportIcon = new ImageIcon(NScript.class.getResource("/pixmaps/nsexport.png"));
     Icon runIcon = new ImageIcon(NScript.class.getResource("/pixmaps/run.png"));
+    //Icon selectIcon = new ImageIcon(SToolBar.class.getResource("/pixmaps/select.png"));
 
     NewAction newA = new NewAction("New", newIcon);
     OpenAction openA = new OpenAction("Open", openIcon);

@@ -10,6 +10,7 @@
 package edu.virginia.patek.nscript;
 
 import edu.virginia.patek.nscript.TclSnippet;
+import edu.virginia.patek.nscript.Messages;
 
 import java.lang.*;
 import java.util.*;
@@ -158,7 +159,7 @@ class NSObject extends Object {
         setAttribute(i, br.readLine());
       }
     } catch (IOException ioe) {
-      System.out.println("Error reading object: " + ioe.toString());
+      System.out.println(Messages.tr("reading_object_error") + ioe.toString());
     }
   }
 

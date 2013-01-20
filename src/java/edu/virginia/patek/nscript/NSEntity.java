@@ -14,6 +14,7 @@ import java.awt.*;
 
 import edu.virginia.patek.nscript.NSEditableObject;
 import edu.virginia.patek.nscript.TclSnippet;
+import edu.virginia.patek.nscript.Messages;
 
 /** Implements the abstract class NSEditableObject to behave as an icon on the
  *  screen.
@@ -307,7 +308,7 @@ public class NSEntity extends NSEditableObject {
       setX(Double.parseDouble(br.readLine()));
       setY(Double.parseDouble(br.readLine()));
     } catch (IOException ioe) {
-      System.out.println("Error reading the object: " + ioe.toString());
+      System.out.println(Messages.tr("reading_object_error") + ioe.toString());
     }
   }
 }

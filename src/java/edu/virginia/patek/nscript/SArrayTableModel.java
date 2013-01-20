@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import edu.virginia.patek.nscript.NSWorld;
+import edu.virginia.patek.nscript.Messages;
 
 /** Implements the AbstractTableModel to display the index Arrays that
  *  are part of the simulation.
@@ -91,9 +92,9 @@ public class SArrayTableModel extends AbstractTableModel {
   public String getColumnName(int columnIndex)
   {
     if (columnIndex == 0)
-      return "Index Name";
+      return Messages.tr("index_name");
     else
-      return "Size";
+      return Messages.tr("size");
   }
 
   /** Establishes if a given cell is editable.

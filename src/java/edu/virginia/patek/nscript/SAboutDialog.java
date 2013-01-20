@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import edu.virginia.patek.nscript.NSModel;
+import edu.virginia.patek.nscript.Messages;
 
 /** Implements an "About..." dialog box that serves two purposes:
  *  1) Work as a presentation dialog box showing the progress of the
@@ -41,7 +42,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
   public SAboutDialog(JFrame pFrame, boolean modal)
   {
     // Calls the father constructor.
-    super(pFrame, "nscript 1.1...", modal);
+    super(pFrame, Messages.tr("about"), modal);
     // Creates the interface
     Icon icon = new ImageIcon(SAboutDialog.class.getResource("/pixmaps/start.png"));
 
@@ -50,14 +51,14 @@ public class SAboutDialog extends JDialog implements ActionListener {
       JPanel closePane = new JPanel();
       closePane.setLayout(new GridLayout(1, 3));
       closePane.add(new JLabel(""));
-      closeBtn = new JButton("Close");
+      closeBtn = new JButton(Messages.tr("close"));
       closeBtn.addActionListener(this);
       closePane.add(closeBtn);
       closePane.add(new JLabel(""));
       this.getContentPane().add(closePane, BorderLayout.SOUTH);
       setSize(400, 210);
     } else {
-      ad = new JLabel("Loading...");
+      ad = new JLabel(Messages.tr("loading"));
       this.getContentPane().add(ad, BorderLayout.SOUTH);
       setSize(400, 210);
     }

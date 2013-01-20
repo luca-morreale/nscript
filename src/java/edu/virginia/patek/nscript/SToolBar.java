@@ -21,6 +21,7 @@ import edu.virginia.patek.nscript.TclLibraryManager;
 import edu.virginia.patek.nscript.TclLibrary;
 import edu.virginia.patek.nscript.TclSnippet;
 import edu.virginia.patek.nscript.NSIconPane;
+import edu.virginia.patek.nscript.Messages;
 
 /** Implements the "ToolBar" element, where the libraries and
  *  its elements are displayed, and where the user can select an
@@ -54,7 +55,7 @@ public class SToolBar extends JPanel implements ActionListener {
     super(new BorderLayout());
     frame = inFrame;
     libManager = inLibManager;
-    action = new JLabel("Selection tool:");
+    action = new JLabel(Messages.tr("selection_tool"));
     JPanel panel = new JPanel(new BorderLayout());
     panel.add(action, BorderLayout.NORTH);
     JPanel panel2 = new JPanel(new BorderLayout());
@@ -82,7 +83,7 @@ public class SToolBar extends JPanel implements ActionListener {
     c.setCellRenderer(nip);
     JScrollPane sp = new JScrollPane(c);
     tabPane.addTab(lib.getTBName(), sp);
-    action.setText("Select an object");
+    action.setText(Messages.tr("select_an_object"));
   }
 
   /** Returns a reference to the class currently selected by the user
