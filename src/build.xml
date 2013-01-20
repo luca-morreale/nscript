@@ -112,10 +112,16 @@ See COPYING at top level for more information.
     </proguard>
   </target>
 
-  <target name="prebuilt" depends="optimize">
+  <target name="prebuilt-opt" depends="optimize">
     <zip destfile="${prebuilt.dir}/nscript-${version}.zip"
       basedir="${prebuilt.dir}"
       includes="nscript-${version}/**"
       excludes="nscript-${version}/*-nopt.jar" />
+  </target>
+
+  <target name="prebuilt" depends="install">
+    <zip destfile="${prebuilt.dir}/nscript-${version}.zip"
+      basedir="${prebuilt.dir}"
+      includes="nscript-${version}/**" />
   </target>
 </project>
