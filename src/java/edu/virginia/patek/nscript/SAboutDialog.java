@@ -45,6 +45,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
     super(pFrame, Messages.tr("about"), modal);
     // Creates the interface
     Icon icon = new ImageIcon(SAboutDialog.class.getResource("/pixmaps/start.png"));
+    this.setResizable(false);
 
     this.getContentPane().add(new JLabel(icon), BorderLayout.CENTER);
     if (modal) {
