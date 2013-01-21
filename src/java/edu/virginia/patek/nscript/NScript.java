@@ -17,6 +17,7 @@ import edu.virginia.patek.nscript.SAboutDialog;
 import edu.virginia.patek.nscript.SToolBar;
 import edu.virginia.patek.nscript.NSIconPane;
 import edu.virginia.patek.nscript.NSWorldView;
+import edu.virginia.patek.nscript.Messages;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -87,19 +88,19 @@ public class NScript extends JFrame {
     this.lastpath = "examples";
 
     // ------------- CREATE MODEL AND MAIN VIEW ---------------
-    ad.setMessage("Reading environment definitions...");
+    ad.setMessage(Messages.tr("reading_env"));
     model = new NSModel(readEnvironment("settings/environment"), toolBox);
-    ad.setMessage("Adding default libraries...");
+    ad.setMessage(Messages.tr("reading_libs"));
     addDefaultLibraries("settings/deflibs");
     mainView = new DMView(model);
 
-    ad.setMessage("Creating GUI...");
+    ad.setMessage(Messages.tr("creating_gui"));
     objectBrowser = new SObjectBrowser(model);
 
     worldView = new NSWorldView(model);
     JTabbedPane wv_tp = new JTabbedPane(JTabbedPane.BOTTOM);
-    wv_tp.addTab("Object Browser", objectBrowser);
-    wv_tp.addTab("World View", worldView);
+    wv_tp.addTab(Messages.tr("object_browser"), objectBrowser);
+    wv_tp.addTab(Messages.tr("world_view"), worldView);
 
     tclView = new JTextArea(model.toTcl());
     Font tclFont = new Font("Monospaced", Font.PLAIN, 14);
@@ -117,8 +118,8 @@ public class NScript extends JFrame {
 
     // Script view as another tab
     JTabbedPane tp = new JTabbedPane(JTabbedPane.BOTTOM);
-    tp.addTab("Edit", sp_edit);
-    tp.addTab("Tcl/Tk Script", sp_tcl);
+    tp.addTab(Messages.tr("visual"), sp_edit);
+    tp.addTab(Messages.tr("tcl_script"), sp_tcl);
 
     // Simultaneous view of the scripts
     // JSplitPane tp = new JSplitPane( JSplitPane.HORIZONTAL_SPLIT, sp_edit, sp_tcl );
@@ -143,7 +144,7 @@ public class NScript extends JFrame {
     Dimension screenSize = getToolkit().getScreenSize();
     setSize(800, 600);
     setLocation(0, 0);
-    ad.setMessage("Done.");
+    ad.setMessage(Messages.tr("done"));
     setVisible(true);
     ad.dispose();
   }
@@ -174,10 +175,10 @@ public class NScript extends JFrame {
       env.instantiateNSObject(o);
       return o;
     } catch (FileNotFoundException fnfe) {
-      System.err.println("Environment defaults file not found: " + fnfe.toString());
+      System.err.println(Messages.tr("env_default_not_found") + fnfe.toString());
       return null;
     } catch (IOException ioe) {
-      System.err.println("Error reading environment definition: " + ioe.toString());
+      System.err.println(Messages.tr("env_reading_error") + ioe.toString());
       return null;
     }
   }
@@ -196,57 +197,57 @@ public class NScript extends JFrame {
     Icon runIcon = new ImageIcon(NScript.class.getResource("/pixmaps/run.png"));
     //Icon selectIcon = new ImageIcon(SToolBar.class.getResource("/pixmaps/select.png"));
 
-    NewAction newA = new NewAction("New", newIcon);
-    OpenAction openA = new OpenAction("Open", openIcon);
-    OpenLibAction openLibA = new OpenLibAction("Open Library...", openLibIcon);
-    SaveAction saveA = new SaveAction("Save...", saveIcon);
-    EditArrayAction editArrayA = new EditArrayAction("Edit arrays...", indexIcon);
-    ExportAction exportA = new ExportAction("Export to ns...", exportIcon);
-    RunAction runA = new RunAction("Run in ns...", runIcon);
+    NewAction newA = new NewAction(Messages.tr("new"), newIcon);
+    OpenAction openA = new OpenAction(Messages.tr("open"), openIcon);
+    OpenLibAction openLibA = new OpenLibAction(Messages.tr("open_lib"), openLibIcon);
+    SaveAction saveA = new SaveAction(Messages.tr("save"), saveIcon);
+    EditArrayAction editArrayA = new EditArrayAction(Messages.tr("arrays_edit"), indexIcon);
+    ExportAction exportA = new ExportAction(Messages.tr("ns_export"), exportIcon);
+    RunAction runA = new RunAction(Messages.tr("ns_run"), runIcon);
 
     // Add things to the toolbar and menubar
     JButton b = toolbar.add(newA);
-    b.setToolTipText("New ns script");
+    b.setToolTipText(Messages.tr("script_new"));
     b = toolbar.add(openA);
-    b.setToolTipText("Open an existing script");
+    b.setToolTipText(Messages.tr("script_open"));
     b = toolbar.add(openLibA);
-    b.setToolTipText("Open a library");
+    b.setToolTipText(Messages.tr("open_lib"));
     b = toolbar.add(saveA);
-    b.setToolTipText("Save the script");
+    b.setToolTipText(Messages.tr("script_save"));
     toolbar.addSeparator();
     b = toolbar.add(editArrayA);
-    b.setToolTipText("Edit object indexes (arrays)");
+    b.setToolTipText(Messages.tr("arrays_edit"));
     toolbar.addSeparator();
     b = toolbar.add(exportA);
-    b.setToolTipText("Export the script to ns");
+    b.setToolTipText(Messages.tr("ns_export"));
     b = toolbar.add(runA);
-    b.setToolTipText("Run the script in ns");
+    b.setToolTipText(Messages.tr("ns_run"));
 
     // Now the menu bar (easy)
 
-    JMenu fileMenu = new JMenu("File");
+    JMenu fileMenu = new JMenu(Messages.tr("file"));
     fileMenu.add(newA);
     fileMenu.add(openA);
     fileMenu.add(openLibA);
     fileMenu.add(saveA);
     fileMenu.addSeparator();
-    fileMenu.add(new QuitAction("Quit", null));
+    fileMenu.add(new QuitAction(Messages.tr("quit"), null));
 
     // Edit menu
-    JMenu editMenu = new JMenu("Edit");
-    editMenu.add(new ClearAction("Clear", null));
+    JMenu editMenu = new JMenu(Messages.tr("edit"));
+    editMenu.add(new ClearAction(Messages.tr("clear"), null));
     editMenu.addSeparator();
     editMenu.add(editArrayA);
 
     // NS menu
-    JMenu scriptMenu = new JMenu("Script");
+    JMenu scriptMenu = new JMenu(Messages.tr("script"));
     scriptMenu.add(exportA);
     scriptMenu.addSeparator();
     scriptMenu.add(runA);
 
     // Help menu
-    JMenu helpMenu = new JMenu("Help");
-    helpMenu.add(new AboutAction("About NScript 1.1...", null));
+    JMenu helpMenu = new JMenu(Messages.tr("help"));
+    helpMenu.add(new AboutAction(Messages.tr("about"), null));
 
     menuBar.add(fileMenu);
     menuBar.add(editMenu);
@@ -279,9 +280,9 @@ public class NScript extends JFrame {
         }
       }
     } catch (FileNotFoundException fnfe) {
-      System.err.println("Library file: " + newLine + " not found: " + fnfe.toString());
+      System.err.println(Messages.tr("lib_not_found") + newLine + ", " + fnfe.toString());
     } catch (IOException ioe) {
-      System.err.println("Error reading library file: " + ioe.toString());
+      System.err.println(Messages.tr("lib_read_error") + ioe.toString());
     }
   }
 
@@ -295,7 +296,7 @@ public class NScript extends JFrame {
     BufferedReader br;
 
     JFileChooser fch = new JFileChooser("lib");
-    fch.setDialogTitle("Select a Library to Open");
+    fch.setDialogTitle(Messages.tr("lib_select_open"));
     int selected = fch.showOpenDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
       f = fch.getSelectedFile();
@@ -315,7 +316,7 @@ public class NScript extends JFrame {
     byte[] dataOut;
 
     JFileChooser fch = new JFileChooser(this.lastpath);
-    fch.setDialogTitle("Select a File Name for the Script.");
+    fch.setDialogTitle(Messages.tr("script_select_name"));
     // fch.setFileFilter(ff);
     f = new File("Untitled.tcl");
     fch.setSelectedFile(f);
@@ -331,10 +332,10 @@ public class NScript extends JFrame {
         fos.close();
         return fch.getSelectedFile().getAbsolutePath();
       } catch (FileNotFoundException e) {
-        System.err.println("Problems openning the file: " + e.toString());
+        System.err.println(Messages.tr("file_open_error") + " " + e.toString());
         return null;
       } catch (IOException ioe) {
-        System.err.println("Problems writing into file: " + ioe.toString());
+        System.err.println(Messages.tr("file_write_error") + " " + ioe.toString());
         return null;
       }
     }
@@ -354,7 +355,7 @@ public class NScript extends JFrame {
     byte[] dataOut;
 
     JFileChooser fch = new JFileChooser(this.lastpath);
-    fch.setDialogTitle("Save As");
+    fch.setDialogTitle(Messages.tr("save_as"));
     // fch.setFileFilter(ff);
     f = new File("Untitled.nss");
     fch.setSelectedFile(f);
@@ -371,10 +372,10 @@ public class NScript extends JFrame {
         model.setDirty(false);
         return fch.getSelectedFile().getAbsolutePath();
       } catch (FileNotFoundException e) {
-        System.err.println("Problems creating the file: " + e.toString());
+        System.err.println(Messages.tr("file_open_error") + " " + e.toString());
         return null;
       } catch (IOException ioe) {
-        System.err.println("Problems writing into file: " + ioe.toString());
+        System.err.println(Messages.tr("file_write_error") + " " + ioe.toString());
         return null;
       }
     }
@@ -387,8 +388,8 @@ public class NScript extends JFrame {
   {
     int selectedValue = JOptionPane.showConfirmDialog(
                           getContentPane(),
-                          "Changes to the model will be lost.\nClose anyway?",
-                          "Please confirm",
+                          Messages.tr("close_confirm"),
+                          Messages.tr("close_confirm_title"),
                           JOptionPane.YES_NO_OPTION,
                           JOptionPane.QUESTION_MESSAGE);
     return (selectedValue == 0);
@@ -412,7 +413,7 @@ public class NScript extends JFrame {
     TclSnippet s;
 
     JFileChooser fch = new JFileChooser(this.lastpath);
-    fch.setDialogTitle("Select Script to Open");
+    fch.setDialogTitle(Messages.tr("script_open"));
     selected = fch.showOpenDialog(this.getContentPane());
     if (selected == JFileChooser.APPROVE_OPTION) {
       this.updateLastPath(fch.getSelectedFile());
@@ -460,9 +461,9 @@ public class NScript extends JFrame {
         model.updateAllViews();
         model.setDirty(false);
       } catch (FileNotFoundException e) {
-        System.err.println("Library file not found:" + e.toString());
+        System.err.println(Messages.tr("file_open_error") + " " + e.toString());
       } catch (IOException ioe) {
-        System.err.println("Error reading the file: " + ioe.toString());
+        System.err.println(Messages.tr("file_write_error") + " " + ioe.toString());
       }
     }
   }
@@ -478,7 +479,7 @@ public class NScript extends JFrame {
     BufferedReader br;
     do {
       JFileChooser fch = new JFileChooser("lib");
-      fch.setDialogTitle("Please locate library for " + snippetName);
+      fch.setDialogTitle(Messages.tr("lib_locate") + " " + snippetName);
       int selected = fch.showOpenDialog(this.getContentPane());
       if (selected == JFileChooser.APPROVE_OPTION) {
         f = fch.getSelectedFile();
@@ -669,8 +670,8 @@ public class NScript extends JFrame {
         } catch (IOException ioe) {
           JOptionPane.showConfirmDialog(
             getContentPane(),
-            "Error executing ns" + ioe.toString(),
-            "Warning",
+            Messages.tr("ns_exec_error") + ": " + ioe.toString(),
+            Messages.tr("warning"),
             JOptionPane.INFORMATION_MESSAGE);
         }
       }
@@ -694,7 +695,7 @@ public class NScript extends JFrame {
 
     public String getDescription()
     {
-      return "Library Files (*.lib)";
+      return Messages.tr("lib_description");
     }
   }
 }
