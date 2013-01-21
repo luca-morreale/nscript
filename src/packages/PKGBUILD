@@ -1,0 +1,43 @@
+# Mantainer: Stefano Sanfilippo (esseks)
+
+pkgname=nscript
+pkgver=1.1.2
+pkgrel=1
+pkgdesc='NS2 visual Network Editor'
+arch=('any')
+depends=('ns2' 'nam')
+optdepends=('python: for fixnss script')
+url='https://github.com/esseks/nscript/'
+license=('BSD')
+source=('https://github.com/esseks/nscript/raw/master/nscript-1.1.2.zip')
+sha256sums=('f006fac22a55b48186dfb11a22729363bf4efd20d69d2ba5d55546829b2639d3')
+
+package()
+{
+    msg "Installing configuration, examples, libraries and runtime..."
+    mkdir -p ${pkgdir}/usr/share/${pkgname}
+    cp -a ${srcdir}/${pkgname}-${pkgver}/{examples,lib,settings,nscript.jar} \
+          ${pkgdir}/usr/share/${pkgname}
+
+    msg "Installing docs..."
+    mkdir -p ${pkgdir}/usr/share/doc/${pkgname}
+    cp -a ${srcdir}/${pkgname}-${pkgver}/doc/{AUTHORS,ChangeLog.old.md,README.md} \
+          ${pkgdir}/usr/share/doc/${pkgname}
+
+    msg "Installing license..."
+    mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
+    cp -a ${srcdir}/${pkgname}-${pkgver}/doc/COPYING \
+          ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+
+    msg "Installing runnable programs..."
+    mkdir -p ${pkgdir}/usr/bin
+    cp -a ${srcdir}/${pkgname}-${pkgver}/nscript.sh ${pkgdir}/usr/bin/nscript
+    cp -a ${srcdir}/${pkgname}-${pkgver}/fixnss.py ${pkgdir}/usr/bin/fixnss
+    # Fix path
+    sed -i "s|\./nscript\.jar|/usr/share/${pkgname}/${pkgname}.jar|" ${pkgdir}/usr/bin/nscript
+
+    msg "Setting permissions..."
+    find ${pkgdir} -type f | xargs chmod 0644
+    find ${pkgdir} -type d | xargs chmod 0755
+    chmod 0755 ${pkgdir}/usr/bin/{nscript,fixnss}
+}
