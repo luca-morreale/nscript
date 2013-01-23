@@ -668,11 +668,11 @@ public class NScript extends JFrame {
         try {
           Runtime.getRuntime().exec("ns " + fName);
         } catch (IOException ioe) {
-          JOptionPane.showConfirmDialog(
+          JOptionPane.showMessageDialog(
             getContentPane(),
-            Messages.tr("ns_exec_error") + ": " + ioe.toString(),
-            Messages.tr("warning"),
-            JOptionPane.INFORMATION_MESSAGE);
+            ioe.toString(),
+            Messages.tr("ns_exec_error"),
+            JOptionPane.ERROR_MESSAGE);
         }
       }
     }
