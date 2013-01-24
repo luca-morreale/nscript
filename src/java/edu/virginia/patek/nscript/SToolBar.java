@@ -94,7 +94,8 @@ public class SToolBar extends JPanel implements ActionListener {
     if (libIndex < 0)
       return null;
 
-    snippetIndex = ((JList)(((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).getSelectedIndex();
+    // TODO find more readable solution (here and below)
+    snippetIndex = ((JList<?>)(((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).getSelectedIndex();
 
     if (snippetIndex < 0)
       return null;
@@ -107,7 +108,7 @@ public class SToolBar extends JPanel implements ActionListener {
    */
   public void clearSelection()
   {
-    ((JList)(((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).clearSelection();
+    ((JList<?>)(((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).clearSelection();
   }
 
   /** Implements the ActionListener interface to respond to the "Select"
