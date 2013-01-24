@@ -139,7 +139,7 @@ public class NScript extends JFrame {
     c.add(mainView, BorderLayout.CENTER);
 
     addWindowListener(new WindowEventHandler());
-    Dimension screenSize = getToolkit().getScreenSize();
+    getToolkit().getScreenSize();
     setSize(800, 600);
     setLocation(0, 0);
     ad.setMessage(Messages.tr("done"));
@@ -262,8 +262,6 @@ public class NScript extends JFrame {
     File f;
     FileReader fr;
     BufferedReader br;
-    TclSnippet env;
-    NSObject o;
     String newLine = "";
 
     try {
@@ -290,9 +288,6 @@ public class NScript extends JFrame {
   public void openLibraryAction()
   {
     File f;
-    FileReader fr;
-    BufferedReader br;
-
     JFileChooser fch = new JFileChooser("lib");
     fch.setDialogTitle(Messages.tr("lib_select_open"));
     int selected = fch.showOpenDialog(this.getContentPane());
@@ -309,7 +304,7 @@ public class NScript extends JFrame {
   {
     File f;
     FileOutputStream fos;
-    FileFilter ff = new LibFilter();
+    new LibFilter();
     String tScript;
     byte[] dataOut;
 
@@ -348,7 +343,7 @@ public class NScript extends JFrame {
   {
     File f;
     FileOutputStream fos;
-    FileFilter ff = new LibFilter();
+    new LibFilter();
     String tScript;
     byte[] dataOut;
 
@@ -473,8 +468,6 @@ public class NScript extends JFrame {
   {
     TclSnippet s;
     File f;
-    FileReader fr;
-    BufferedReader br;
     do {
       JFileChooser fch = new JFileChooser("lib");
       fch.setDialogTitle(Messages.tr("lib_locate") + " " + snippetName);
@@ -615,7 +608,7 @@ public class NScript extends JFrame {
 
     public void actionPerformed(ActionEvent ae)
     {
-      SAboutDialog d = new SAboutDialog(null, true);
+      new SAboutDialog(null, true);
     }
   }
 
@@ -630,7 +623,7 @@ public class NScript extends JFrame {
 
     public void actionPerformed(ActionEvent ae)
     {
-      SArrayDialog arrayDialog = new SArrayDialog(model, null);
+      new SArrayDialog(model, null);
     }
   }
 

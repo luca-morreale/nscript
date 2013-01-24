@@ -71,7 +71,6 @@ public class NSModel extends NSWorld implements DMModel {
    */
   public int getEditionMode()
   {
-    String inst;
     TclSnippet s = toolBox.getSelectedSnippet();
 
     if (s == null)
@@ -91,7 +90,7 @@ public class NSModel extends NSWorld implements DMModel {
    */
   public void addSimpleObject(Dimension r, Point p, boolean unselectOther)
   {
-    String inst, newName;
+    String newName;
     TclSnippet s = toolBox.getSelectedSnippet();
     NSObject o;
     double x, y;
@@ -129,8 +128,7 @@ public class NSModel extends NSWorld implements DMModel {
    */
   public void addRelationObject(DMObject oFrom, DMObject oTo, boolean unSelectOthers)
   {
-    NSObject oF, oT;
-    String inst, newName;
+    String newName;
     int i;
     TclSnippet s = toolBox.getSelectedSnippet();
     NSRelation o;

@@ -84,13 +84,11 @@ class NSRelation extends NSEditableObject implements DMObject {
     lineWidth = getSnippet().getLineWidth();
     int aSize = lineWidth * 2;
 
-    // Get dimensions and stuff
-    double scale = r.width / NSEntity.NOMINAL_WIDTH;
     double size = (double) NSEntity.SIZE / NSEntity.NOMINAL_WIDTH;
     double size2 = size / 2.0;
 
     // Get start and end points
-    double x1, x2, y1, y2, xa1, ya1, xa2, ya2;
+    double x1, x2, y1, y2;
 
     double ux, uy, vsize;
     double dx, dy;
@@ -257,8 +255,6 @@ class NSRelation extends NSEditableObject implements DMObject {
   public String toString()
   {
     String str;
-    int i;
-
     str = super.toString();
     str = str + from.getName() + "\n" + to.getName() + "\n";
     return str;

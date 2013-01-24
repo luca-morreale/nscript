@@ -102,8 +102,6 @@ public class NSWorld extends Object {
   {
     NSObject o;
     Iterator<NSObject> i = objects.iterator();
-    int j;
-
     while (i.hasNext()) {
       o = i.next();
       if (o.getName().equals(theName))

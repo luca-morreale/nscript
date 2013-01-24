@@ -110,8 +110,6 @@ public class TclSnippet extends Object {
   {
     int headEndIdx, beginIdx, endIdx;
     String head, attr, patt, a;
-    String instanceStr;
-
     headEndIdx = s.indexOf(':');
     beginIdx = s.indexOf("begin");
     endIdx = s.indexOf("end");
@@ -378,11 +376,11 @@ public class TclSnippet extends Object {
    */
   public String toTcl(NSWorld w, NSObject o, char sep)
   {
-    String preamble = "", s, epilogue = "", aname, aname2;
+    String preamble = "", s, epilogue = "", aname;
     TclPattern p;
     NSRelation ro;
     NSArray a;
-    int i, i2, asize, asize2;
+    int i, i2, asize;
 
     // Get the preamble and epilogue for the snippet.
     if (o.getArrayIndex() >= 0) {

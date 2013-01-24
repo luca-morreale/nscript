@@ -66,8 +66,6 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
       int row, int column)
   {
     StringTokenizer st;
-    String options;
-
     cb.removeAllItems();
     cb.setPopupVisible(false);
     if (column > 0) {

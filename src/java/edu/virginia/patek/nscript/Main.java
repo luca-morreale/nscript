@@ -35,6 +35,6 @@ public class Main {
       System.err.println(Messages.tr("no_native_laf_error"));
     }
 
-    NScript s = new NScript();
+    new NScript();
   }
 }

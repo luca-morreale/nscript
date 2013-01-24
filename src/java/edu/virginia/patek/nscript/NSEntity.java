@@ -107,11 +107,6 @@ public class NSEntity extends NSEditableObject {
                        RenderingHints.VALUE_ANTIALIAS_ON);
 
     Color color = Color.black;
-    Color oc = Color.white;
-    double scaleX = r.width;
-    double scaleY = r.height;
-
-
     // Change the color to blue if the object has the 'Selected'
     // status (i.e. it is being modified).
     if (isSelected()) {

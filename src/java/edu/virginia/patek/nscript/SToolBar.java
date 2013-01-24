@@ -74,8 +74,6 @@ public class SToolBar extends JPanel implements ActionListener {
    *  @param lib a reference to the library. */
   public void addLibraryPane(TclLibrary lib)
   {
-    int i;
-
     JList<TclSnippet> c = new JList<TclSnippet>(new STBListModel(lib));
     c.setCellRenderer(nip);
     JScrollPane sp = new JScrollPane(c);
