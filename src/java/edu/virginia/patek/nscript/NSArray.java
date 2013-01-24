@@ -9,8 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import java.lang.*;
-
 /** Holds the information about an array in nscript. An array is used in
  *  nscript to do repetitive tasks such as creating 100 TCP sessions, all with
  *  the same parameters.

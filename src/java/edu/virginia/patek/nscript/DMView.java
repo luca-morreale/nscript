@@ -12,7 +12,6 @@ package edu.virginia.patek.nscript;
 import javax.swing.*;
 import java.awt.*;
 
-import edu.virginia.patek.nscript.DMObject;
 import edu.virginia.patek.nscript.DMModel;
 import edu.virginia.patek.nscript.DMControl;
 

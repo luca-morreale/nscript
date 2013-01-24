@@ -12,7 +12,6 @@ package edu.virginia.patek.nscript;
 import edu.virginia.patek.nscript.TclSnippet;
 import edu.virginia.patek.nscript.Messages;
 
-import java.lang.*;
 import java.util.*;
 import java.io.*;
 

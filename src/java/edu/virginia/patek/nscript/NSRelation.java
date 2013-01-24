@@ -15,9 +15,6 @@ import edu.virginia.patek.nscript.NSEntity;
 import edu.virginia.patek.nscript.Messages;
 
 import java.awt.*;
-import javax.swing.*;
-import java.lang.*;
-import java.util.*;
 import java.io.*;
 
 /** Implements the generic behavior of a relation element on the diagram.

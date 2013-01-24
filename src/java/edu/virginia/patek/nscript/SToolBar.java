@@ -11,11 +11,8 @@ package edu.virginia.patek.nscript;
 
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-
 import edu.virginia.patek.nscript.NScript;
 import edu.virginia.patek.nscript.TclLibraryManager;
 import edu.virginia.patek.nscript.TclLibrary;

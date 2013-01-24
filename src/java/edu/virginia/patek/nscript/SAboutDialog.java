@@ -10,11 +10,9 @@
 package edu.virginia.patek.nscript;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import edu.virginia.patek.nscript.NSModel;
 import edu.virginia.patek.nscript.Messages;
 
 /** Implements an "About..." dialog box that serves two purposes:

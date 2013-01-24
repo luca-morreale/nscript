@@ -9,8 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import java.lang.*;
-
 /** A TclPatterns embodies the part of a snippet that translates the
  *  information into Tcl code. A snippet can have one or more patterns.
  */

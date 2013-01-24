@@ -18,7 +18,6 @@ import edu.virginia.patek.nscript.Messages;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
 import javax.swing.border.*;
 
 /** Creates a panel that allows the user to modify the properties of an

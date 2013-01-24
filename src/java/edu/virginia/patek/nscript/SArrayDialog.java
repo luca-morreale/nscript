@@ -9,7 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

@@ -12,7 +12,6 @@ package edu.virginia.patek.nscript;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.io.*;
 
 import edu.virginia.patek.nscript.NSWorld;
 import edu.virginia.patek.nscript.NSObject;

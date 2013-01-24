@@ -9,8 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import java.lang.*;
-
 /** An attribute of a TclSnippet. */
 public class TclAttribute extends Object {
   /** The name of the attribute. */

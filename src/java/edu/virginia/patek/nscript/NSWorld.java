@@ -9,7 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import java.lang.*;
 import java.util.*;
 
 import edu.virginia.patek.nscript.NSObject;

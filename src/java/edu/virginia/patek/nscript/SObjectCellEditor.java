@@ -15,7 +15,6 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import javax.swing.event.*;
 
 /** Implements the abstract cell behavior by providing a way to edit the cells
  *  in the object browser component where the object attributes are listed.
