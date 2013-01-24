@@ -7,23 +7,34 @@ See COPYING at top level for more information.
 
 -->
 <project name="nscript" basedir="." default="jar">
-  <!-- WARNING maybe you will have to tweak Proguard path -->
-  <taskdef resource="proguard/ant/task.properties" classpath="/usr/share/proguard/proguard.jar" />
+  <!-- WARNING Tweak Proguard path here -->
+  <property name="proguard.path" value="/usr/share/proguard/"/>
 
   <!-- General props -->
   <property name="version" value="1.1.2"/>
-  <property name="main-class" value="edu.virginia.patek.nscript.Main"/>
+  <property name="mainclass" value="edu.virginia.patek.nscript.Main"/>
+  <property name="zipname" value="${ant.project.name}-${version}.zip"/>
 
-  <!-- Paths -->
-  <property name="prebuilt.dir" value=".."/> <!--FIXME-->
+  <!-- Install paths (override as needed) -->
+  <property name="prebuilt.dir" value=".."/>
   <property name="install.dir" value="${prebuilt.dir}/nscript-${version}"/>
+  <property name="install.lib.dir" value="${install.dir}/lib"/>
+  <property name="install.conf.dir" value="${install.dir}/settings"/>
+  <property name="install.bin.dir" value="${install.dir}"/>
+  <property name="install.jar.dir" value="${install.dir}"/>
+  <property name="install.doc.dir" value="${install.dir}/doc"/>
+  <property name="install.examples.dir" value="${install.dir}/examples"/>
+  <!-- Source and compilation paths -->
   <property name="src.dir" value="java"/>
   <property name="res.dir" value="resources"/>
   <property name="build.dir" value="build"/>
-  <property name="doc.dir" value="${build.dir}/javadoc"/>
-  <property name="classes.dir" value="${build.dir}/classes"/>
-  <property name="jar.dir" value="${build.dir}"/>
-  <property name="install.jar.basename" value="${install.dir}/${ant.project.name}" />
+  <property name="build.javadoc.dir" value="${build.dir}/javadoc"/>
+  <property name="build.classes.dir" value="${build.dir}/classes"/>
+  <property name="build.jar.dir" value="${build.dir}"/>
+  <property name="build.jar.base" value="${install.jar.dir}/${ant.project.name}" />
+
+  <!-- Tasks -->
+  <taskdef resource="proguard/ant/task.properties" classpath="${proguard.path}proguard.jar" />
 
   <!-- Targets -->
   <target name="clean">
@@ -32,18 +43,18 @@ See COPYING at top level for more information.
   </target>
 
   <target name="compile">
-    <mkdir dir="${classes.dir}"/>
-    <javac srcdir="${src.dir}" destdir="${classes.dir}"
+    <mkdir dir="${build.classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${build.classes.dir}"
            includeantruntime="false" target="1.6" source="1.6">
       <compilerarg value="-Xlint"/>
     </javac>
   </target>
 
   <target name="jar" depends="compile">
-    <mkdir dir="${jar.dir}"/>
-    <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+    <mkdir dir="${build.jar.dir}"/>
+    <jar destfile="${build.jar.base}.jar" basedir="${build.classes.dir}">
       <manifest>
-        <attribute name="Main-Class" value="${main-class}"/>
+        <attribute name="Main-Class" value="${mainclass}"/>
       </manifest>
       <fileset dir="${res.dir}">
         <include name="pixmaps/*.png" />
@@ -54,11 +65,11 @@ See COPYING at top level for more information.
   </target>
 
   <target name="javadoc">
-    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+    <javadoc sourcepath="${src.dir}" destdir="${build.javadoc.dir}"/>
   </target>
 
   <target name="run" depends="jar">
-    <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    <java jar="${build.jar.base}.jar" fork="true"/>
   </target>
 
   <target name="clean-build" depends="clean,jar"/>
@@ -66,24 +77,26 @@ See COPYING at top level for more information.
   <target name="main" depends="clean,run"/>
 
   <target name="install" depends="jar">
-    <mkdir dir="${install.dir}/lib"/>
-    <mkdir dir="${install.dir}/settings"/>
-    <mkdir dir="${install.dir}/doc"/>
+    <mkdir dir="${install.lib.dir}"/>
+    <mkdir dir="${install.conf.dir}"/>
+    <mkdir dir="${install.bin.dir}"/>
 
-    <copy todir="${install.dir}/lib">
+    <copy todir="${install.lib.dir}">
       <fileset dir="resources/lib" includes="*.lib"/>
     </copy>
-    <copy todir="${install.dir}/settings">
+    <copy todir="${install.conf.dir}">
       <fileset dir="resources/settings" includes="deflibs,environment"/>
     </copy>
-    <copy todir="${install.dir}">
+    <copy todir="${install.bin.dir}">
       <fileset dir="scripts" includes="fixnss.py,nscript.bat,nscript.sh"/>
+    </copy>
+    <copy todir="${install.jar.dir}">
       <fileset dir="${build.dir}" includes="${ant.project.name}.jar"/>
     </copy>
-    <copy todir="${install.dir}/doc">
+    <copy todir="${install.doc.dir}">
       <fileset dir=".." includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
     </copy>
-    <copy todir="${install.dir}/examples">
+    <copy todir="${install.examples.dir}">
       <fileset dir="resources/examples" includes="*.nss"/>
     </copy>
 
@@ -98,7 +111,7 @@ See COPYING at top level for more information.
   </target>
 
   <target name="optimize" depends="install">
-    <move file="${install.jar.basename}.jar" tofile="${install.jar.basename}-nopt.jar" />
+    <move file="${install.jar.base}.jar" tofile="${install.jar.base}-nopt.jar" />
     <proguard>
         -injars       ${install.jar.basename}-nopt.jar
         -outjars      ${install.jar.basename}.jar
@@ -114,15 +127,15 @@ See COPYING at top level for more information.
   </target>
 
   <target name="prebuilt-opt" depends="optimize">
-    <zip destfile="${prebuilt.dir}/nscript-${version}.zip"
+    <zip destfile="${prebuilt.dir}/${zipname}"
       basedir="${prebuilt.dir}"
-      includes="nscript-${version}/**"
-      excludes="nscript-${version}/*-nopt.jar" />
+      includes="../${install.dir}/**"
+      excludes="../${install.dir}/*-nopt.jar" />
   </target>
 
   <target name="prebuilt" depends="install">
-    <zip destfile="${prebuilt.dir}/nscript-${version}.zip"
+    <zip destfile="${prebuilt.dir}/${zipname}"
       basedir="${prebuilt.dir}"
-      includes="nscript-${version}/**" />
+      includes="../${install.dir}/**" />
   </target>
 </project>
