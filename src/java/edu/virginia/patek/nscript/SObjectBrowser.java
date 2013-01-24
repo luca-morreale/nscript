@@ -9,6 +9,7 @@
 
 package edu.virginia.patek.nscript;
 
+import edu.virginia.patek.nscript.NSArray;
 import edu.virginia.patek.nscript.NSModel;
 import edu.virginia.patek.nscript.SObjectTableModel;
 import edu.virginia.patek.nscript.SObjectCellEditor;
@@ -43,7 +44,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
    *  Through this element, the user can specify if a given object is
    *  indexed by a given array.
    */
-  JComboBox arrayIndex;
+  JComboBox<NSArray> arrayIndex;
   /** The attribute table, where the object properties are listed, and the
    *  user can modify.
    */
@@ -64,7 +65,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     description = new JLabel(Messages.tr("no_selection"));
     JPanel p = new JPanel(new GridLayout(1, 2));
     JPanel aiPanel = new JPanel(new BorderLayout());
-    arrayIndex = new JComboBox();
+    arrayIndex = new JComboBox<NSArray>();
     arrayIndex.addActionListener(this);
     // arrayIndex.addItemListener(this);
     aiPanel.add(arrayIndex, BorderLayout.CENTER);
@@ -122,7 +123,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
         description.setText(Messages.tr("entity_class") + ": " + o.getSnippet().getName() + " : " + o.getSnippet().getBase());
       // Prepare array list
       arrayIndex.removeAllItems();
-      arrayIndex.addItem(Messages.tr("no_index"));
+      arrayIndex.addItem(new NSArray(Messages.tr("no_index"), 0));
       for (i = 0; i < M.getArrayCount(); i++)
         arrayIndex.addItem(M.getArray(i));
       if (o.getArrayIndex() >= 0) {

@@ -16,7 +16,7 @@ import edu.virginia.patek.nscript.Messages;
 
 /** A view that holds a list of the objects involved in a simulation.
  *  Not yet implemented. */
-public class NSWorldPane extends JLabel implements ListCellRenderer {
+public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
   static final long serialVersionUID = 42L;
 
   /** Default constructor. */
@@ -30,15 +30,14 @@ public class NSWorldPane extends JLabel implements ListCellRenderer {
    *  world view.
    */
   public Component getListCellRendererComponent(
-    JList list,
-    Object value,
+    JList<? extends String> list,
+    String value,
     int index,
     boolean isSelected,
     boolean cellHasFocus
   )
   {
-    String s = (String) value;
-    setText(s);
+    setText(value);
 
     if (isSelected) {
       setBackground(list.getSelectionBackground());

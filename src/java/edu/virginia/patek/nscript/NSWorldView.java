@@ -24,7 +24,7 @@ public class NSWorldView extends JPanel {
   /** A reference to the simulation model. */
   NSWorld w;
   /** The list GUI element. */
-  JList l;
+  JList<String> l;
 
   /** Constructor that copies a reference to the simulation model. */
   public NSWorldView(NSWorld inW)
@@ -32,7 +32,7 @@ public class NSWorldView extends JPanel {
     super();
 
     w = inW;
-    l = new JList(new SWPListModel(w));
+    l = new JList<String>(new SWPListModel(w));
     l.setCellRenderer(new NSWorldPane());
     JScrollPane sp = new JScrollPane(l);
     setLayout(new BorderLayout());
@@ -49,7 +49,7 @@ public class NSWorldView extends JPanel {
   /** Implements the abstract list model to render the elements
    *  in the list.
    */
-  class SWPListModel extends AbstractListModel {
+  class SWPListModel extends AbstractListModel<String> {
     static final long serialVersionUID = 42L;
 
     /** A reference to the model. */
@@ -63,7 +63,7 @@ public class NSWorldView extends JPanel {
 
     /** Returns a string with a description of the ith model.
      *  @return the description of the ith model as text. */
-    public Object getElementAt(int index)
+    public String getElementAt(int index)
     {
       return W.getObject(index).getName() + '(' + W.getObject(index).getSnippet().getName() + ')';
     }

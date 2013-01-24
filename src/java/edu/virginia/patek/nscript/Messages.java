@@ -32,7 +32,7 @@ public class Messages {
             Messages.instance = new Messages();
         }
 
-        return Messages.instance.resources.getString(identifier);
+        return Messages.resources.getString(identifier);
     }
 
     public Object clone() throws CloneNotSupportedException {

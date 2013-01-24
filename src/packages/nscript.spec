@@ -1,12 +1,11 @@
 Name:     nscript
 Version:  1.1.1
 Release:  2%{?dist}
-Summary:  NS visual network simulator, reborn.
+Summary:  NS2 visual Network Editor
 
 License:  BSD modern
 URL:      https://github.com/esseks/nscript
 
-BuildRequires: ant
 Requires: ns2 nam
 
 %description
