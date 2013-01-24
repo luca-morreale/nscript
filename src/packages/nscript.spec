@@ -23,8 +23,15 @@ Visual interface for building ns-tcl scripts. Specifically, it allows you to:
 
 
 %install
-# rm -rf $RPM_BUILD_ROOT
-# make install DESTDIR=$RPM_BUILD_ROOT
+ant clean install \
+    -buildfile ${srcdir}/%{name}-%{version}/src/build.xml \
+    -Dinstall.dir=$RPM_BUILD_ROOT \
+    -Dinstall.lib.dir=$RPM_BUILD_ROOT/usr/share/%{name} \
+    -Dinstall.conf.dir=$RPM_BUILD_ROOT/usr/share/%{name} \
+    -Dinstall.jar.dir=$RPM_BUILD_ROOT/usr/share/%{name} \
+    -Dinstall.bin.dir=$RPM_BUILD_ROOT/usr/bin \
+    -Dinstall.doc.dir=$RPM_BUILD_ROOT/usr/share/doc/%{name} \
+    -Dinstall.examples.dir=$RPM_BUILD_ROOT/usr/share/doc/%{name}
 
 %files
 %doc

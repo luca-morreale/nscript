@@ -8,7 +8,7 @@ See COPYING at top level for more information.
 -->
 <project name="nscript" basedir="." default="jar">
   <!-- WARNING Tweak Proguard path here -->
-  <property name="proguard.path" value="/usr/share/proguard/"/>
+  <property name="proguard.path" value="/usr/share/proguard"/>
 
   <!-- General props -->
   <property name="version" value="1.1.2"/>
@@ -22,6 +22,7 @@ See COPYING at top level for more information.
   <property name="install.conf.dir" value="${install.dir}/settings"/>
   <property name="install.bin.dir" value="${install.dir}"/>
   <property name="install.jar.dir" value="${install.dir}"/>
+  <property name="install.jar.base" value="${install.jar.dir}/${ant.project.name}" />
   <property name="install.doc.dir" value="${install.dir}/doc"/>
   <property name="install.examples.dir" value="${install.dir}/examples"/>
   <!-- Source and compilation paths -->
@@ -31,10 +32,9 @@ See COPYING at top level for more information.
   <property name="build.javadoc.dir" value="${build.dir}/javadoc"/>
   <property name="build.classes.dir" value="${build.dir}/classes"/>
   <property name="build.jar.dir" value="${build.dir}"/>
-  <property name="build.jar.base" value="${install.jar.dir}/${ant.project.name}" />
 
   <!-- Tasks -->
-  <taskdef resource="proguard/ant/task.properties" classpath="${proguard.path}proguard.jar" />
+  <taskdef resource="proguard/ant/task.properties" classpath="${proguard.path}/proguard.jar" />
 
   <!-- Targets -->
   <target name="clean">
@@ -52,7 +52,7 @@ See COPYING at top level for more information.
 
   <target name="jar" depends="compile">
     <mkdir dir="${build.jar.dir}"/>
-    <jar destfile="${build.jar.base}.jar" basedir="${build.classes.dir}">
+    <jar destfile="${install.jar.base}.jar" basedir="${build.classes.dir}">
       <manifest>
         <attribute name="Main-Class" value="${mainclass}"/>
       </manifest>
@@ -69,7 +69,7 @@ See COPYING at top level for more information.
   </target>
 
   <target name="run" depends="jar">
-    <java jar="${build.jar.base}.jar" fork="true"/>
+    <java jar="${install.jar.base}.jar" fork="true"/>
   </target>
 
   <target name="clean-build" depends="clean,jar"/>
@@ -113,8 +113,8 @@ See COPYING at top level for more information.
   <target name="optimize" depends="install">
     <move file="${install.jar.base}.jar" tofile="${install.jar.base}-nopt.jar" />
     <proguard>
-        -injars       ${install.jar.basename}-nopt.jar
-        -outjars      ${install.jar.basename}.jar
+        -injars       ${install.jar.base}-nopt.jar
+        -outjars      ${install.jar.base}.jar
         -libraryjars  ${java.home}/lib/rt.jar
         -keep public class edu.virginia.patek.nscript.Main {
             public static void main(java.lang.String[]);
@@ -129,13 +129,13 @@ See COPYING at top level for more information.
   <target name="prebuilt-opt" depends="optimize">
     <zip destfile="${prebuilt.dir}/${zipname}"
       basedir="${prebuilt.dir}"
-      includes="../${install.dir}/**"
-      excludes="../${install.dir}/*-nopt.jar" />
+      includes="nscript-${version}/**"
+      excludes="nscript-${version}/*-nopt.jar" />
   </target>
 
   <target name="prebuilt" depends="install">
     <zip destfile="${prebuilt.dir}/${zipname}"
       basedir="${prebuilt.dir}"
-      includes="../${install.dir}/**" />
+      includes="nscript-${version}/**" />
   </target>
 </project>
