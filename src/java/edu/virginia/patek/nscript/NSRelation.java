@@ -117,13 +117,13 @@ class NSRelation extends NSEditableObject implements DMObject {
       case TclSnippet.DASHED:
         dash[0] = 3;
         dash[1] = 2;
-        pen = new BasicStroke((float) lineWidth, 0, 0, 1, dash, 0);
+        pen = new BasicStroke(lineWidth, 0, 0, 1, dash, 0);
         break;
       case TclSnippet.DOTTED:
       default:
         dash[0] = 1;
         dash[1] = 5;
-        pen = new BasicStroke((float) lineWidth, 0, 0, 1, dash, 0);
+        pen = new BasicStroke(lineWidth, 0, 0, 1, dash, 0);
         break;
     }
     g2.setStroke(pen);

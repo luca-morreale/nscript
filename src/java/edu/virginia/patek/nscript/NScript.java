@@ -77,7 +77,7 @@ public class NScript extends JFrame {
     menuBar.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
     JToolBar toolBar = new JToolBar();
     prepareToolBarAndMenu(toolBar, menuBar);
-    toolBar.setOrientation(JToolBar.HORIZONTAL);
+    toolBar.setOrientation(SwingConstants.HORIZONTAL);
 
     // Allows for "exit confirm"
     setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -96,7 +96,7 @@ public class NScript extends JFrame {
     objectBrowser = new SObjectBrowser(model);
 
     worldView = new NSWorldView(model);
-    JTabbedPane wv_tp = new JTabbedPane(JTabbedPane.BOTTOM);
+    JTabbedPane wv_tp = new JTabbedPane(SwingConstants.BOTTOM);
     wv_tp.addTab(Messages.tr("object_browser"), objectBrowser);
     wv_tp.addTab(Messages.tr("world_view"), worldView);
 
@@ -115,7 +115,7 @@ public class NScript extends JFrame {
     helpers.setDividerLocation(200);
 
     // Script view as another tab
-    JTabbedPane tp = new JTabbedPane(JTabbedPane.BOTTOM);
+    JTabbedPane tp = new JTabbedPane(SwingConstants.BOTTOM);
     tp.addTab(Messages.tr("visual"), sp_edit);
     tp.addTab(Messages.tr("tcl_script"), sp_tcl);
 

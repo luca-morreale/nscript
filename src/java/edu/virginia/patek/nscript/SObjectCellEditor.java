@@ -76,16 +76,16 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
           while (st.hasMoreTokens())
             cb.addItem(st.nextToken());
           cb.setSelectedItem(o.getAttribute(row));
-          return ((Component) cb);
+          return cb;
         } else {
           cb.setEditable(true);
           tf.setText(o.getAttribute(row));
-          return ((Component) tf);
+          return tf;
         }
       } else {
-        return (Component) cb;
+        return cb;
       }
     }
-    return (Component) cb;
+    return cb;
   }
 }

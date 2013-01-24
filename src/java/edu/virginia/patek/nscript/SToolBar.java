@@ -61,7 +61,7 @@ public class SToolBar extends JPanel implements ActionListener {
     b.addActionListener(this);
     panel2.add(b, BorderLayout.NORTH);
     panel.add(panel2, BorderLayout.WEST);
-    tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
+    tabPane = new JTabbedPane(SwingConstants.BOTTOM);
     panel.add(tabPane, BorderLayout.CENTER);
     nip = new NSIconPane(0, "NO ICON");
     add(panel, BorderLayout.CENTER);
