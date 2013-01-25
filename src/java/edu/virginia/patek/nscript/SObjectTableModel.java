@@ -12,6 +12,7 @@ package edu.virginia.patek.nscript;
 import javax.swing.table.*;
 
 import edu.virginia.patek.nscript.NSObject;
+import edu.virginia.patek.nscript.Messages;
 
 /** Implements the AbstractTableModel interfaces to edit the attributes of a
  *  simulation object in the SObjectBrowser view.
@@ -96,9 +97,9 @@ public class SObjectTableModel extends AbstractTableModel {
   public String getColumnName(int columnIndex)
   {
     if (columnIndex == 0)
-      return "Attribute";
+      return Messages.tr("attribute");
     else
-      return "Value";
+      return Messages.tr("value");
   }
 
   /** Verifies if a certain cell is editable. In this case, only the "Value"

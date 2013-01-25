@@ -64,7 +64,7 @@ public class NScript extends JFrame {
    */
   public NScript()
   {
-    super("NScript 1.1");
+    super(Messages.tr("nscript"));
     SAboutDialog ad = new SAboutDialog(null, false);
     Container c = this.getContentPane();
 
