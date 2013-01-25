@@ -139,7 +139,7 @@ public class NScript extends JFrame {
     c.add(mainView, BorderLayout.CENTER);
 
     addWindowListener(new WindowEventHandler());
-    getToolkit().getScreenSize();
+    // getToolkit().getScreenSize();
     setSize(800, 600);
     setLocation(0, 0);
     ad.setMessage(Messages.tr("done"));
@@ -304,7 +304,6 @@ public class NScript extends JFrame {
   {
     File f;
     FileOutputStream fos;
-    new LibFilter();
     String tScript;
     byte[] dataOut;
 
@@ -343,7 +342,6 @@ public class NScript extends JFrame {
   {
     File f;
     FileOutputStream fos;
-    new LibFilter();
     String tScript;
     byte[] dataOut;
 

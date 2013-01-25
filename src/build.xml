@@ -22,9 +22,9 @@ See COPYING at top level for more information.
   <property name="install.conf.dir" value="${install.dir}/settings"/>
   <property name="install.bin.dir" value="${install.dir}"/>
   <property name="install.jar.dir" value="${install.dir}"/>
-  <property name="install.jar.base" value="${install.jar.dir}/${ant.project.name}" />
   <property name="install.doc.dir" value="${install.dir}/doc"/>
   <property name="install.examples.dir" value="${install.dir}/examples"/>
+  <property name="install.jar.base" value="${install.jar.dir}/${ant.project.name}" />
   <!-- Source and compilation paths -->
   <property name="src.dir" value="java"/>
   <property name="res.dir" value="resources"/>
