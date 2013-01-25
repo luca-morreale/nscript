@@ -13,18 +13,7 @@ See COPYING at top level for more information.
   <!-- General props -->
   <property name="version" value="1.1.2"/>
   <property name="mainclass" value="edu.virginia.patek.nscript.Main"/>
-  <property name="zipname" value="${ant.project.name}-${version}.zip"/>
 
-  <!-- Install paths (override as needed) -->
-  <property name="prebuilt.dir" value=".."/>
-  <property name="install.dir" value="${prebuilt.dir}/nscript-${version}"/>
-  <property name="install.lib.dir" value="${install.dir}/lib"/>
-  <property name="install.conf.dir" value="${install.dir}/settings"/>
-  <property name="install.bin.dir" value="${install.dir}"/>
-  <property name="install.jar.dir" value="${install.dir}"/>
-  <property name="install.doc.dir" value="${install.dir}/doc"/>
-  <property name="install.examples.dir" value="${install.dir}/examples"/>
-  <property name="install.jar.base" value="${install.jar.dir}/${ant.project.name}" />
   <!-- Source and compilation paths -->
   <property name="src.dir" value="java"/>
   <property name="res.dir" value="resources"/>
@@ -32,6 +21,16 @@ See COPYING at top level for more information.
   <property name="build.javadoc.dir" value="${build.dir}/javadoc"/>
   <property name="build.classes.dir" value="${build.dir}/classes"/>
   <property name="build.jar.dir" value="${build.dir}"/>
+  <!-- Install paths (override as needed) -->
+  <property name="install.dir" value="${build.dir}/nscript-${version}"/>
+  <property name="install.lib.dir" value="${install.dir}/lib"/>
+  <property name="install.conf.dir" value="${install.dir}/settings"/>
+  <property name="install.bin.dir" value="${install.dir}"/>
+  <property name="install.jar.dir" value="${install.dir}"/>
+  <property name="install.doc.dir" value="${install.dir}/doc"/>
+  <property name="install.examples.dir" value="${install.dir}/examples"/>
+  <property name="install.jar.base" value="${install.jar.dir}/${ant.project.name}" />
+  <property name="install.zip.base" value="${ant.project.name}-${version}"/>
 
   <!-- Tasks -->
   <taskdef resource="proguard/ant/task.properties" classpath="${proguard.path}/proguard.jar" />
@@ -60,7 +59,7 @@ See COPYING at top level for more information.
         <include name="pixmaps/*.png" />
         <include name="translations/*.properties" />
       </fileset>
-      <fileset dir="${prebuilt.dir}" includes="AUTHORS,COPYING" />
+      <fileset dir="." includes="AUTHORS,COPYING" />
     </jar>
   </target>
 
@@ -94,7 +93,7 @@ See COPYING at top level for more information.
       <fileset dir="${build.dir}" includes="${ant.project.name}.jar"/>
     </copy>
     <copy todir="${install.doc.dir}">
-      <fileset dir=".." includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
+      <fileset dir="." includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
     </copy>
     <copy todir="${install.examples.dir}">
       <fileset dir="resources/examples" includes="*.nss"/>
@@ -127,15 +126,15 @@ See COPYING at top level for more information.
   </target>
 
   <target name="prebuilt-opt" depends="optimize">
-    <zip destfile="${prebuilt.dir}/${zipname}"
-      basedir="${prebuilt.dir}"
-      includes="nscript-${version}/**"
-      excludes="nscript-${version}/*-nopt.jar" />
+    <zip destfile="${build.dir}/${install.zip.base}.zip"
+      basedir="${build.dir}"
+      includes="${install.zip.base}/**"
+      excludes="${install.zip.base}/*-nopt.jar" />
   </target>
 
   <target name="prebuilt" depends="install">
-    <zip destfile="${prebuilt.dir}/${zipname}"
-      basedir="${prebuilt.dir}"
-      includes="nscript-${version}/**" />
+    <zip destfile="${build.dir}/${install.zip.base}.zip"
+      basedir="${build.dir}"
+      includes="${install.zip.base}/**" />
   </target>
 </project>

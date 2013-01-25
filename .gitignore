@@ -1,4 +1,5 @@
-nscript-*
-nscript-*.zip
-src/build
+build
 .junk
+.classpath
+.project
+.settings
