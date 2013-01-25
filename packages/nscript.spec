@@ -26,8 +26,8 @@ Visual interface for building ns-tcl scripts. Specifically, it allows you to:
 ant clean install \
     -buildfile ${srcdir}/%{name}-%{version}/src/build.xml \
     -Dinstall.dir=$RPM_BUILD_ROOT \
-    -Dinstall.lib.dir=$RPM_BUILD_ROOT/usr/share/%{name} \
-    -Dinstall.conf.dir=$RPM_BUILD_ROOT/usr/share/%{name} \
+    -Dinstall.lib.dir=$RPM_BUILD_ROOT/usr/share/%{name}/lib \
+    -Dinstall.conf.dir=$RPM_BUILD_ROOT/usr/share/%{name}/settings \
     -Dinstall.jar.dir=$RPM_BUILD_ROOT/usr/share/%{name} \
     -Dinstall.bin.dir=$RPM_BUILD_ROOT/usr/bin \
     -Dinstall.doc.dir=$RPM_BUILD_ROOT/usr/share/doc/%{name} \

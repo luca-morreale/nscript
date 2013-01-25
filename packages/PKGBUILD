@@ -1,43 +1,45 @@
-# Mantainer: Stefano Sanfilippo (esseks)
+# Maintainer: Stefano Sanfilippo (esseks)
 
 pkgname=nscript
 pkgver=1.1.2
 pkgrel=1
 pkgdesc='NS2 visual Network Editor'
 arch=('any')
-depends=('ns2' 'nam')
-optdepends=('python: for fixnss script')
+depends=('java-environment>=1.6' 'sh')
+optdepends=('python: for fixnss script'
+'ns2: for running simulations'
+'nam: for visualizing simulation results')
+makedepends=('apache-ant')
 url='https://github.com/esseks/nscript/'
 license=('BSD')
-source=('https://github.com/esseks/nscript/raw/master/nscript-1.1.2.zip')
-sha256sums=('f006fac22a55b48186dfb11a22729363bf4efd20d69d2ba5d55546829b2639d3')
+source=("nscript-${pkgver}.zip")
+sha256sums=('05df0cb492a553218943f5a7faf531e6c4341895918bb7b8b33e5167c2911285')
 
 package()
 {
-    msg "Installing configuration, examples, libraries and runtime..."
-    mkdir -p ${pkgdir}/usr/share/${pkgname}
-    cp -a ${srcdir}/${pkgname}-${pkgver}/{examples,lib,settings,nscript.jar} \
-          ${pkgdir}/usr/share/${pkgname}
+    ant clean install \
+        -buildfile ${srcdir}/${pkgname}-${pkgver}/build.xml \
+        -Dinstall.dir=${pkgdir} \
+        -Dinstall.lib.dir=${pkgdir}/usr/share/${pkgname}/lib \
+        -Dinstall.conf.dir=${pkgdir}/usr/share/${pkgname}/settings \
+        -Dinstall.jar.dir=${pkgdir}/usr/share/${pkgname} \
+        -Dinstall.bin.dir=${pkgdir}/usr/bin \
+        -Dinstall.doc.dir=${pkgdir}/usr/share/doc/${pkgname} \
+        -Dinstall.examples.dir=${pkgdir}/usr/share/doc/${pkgname}/examples
 
-    msg "Installing docs..."
-    mkdir -p ${pkgdir}/usr/share/doc/${pkgname}
-    cp -a ${srcdir}/${pkgname}-${pkgver}/doc/{AUTHORS,ChangeLog.old.md,README.md} \
-          ${pkgdir}/usr/share/doc/${pkgname}
-
-    msg "Installing license..."
-    mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
-    cp -a ${srcdir}/${pkgname}-${pkgver}/doc/COPYING \
-          ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
-
-    msg "Installing runnable programs..."
-    mkdir -p ${pkgdir}/usr/bin
-    cp -a ${srcdir}/${pkgname}-${pkgver}/nscript.sh ${pkgdir}/usr/bin/nscript
-    cp -a ${srcdir}/${pkgname}-${pkgver}/fixnss.py ${pkgdir}/usr/bin/fixnss
-    # Fix path
-    sed -i "s|\./nscript\.jar|/usr/share/${pkgname}/${pkgname}.jar|" ${pkgdir}/usr/bin/nscript
-
-    msg "Setting permissions..."
-    find ${pkgdir} -type f | xargs chmod 0644
-    find ${pkgdir} -type d | xargs chmod 0755
-    chmod 0755 ${pkgdir}/usr/bin/{nscript,fixnss}
+    msg "Finalizing installation..."
+    # Moving license to place
+    pushd ${pkgdir}/usr/share/
+        mkdir -p licenses/${pkgname}
+        mv doc/${pkgname}/COPYING licenses/${pkgname}/LICENSE
+    popd
+    # Removing suffix from executables, removing .bat
+    pushd ${pkgdir}/usr/bin
+        mv nscript.sh nscript
+        mv fixnss.py fixnss
+        rm nscript.bat
+    popd
+    # Correcting launch path for script
+    sed -i "s|java|cd /usr/share/${pkgname} \&\& java|" \
+        ${pkgdir}/usr/bin/nscript
 }

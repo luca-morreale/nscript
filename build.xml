@@ -23,10 +23,10 @@ See COPYING at top level for more information.
   <property name="build.jar.dir" value="${build.dir}"/>
   <!-- Install paths (override as needed) -->
   <property name="install.dir" value="${build.dir}/nscript-${version}"/>
-  <property name="install.lib.dir" value="${install.dir}/lib"/>
-  <property name="install.conf.dir" value="${install.dir}/settings"/>
-  <property name="install.bin.dir" value="${install.dir}"/>
   <property name="install.jar.dir" value="${install.dir}"/>
+  <property name="install.lib.dir" value="${install.jar.dir}/lib"/>
+  <property name="install.conf.dir" value="${install.jar.dir}/settings"/>
+  <property name="install.bin.dir" value="${install.dir}"/>
   <property name="install.doc.dir" value="${install.dir}/doc"/>
   <property name="install.examples.dir" value="${install.dir}/examples"/>
   <property name="install.jar.base" value="${install.jar.dir}/${ant.project.name}" />
@@ -105,7 +105,7 @@ See COPYING at top level for more information.
     </chmod>
     <!-- And then we punch some holes... -->
     <chmod perm="0755">
-      <fileset dir="${install.dir}" includes="fixnss.py,nscript.sh"/>
+      <fileset dir="${install.bin.dir}" includes="fixnss.py,nscript.sh"/>
     </chmod>
   </target>
 
