@@ -352,7 +352,7 @@ public class DMControl extends KeyAdapter
   public void keyTyped(KeyEvent e)
   {
     char c = e.getKeyChar();
-    if (c == '\b') {
+    if (c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE) {
       M.removeSelected();
     }
   }
