@@ -8,7 +8,7 @@
 #
 
 all:
-	ant jar
+	ant prebuilt
 
 clean:
 	ant clean
