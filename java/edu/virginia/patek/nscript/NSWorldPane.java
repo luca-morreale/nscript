@@ -15,37 +15,35 @@ import java.awt.*;
 /** A view that holds a list of the objects involved in a simulation.
  *  Not yet implemented. */
 public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
-  static final long serialVersionUID = 42L;
+    static final long serialVersionUID = 42L;
 
-  /** Default constructor. */
-  public NSWorldPane()
-  {
-    super(Messages.tr("empty"));
-    setOpaque(true);
-  }
-
-  /** Class that implements the rendering of the cells (rows) in the
-   *  world view.
-   */
-  public Component getListCellRendererComponent(
-    JList<? extends String> list,
-    String value,
-    int index,
-    boolean isSelected,
-    boolean cellHasFocus
-  )
-  {
-    setText(value);
-
-    if (isSelected) {
-      setBackground(list.getSelectionBackground());
-      setForeground(list.getSelectionForeground());
-    } else {
-      setBackground(list.getBackground());
-      setForeground(list.getForeground());
+    /** Default constructor. */
+    public NSWorldPane() {
+        super(Messages.tr("empty"));
+        setOpaque(true);
     }
 
-    return this;
-  }
+    /** Class that implements the rendering of the cells (rows) in the
+     *  world view.
+     */
+    public Component getListCellRendererComponent(
+        JList <? extends String > list,
+        String value,
+        int index,
+        boolean isSelected,
+        boolean cellHasFocus
+    ) {
+        setText(value);
+
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
+
+        return this;
+    }
 
 }

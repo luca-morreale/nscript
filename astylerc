@@ -1,9 +1,9 @@
-style=stroustrup
-indent=spaces=2
+style=java
+indent=spaces=4
 indent-switches
 pad-oper
 unpad-paren
 pad-header
-#add-brackets
+add-brackets
 mode=java
 lineend=linux

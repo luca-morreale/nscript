@@ -13,25 +13,24 @@ package edu.virginia.patek.nscript;
 import javax.swing.*;
 
 public class Main {
-  /** Main procedure, simply creates a new NScript instance to initiate
-   *  the program.
-   */
-  public static void main(String[] args)
-  {
-    // Set System LAF
-    try {
-      UIManager.setLookAndFeel(
-        UIManager.getSystemLookAndFeelClassName());
-    } catch (UnsupportedLookAndFeelException e) {
-      System.err.println(Messages.tr("no_native_laf_error"));
-    } catch (ClassNotFoundException e) {
-      System.err.println(Messages.tr("no_native_laf_error"));
-    } catch (InstantiationException e) {
-      System.err.println(Messages.tr("no_native_laf_error"));
-    } catch (IllegalAccessException e) {
-      System.err.println(Messages.tr("no_native_laf_error"));
-    }
+    /** Main procedure, simply creates a new NScript instance to initiate
+     *  the program.
+     */
+    public static void main(String[] args) {
+        // Set System LAF
+        try {
+            UIManager.setLookAndFeel(
+                UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException e) {
+            System.err.println(Messages.tr("no_native_laf_error"));
+        } catch (ClassNotFoundException e) {
+            System.err.println(Messages.tr("no_native_laf_error"));
+        } catch (InstantiationException e) {
+            System.err.println(Messages.tr("no_native_laf_error"));
+        } catch (IllegalAccessException e) {
+            System.err.println(Messages.tr("no_native_laf_error"));
+        }
 
-    new NScript();
-  }
+        new NScript();
+    }
 }

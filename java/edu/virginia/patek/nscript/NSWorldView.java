@@ -16,60 +16,55 @@ import javax.swing.*;
  * the current simulation script.
  */
 public class NSWorldView extends JPanel {
-  static final long serialVersionUID = 42L;
-
-  /** A reference to the simulation model. */
-  NSWorld w;
-  /** The list GUI element. */
-  JList<String> l;
-
-  /** Constructor that copies a reference to the simulation model. */
-  public NSWorldView(NSWorld inW)
-  {
-    super();
-
-    w = inW;
-    l = new JList<String>(new SWPListModel(w));
-    l.setCellRenderer(new NSWorldPane());
-    JScrollPane sp = new JScrollPane(l);
-    setLayout(new BorderLayout());
-    add(sp, BorderLayout.CENTER);
-  }
-
-  /** Updates the view when the model suffers changes. */
-  public void updateList()
-  {
-    l.setModel(new SWPListModel(w));
-    updateUI();
-  }
-
-  /** Implements the abstract list model to render the elements
-   *  in the list.
-   */
-  class SWPListModel extends AbstractListModel<String> {
     static final long serialVersionUID = 42L;
 
-    /** A reference to the model. */
-    NSWorld W;
-    /** The constructor takes a reference to the model.
-     *  @param inW a reference to the simulation model. */
-    public SWPListModel(NSWorld inW)
-    {
-      W = inW;
+    /** A reference to the simulation model. */
+    NSWorld w;
+    /** The list GUI element. */
+    JList<String> l;
+
+    /** Constructor that copies a reference to the simulation model. */
+    public NSWorldView(NSWorld inW) {
+        super();
+
+        w = inW;
+        l = new JList<String>(new SWPListModel(w));
+        l.setCellRenderer(new NSWorldPane());
+        JScrollPane sp = new JScrollPane(l);
+        setLayout(new BorderLayout());
+        add(sp, BorderLayout.CENTER);
     }
 
-    /** Returns a string with a description of the ith model.
-     *  @return the description of the ith model as text. */
-    public String getElementAt(int index)
-    {
-      return W.getObject(index).getName() + '(' + W.getObject(index).getSnippet().getName() + ')';
+    /** Updates the view when the model suffers changes. */
+    public void updateList() {
+        l.setModel(new SWPListModel(w));
+        updateUI();
     }
 
-    /** Obtains the size of the array (in this case the size of the model.
-     *  @return the number of objects in the current simulation model. */
-    public int getSize()
-    {
-      return W.getObjectCount();
+    /** Implements the abstract list model to render the elements
+     *  in the list.
+     */
+    class SWPListModel extends AbstractListModel<String> {
+        static final long serialVersionUID = 42L;
+
+        /** A reference to the model. */
+        NSWorld W;
+        /** The constructor takes a reference to the model.
+         *  @param inW a reference to the simulation model. */
+        public SWPListModel(NSWorld inW) {
+            W = inW;
+        }
+
+        /** Returns a string with a description of the ith model.
+         *  @return the description of the ith model as text. */
+        public String getElementAt(int index) {
+            return W.getObject(index).getName() + '(' + W.getObject(index).getSnippet().getName() + ')';
+        }
+
+        /** Obtains the size of the array (in this case the size of the model.
+         *  @return the number of objects in the current simulation model. */
+        public int getSize() {
+            return W.getObjectCount();
+        }
     }
-  }
 }

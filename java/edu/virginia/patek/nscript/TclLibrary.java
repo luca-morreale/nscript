@@ -18,157 +18,148 @@ import java.util.*;
  *  The library class knows how to parse itself from a file.
  */
 public class TclLibrary extends Object {
-  /** The name of the library. */
-  String name;
-  /** Internal name */
-  String TBName;
-  /** The version number of the library. */
-  String version;
-  /** The collection of TclSnippets. */
-  ArrayList<TclSnippet> snippets;
+    /** The name of the library. */
+    String name;
+    /** Internal name */
+    String TBName;
+    /** The version number of the library. */
+    String version;
+    /** The collection of TclSnippets. */
+    ArrayList<TclSnippet> snippets;
 
-  /** Constructs itself from a buffer.
-   *  @param br a buffer (file) from which the library parses itself.
-   */
-  public TclLibrary(BufferedReader br)
-  {
-    snippets = new ArrayList<TclSnippet>();
-    readFromDisk(br);
-  }
-
-  /** Constructs itself as an empty library. This was used for testing only,
-   *  not in use anymore.
-   */
-  public TclLibrary(String libName, String tbName)
-  {
-    setName(libName);
-    setTBName(tbName);
-    snippets = new ArrayList<TclSnippet>();
-  }
-
-  public String getTBName()
-  {
-    return TBName;
-  }
-
-  public void setTBName(String  newTBName)
-  {
-    TBName = newTBName;
-  }
-
-  public String getName()
-  {
-    return name;
-  }
-
-  public void setName(String  newName)
-  {
-    name = newName;
-  }
-
-  public String getVersion()
-  {
-    return version;
-  }
-
-  public int getSnippetCount()
-  {
-    return snippets.size();
-  }
-
-  public TclSnippet getSnippet(int index)
-  {
-    if (index >= 0 && index < snippets.size())
-      return snippets.get(index);
-    else
-      return null;
-  }
-
-  public TclSnippet getSnippet(String theName)
-  {
-    TclSnippet t;
-    Iterator<TclSnippet> iter = snippets.iterator();
-    while (iter.hasNext()) {
-      t = iter.next();
-      if (t.getName().equals(theName))
-        return t;
+    /** Constructs itself from a buffer.
+     *  @param br a buffer (file) from which the library parses itself.
+     */
+    public TclLibrary(BufferedReader br) {
+        snippets = new ArrayList<TclSnippet>();
+        readFromDisk(br);
     }
-    return null;
-  }
 
-  public void setSnippet(int index, TclSnippet  snippet)
-  {
-    snippets.set(index, snippet);
-  }
+    /** Constructs itself as an empty library. This was used for testing only,
+     *  not in use anymore.
+     */
+    public TclLibrary(String libName, String tbName) {
+        setName(libName);
+        setTBName(tbName);
+        snippets = new ArrayList<TclSnippet>();
+    }
 
-  public void addSnippet(TclSnippet snippet)
-  {
-    snippets.add(snippet);
-  }
+    public String getTBName() {
+        return TBName;
+    }
 
-  public boolean nameExists(String theName)
-  {
-    TclSnippet t;
-    Iterator<TclSnippet> iter = snippets.iterator();
-    if (iter == null) return false;
+    public void setTBName(String  newTBName) {
+        TBName = newTBName;
+    }
 
-    while (iter.hasNext()) {
-      t = iter.next();
-      if (t.getName().equals(theName))
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String  newName) {
+        name = newName;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public int getSnippetCount() {
+        return snippets.size();
+    }
+
+    public TclSnippet getSnippet(int index) {
+        if (index >= 0 && index < snippets.size()) {
+            return snippets.get(index);
+        } else {
+            return null;
+        }
+    }
+
+    public TclSnippet getSnippet(String theName) {
+        TclSnippet t;
+        Iterator<TclSnippet> iter = snippets.iterator();
+        while (iter.hasNext()) {
+            t = iter.next();
+            if (t.getName().equals(theName)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public void setSnippet(int index, TclSnippet  snippet) {
+        snippets.set(index, snippet);
+    }
+
+    public void addSnippet(TclSnippet snippet) {
+        snippets.add(snippet);
+    }
+
+    public boolean nameExists(String theName) {
+        TclSnippet t;
+        Iterator<TclSnippet> iter = snippets.iterator();
+        if (iter == null) {
+            return false;
+        }
+
+        while (iter.hasNext()) {
+            t = iter.next();
+            if (t.getName().equals(theName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean readFromDisk(BufferedReader br) {
+        try {
+            name = br.readLine();
+            TBName = br.readLine();
+            version = br.readLine();
+
+            while (readSnippet(br))
+                ;
+        } catch (IOException ioe) {
+            System.err.println(Messages.tr("library_read_error") + ioe.toString());
+            return false;
+        }
         return true;
     }
-    return false;
-  }
 
-  public boolean readFromDisk(BufferedReader br)
-  {
-    try {
-      name = br.readLine();
-      TBName = br.readLine();
-      version = br.readLine();
-
-      while (readSnippet(br))
-        ;
-    } catch (IOException ioe) {
-      System.err.println(Messages.tr("library_read_error") + ioe.toString());
-      return false;
+    public boolean readSnippet(BufferedReader br) {
+        TclSnippet t;
+        String s, newLine;
+        s = "";
+        try {
+            do {
+                newLine = br.readLine();
+                if (newLine == null) {
+                    return false;
+                } else {
+                    s = s + newLine;
+                }
+            } while (newLine.indexOf("end") < 0);
+        } catch (IOException ioe) {
+            System.err.println(Messages.tr("snippet_read_error") + ioe.toString());
+        }
+        t = new TclSnippet(s);
+        if (!nameExists(t.getName())) {
+            addSnippet(t);
+        } else {
+            System.err.println(Messages.tr("snippet_already_in_library") + t.getName());
+        }
+        return true;
     }
-    return true;
-  }
 
-  public boolean readSnippet(BufferedReader br)
-  {
-    TclSnippet t;
-    String s, newLine;
-    s = "";
-    try {
-      do {
-        newLine = br.readLine();
-        if (newLine == null)
-          return false;
-        else
-          s = s + newLine;
-      } while (newLine.indexOf("end") < 0);
-    } catch (IOException ioe) {
-      System.err.println(Messages.tr("snippet_read_error") + ioe.toString());
+    public String toString() {
+        String s;
+        int i;
+
+        s = getName() + " : " + getTBName() + " : " + getVersion() + "\n";
+        for (i = 0; i < snippets.size(); i++) {
+            s = s + (snippets.get(i)).toString() + "\n";
+        }
+        return s;
     }
-    t = new TclSnippet(s);
-    if (!nameExists(t.getName()))
-      addSnippet(t);
-    else
-      System.err.println(Messages.tr("snippet_already_in_library") + t.getName());
-    return true;
-  }
-
-  public String toString()
-  {
-    String s;
-    int i;
-
-    s = getName() + " : " + getTBName() + " : " + getVersion() + "\n";
-    for (i = 0; i < snippets.size(); i++) {
-      s = s + (snippets.get(i)).toString() + "\n";
-    }
-    return s;
-  }
 }

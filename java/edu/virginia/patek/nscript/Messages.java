@@ -18,16 +18,14 @@ public class Messages {
     private static Messages instance;
 
     /** Determines suitable locale and instantiate singleton */
-    private Messages()
-    {
+    private Messages() {
         // TODO
         Locale locale = Locale.getDefault();
         Messages.resources = ResourceBundle.getBundle("translations.strings", locale);
     }
 
     /** Returns appropriate string for supplied ID */
-    public static final String tr(String identifier)
-    {
+    public static final String tr(String identifier) {
         if (Messages.instance == null) {
             Messages.instance = new Messages();
         }
@@ -36,6 +34,6 @@ public class Messages {
     }
 
     public Object clone() throws CloneNotSupportedException {
-            throw new CloneNotSupportedException();
+        throw new CloneNotSupportedException();
     }
 }
