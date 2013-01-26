@@ -9,12 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.NSArray;
-import edu.virginia.patek.nscript.NSModel;
-import edu.virginia.patek.nscript.SObjectTableModel;
-import edu.virginia.patek.nscript.SObjectCellEditor;
-import edu.virginia.patek.nscript.Messages;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

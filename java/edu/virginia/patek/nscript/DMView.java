@@ -12,9 +12,6 @@ package edu.virginia.patek.nscript;
 import javax.swing.*;
 import java.awt.*;
 
-import edu.virginia.patek.nscript.DMModel;
-import edu.virginia.patek.nscript.DMControl;
-
 /** Implements the View part of the MVC paradigm by extending the JPanel object
  *  to handle mouse and key event handlers.  Implements the functionality
  *  related to rendering the view by setting the attributes of the output

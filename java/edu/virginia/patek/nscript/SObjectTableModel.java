@@ -11,9 +11,6 @@ package edu.virginia.patek.nscript;
 
 import javax.swing.table.*;
 
-import edu.virginia.patek.nscript.NSObject;
-import edu.virginia.patek.nscript.Messages;
-
 /** Implements the AbstractTableModel interfaces to edit the attributes of a
  *  simulation object in the SObjectBrowser view.
  */

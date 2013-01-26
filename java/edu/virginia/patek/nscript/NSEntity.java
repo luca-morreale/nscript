@@ -12,10 +12,6 @@ package edu.virginia.patek.nscript;
 import java.io.*;
 import java.awt.*;
 
-import edu.virginia.patek.nscript.NSEditableObject;
-import edu.virginia.patek.nscript.TclSnippet;
-import edu.virginia.patek.nscript.Messages;
-
 /** Implements the abstract class NSEditableObject to behave as an icon on the
  *  screen.
  *  This object fully implements position translation, detecting mouse clicks,

@@ -13,12 +13,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
-import edu.virginia.patek.nscript.NScript;
-import edu.virginia.patek.nscript.TclLibraryManager;
-import edu.virginia.patek.nscript.TclLibrary;
-import edu.virginia.patek.nscript.TclSnippet;
-import edu.virginia.patek.nscript.NSIconPane;
-import edu.virginia.patek.nscript.Messages;
 
 /** Implements the "ToolBar" element, where the libraries and
  *  its elements are displayed, and where the user can select an
@@ -159,16 +153,3 @@ public class SToolBar extends JPanel implements ActionListener {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

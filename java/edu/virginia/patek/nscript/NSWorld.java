@@ -11,10 +11,6 @@ package edu.virginia.patek.nscript;
 
 import java.util.*;
 
-import edu.virginia.patek.nscript.NSObject;
-import edu.virginia.patek.nscript.NSArray;
-import edu.virginia.patek.nscript.Messages;
-
 /** Defines storage for the elements in a simulation. Stores objects, as well as arrays
  *  (index definitions). */
 public class NSWorld extends Object {
@@ -160,4 +156,4 @@ public class NSWorld extends Object {
     return getEnvironment().getName();
   }
 
-}// NSWorld
+}

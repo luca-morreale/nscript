@@ -13,8 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import edu.virginia.patek.nscript.Messages;
-
 /** Implements an "About..." dialog box that serves two purposes:
  *  1) Work as a presentation dialog box showing the progress of the
  *     startup process.

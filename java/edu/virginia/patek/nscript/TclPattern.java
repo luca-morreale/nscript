@@ -75,5 +75,3 @@ public class TclPattern extends Object {
       return pattern;
   }
 }
-
-

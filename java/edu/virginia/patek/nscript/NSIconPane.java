@@ -9,8 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.TclSnippet;
-
 import javax.swing.*;
 import java.awt.*;
 

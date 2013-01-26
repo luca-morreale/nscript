@@ -13,9 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import edu.virginia.patek.nscript.NSModel;
-import edu.virginia.patek.nscript.Messages;
-
 /** Extends the JDialog object to implement the manipulation of index Arrays,
  *  that are part of the simulation interface. Arrays are used to create
  *  several objects that share the same behavior.

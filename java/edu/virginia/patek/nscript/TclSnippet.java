@@ -9,10 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.NSObject;
-import edu.virginia.patek.nscript.NSRelation;
-import edu.virginia.patek.nscript.Messages;
-
 import java.util.*;
 
 /** Represents a template or class of objects in the simulation. A snippet

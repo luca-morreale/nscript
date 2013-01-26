@@ -9,9 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.TclSnippet;
-import edu.virginia.patek.nscript.Messages;
-
 import java.util.*;
 import java.io.*;
 
@@ -162,4 +159,4 @@ class NSObject extends Object {
     }
   }
 
-} // NSObject definition
+}

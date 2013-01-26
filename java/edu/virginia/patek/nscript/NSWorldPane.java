@@ -12,8 +12,6 @@ package edu.virginia.patek.nscript;
 import javax.swing.*;
 import java.awt.*;
 
-import edu.virginia.patek.nscript.Messages;
-
 /** A view that holds a list of the objects involved in a simulation.
  *  Not yet implemented. */
 public class NSWorldPane extends JLabel implements ListCellRenderer<String> {

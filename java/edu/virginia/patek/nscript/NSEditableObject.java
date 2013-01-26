@@ -11,9 +11,6 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 
-import edu.virginia.patek.nscript.DMObject;
-import edu.virginia.patek.nscript.NSObject;
-
 /** A generic extension to NSObject that implements the DMObject interface to
  *  make the object editable by the DMControl-DMView components. This extension
  *  will be used through inheritance by other objects (NSRelation and

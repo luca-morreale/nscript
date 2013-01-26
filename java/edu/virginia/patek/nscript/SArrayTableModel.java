@@ -11,9 +11,6 @@ package edu.virginia.patek.nscript;
 
 import javax.swing.table.*;
 
-import edu.virginia.patek.nscript.NSWorld;
-import edu.virginia.patek.nscript.Messages;
-
 /** Implements the AbstractTableModel to display the index Arrays that
  *  are part of the simulation.
  */

@@ -9,14 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.TclLibraryManager;
-import edu.virginia.patek.nscript.SObjectBrowser;
-import edu.virginia.patek.nscript.SArrayDialog;
-import edu.virginia.patek.nscript.SAboutDialog;
-import edu.virginia.patek.nscript.SToolBar;
-import edu.virginia.patek.nscript.NSWorldView;
-import edu.virginia.patek.nscript.Messages;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

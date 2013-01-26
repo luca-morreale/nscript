@@ -12,9 +12,6 @@ package edu.virginia.patek.nscript;
 import java.awt.*;
 import java.awt.event.*;
 
-import edu.virginia.patek.nscript.DMObject;
-import edu.virginia.patek.nscript.DMModel;
-
 /** DMControl.java
  *
  *  This object implements the Control part of the MVC framework.

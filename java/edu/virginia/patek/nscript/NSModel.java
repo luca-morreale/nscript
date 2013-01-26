@@ -13,12 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-import edu.virginia.patek.nscript.NSWorld;
-import edu.virginia.patek.nscript.NSObject;
-import edu.virginia.patek.nscript.DMModel;
-import edu.virginia.patek.nscript.SObjectBrowser;
-import edu.virginia.patek.nscript.SToolBar;
-
 /** Holds the current simulation script information. Inherits the object
  *  storing capabilities from NSWorld, and implements the DMModel interface,
  *  in order to work correctly with the DMControl, and DMView objects. Also

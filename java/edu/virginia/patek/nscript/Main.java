@@ -10,9 +10,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.NScript;
-import edu.virginia.patek.nscript.Messages;
-
 import javax.swing.*;
 
 public class Main {

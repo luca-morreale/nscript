@@ -9,10 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.TclLibrary;
-import edu.virginia.patek.nscript.TclSnippet;
-import edu.virginia.patek.nscript.Messages;
-
 import java.util.*;
 import java.io.*;
 

@@ -9,11 +9,6 @@
 
 package edu.virginia.patek.nscript;
 
-import edu.virginia.patek.nscript.TclSnippet;
-import edu.virginia.patek.nscript.NSEditableObject;
-import edu.virginia.patek.nscript.NSEntity;
-import edu.virginia.patek.nscript.Messages;
-
 import java.awt.*;
 import java.io.*;
 
@@ -277,4 +272,4 @@ class NSRelation extends NSEditableObject implements DMObject {
     }
   }
 
-} // NSRelation definition
+}
