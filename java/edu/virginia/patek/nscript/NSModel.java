@@ -61,6 +61,7 @@ public class NSModel extends NSWorld implements DMModel {
      *  be moved to the view).
      *  @return the current edition mode (integer).
      */
+    @Override
     public int getEditionMode() {
         TclSnippet s = toolBox.getSelectedSnippet();
 
@@ -81,6 +82,7 @@ public class NSModel extends NSWorld implements DMModel {
      *  @param unselectOther if true all other objects should be unselected
      *                       after adding the new object.
      */
+    @Override
     public void addSimpleObject(Dimension r, Point p, boolean unselectOther) {
         String newName;
         TclSnippet s = toolBox.getSelectedSnippet();
@@ -120,6 +122,7 @@ public class NSModel extends NSWorld implements DMModel {
      *  @param unSelectOthers if true the editor all other objects should
      *                        be unselected after the addition of the new object.
      */
+    @Override
     public void addRelationObject(DMObject oFrom, DMObject oTo, boolean unSelectOthers) {
         String newName;
         int i;
@@ -160,6 +163,7 @@ public class NSModel extends NSWorld implements DMModel {
     /** Tells all its dependent views to update their representation,
      *  as a response to a change in the model information.
      */
+    @Override
     public void updateAllViews() {
         editView.repaint();
         objectPanel.selectionChanged();
@@ -208,11 +212,13 @@ public class NSModel extends NSWorld implements DMModel {
     /** Obtains the number of objects currently in the simulation.
      *  @return the number of objects (1 or more).
      */
+    @Override
     public int getSize() {
         return objects.size();
     }
 
     /** Obtains the object at a given index. */
+    @Override
     public DMObject getObjectAt(int inIndex) {
         if (inIndex >= 0 && inIndex < objects.size()) {
             return (DMObject)(objects.get(inIndex));
@@ -222,6 +228,7 @@ public class NSModel extends NSWorld implements DMModel {
     }
 
     /** Removes the currently selected objects. */
+    @Override
     public void removeSelected() {
         int i;
         NSEditableObject o;
@@ -298,6 +305,7 @@ public class NSModel extends NSWorld implements DMModel {
      *
      *  @return a String with the representation of the object as a string.
      */
+    @Override
     public String toString() {
         String s = "";
         int i;
@@ -324,6 +332,7 @@ public class NSModel extends NSWorld implements DMModel {
     /** Sets the state of the model to dirty.
      *  Called by all the editing methods.
      */
+    @Override
     public void setDirty(boolean dirtyState) {
         isDirty = dirtyState;
     }

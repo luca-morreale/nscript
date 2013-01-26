@@ -59,6 +59,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
 
     /** Returns a component in which the element is displayed.
      *  @return components that displays the element. */
+    @Override
     public Component getListCellRendererComponent(
         JList <? extends TclSnippet > list,
         TclSnippet value,

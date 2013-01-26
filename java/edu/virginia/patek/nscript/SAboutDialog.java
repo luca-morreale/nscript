@@ -75,6 +75,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
 
     /** Responds to the button click (Continue button) action.
      *  @param ae information about the event. */
+    @Override
     public void actionPerformed(ActionEvent ae) {
         JButton b = (JButton) ae.getSource();
         if (b == closeBtn) {

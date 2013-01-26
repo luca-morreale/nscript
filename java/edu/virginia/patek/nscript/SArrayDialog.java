@@ -73,6 +73,7 @@ public class SArrayDialog extends JDialog implements ActionListener {
      *
      *  @param ae stores the information of the current event.
      */
+    @Override
     public void actionPerformed(ActionEvent ae) {
         JButton b = (JButton) ae.getSource();
         if (b == closeBtn) {

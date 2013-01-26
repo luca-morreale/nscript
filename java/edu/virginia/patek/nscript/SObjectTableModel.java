@@ -35,6 +35,7 @@ public class SObjectTableModel extends AbstractTableModel {
      *
      *  @return the number of rows in the attribute table.
      */
+    @Override
     public int getRowCount() {
         if (o == null) {
             return 0;
@@ -45,6 +46,7 @@ public class SObjectTableModel extends AbstractTableModel {
 
     /** Obtains the numbre of columns in the Attributes table (2).
      *  @return the number of columns. */
+    @Override
     public int getColumnCount() {
         if (o == null) {
             return 0;
@@ -60,6 +62,7 @@ public class SObjectTableModel extends AbstractTableModel {
      *          No validation is done so (row,col) MUST be in the correct
      *          ranges.
      */
+    @Override
     public Object getValueAt(int row, int col) {
         if (o == null) {
             return new String("");
@@ -79,6 +82,7 @@ public class SObjectTableModel extends AbstractTableModel {
      *  Again, no validation takes place, so (row,column) indexes must be in
      *  their correct ranges.
      */
+    @Override
     public void setValueAt(Object value, int row, int column) {
         if (column == 1 && o != null) {
             o.setAttribute(row, value.toString());
@@ -89,6 +93,7 @@ public class SObjectTableModel extends AbstractTableModel {
      *  @param columnIndex the column of interest.
      *  @return the name of the column.
      */
+    @Override
     public String getColumnName(int columnIndex) {
         if (columnIndex == 0) {
             return Messages.tr("attribute");
@@ -103,6 +108,7 @@ public class SObjectTableModel extends AbstractTableModel {
      *  @param rowIndex the row position of the cell of interest.
      *  @param columnIndex the column position of the cell of interest.
      *  @return true if the cell can be edited, false otherwise. */
+    @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         if (columnIndex == 0) {
             return false;

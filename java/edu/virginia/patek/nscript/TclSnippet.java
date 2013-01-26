@@ -311,6 +311,7 @@ public class TclSnippet extends Object {
 
     /** Converts the snippet to a text representation.
      *  @return a string with the representation of the snippet. */
+    @Override
     public String toString() {
         String s;
         int i;

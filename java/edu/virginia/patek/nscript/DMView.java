@@ -51,6 +51,7 @@ public class DMView extends JPanel {
      *  It also calls the control so that it can display any auxiliary lines
      *  used in the edition process.
      */
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         Dimension r;

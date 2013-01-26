@@ -41,6 +41,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
      *  the selected item number if limited options exist, or the text if
      *  it is a free entry field.
      */
+    @Override
     public Object getCellEditorValue() {
         if (cb.isEditable()) {
             return tf.getText();
@@ -59,6 +60,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
      *   @param row the row position of the cell.
      *  @param column the column position of the cell.
      */
+    @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
             int row, int column) {
         StringTokenizer st;

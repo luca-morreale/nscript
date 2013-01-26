@@ -152,6 +152,7 @@ public class TclLibrary extends Object {
         return true;
     }
 
+    @Override
     public String toString() {
         String s;
         int i;

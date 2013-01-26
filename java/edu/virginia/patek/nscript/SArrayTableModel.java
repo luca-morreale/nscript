@@ -29,6 +29,7 @@ public class SArrayTableModel extends AbstractTableModel {
     /** Obtains the number of rows in the table, which corresponds to
      *  number of index Array elements.
      *  @return the number of arrays in the current model. */
+    @Override
     public int getRowCount() {
         if (M == null) {
             return 0;
@@ -39,6 +40,7 @@ public class SArrayTableModel extends AbstractTableModel {
 
     /** Obtains the number of columns of the table (two in this case).
      *  @return 2 if the model has array elements, 0 otherwise. */
+    @Override
     public int getColumnCount() {
         if (M == null) {
             return 0;
@@ -51,6 +53,7 @@ public class SArrayTableModel extends AbstractTableModel {
      *  @param row the row position in the table.
      *  @param col the col position in the table.
      *  @return a string with element. */
+    @Override
     public Object getValueAt(int row, int col) {
         if (M == null) {
             return new String("");
@@ -67,6 +70,7 @@ public class SArrayTableModel extends AbstractTableModel {
      *  @param value the new value for the object, stored as a String.
      *  @param row the row position of the table where the update applies.
      *  @param column the column of the table where the update applies. */
+    @Override
     public void setValueAt(Object value, int row, int column) {
         if (M == null) {
             return;
@@ -83,6 +87,7 @@ public class SArrayTableModel extends AbstractTableModel {
      *  be 'Index Name', and the second 'Size'.
      *
      *  @param columnIndex the index of the column of interest. */
+    @Override
     public String getColumnName(int columnIndex) {
         if (columnIndex == 0) {
             return Messages.tr("index_name");
@@ -95,6 +100,7 @@ public class SArrayTableModel extends AbstractTableModel {
      *  @param rowIndex the row position of the cell.
      *  @param columnIndex the column position of the cell.
      *  @return true if the cell should be editable, false otherwise. */
+    @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return true;
     }

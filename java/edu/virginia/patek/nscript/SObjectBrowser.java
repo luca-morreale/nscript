@@ -146,6 +146,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
      *  different actions the interface elements generate when manipulated
      *  by the user.
      */
+    @Override
     public void actionPerformed(ActionEvent ae) {
         int i;
 

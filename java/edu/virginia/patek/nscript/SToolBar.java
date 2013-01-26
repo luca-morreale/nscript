@@ -109,6 +109,7 @@ public class SToolBar extends JPanel implements ActionListener {
      *  @param ae an object containing the information about the current
      *            event.
      */
+    @Override
     public void actionPerformed(ActionEvent ae) {
         clearSelection();
     }
@@ -133,6 +134,7 @@ public class SToolBar extends JPanel implements ActionListener {
          *  @return a reference to the object, in this case the TclSnippet
          *          object that corresponds to the entry.
          */
+        @Override
         public TclSnippet getElementAt(int index) {
             return lib.getSnippet(index);  //.getName();
         }
@@ -142,6 +144,7 @@ public class SToolBar extends JPanel implements ActionListener {
          *
          *  @return the number of classes in the library.
          */
+        @Override
         public int getSize() {
             return lib.getSnippetCount();
         }

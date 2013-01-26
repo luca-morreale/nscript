@@ -90,6 +90,7 @@ public class NSEntity extends NSEditableObject {
      *  use of arrays).
      *  @param g_ a graphics context.
      *  @param r the size of the view pane.*/
+    @Override
     public void drawSelf(Graphics g_, Dimension r) {
 
         Graphics2D g = (Graphics2D)g_;
@@ -201,6 +202,7 @@ public class NSEntity extends NSEditableObject {
      *  @param r the size of the view pane.
      *  @param p the position of the mouse in view coordinates.
      *  @return true if the element was hit by the point p, false otherwise. */
+    @Override
     public boolean isHit(Dimension r, Point p) {
         double inX, inY, distance, size2 = (double) NSEntity.SIZE / NSEntity.NOMINAL_WIDTH / 2;
 
@@ -223,6 +225,7 @@ public class NSEntity extends NSEditableObject {
      *  @return true if the element is contained by the rectangle,
      *          false otherwise.
      */
+    @Override
     public boolean isContained(Dimension r, Point p1, Point p2) {
         double x1, y1, x2, y2;
         double minX, maxX, minY, maxY;
@@ -257,6 +260,7 @@ public class NSEntity extends NSEditableObject {
     /** Moves the position of the object by the given amount.
      *  @param r the size of the view pane.
      *  @param byWhat the size of the translation. */
+    @Override
     public void moveBy(Dimension r, Dimension byWhat) {
         double dx, dy;
 
@@ -270,6 +274,7 @@ public class NSEntity extends NSEditableObject {
     /** Returns the element represented as a string. This routine is used to
      *  store the element to disk.
      *  @return the element written as a string. */
+    @Override
     public String toString() {
         String s = "";
 
@@ -285,6 +290,7 @@ public class NSEntity extends NSEditableObject {
      *  @param br the stream that contains the object information, tipically a
      *            file.
      */
+    @Override
     public void fromString(BufferedReader br) {
         super.fromString(br);
         try {

@@ -27,24 +27,28 @@ public class NSEditableObject extends NSObject implements DMObject {
 
     /** True if the object is selected for edition, false otherwise.
      *  @return true if selected, false otherwise. */
+    @Override
     public boolean isSelected() {
         return selected;
     }
 
     /** Selects the object for edition. After calling this method, method
      *  isSelected() will return true. */
+    @Override
     public void select() {
         selected = true;
     }
 
     /** Removes the selected status, so that edition commands do not affect
      *  this object anymore. */
+    @Override
     public void unselect() {
         selected = false;
     }
 
     /** Changes the 'Selected' status. If the object was selected, it will
      *  become unselected, and vice versa. */
+    @Override
     public void toggleSelect() {
         selected = !selected;
     }
@@ -52,11 +56,13 @@ public class NSEditableObject extends NSObject implements DMObject {
     /** Command to draw itself on a view. Empty implementation, since these
      *  class is still abstract.
      */
+    @Override
     public void drawSelf(Graphics g, Dimension r) {
     }
 
     /** False by default, since the class is still abstract.
      *  @return false. */
+    @Override
     public boolean isHit(Dimension r, Point p) {
         return false;
     }
@@ -66,6 +72,7 @@ public class NSEditableObject extends NSObject implements DMObject {
      *  @param p1 one of the corners of the rectangle.
      *  @param p2 the other corner of the rectangle.
      *  @return false (abstract). */
+    @Override
     public boolean isContained(Dimension r, Point p1, Point p2) {
         return false;
     }
@@ -73,6 +80,7 @@ public class NSEditableObject extends NSObject implements DMObject {
     /** Translates the position of the object by a given dimension.
      *  @param r the size of the drawing canvas.
      *  @param byWhat the amount of translation. */
+    @Override
     public void moveBy(Dimension r, Dimension byWhat) {
     }
 }

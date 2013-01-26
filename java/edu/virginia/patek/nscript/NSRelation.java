@@ -60,6 +60,7 @@ class NSRelation extends NSEditableObject implements DMObject {
      *
      *  @param g a Graphics display context.
      *  @param r the dimension of the view pane. */
+    @Override
     public void drawSelf(Graphics g, Dimension r) {
         Graphics2D g2 = (Graphics2D) g;
         Color color = Color.black;
@@ -176,6 +177,7 @@ class NSRelation extends NSEditableObject implements DMObject {
      *
      *  @param r the size of the view pane.
      *  @param byWhat the amount of translation. */
+    @Override
     public void moveBy(Dimension r, Dimension byWhat) {
         if (!getFrom().isSelected()) {
             getFrom().select();
@@ -192,6 +194,7 @@ class NSRelation extends NSEditableObject implements DMObject {
      *  @param p a set of coordinates.
      *  @return true if the line is hit by the point.
      */
+    @Override
     public boolean isHit(Dimension r, Point p) {
         double t0;
         double x1, y1, x2, y2, xp, yp;
@@ -232,6 +235,7 @@ class NSRelation extends NSEditableObject implements DMObject {
      *  @return true is both extremes of the relation are contained,
      *          false otherwise.
      */
+    @Override
     public boolean isContained(Dimension r, Point p1, Point p2) {
         if (getFrom().isContained(r, p1, p2) && getTo().isContained(r, p1, p2)) {
             return true;
@@ -245,6 +249,7 @@ class NSRelation extends NSEditableObject implements DMObject {
      *
      *  @return a string with the representation of the element object.
      */
+    @Override
     public String toString() {
         String str;
         str = super.toString();

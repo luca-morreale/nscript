@@ -65,6 +65,7 @@ public class TclPattern extends Object {
 
     /** Represents the pattern as a String.
      *  @return the representation of the pattern as a String. */
+    @Override
     public String toString() {
         if (isConditional) {
             return attribute + " = " + attributeValue + " : " + pattern + " : " + alternativePattern;

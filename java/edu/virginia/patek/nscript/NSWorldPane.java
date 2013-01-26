@@ -26,6 +26,7 @@ public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
     /** Class that implements the rendering of the cells (rows) in the
      *  world view.
      */
+    @Override
     public Component getListCellRendererComponent(
         JList <? extends String > list,
         String value,

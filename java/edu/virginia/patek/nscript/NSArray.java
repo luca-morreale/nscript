@@ -30,6 +30,7 @@ public class NSArray extends Object {
     }
 
     /** Used to store the array on a stream of characters. */
+    @Override
     public String toString() {
         return name + "\n" + Integer.toString(elements) + "\n";
     }

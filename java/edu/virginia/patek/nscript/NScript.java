@@ -467,6 +467,7 @@ public class NScript extends JFrame {
 
     /** Implements the handling of events at frame window level. */
     class WindowEventHandler extends WindowAdapter {
+        @Override
         public void windowClosing(WindowEvent evt) {
             if (!model.dirty() || reallyClose()) {
                 dispose();
@@ -483,6 +484,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             if (model.dirty())
                 if (!reallyClose()) {
@@ -501,6 +503,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             if (model.dirty())
                 if (!reallyClose()) {
@@ -519,6 +522,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             openLibraryAction();
         }
@@ -532,6 +536,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             saveFileAction();
         }
@@ -545,6 +550,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             if (model.dirty())
                 if (!reallyClose()) {
@@ -563,6 +569,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             model.removeSelected();
         }
@@ -576,6 +583,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             new SAboutDialog(null, true);
         }
@@ -589,6 +597,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             new SArrayDialog(model, null);
         }
@@ -602,6 +611,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             saveScript();
         }
@@ -615,6 +625,7 @@ public class NScript extends JFrame {
             super(label, icon);
         }
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             String fName = saveScript();
 
@@ -638,6 +649,7 @@ public class NScript extends JFrame {
             super();
         }
 
+        @Override
         public boolean accept(File f) {
             if (f.getName().indexOf(".lib") == f.getName().length() - 4) {
                 return true;

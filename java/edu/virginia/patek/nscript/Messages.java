@@ -33,6 +33,7 @@ public class Messages {
         return Messages.resources.getString(identifier);
     }
 
+    @Override
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }

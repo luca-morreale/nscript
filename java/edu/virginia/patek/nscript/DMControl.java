@@ -123,8 +123,10 @@ public class DMControl extends KeyAdapter
         }
     }
 
+    @Override
     public void mouseEntered(MouseEvent me) {}
 
+    @Override
     public void mouseExited(MouseEvent me) {}
 
     /** Processes the click event, where the user presses and releases the
@@ -132,6 +134,7 @@ public class DMControl extends KeyAdapter
      *  interface.
      *  @param me the mouse event object.
      */
+    @Override
     public void mouseClicked(MouseEvent me) {
         DMObject e;
         boolean shift = me.isShiftDown();
@@ -173,6 +176,7 @@ public class DMControl extends KeyAdapter
      *
      *  @param me a MouseEvent object containing the mouse state information.
      */
+    @Override
     public void mousePressed(MouseEvent me) {
         DMObject e;
         boolean shift = me.isShiftDown();
@@ -262,6 +266,7 @@ public class DMControl extends KeyAdapter
      *  @param me a MouseEvent object with the information about the
      *  mouse position.
      */
+    @Override
     public void mouseReleased(MouseEvent me) {
         DMObject e = modelIsHit(V.getBounds().getSize(), me.getPoint());
         int i;
@@ -307,6 +312,7 @@ public class DMControl extends KeyAdapter
         action = DMControl.NONE;
     }
 
+    @Override
     public void mouseMoved(MouseEvent me) {
     }
 
@@ -318,6 +324,7 @@ public class DMControl extends KeyAdapter
      *  @param me a MouseEvent with the information about the mouse position
      *            and state.
      */
+    @Override
     public void mouseDragged(MouseEvent me) {
         Dimension r;
         int i;
@@ -344,6 +351,7 @@ public class DMControl extends KeyAdapter
      *
      *  @param e a KeyEvent with the information about the key being pressed.
      */
+    @Override
     public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
         if (c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE) {

@@ -57,12 +57,14 @@ public class NSWorldView extends JPanel {
 
         /** Returns a string with a description of the ith model.
          *  @return the description of the ith model as text. */
+        @Override
         public String getElementAt(int index) {
             return W.getObject(index).getName() + '(' + W.getObject(index).getSnippet().getName() + ')';
         }
 
         /** Obtains the size of the array (in this case the size of the model.
          *  @return the number of objects in the current simulation model. */
+        @Override
         public int getSize() {
             return W.getObjectCount();
         }
