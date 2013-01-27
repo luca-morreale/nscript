@@ -15,7 +15,7 @@ import java.util.*;
  * Defines the basic behavior of an object that will be part of a simulation
  * script.
  */
-class NSObject extends Object {
+public class NSObject extends Object {
 
     /**
      * The snippet is basically the Class of the object. It contains the
@@ -53,7 +53,7 @@ class NSObject extends Object {
      *
      * @return a reference to the TclSnippet object.
      */
-    public TclSnippet getSnippet() {
+    public final TclSnippet getSnippet() {
         return snippet;
     }
 
@@ -62,7 +62,7 @@ class NSObject extends Object {
      *
      * @param inName the new name for the object.
      */
-    public void setName(String inName) {
+    public final void setName(String inName) {
         name = inName;
     }
 

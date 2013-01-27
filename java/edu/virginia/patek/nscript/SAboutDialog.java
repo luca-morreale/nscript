@@ -8,9 +8,9 @@
  */
 package edu.virginia.patek.nscript;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * Implements an "About..." dialog box that serves two purposes: 1) Work as a
@@ -38,6 +38,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
      * true implies that a regular "About" dialog box (one that will wait for
      * the user to hit "OK"). Otherwise a 'modaless' dialog will be created.
      */
+    @SuppressWarnings("LeakingThisInConstructor")
     public SAboutDialog(JFrame pFrame, boolean modal) {
         // Calls the father constructor.
         super(pFrame, Messages.tr("about"), modal);

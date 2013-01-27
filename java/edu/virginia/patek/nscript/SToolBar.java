@@ -8,10 +8,10 @@
  */
 package edu.virginia.patek.nscript;
 
-import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
 
 /**
  * Implements the "ToolBar" element, where the libraries and its elements are
@@ -50,6 +50,7 @@ public class SToolBar extends JPanel implements ActionListener {
      * @param inFrame a reference to the main application frame.
      * @param inLibManager a referemce to the library manager.
      */
+    @SuppressWarnings("LeakingThisInConstructor")
     public SToolBar(NScript inFrame, TclLibraryManager inLibManager) {
         super(new BorderLayout());
         frame = inFrame;

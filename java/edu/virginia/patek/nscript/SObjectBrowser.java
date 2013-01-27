@@ -64,6 +64,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
      * The default constructor receives a reference to the current simulation
      * model.
      */
+    @SuppressWarnings("LeakingThisInConstructor")
     public SObjectBrowser(NSModel inModel) {
         super();
         M = inModel;

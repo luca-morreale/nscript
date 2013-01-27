@@ -56,7 +56,7 @@ public class TclPattern extends Object {
      *
      * @param s a string with the pattern information.
      */
-    void parseSelf(String s) {
+    private void parseSelf(String s) {
         int equals, firstColon, secondColon;
         s = s.trim();
         if (s.charAt(0) == '?') {

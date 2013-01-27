@@ -76,7 +76,7 @@ public class SObjectTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int col) {
         if (o == null) {
-            return new String("");
+            return "";
         }
 
         if (col == 0) {

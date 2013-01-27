@@ -60,7 +60,7 @@ public class TclLibrary extends Object {
         return TBName;
     }
 
-    public void setTBName(String newTBName) {
+    private void setTBName(String newTBName) {
         TBName = newTBName;
     }
 
@@ -68,7 +68,7 @@ public class TclLibrary extends Object {
         return name;
     }
 
-    public void setName(String newName) {
+    private void setName(String newName) {
         name = newName;
     }
 
@@ -124,14 +124,13 @@ public class TclLibrary extends Object {
         return false;
     }
 
-    public boolean readFromDisk(BufferedReader br) {
+    private boolean readFromDisk(BufferedReader br) {
         try {
             name = br.readLine();
             TBName = br.readLine();
             version = br.readLine();
 
-            while (readSnippet(br))
-                ;
+            while (readSnippet(br)) {}
         } catch (IOException ioe) {
             System.err.println(Messages.tr("library_read_error") + ioe.toString());
             return false;
@@ -139,7 +138,7 @@ public class TclLibrary extends Object {
         return true;
     }
 
-    public boolean readSnippet(BufferedReader br) {
+    private boolean readSnippet(BufferedReader br) {
         TclSnippet t;
         String s, newLine;
         s = "";

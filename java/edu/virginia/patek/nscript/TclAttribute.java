@@ -71,7 +71,7 @@ public class TclAttribute extends Object {
      *
      * @param s the string containing the information.
      */
-    void parseSelf(String s) {
+    private void parseSelf(String s) {
         int defaultIndex, optionsIndex;
 
         defaultValue = "";

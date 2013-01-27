@@ -123,7 +123,7 @@ public class TclSnippet extends Object {
      *
      * @param s the String containing the information.
      */
-    void parseSelf(String s) {
+    private void parseSelf(String s) {
         int headEndIdx, beginIdx, endIdx;
         String head, attr, patt, a;
         headEndIdx = s.indexOf(':');

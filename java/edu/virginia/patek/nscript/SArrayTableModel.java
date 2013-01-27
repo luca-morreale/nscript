@@ -70,7 +70,7 @@ public class SArrayTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int col) {
         if (M == null) {
-            return new String("");
+            return "";
         }
 
         if (col == 0) {

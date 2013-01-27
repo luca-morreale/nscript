@@ -8,8 +8,8 @@
  */
 package edu.virginia.patek.nscript;
 
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 /**
  * Manages the set of opened libraries in the environment. Among other things,
@@ -95,7 +95,6 @@ public class TclLibraryManager extends Object {
             fr = new FileReader(f);
             br = new BufferedReader(fr);
             tl = new TclLibrary(br);
-            go = true;
             go = !libNameExists(tl.getName());
             for (i = 0; i < tl.getSnippetCount(); i++) {
                 if (snippetNameExists(tl.getSnippet(i).getName())) {

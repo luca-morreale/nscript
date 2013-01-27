@@ -8,8 +8,8 @@
  */
 package edu.virginia.patek.nscript;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * A view that holds a list of the objects involved in a simulation. Not yet

@@ -134,7 +134,7 @@ public class NSWorld extends Object {
      * @param newObject the object to be stored.
      * @return true if the object was correctly stored, false otherwise.
      */
-    public boolean addObject(NSObject newObject) {
+    public final boolean addObject(NSObject newObject) {
         return (objects.add(newObject));
     }
 

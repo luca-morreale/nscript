@@ -130,10 +130,10 @@ public class NScript extends JFrame {
         // tp.setDividerSize(4);
         // tp.setDividerLocation(400);
 
-        JSplitPane mainView = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, tp, helpers);
-        mainView.setOneTouchExpandable(true);
-        mainView.setDividerSize(4);
-        mainView.setDividerLocation(612);
+        JSplitPane tabbedView = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, tp, helpers);
+        tabbedView.setOneTouchExpandable(true);
+        tabbedView.setDividerSize(4);
+        tabbedView.setDividerLocation(612);
 
         // Add components to frame
         Container g = new Container();
@@ -142,7 +142,7 @@ public class NScript extends JFrame {
         g.add(toolBar, BorderLayout.CENTER);
         c.add(g, BorderLayout.NORTH);
         // c.add(toolBar,BorderLayout.WEST);
-        c.add(mainView, BorderLayout.CENTER);
+        c.add(tabbedView, BorderLayout.CENTER);
 
         addWindowListener(new WindowEventHandler());
         // getToolkit().getScreenSize();
@@ -640,6 +640,7 @@ public class NScript extends JFrame {
         }
 
         @Override
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         public void actionPerformed(ActionEvent ae) {
             new SAboutDialog(null, true);
         }
@@ -657,6 +658,7 @@ public class NScript extends JFrame {
         }
 
         @Override
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         public void actionPerformed(ActionEvent ae) {
             new SArrayDialog(model, null);
         }

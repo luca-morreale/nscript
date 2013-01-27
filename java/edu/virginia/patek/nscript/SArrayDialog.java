@@ -8,9 +8,9 @@
  */
 package edu.virginia.patek.nscript;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * Extends the JDialog object to implement the manipulation of index Arrays,
@@ -52,6 +52,7 @@ public class SArrayDialog extends JDialog implements ActionListener {
      * @param inM a reference to the simulation model.
      * @param pFrame the main frame of the application.
      */
+    @SuppressWarnings("LeakingThisInConstructor")
     public SArrayDialog(NSModel inM, JFrame pFrame) {
         super(pFrame, Messages.tr("configure_index"), true);
         M = inM;
