@@ -6,7 +6,6 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
@@ -14,22 +13,30 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-/** Implements the abstract cell behavior by providing a way to edit the cells
- *  in the object browser component where the object attributes are listed.
- *  It creates the interface required to do so.
+/**
+ * Implements the abstract cell behavior by providing a way to edit the cells in
+ * the object browser component where the object attributes are listed. It
+ * creates the interface required to do so.
  */
 public class SObjectCellEditor extends AbstractCellEditor implements TableCellEditor {
-    static final long serialVersionUID = 42L;
 
-    /** The object to be edited. */
+    static final long serialVersionUID = 42L;
+    /**
+     * The object to be edited.
+     */
     NSObject o;
-    /** A pull down for fields with limited options. */
+    /**
+     * A pull down for fields with limited options.
+     */
     JComboBox<String> cb;
-    /** An editable text region for the fields with free input. */
+    /**
+     * An editable text region for the fields with free input.
+     */
     JTextField tf;
 
-    /** The constructor takes the object to be edited as an input, creates
-     *  and initializes the components in the application.
+    /**
+     * The constructor takes the object to be edited as an input, creates and
+     * initializes the components in the application.
      */
     public SObjectCellEditor(NSObject inO) {
         o = inO;
@@ -37,9 +44,10 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
         tf = new JTextField();
     }
 
-    /** Obtains the value obtained in the current cell. This correponds to
-     *  the selected item number if limited options exist, or the text if
-     *  it is a free entry field.
+    /**
+     * Obtains the value obtained in the current cell. This correponds to the
+     * selected item number if limited options exist, or the text if it is a
+     * free entry field.
      */
     @Override
     public Object getCellEditorValue() {
@@ -50,15 +58,16 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
         }
     }
 
-    /** Creates a component to edit a specific cell in the attribute table.
-     *  This component, again, corresponds to a pull down if there are a
-     *  finite number of options, and a field if it is a free entry.
+    /**
+     * Creates a component to edit a specific cell in the attribute table. This
+     * component, again, corresponds to a pull down if there are a finite number
+     * of options, and a field if it is a free entry.
      *
-     *  @param table the table where the cell is stored.
-     *  @param value the value currently stored in the cell.
-     *  @param isSelected a flag indicating if the current cell is selected.
-     *   @param row the row position of the cell.
-     *  @param column the column position of the cell.
+     * @param table the table where the cell is stored.
+     * @param value the value currently stored in the cell.
+     * @param isSelected a flag indicating if the current cell is selected.
+     * @param row the row position of the cell.
+     * @param column the column position of the cell.
      */
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,

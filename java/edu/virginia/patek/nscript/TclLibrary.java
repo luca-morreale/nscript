@@ -6,37 +6,49 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
 import java.io.*;
 import java.util.*;
 
-/** A library is a collection of classes or TclSnippets, that can be used to
- *  build simulation scripts. nscript has four default libraries: "Topology",
- *  "Transport", "Application", "Utilities".
- *  The library class knows how to parse itself from a file.
+/**
+ * A library is a collection of classes or TclSnippets, that can be used to
+ * build simulation scripts. nscript has four default libraries: "Topology",
+ * "Transport", "Application", "Utilities". The library class knows how to parse
+ * itself from a file.
  */
 public class TclLibrary extends Object {
-    /** The name of the library. */
+
+    /**
+     * The name of the library.
+     */
     String name;
-    /** Internal name */
+    /**
+     * Internal name
+     */
     String TBName;
-    /** The version number of the library. */
+    /**
+     * The version number of the library.
+     */
     String version;
-    /** The collection of TclSnippets. */
+    /**
+     * The collection of TclSnippets.
+     */
     ArrayList<TclSnippet> snippets;
 
-    /** Constructs itself from a buffer.
-     *  @param br a buffer (file) from which the library parses itself.
+    /**
+     * Constructs itself from a buffer.
+     *
+     * @param br a buffer (file) from which the library parses itself.
      */
     public TclLibrary(BufferedReader br) {
         snippets = new ArrayList<TclSnippet>();
         readFromDisk(br);
     }
 
-    /** Constructs itself as an empty library. This was used for testing only,
-     *  not in use anymore.
+    /**
+     * Constructs itself as an empty library. This was used for testing only,
+     * not in use anymore.
      */
     public TclLibrary(String libName, String tbName) {
         setName(libName);
@@ -48,7 +60,7 @@ public class TclLibrary extends Object {
         return TBName;
     }
 
-    public void setTBName(String  newTBName) {
+    public void setTBName(String newTBName) {
         TBName = newTBName;
     }
 
@@ -56,7 +68,7 @@ public class TclLibrary extends Object {
         return name;
     }
 
-    public void setName(String  newName) {
+    public void setName(String newName) {
         name = newName;
     }
 
@@ -88,7 +100,7 @@ public class TclLibrary extends Object {
         return null;
     }
 
-    public void setSnippet(int index, TclSnippet  snippet) {
+    public void setSnippet(int index, TclSnippet snippet) {
         snippets.set(index, snippet);
     }
 

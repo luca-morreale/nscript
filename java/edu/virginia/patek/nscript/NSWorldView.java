@@ -6,24 +6,30 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import javax.swing.*;
 
-/** Implements a view that lists the elements (objects) that are part of
- * the current simulation script.
+/**
+ * Implements a view that lists the elements (objects) that are part of the
+ * current simulation script.
  */
 public class NSWorldView extends JPanel {
-    static final long serialVersionUID = 42L;
 
-    /** A reference to the simulation model. */
+    static final long serialVersionUID = 42L;
+    /**
+     * A reference to the simulation model.
+     */
     NSWorld w;
-    /** The list GUI element. */
+    /**
+     * The list GUI element.
+     */
     JList<String> l;
 
-    /** Constructor that copies a reference to the simulation model. */
+    /**
+     * Constructor that copies a reference to the simulation model.
+     */
     public NSWorldView(NSWorld inW) {
         super();
 
@@ -35,35 +41,49 @@ public class NSWorldView extends JPanel {
         add(sp, BorderLayout.CENTER);
     }
 
-    /** Updates the view when the model suffers changes. */
+    /**
+     * Updates the view when the model suffers changes.
+     */
     public void updateList() {
         l.setModel(new SWPListModel(w));
         updateUI();
     }
 
-    /** Implements the abstract list model to render the elements
-     *  in the list.
+    /**
+     * Implements the abstract list model to render the elements in the list.
      */
     class SWPListModel extends AbstractListModel<String> {
-        static final long serialVersionUID = 42L;
 
-        /** A reference to the model. */
+        static final long serialVersionUID = 42L;
+        /**
+         * A reference to the model.
+         */
         NSWorld W;
-        /** The constructor takes a reference to the model.
-         *  @param inW a reference to the simulation model. */
+
+        /**
+         * The constructor takes a reference to the model.
+         *
+         * @param inW a reference to the simulation model.
+         */
         public SWPListModel(NSWorld inW) {
             W = inW;
         }
 
-        /** Returns a string with a description of the ith model.
-         *  @return the description of the ith model as text. */
+        /**
+         * Returns a string with a description of the ith model.
+         *
+         * @return the description of the ith model as text.
+         */
         @Override
         public String getElementAt(int index) {
             return W.getObject(index).getName() + '(' + W.getObject(index).getSnippet().getName() + ')';
         }
 
-        /** Obtains the size of the array (in this case the size of the model.
-         *  @return the number of objects in the current simulation model. */
+        /**
+         * Obtains the size of the array (in this case the size of the model.
+         *
+         * @return the number of objects in the current simulation model.
+         */
         @Override
         public int getSize() {
             return W.getObjectCount();

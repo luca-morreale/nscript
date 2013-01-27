@@ -6,34 +6,38 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
 import javax.swing.*;
 import java.awt.*;
 
-/** A view that holds a list of the objects involved in a simulation.
- *  Not yet implemented. */
+/**
+ * A view that holds a list of the objects involved in a simulation. Not yet
+ * implemented.
+ */
 public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
+
     static final long serialVersionUID = 42L;
 
-    /** Default constructor. */
+    /**
+     * Default constructor.
+     */
     public NSWorldPane() {
         super(Messages.tr("empty"));
         setOpaque(true);
     }
 
-    /** Class that implements the rendering of the cells (rows) in the
-     *  world view.
+    /**
+     * Class that implements the rendering of the cells (rows) in the world
+     * view.
      */
     @Override
     public Component getListCellRendererComponent(
-        JList <? extends String > list,
-        String value,
-        int index,
-        boolean isSelected,
-        boolean cellHasFocus
-    ) {
+            JList<? extends String> list,
+            String value,
+            int index,
+            boolean isSelected,
+            boolean cellHasFocus) {
         setText(value);
 
         if (isSelected) {
@@ -46,5 +50,4 @@ public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
 
         return this;
     }
-
 }

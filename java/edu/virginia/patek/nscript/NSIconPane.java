@@ -6,43 +6,67 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
-/** Implements the representation of a class of objects (TclSnippet) in the
- *  ToolBox view. */
+/**
+ * Implements the representation of a class of objects (TclSnippet) in the
+ * ToolBox view.
+ */
 public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
+
     static final long serialVersionUID = 42L;
-
-    /** Constant to represent an OVAL icon. */
+    /**
+     * Constant to represent an OVAL icon.
+     */
     public static final int OVAL = 0;
-    /** Constant to represent an AGENT icon. */
+    /**
+     * Constant to represent an AGENT icon.
+     */
     public static final int AGENT = 1;
-    /** Constant to represent an APPLICATION icon. */
+    /**
+     * Constant to represent an APPLICATION icon.
+     */
     public static final int APPLICATION = 2;
-    /** Constant to represent an TRACE icon. */
+    /**
+     * Constant to represent an TRACE icon.
+     */
     public static final int TRACE = 3;
-    /** Constant to represent an TIMER icon. */
+    /**
+     * Constant to represent an TIMER icon.
+     */
     public static final int TIMER = 4;
-    /** Constant to represent an UTILS icon. */
+    /**
+     * Constant to represent an UTILS icon.
+     */
     public static final int UTILS = 5;
-    /** Constant to represent an LINK relation. */
+    /**
+     * Constant to represent an LINK relation.
+     */
     public static final int LINK = 6;
-    /** Constant to represent an ATTACH relation. */
+    /**
+     * Constant to represent an ATTACH relation.
+     */
     public static final int ATTACH = 7;
-    /** Constant to represent an CONNECT relation. */
+    /**
+     * Constant to represent an CONNECT relation.
+     */
     public static final int CONNECT = 8;
-
-    /** The icon of the object. */
+    /**
+     * The icon of the object.
+     */
     int icon;
-    /** The label of this entry. */
+    /**
+     * The label of this entry.
+     */
     String label;
 
-    /** Constructor that calls the father's constructor (JLabel), and
-     * initializes the values of the icon and the label. */
+    /**
+     * Constructor that calls the father's constructor (JLabel), and initializes
+     * the values of the icon and the label.
+     */
     public NSIconPane(int inIconID, String inLabel) {
         super(inLabel);
         icon = inIconID;
@@ -50,23 +74,27 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
         setOpaque(true);
     }
 
-    /** Displays the entry as an icon. */
+    /**
+     * Displays the entry as an icon.
+     */
     public void paintMe(Graphics g) {
         paintIcon(g, new Point(0, 0), getBounds().getSize(), icon);
         int w = (int) getBounds().getHeight();
         g.drawString(label, w + w / 10, w + 2 - 10);
     }
 
-    /** Returns a component in which the element is displayed.
-     *  @return components that displays the element. */
+    /**
+     * Returns a component in which the element is displayed.
+     *
+     * @return components that displays the element.
+     */
     @Override
     public Component getListCellRendererComponent(
-        JList <? extends TclSnippet > list,
-        TclSnippet value,
-        int index,
-        boolean isSelected,
-        boolean cellHasFocus
-    ) {
+            JList<? extends TclSnippet> list,
+            TclSnippet value,
+            int index,
+            boolean isSelected,
+            boolean cellHasFocus) {
         icon = value.getIcon();
         if (!value.isRelation) {
             setText(value.getName() + "(" + value.getBase() + ")");
@@ -86,7 +114,9 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
         return this;
     }
 
-    /** Displays the icon in the screen. */
+    /**
+     * Displays the icon in the screen.
+     */
     public void paintIcon(Graphics g, Point p, Dimension r, int iconIndex) {
         int x, y;
         int h = (int) r.getHeight();

@@ -6,53 +6,68 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import java.io.*;
 
-/** Implements the main application object for nscript. Interface element
- *  objects are created, library modules are loaded, and the instance of the
- *  model is created.
+/**
+ * Implements the main application object for nscript. Interface element objects
+ * are created, library modules are loaded, and the instance of the model is
+ * created.
  */
 public class NScript extends JFrame {
-    static final long serialVersionUID = 42L;
 
-    /** Library manager for the application. Contains the opened libraries. */
+    static final long serialVersionUID = 42L;
+    /**
+     * Library manager for the application. Contains the opened libraries.
+     */
     TclLibraryManager libManager;
-    /** An object representing the ns simulation environment, present in every
-     *  simulation script.
+    /**
+     * An object representing the ns simulation environment, present in every
+     * simulation script.
      */
     TclSnippet env;
-    /** A view containing the libraries and their available objects. */
+    /**
+     * A view containing the libraries and their available objects.
+     */
     SToolBar toolBox;
-    /** A view that imlements the edition of object attributes. */
+    /**
+     * A view that imlements the edition of object attributes.
+     */
     SObjectBrowser objectBrowser;
-    /** The main editing view, where the topology, transportation, and
+    /**
+     * The main editing view, where the topology, transportation, and
      * application components can be edited.
      */
     DMView mainView;
-    /** The world view, which is a list of the available objects in the
-     *  simulation.
+    /**
+     * The world view, which is a list of the available objects in the
+     * simulation.
      */
     NSWorldView worldView;
-    /** The model that stores the simulation objects. */
+    /**
+     * The model that stores the simulation objects.
+     */
     NSModel model;
-    /** The text view that shows the TclScript that results from the simulation
-     *  script.
+    /**
+     * The text view that shows the TclScript that results from the simulation
+     * script.
      */
     JTextArea tclView;
-    /** Last path explored file File Chooser */
+    /**
+     * Last path explored file File Chooser
+     */
     String lastpath;
 
-    /** Main constructor. Its responsibilities include creating the title
-     *  dialog box, the menu bar, toolbar, a library manager to store opened
-     *  libraries, its graphic representation (SToolBar), create the model,
-     *  and other relevant views, like the objects browser.
+    /**
+     * Main constructor. Its responsibilities include creating the title dialog
+     * box, the menu bar, toolbar, a library manager to store opened libraries,
+     * its graphic representation (SToolBar), create the model, and other
+     * relevant views, like the objects browser.
      */
     public NScript() {
         super(Messages.tr("nscript"));
@@ -138,10 +153,11 @@ public class NScript extends JFrame {
         ad.dispose();
     }
 
-    /** Reads the default values for the simulation environmen (the ns object),
-     *  from a file.
+    /**
+     * Reads the default values for the simulation environmen (the ns object),
+     * from a file.
      */
-    NSObject readEnvironment(String  envFileName) {
+    private NSObject readEnvironment(String envFileName) {
         File f;
         FileReader fr;
         BufferedReader br;
@@ -171,10 +187,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Prepares the toolbar and menu items, and relates them to the
-     *  handling routines.
+    /**
+     * Prepares the toolbar and menu items, and relates them to the handling
+     * routines.
      */
-    void prepareToolBarAndMenu(JToolBar toolbar, JMenuBar menuBar) {
+    private void prepareToolBarAndMenu(JToolBar toolbar, JMenuBar menuBar) {
         Icon newIcon = new ImageIcon(NScript.class.getResource("/pixmaps/new.png"));
         Icon openIcon = new ImageIcon(NScript.class.getResource("/pixmaps/open.png"));
         Icon saveIcon = new ImageIcon(NScript.class.getResource("/pixmaps/save.png"));
@@ -242,11 +259,12 @@ public class NScript extends JFrame {
         menuBar.add(helpMenu);
     }
 
-    /** Reads the list of default libraries from a file, and opens the
-     *  corresponding libraries, which are assumed to be stored in the 'libs'
-     *  subdirectory of the 'bin' directory.
+    /**
+     * Reads the list of default libraries from a file, and opens the
+     * corresponding libraries, which are assumed to be stored in the 'libs'
+     * subdirectory of the 'bin' directory.
      */
-    public void addDefaultLibraries(String defFileName) {
+    private void addDefaultLibraries(String defFileName) {
         File f;
         FileReader fr;
         BufferedReader br;
@@ -260,7 +278,7 @@ public class NScript extends JFrame {
             while ((newLine = br.readLine()) != null) {
                 if (libManager.addLibrary(newLine)) {
                     toolBox.addLibraryPane(
-                        libManager.getLibrary(libManager.getLibraryCount() - 1));
+                            libManager.getLibrary(libManager.getLibraryCount() - 1));
                 }
             }
         } catch (FileNotFoundException fnfe) {
@@ -270,8 +288,9 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Handles the 'Open Library' item of the 'File' menu by opening an open
-     *  file dialog, to allow the user to select a library to open.
+    /**
+     * Handles the 'Open Library' item of the 'File' menu by opening an open
+     * file dialog, to allow the user to select a library to open.
      */
     public void openLibraryAction() {
         File f;
@@ -286,8 +305,10 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Handles the save script option, that allows the user to export the
-     *  current script as a Tcl script, runnable script. */
+    /**
+     * Handles the save script option, that allows the user to export the
+     * current script as a Tcl script, runnable script.
+     */
     public String saveScript() {
         File f;
         FileOutputStream fos;
@@ -321,9 +342,10 @@ public class NScript extends JFrame {
         return null;
     }
 
-    /** Handles the 'Save' item of the 'File' menu, by allowing the user to
-     *  select a place to store the current script in a propiertary format.
-     *  This will soon be replaced by an XML format.
+    /**
+     * Handles the 'Save' item of the 'File' menu, by allowing the user to
+     * select a place to store the current script in a propiertary format. This
+     * will soon be replaced by an XML format.
      */
     public String saveFileAction() {
         File f;
@@ -359,25 +381,31 @@ public class NScript extends JFrame {
         return null;
     }
 
-    /** Handles closing of a model / application when the current simulation
-     *  script has suffered modifications. */
+    /**
+     * Handles closing of a model / application when the current simulation
+     * script has suffered modifications.
+     */
     public boolean reallyClose() {
         int selectedValue = JOptionPane.showConfirmDialog(
-                                getContentPane(),
-                                Messages.tr("close_confirm"),
-                                Messages.tr("close_confirm_title"),
-                                JOptionPane.YES_NO_OPTION,
-                                JOptionPane.QUESTION_MESSAGE);
+                getContentPane(),
+                Messages.tr("close_confirm"),
+                Messages.tr("close_confirm_title"),
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
         return (selectedValue == 0);
     }
 
-    /** Set directory in which next File Chooser will open */
+    /**
+     * Set directory in which next File Chooser will open
+     */
     void updateLastPath(File chosenfile) {
         this.lastpath = chosenfile.getPath();
     }
 
-    /** Implements the "Open" option of the "File" menu. Open a dialog box to
-     *  let the user select a file, and opens it. */
+    /**
+     * Implements the "Open" option of the "File" menu. Open a dialog box to let
+     * the user select a file, and opens it.
+     */
     public void openFileAction() {
         int nA, nO;
         int i, selected;
@@ -406,8 +434,8 @@ public class NScript extends JFrame {
                 // Read objects (gulp)
                 nO = Integer.parseInt(br.readLine());
                 br.readLine(); // Skip snippet and name information
-                ((NSObject)model.getObjectAt(0)).setName(br.readLine());
-                ((NSEntity)model.getObjectAt(0)).fromString(br);
+                ((NSObject) model.getObjectAt(0)).setName(br.readLine());
+                ((NSEntity) model.getObjectAt(0)).fromString(br);
                 for (i = 1; i < nO; i++) {
                     sName = br.readLine();
                     s = libManager.getSnippet(sName);
@@ -422,9 +450,9 @@ public class NScript extends JFrame {
                     }
                     if (s.isRelation) {
                         or = new NSRelation(s, br.readLine(), null, null);
-                        s.instantiateNSObject( or);
+                        s.instantiateNSObject(or);
                         or.fromString(br, model);
-                        model.addObject( or);
+                        model.addObject(or);
                     } else {
                         o = new NSEntity(s, br.readLine(), 0.0, 0.0);
                         s.instantiateNSObject(o);
@@ -442,8 +470,9 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Open a 'Open Lib' dialog box whenever a model is open that contains
-     *  an object that is not part of the currently opened library.
+    /**
+     * Open a 'Open Lib' dialog box whenever a model is open that contains an
+     * object that is not part of the currently opened library.
      */
     public TclSnippet searchLibAction(String snippetName) {
         TclSnippet s;
@@ -465,8 +494,11 @@ public class NScript extends JFrame {
         return s;
     }
 
-    /** Implements the handling of events at frame window level. */
+    /**
+     * Implements the handling of events at frame window level.
+     */
     class WindowEventHandler extends WindowAdapter {
+
         @Override
         public void windowClosing(WindowEvent evt) {
             if (!model.dirty() || reallyClose()) {
@@ -476,8 +508,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Action definitions for the 'New' action. */
+    /**
+     * Action definitions for the 'New' action.
+     */
     class NewAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public NewAction(String label, Icon icon) {
@@ -486,17 +521,21 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (model.dirty())
+            if (model.dirty()) {
                 if (!reallyClose()) {
                     return;
                 }
+            }
 
             model.newModel();
         }
     }
 
-    /** Action implementation of the 'Open' option. */
+    /**
+     * Action implementation of the 'Open' option.
+     */
     class OpenAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public OpenAction(String label, Icon icon) {
@@ -505,17 +544,21 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (model.dirty())
+            if (model.dirty()) {
                 if (!reallyClose()) {
                     return;
                 }
+            }
 
             openFileAction();
         }
     }
 
-    /** Action implementation of the 'Open Library' option. */
+    /**
+     * Action implementation of the 'Open Library' option.
+     */
     class OpenLibAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public OpenLibAction(String label, Icon icon) {
@@ -528,8 +571,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Action implementation of the 'Save' option. */
+    /**
+     * Action implementation of the 'Save' option.
+     */
     class SaveAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public SaveAction(String label, Icon icon) {
@@ -542,8 +588,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Action implementation of the 'Quit' option. */
+    /**
+     * Action implementation of the 'Quit' option.
+     */
     class QuitAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public QuitAction(String label, Icon icon) {
@@ -552,17 +601,21 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (model.dirty())
+            if (model.dirty()) {
                 if (!reallyClose()) {
                     return;
                 }
+            }
 
             System.exit(0);
         }
     }
 
-    /** Action implementation of the 'Clear' option. */
+    /**
+     * Action implementation of the 'Clear' option.
+     */
     class ClearAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public ClearAction(String label, Icon icon) {
@@ -575,8 +628,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Action implementation of the 'About...' option. */
+    /**
+     * Action implementation of the 'About...' option.
+     */
     class AboutAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public AboutAction(String label, Icon icon) {
@@ -589,8 +645,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Action implementation of the 'Edit Array...' menu option. */
+    /**
+     * Action implementation of the 'Edit Array...' menu option.
+     */
     class EditArrayAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public EditArrayAction(String label, Icon icon) {
@@ -603,8 +662,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Action implementation of the 'Export...' menu option. */
+    /**
+     * Action implementation of the 'Export...' menu option.
+     */
     class ExportAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public ExportAction(String label, Icon icon) {
@@ -617,8 +679,11 @@ public class NScript extends JFrame {
         }
     }
 
-    /** Action implementation of the 'Run...' menu option. */
+    /**
+     * Action implementation of the 'Run...' menu option.
+     */
     class RunAction extends AbstractAction {
+
         static final long serialVersionUID = 42L;
 
         public RunAction(String label, Icon icon) {
@@ -634,17 +699,20 @@ public class NScript extends JFrame {
                     Runtime.getRuntime().exec("ns " + fName);
                 } catch (IOException ioe) {
                     JOptionPane.showMessageDialog(
-                        getContentPane(),
-                        ioe.toString(),
-                        Messages.tr("ns_exec_error"),
-                        JOptionPane.ERROR_MESSAGE);
+                            getContentPane(),
+                            ioe.toString(),
+                            Messages.tr("ns_exec_error"),
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
     }
 
-    /** A filter of '.nss' files to be used in an 'Open File' dialog box. */
+    /**
+     * A filter of '.nss' files to be used in an 'Open File' dialog box.
+     */
     class LibFilter implements FileFilter {
+
         public LibFilter() {
             super();
         }

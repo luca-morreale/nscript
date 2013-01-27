@@ -6,47 +6,70 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
-/** An attribute of a TclSnippet. */
+/**
+ * An attribute of a TclSnippet.
+ */
 public class TclAttribute extends Object {
-    /** The name of the attribute. */
+
+    /**
+     * The name of the attribute.
+     */
     String name;
-    /** The default value of the attribute. */
+    /**
+     * The default value of the attribute.
+     */
     String defaultValue;
-    /** The list available options, as a String. */
+    /**
+     * The list available options, as a String.
+     */
     String options;
-    /** Flags if a class has a default value. */
+    /**
+     * Flags if a class has a default value.
+     */
     public boolean hasDefault;
-    /** FLags if a class has a finite set of options. */
+    /**
+     * FLags if a class has a finite set of options.
+     */
     public boolean hasOptions;
 
-    /** Constructor takes a string and parses the information.
-     *  @param s a string, usually read from a file. */
+    /**
+     * Constructor takes a string and parses the information.
+     *
+     * @param s a string, usually read from a file.
+     */
     public TclAttribute(String s) {
         parseSelf(s);
     }
 
     // Access methods
-    /** @return the name  of the attribute. */
+    /**
+     * @return the name of the attribute.
+     */
     public String getName() {
         return name;
     }
 
-    /** @return the default value of the attribute. */
+    /**
+     * @return the default value of the attribute.
+     */
     public String getDefault() {
         return defaultValue;
     }
 
-    /** @return the options from the attribute. */
+    /**
+     * @return the options from the attribute.
+     */
     public String getOptions() {
         return options;
     }
 
-    /** Procedure that parses a string looking for the
-     *  attribute name, its default value, and (optionally) list of options.
-     *  @param s the string containing the information.
+    /**
+     * Procedure that parses a string looking for the attribute name, its
+     * default value, and (optionally) list of options.
+     *
+     * @param s the string containing the information.
      */
     void parseSelf(String s) {
         int defaultIndex, optionsIndex;
@@ -88,7 +111,9 @@ public class TclAttribute extends Object {
         }
     }
 
-    /** Puts the attribute information as a single string. */
+    /**
+     * Puts the attribute information as a single string.
+     */
     @Override
     public String toString() {
         return name + " = " + defaultValue + " : " + options;

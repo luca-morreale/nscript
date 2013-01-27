@@ -6,39 +6,51 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/** Extends the JDialog object to implement the manipulation of index Arrays,
- *  that are part of the simulation interface. Arrays are used to create
- *  several objects that share the same behavior.
+/**
+ * Extends the JDialog object to implement the manipulation of index Arrays,
+ * that are part of the simulation interface. Arrays are used to create several
+ * objects that share the same behavior.
  */
 public class SArrayDialog extends JDialog implements ActionListener {
-    static final long serialVersionUID = 42L;
 
-    /** A reference to the simulation model. */
+    static final long serialVersionUID = 42L;
+    /**
+     * A reference to the simulation model.
+     */
     NSModel M;
-    /** A table where the information about the current arrays will be shown. */
+    /**
+     * A table where the information about the current arrays will be shown.
+     */
     JTable AT;
-    /** The 'Close' button. Finishes the edition process. */
+    /**
+     * The 'Close' button. Finishes the edition process.
+     */
     JButton closeBtn;
-    /** The 'Add' button. Adds a new index Array. */
+    /**
+     * The 'Add' button. Adds a new index Array.
+     */
     JButton addBtn;
-    /** The 'Remove' button. Removes the currently selected array. */
+    /**
+     * The 'Remove' button. Removes the currently selected array.
+     */
     JButton removeBtn;
-    /** The 'Remove All' button. Removes all the index Arrays in the model. */
+    /**
+     * The 'Remove All' button. Removes all the index Arrays in the model.
+     */
     JButton removeAllBtn;
 
-    /** The only constructor takes a reference to the model, and the
-     *  main frame, creates the interface and shows the dialog box on
-     *  the screen.
+    /**
+     * The only constructor takes a reference to the model, and the main frame,
+     * creates the interface and shows the dialog box on the screen.
      *
-     *  @param inM a reference to the simulation model.
-     *  @param pFrame the main frame of the application.
+     * @param inM a reference to the simulation model.
+     * @param pFrame the main frame of the application.
      */
     public SArrayDialog(NSModel inM, JFrame pFrame) {
         super(pFrame, Messages.tr("configure_index"), true);
@@ -69,9 +81,10 @@ public class SArrayDialog extends JDialog implements ActionListener {
         setVisible(true);
     }
 
-    /** Responds to the actions of all buttons.
+    /**
+     * Responds to the actions of all buttons.
      *
-     *  @param ae stores the information of the current event.
+     * @param ae stores the information of the current event.
      */
     @Override
     public void actionPerformed(ActionEvent ae) {

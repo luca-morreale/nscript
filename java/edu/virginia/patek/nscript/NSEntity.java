@@ -6,53 +6,69 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
-import java.io.*;
 import java.awt.*;
+import java.io.*;
 
-/** Implements the abstract class NSEditableObject to behave as an icon on the
- *  screen.
- *  This object fully implements position translation, detecting mouse clicks,
- *  and a function to discover if the object is 'engulfed' in a rectangle.
- *  The node can appear with any of the following icons:
- *  NODE: a circle.
- *  AGENT: a stack.
- *  APPLICATION: a diamond like figure.
- *  TIMER: a clock like figure.
- *  GENERIC: a generic figure, a circle inside a square. */
+/**
+ * Implements the abstract class NSEditableObject to behave as an icon on the
+ * screen. This object fully implements position translation, detecting mouse
+ * clicks, and a function to discover if the object is 'engulfed' in a
+ * rectangle. The node can appear with any of the following icons: NODE: a
+ * circle. AGENT: a stack. APPLICATION: a diamond like figure. TIMER: a clock
+ * like figure. GENERIC: a generic figure, a circle inside a square.
+ */
 public class NSEntity extends NSEditableObject {
-    /** The x coordinate of the position of the object.
-     *  x is in the [0,1] interval.
+
+    /**
+     * The x coordinate of the position of the object. x is in the [0,1]
+     * interval.
      */
     double x;
-    /** The y coordinate of the position of the object.
-     *  y is in the [0,1] interval.
+    /**
+     * The y coordinate of the position of the object. y is in the [0,1]
+     * interval.
      */
     double y;
-
-    /** Constant representing the NODE shape. */
+    /**
+     * Constant representing the NODE shape.
+     */
     public static final int NODE = 0;
-    /** Constant representing the AGENT shape. */
+    /**
+     * Constant representing the AGENT shape.
+     */
     public static final int AGENT = 1;
-    /** Constant representing the APPLICATION shape. */
+    /**
+     * Constant representing the APPLICATION shape.
+     */
     public static final int APPLICATION = 2;
-    /** Constant representing the TIMER shape. */
+    /**
+     * Constant representing the TIMER shape.
+     */
     public static final int TIMER = 3;
-    /** Constant representing the GENERIC shape. */
+    /**
+     * Constant representing the GENERIC shape.
+     */
     public static final int GENERIC = 4;
-    /** The normal width of a letter-size page. */
+    /**
+     * The normal width of a letter-size page.
+     */
     public static final int NOMINAL_WIDTH = 612;       // = 8.5" x 72 dpi
-    /** The size of the icon under a scale of 1:1 */
+    /**
+     * The size of the icon under a scale of 1:1
+     */
     public static final int SIZE = 16;             // Size under scale = 1.0
 
-    /** Basic constructor that calls the father's contructor, and
-     *  initializes the icons (x,y) coordinates.
-     *  @param inSnippet contains the base class information of the object.
-     *  @param inName the name of the object.
-     *  @param inX the initial x coordinate of the object.
-     *  @param inY the initial y coordinate of the object. */
+    /**
+     * Basic constructor that calls the father's contructor, and initializes the
+     * icons (x,y) coordinates.
+     *
+     * @param inSnippet contains the base class information of the object.
+     * @param inName the name of the object.
+     * @param inX the initial x coordinate of the object.
+     * @param inY the initial y coordinate of the object.
+     */
     public NSEntity(TclSnippet inSnippet, String inName, double inX, double inY) {
         super(inSnippet, inName);
 
@@ -60,42 +76,55 @@ public class NSEntity extends NSEditableObject {
         setY(inY);
     }
 
-    /** Sets the x coordinate position of the object. */
-    public void setX(double inX) {
+    /**
+     * Sets the x coordinate position of the object.
+     */
+    private void setX(double inX) {
         x = inX;
     }
 
-    /** Obtains the x coordinate position of the object.
-     *  @return the x position as a double in [0,1]. */
+    /**
+     * Obtains the x coordinate position of the object.
+     *
+     * @return the x position as a double in [0,1].
+     */
     public double getX() {
         return x;
     }
 
-    /** Sets the y coordinate position of the object.
-     *  @param inY the new position. */
-    public void setY(double inY) {
+    /**
+     * Sets the y coordinate position of the object.
+     *
+     * @param inY the new position.
+     */
+    private void setY(double inY) {
         y = inY;
     }
 
-    /** Obtains the y coordinate position of the object.
-     *  @return the y position as a double in [0,1]. */
+    /**
+     * Obtains the y coordinate position of the object.
+     *
+     * @return the y position as a double in [0,1].
+     */
     public double getY() {
         return y;
     }
 
-    /** Draw itself on the screen taken into consideration the 'selected'
-     *  status (selected object are drawn in blue color), the scale of the
-     *  drawing, the size of the output view, the icon used to represent the
-     *  object in the screen, and the multiplicity of the object (through the
-     *  use of arrays).
-     *  @param g_ a graphics context.
-     *  @param r the size of the view pane.*/
+    /**
+     * Draw itself on the screen taken into consideration the 'selected' status
+     * (selected object are drawn in blue color), the scale of the drawing, the
+     * size of the output view, the icon used to represent the object in the
+     * screen, and the multiplicity of the object (through the use of arrays).
+     *
+     * @param g_ a graphics context.
+     * @param r the size of the view pane.
+     */
     @Override
     public void drawSelf(Graphics g_, Dimension r) {
 
-        Graphics2D g = (Graphics2D)g_;
+        Graphics2D g = (Graphics2D) g_;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                           RenderingHints.VALUE_ANTIALIAS_ON);
+                RenderingHints.VALUE_ANTIALIAS_ON);
 
         Color color = Color.black;
         // Change the color to blue if the object has the 'Selected'
@@ -197,11 +226,14 @@ public class NSEntity extends NSEditableObject {
         }
     }
 
-    /** True if the position of the object is 'close' to the given mouse point.
-     *  It is used in select operations.
-     *  @param r the size of the view pane.
-     *  @param p the position of the mouse in view coordinates.
-     *  @return true if the element was hit by the point p, false otherwise. */
+    /**
+     * True if the position of the object is 'close' to the given mouse point.
+     * It is used in select operations.
+     *
+     * @param r the size of the view pane.
+     * @param p the position of the mouse in view coordinates.
+     * @return true if the element was hit by the point p, false otherwise.
+     */
     @Override
     public boolean isHit(Dimension r, Point p) {
         double inX, inY, distance, size2 = (double) NSEntity.SIZE / NSEntity.NOMINAL_WIDTH / 2;
@@ -217,13 +249,15 @@ public class NSEntity extends NSEditableObject {
         }
     }
 
-    /** Returns true if the element is contained in the rectangle contained in
-     *  the rectangle described by the points given.
-     *  @param r the size of the view pane.
-     *  @param p1 the first point of the rectangle.
-     *  @param p2 the second point marking the rectangle.
-     *  @return true if the element is contained by the rectangle,
-     *          false otherwise.
+    /**
+     * Returns true if the element is contained in the rectangle contained in
+     * the rectangle described by the points given.
+     *
+     * @param r the size of the view pane.
+     * @param p1 the first point of the rectangle.
+     * @param p2 the second point marking the rectangle.
+     * @return true if the element is contained by the rectangle, false
+     * otherwise.
      */
     @Override
     public boolean isContained(Dimension r, Point p1, Point p2) {
@@ -257,9 +291,12 @@ public class NSEntity extends NSEditableObject {
         }
     }
 
-    /** Moves the position of the object by the given amount.
-     *  @param r the size of the view pane.
-     *  @param byWhat the size of the translation. */
+    /**
+     * Moves the position of the object by the given amount.
+     *
+     * @param r the size of the view pane.
+     * @param byWhat the size of the translation.
+     */
     @Override
     public void moveBy(Dimension r, Dimension byWhat) {
         double dx, dy;
@@ -271,24 +308,27 @@ public class NSEntity extends NSEditableObject {
         setY(getY() + dy);
     }
 
-    /** Returns the element represented as a string. This routine is used to
-     *  store the element to disk.
-     *  @return the element written as a string. */
+    /**
+     * Returns the element represented as a string. This routine is used to
+     * store the element to disk.
+     *
+     * @return the element written as a string.
+     */
     @Override
     public String toString() {
-        String s = "";
-
-        s = super.toString();
-        s = s + Double.toString(x) + "\n" + Double.toString(y) + "\n";
+        String s = super.toString();
+        s += Double.toString(x) + "\n" + Double.toString(y) + "\n";
 
         return s;
     }
 
-    /** Reads the element from a budderedReader (stream), basically reading its
-     *  coordinates. The rest of the information is carried on higher levels of
-     *  the hierarchy.
-     *  @param br the stream that contains the object information, tipically a
-     *            file.
+    /**
+     * Reads the element from a budderedReader (stream), basically reading its
+     * coordinates. The rest of the information is carried on higher levels of
+     * the hierarchy.
+     *
+     * @param br the stream that contains the object information, tipically a
+     * file.
      */
     @Override
     public void fromString(BufferedReader br) {

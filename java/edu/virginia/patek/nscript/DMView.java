@@ -6,33 +6,39 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
-/** Implements the View part of the MVC paradigm by extending the JPanel object
- *  to handle mouse and key event handlers.  Implements the functionality
- *  related to rendering the view by setting the attributes of the output
- *  display, calculating the size of the output area and passing the
- *  information to each of the objects in the model, each of which implements
- *  the DMObject interface and knows how to draw itself in the provided
- *  context.
+/**
+ * Implements the View part of the MVC paradigm by extending the JPanel object
+ * to handle mouse and key event handlers. Implements the functionality related
+ * to rendering the view by setting the attributes of the output display,
+ * calculating the size of the output area and passing the information to each
+ * of the objects in the model, each of which implements the DMObject interface
+ * and knows how to draw itself in the provided context.
  */
 public class DMView extends JPanel {
-    static final long serialVersionUID = 42L;
 
-    /** A reference to the model object. */
+    static final long serialVersionUID = 42L;
+    /**
+     * A reference to the model object.
+     */
     DMModel M;
-    /** A referebce to the control object. */
+    /**
+     * A referebce to the control object.
+     */
     DMControl C;
-    /** The scale of the drawing */
+    /**
+     * The scale of the drawing
+     */
     double scale;
 
-    /** This constructor requires a reference to the model. It creates a new
-     *  controller object, and registers it as a listener for mouse, mouse
-     *  motion, and keyboard events.
+    /**
+     * This constructor requires a reference to the model. It creates a new
+     * controller object, and registers it as a listener for mouse, mouse
+     * motion, and keyboard events.
      */
     public DMView(DMModel inM) {
         M = inM;
@@ -46,10 +52,11 @@ public class DMView extends JPanel {
         setForeground(Color.black); // Set the foreground color.
     }
 
-    /** Here the rendering of the model takes places by: obtaining context
-     *  information, and passing it to all of the register objects in the model.
-     *  It also calls the control so that it can display any auxiliary lines
-     *  used in the edition process.
+    /**
+     * Here the rendering of the model takes places by: obtaining context
+     * information, and passing it to all of the register objects in the model.
+     * It also calls the control so that it can display any auxiliary lines used
+     * in the edition process.
      */
     @Override
     public void paint(Graphics g) {
@@ -74,14 +81,15 @@ public class DMView extends JPanel {
         C.drawControls(g);
     }
 
-    /** Set a new scale for the drawing. Effectively, it resets the size of the
-     *  drawing pane, which is the used by the objects to rescale themselves
-     *  accordingly.
+    /**
+     * Set a new scale for the drawing. Effectively, it resets the size of the
+     * drawing pane, which is the used by the objects to rescale themselves
+     * accordingly.
      */
     public void changeScale(double inNewScale) {
         Dimension r = getBounds().getSize();
 
-        setSize((int)(r.getWidth() * inNewScale / scale), (int)(r.getHeight() * inNewScale / scale));
+        setSize((int) (r.getWidth() * inNewScale / scale), (int) (r.getHeight() * inNewScale / scale));
         scale = inNewScale;
         validate();
     }

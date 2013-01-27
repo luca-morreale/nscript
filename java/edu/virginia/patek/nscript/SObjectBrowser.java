@@ -6,7 +6,6 @@
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
-
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
@@ -14,39 +13,56 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-/** Creates a panel that allows the user to modify the properties of an
- *  object. */
+/**
+ * Creates a panel that allows the user to modify the properties of an object.
+ */
 public class SObjectBrowser extends JPanel implements ActionListener {
-    static final long serialVersionUID = 42L;
 
-    /** A reference to the simulation model. */
+    static final long serialVersionUID = 42L;
+    /**
+     * A reference to the simulation model.
+     */
     NSModel M;
-    /** The default button from the interface. */
+    /**
+     * The default button from the interface.
+     */
     JButton defaultBtn;
-    /** The 'apply' button from the interface. */
+    /**
+     * The 'apply' button from the interface.
+     */
     JButton applyBtn;
-    /** A label that describes the current object. Typically its class. */
+    /**
+     * A label that describes the current object. Typically its class.
+     */
     JLabel description;
-    /** The name field, where the user sets and edits the name of the selected
-     *  object.
+    /**
+     * The name field, where the user sets and edits the name of the selected
+     * object.
      */
     JTextField nameField;
-    /** The name label. "Name: " */
+    /**
+     * The name label. "Name: "
+     */
     JLabel name;
-    /** A drop down index containing the available indices + the 'None' entry.
-     *  Through this element, the user can specify if a given object is
-     *  indexed by a given array.
+    /**
+     * A drop down index containing the available indices + the 'None' entry.
+     * Through this element, the user can specify if a given object is indexed
+     * by a given array.
      */
     JComboBox<NSArray> arrayIndex;
-    /** The attribute table, where the object properties are listed, and the
-     *  user can modify.
+    /**
+     * The attribute table, where the object properties are listed, and the user
+     * can modify.
      */
     JTable attrTable;
-    /** A reference to the current object being edited. */
+    /**
+     * A reference to the current object being edited.
+     */
     NSObject o = null;
 
-    /** The default constructor receives a reference to the current
-     *  simulation model.
+    /**
+     * The default constructor receives a reference to the current simulation
+     * model.
      */
     public SObjectBrowser(NSModel inModel) {
         super();
@@ -90,8 +106,9 @@ public class SObjectBrowser extends JPanel implements ActionListener {
         setBorder(new EmptyBorder(2, 2, 2, 2));
     }
 
-    /** Provides an interface through which the program can advertise changes
-     *  in the simulation model.
+    /**
+     * Provides an interface through which the program can advertise changes in
+     * the simulation model.
      */
     public void selectionChanged() {
         NSRelation or;
@@ -102,13 +119,13 @@ public class SObjectBrowser extends JPanel implements ActionListener {
         for (i = 0; i < M.getSize(); i++) {
             if (M.getObjectAt(i).isSelected()) {
                 oc++;
-                o = (NSObject)M.getObjectAt(i);
+                o = (NSObject) M.getObjectAt(i);
             }
         }
         if (oc == 1) {
             nameField.setText(o.getName());
             if (o.getSnippet().isRelation) {
-                or = (NSRelation)o;
+                or = (NSRelation) o;
                 description.setText(Messages.tr("relates") + " (" + or.getFrom().getName() + ", " + or.getTo().getName() + ")");
             } else {
                 description.setText(Messages.tr("entity_class") + ": " + o.getSnippet().getName() + " : " + o.getSnippet().getBase());
@@ -142,9 +159,9 @@ public class SObjectBrowser extends JPanel implements ActionListener {
         }
     }
 
-    /** Implements the ActionListener interface by responding to the
-     *  different actions the interface elements generate when manipulated
-     *  by the user.
+    /**
+     * Implements the ActionListener interface by responding to the different
+     * actions the interface elements generate when manipulated by the user.
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -180,7 +197,6 @@ public class SObjectBrowser extends JPanel implements ActionListener {
             }
         }
     }
-
 //  /** Responds to changes in the selection of the list. */
 //  public void itemStateChanged(ItemEvent e)
 //  {
