@@ -344,11 +344,11 @@ public class NSModel extends NSWorld implements DMModel {
 
         String s = Integer.toString(getArrayCount()) + "\n";
         for (i = 0; i < getArrayCount(); i++) {
-            s = s + getArray(i).toString();
+            s += getArray(i).toString();
         }
         s = s + Integer.toString(objects.size()) + "\n";
         for (i = 0; i < objects.size(); i++) {
-            s = s + ((NSObject) getObjectAt(i)).toString();
+            s += ((NSObject) getObjectAt(i)).toString();
         }
         return s;
     }

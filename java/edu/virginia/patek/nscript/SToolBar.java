@@ -145,7 +145,7 @@ public class SToolBar extends JPanel implements ActionListener {
          *
          * @param inLib a reference to the library.
          */
-        public STBListModel(TclLibrary inLib) {
+        STBListModel(TclLibrary inLib) {
             lib = inLib;
         }
 

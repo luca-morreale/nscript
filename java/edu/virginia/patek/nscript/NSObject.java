@@ -53,7 +53,7 @@ public class NSObject extends Object {
      *
      * @return a reference to the TclSnippet object.
      */
-    public final TclSnippet getSnippet() {
+    public TclSnippet getSnippet() {
         return snippet;
     }
 
@@ -62,7 +62,7 @@ public class NSObject extends Object {
      *
      * @param inName the new name for the object.
      */
-    public final void setName(String inName) {
+    public void setName(String inName) {
         name = inName;
     }
 

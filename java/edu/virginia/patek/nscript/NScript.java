@@ -171,7 +171,7 @@ public class NScript extends JFrame {
             s = "";
             do {
                 newLine = br.readLine();
-                s = s + newLine;
+                s += newLine;
             } while (newLine.indexOf("end") < 0);
             br.close();
             env = new TclSnippet(s);
@@ -515,7 +515,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public NewAction(String label, Icon icon) {
+        NewAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -538,7 +538,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public OpenAction(String label, Icon icon) {
+        OpenAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -561,7 +561,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public OpenLibAction(String label, Icon icon) {
+        OpenLibAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -578,7 +578,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public SaveAction(String label, Icon icon) {
+        SaveAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -595,7 +595,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public QuitAction(String label, Icon icon) {
+        QuitAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -618,7 +618,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public ClearAction(String label, Icon icon) {
+        ClearAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -635,7 +635,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public AboutAction(String label, Icon icon) {
+        AboutAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -653,7 +653,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public EditArrayAction(String label, Icon icon) {
+        EditArrayAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -671,7 +671,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public ExportAction(String label, Icon icon) {
+        ExportAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -688,7 +688,7 @@ public class NScript extends JFrame {
 
         static final long serialVersionUID = 42L;
 
-        public RunAction(String label, Icon icon) {
+        RunAction(String label, Icon icon) {
             super(label, icon);
         }
 
@@ -715,7 +715,7 @@ public class NScript extends JFrame {
      */
     class LibFilter implements FileFilter {
 
-        public LibFilter() {
+        LibFilter() {
             super();
         }
 

@@ -148,7 +148,7 @@ public class TclLibrary extends Object {
                 if (newLine == null) {
                     return false;
                 } else {
-                    s = s + newLine;
+                    s += newLine;
                 }
             } while (newLine.indexOf("end") < 0);
         } catch (IOException ioe) {

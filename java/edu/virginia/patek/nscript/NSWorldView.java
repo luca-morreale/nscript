@@ -65,7 +65,7 @@ public class NSWorldView extends JPanel {
          *
          * @param inW a reference to the simulation model.
          */
-        public SWPListModel(NSWorld inW) {
+        SWPListModel(NSWorld inW) {
             W = inW;
         }
 

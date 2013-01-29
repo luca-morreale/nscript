@@ -42,7 +42,7 @@ class NSRelation extends NSEditableObject implements DMObject {
      * @param inFrom the object where the relation starts.
      * @param inTo the object where the relation ends.
      */
-    public NSRelation(TclSnippet inSnippet, String inName, NSEntity inFrom, NSEntity inTo) {
+    NSRelation(TclSnippet inSnippet, String inName, NSEntity inFrom, NSEntity inTo) {
         super(inSnippet, inName);
         from = inFrom;
         to = inTo;

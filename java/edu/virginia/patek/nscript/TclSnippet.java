@@ -400,11 +400,11 @@ public class TclSnippet extends Object {
         for (i = 0; i < attributes.size(); i++) {
             s = s + "  " + attributes.get(i).toString() + "\n";
         }
-        s = s + "begin\n";
+        s += "begin\n";
         for (i = 0; i < patterns.size(); i++) {
             s = s + "  " + patterns.get(i).toString() + "\n";
         }
-        s = s + "end\n";
+        s += "end\n";
         return s;
     }
 
@@ -468,7 +468,7 @@ public class TclSnippet extends Object {
                             aname = w.getArray(i2).name;
                             asize = w.getArray(i2).elements;
                             preamble = preamble + "  for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
-                            epilogue = epilogue + "  }\n";
+                            epilogue += "  }\n";
                         }
                     }
                 }
@@ -489,12 +489,12 @@ public class TclSnippet extends Object {
             } else {
                 sApp = patternToTcl(p.pattern, w, o, sep);
             }
-            if (!sApp.trim().equals("")) {
+            if (sApp.trim().length() != 0) {
                 s = s + sApp + "\n";
             }
         }
 
-        if (s.trim().equals("")) {
+        if (s.trim().length() == 0) {
             return "";
         } else {
             return (preamble + s + epilogue).trim();
@@ -515,16 +515,16 @@ public class TclSnippet extends Object {
         String sNew = "";
 
         while ((i = pattern.indexOf(sep, iLast)) >= 0) {
-            sNew = sNew + pattern.substring(iLast, i);
+            sNew += pattern.substring(iLast, i);
             iLast = pattern.indexOf(sep, i + 1);
             if (iLast < 0) {
                 return Messages.tr("bad_formed_pattern");
             }
-            sNew = sNew + valueOf(w, o, pattern.substring(i + 1, iLast));
+            sNew += valueOf(w, o, pattern.substring(i + 1, iLast));
             iLast++;
         }
         if (iLast < pattern.length()) {
-            sNew = sNew + pattern.substring(iLast);
+            sNew += pattern.substring(iLast);
         }
         return sNew;
     }
