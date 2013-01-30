@@ -11,6 +11,8 @@ package edu.virginia.patek.nscript;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -179,10 +181,16 @@ public class NScript extends JFrame {
             env.instantiateNSObject(o);
             return o;
         } catch (FileNotFoundException fnfe) {
-            System.err.println(Messages.tr("env_default_not_found") + fnfe.toString());
+            LOG.log(Level.WARNING, "{0}{1}", new Object[]{
+                Messages.tr("env_default_not_found"),
+                fnfe.toString()
+            });
             return null;
         } catch (IOException ioe) {
-            System.err.println(Messages.tr("env_reading_error") + ioe.toString());
+            LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
+                Messages.tr("env_reading_error"),
+                ioe.toString()
+            });
             return null;
         }
     }
@@ -282,9 +290,15 @@ public class NScript extends JFrame {
                 }
             }
         } catch (FileNotFoundException fnfe) {
-            System.err.println(Messages.tr("lib_not_found") + newLine + ", " + fnfe.toString());
+            LOG.log(Level.WARNING, "{0}{1}, {2}", new Object[]{
+                Messages.tr("lib_not_found"),
+                newLine, fnfe.toString()
+            });
         } catch (IOException ioe) {
-            System.err.println(Messages.tr("lib_read_error") + ioe.toString());
+            LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
+                Messages.tr("lib_read_error"),
+                ioe.toString()
+            });
         }
     }
 
@@ -332,10 +346,12 @@ public class NScript extends JFrame {
                 fos.close();
                 return fch.getSelectedFile().getAbsolutePath();
             } catch (FileNotFoundException e) {
-                System.err.println(Messages.tr("file_open_error") + " " + e.toString());
+                LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
+                    Messages.tr("file_open_error"), e.toString()});
                 return null;
             } catch (IOException ioe) {
-                System.err.println(Messages.tr("file_write_error") + " " + ioe.toString());
+                LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
+                    Messages.tr("file_write_error"), ioe.toString()});
                 return null;
             }
         }
@@ -371,10 +387,12 @@ public class NScript extends JFrame {
                 model.setDirty(false);
                 return fch.getSelectedFile().getAbsolutePath();
             } catch (FileNotFoundException e) {
-                System.err.println(Messages.tr("file_open_error") + " " + e.toString());
+                LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
+                            Messages.tr("file_open_error"), e.toString()});
                 return null;
             } catch (IOException ioe) {
-                System.err.println(Messages.tr("file_write_error") + " " + ioe.toString());
+                LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
+                            Messages.tr("file_write_error"), ioe.toString()});
                 return null;
             }
         }
@@ -463,9 +481,11 @@ public class NScript extends JFrame {
                 model.updateAllViews();
                 model.setDirty(false);
             } catch (FileNotFoundException e) {
-                System.err.println(Messages.tr("file_open_error") + " " + e.toString());
+                LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
+                    Messages.tr("file_open_error"), e.toString()});
             } catch (IOException ioe) {
-                System.err.println(Messages.tr("file_write_error") + " " + ioe.toString());
+                LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
+                    Messages.tr("file_write_error"), ioe.toString()});
             }
         }
     }
@@ -721,15 +741,12 @@ public class NScript extends JFrame {
 
         @Override
         public boolean accept(File f) {
-            if (f.getName().indexOf(".lib") == f.getName().length() - 4) {
-                return true;
-            } else {
-                return false;
-            }
+            return (f.getName().indexOf(".lib") == f.getName().length() - 4);
         }
 
         public String getDescription() {
             return Messages.tr("lib_description");
         }
     }
+    private static final Logger LOG = Logger.getLogger(NScript.class.getName());
 }

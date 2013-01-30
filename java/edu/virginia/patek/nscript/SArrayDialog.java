@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -106,4 +107,5 @@ public class SArrayDialog extends JDialog implements ActionListener {
             AT.setModel(new SArrayTableModel(M));
         }
     }
+    private static final Logger LOG = Logger.getLogger(SArrayDialog.class.getName());
 }

@@ -9,6 +9,7 @@
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -179,4 +180,5 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
                 break;
         }
     }
+    private static final Logger LOG = Logger.getLogger(NSIconPane.class.getName());
 }

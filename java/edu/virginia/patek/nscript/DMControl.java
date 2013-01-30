@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Logger;
 
 /**
  * DMControl.java
@@ -389,4 +390,5 @@ public class DMControl extends KeyAdapter
             M.removeSelected();
         }
     }
+    private static final Logger LOG = Logger.getLogger(DMControl.class.getName());
 }

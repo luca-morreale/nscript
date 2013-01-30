@@ -9,6 +9,7 @@
 package edu.virginia.patek.nscript;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Defines storage for the elements in a simulation. Stores objects, as well as
@@ -95,7 +96,7 @@ public class NSWorld extends Object {
         if (inIndex >= 0 && inIndex < arrays.size()) {
             return arrays.get(inIndex);
         } else {
-            System.err.println(Messages.tr("array_out_of_bonds"));
+            LOG.severe(Messages.tr("array_out_of_bonds"));
             return null;
         }
     }
@@ -189,4 +190,5 @@ public class NSWorld extends Object {
     public String toString(int dos) {
         return getEnvironment().getName();
     }
+    private static final Logger LOG = Logger.getLogger(NSWorld.class.getName());
 }

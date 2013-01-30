@@ -8,6 +8,8 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Main {
@@ -22,15 +24,19 @@ public class Main {
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
         } catch (UnsupportedLookAndFeelException e) {
-            System.err.println(Messages.tr("no_native_laf_error"));
+            LOG.warning(Messages.tr("no_native_laf_error"));
         } catch (ClassNotFoundException e) {
-            System.err.println(Messages.tr("no_native_laf_error"));
+            LOG.warning(Messages.tr("no_native_laf_error"));
         } catch (InstantiationException e) {
-            System.err.println(Messages.tr("no_native_laf_error"));
+            LOG.warning(Messages.tr("no_native_laf_error"));
         } catch (IllegalAccessException e) {
-            System.err.println(Messages.tr("no_native_laf_error"));
+            LOG.warning(Messages.tr("no_native_laf_error"));
         }
+
+        // Disabling INFO messages (debug)
+        Logger.getLogger("").setLevel(Level.WARNING);
 
         new NScript();
     }
+    private static final Logger LOG = Logger.getLogger(Main.class.getName());
 }

@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.util.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -96,4 +97,5 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
         }
         return cb;
     }
+    private static final Logger LOG = Logger.getLogger(SObjectCellEditor.class.getName());
 }

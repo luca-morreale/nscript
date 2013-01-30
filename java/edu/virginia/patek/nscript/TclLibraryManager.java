@@ -10,6 +10,8 @@ package edu.virginia.patek.nscript;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Manages the set of opened libraries in the environment. Among other things,
@@ -108,7 +110,8 @@ public class TclLibraryManager extends Object {
                 return false;
             }
         } catch (FileNotFoundException e) {
-            System.err.println(Messages.tr("library_not_found") + e.toString());
+            LOG.log(Level.WARNING, "{0}{1}", new Object[]{
+                Messages.tr("library_not_found"), e.toString()});
             return false;
         }
     }
@@ -205,4 +208,5 @@ public class TclLibraryManager extends Object {
         }
         return null;
     }
+    private static final Logger LOG = Logger.getLogger(TclLibraryManager.class.getName());
 }

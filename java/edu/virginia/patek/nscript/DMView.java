@@ -9,6 +9,7 @@
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -67,7 +68,7 @@ public class DMView extends JPanel {
         // Set the font, and obtain the context information so that each
         // of the objects can draw themselves.
         g.setFont(new Font("Helvetica", Font.PLAIN, 9));
-        // System.err.println("Starting paint...");
+        // LOG.info("Starting paint...");
         r = getBounds().getSize();
 
         // Call each of the objects in the model, and tell them to draw
@@ -75,7 +76,7 @@ public class DMView extends JPanel {
         for (i = 0; i < M.getSize(); i++) {
             M.getObjectAt(i).drawSelf(g, r);
         }
-        // System.err.println("Ending paint...");
+        // LOG.info("Ending paint...");
 
         // Draws the auxiliary controls (line or rectangle being drawn).
         C.drawControls(g);
@@ -93,4 +94,5 @@ public class DMView extends JPanel {
         scale = inNewScale;
         validate();
     }
+    private static final Logger LOG = Logger.getLogger(DMView.class.getName());
 }

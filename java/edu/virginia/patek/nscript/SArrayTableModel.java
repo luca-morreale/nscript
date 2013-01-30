@@ -8,6 +8,7 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.util.logging.Logger;
 import javax.swing.table.*;
 
 /**
@@ -126,4 +127,5 @@ public class SArrayTableModel extends AbstractTableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return true;
     }
+    private static final Logger LOG = Logger.getLogger(SArrayTableModel.class.getName());
 }

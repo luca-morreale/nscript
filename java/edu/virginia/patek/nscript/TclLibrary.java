@@ -10,6 +10,8 @@ package edu.virginia.patek.nscript;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A library is a collection of classes or TclSnippets, that can be used to
@@ -132,7 +134,8 @@ public class TclLibrary extends Object {
 
             while (readSnippet(br)) {}
         } catch (IOException ioe) {
-            System.err.println(Messages.tr("library_read_error") + ioe.toString());
+            LOG.log(Level.WARNING, "{0}{1}", new Object[]{
+                Messages.tr("library_read_error"), ioe.toString()});
             return false;
         }
         return true;
@@ -152,13 +155,15 @@ public class TclLibrary extends Object {
                 }
             } while (newLine.indexOf("end") < 0);
         } catch (IOException ioe) {
-            System.err.println(Messages.tr("snippet_read_error") + ioe.toString());
+            LOG.log(Level.WARNING, "{0}{1}", new Object[]{
+                Messages.tr("snippet_read_error"), ioe.toString()});
         }
         t = new TclSnippet(s);
         if (!nameExists(t.getName())) {
             addSnippet(t);
         } else {
-            System.err.println(Messages.tr("snippet_already_in_library") + t.getName());
+            LOG.log(Level.WARNING, "{0}{1}", new Object[]{
+                Messages.tr("snippet_already_in_library"), t.getName()});
         }
         return true;
     }
@@ -174,4 +179,6 @@ public class TclLibrary extends Object {
         }
         return s;
     }
+
+    private static final Logger LOG = Logger.getLogger(TclLibrary.class.getName());
 }

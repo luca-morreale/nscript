@@ -8,6 +8,8 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.util.logging.Logger;
+
 /**
  * Holds the information about an array in nscript. An array is used in nscript
  * to do repetitive tasks such as creating 100 TCP sessions, all with the same
@@ -43,4 +45,5 @@ public class NSArray extends Object {
     public String toString() {
         return name + "\n" + Integer.toString(elements) + "\n";
     }
+    private static final Logger LOG = Logger.getLogger(NSArray.class.getName());
 }

@@ -9,6 +9,7 @@
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -50,4 +51,5 @@ public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
 
         return this;
     }
+    private static final Logger LOG = Logger.getLogger(NSWorldPane.class.getName());
 }

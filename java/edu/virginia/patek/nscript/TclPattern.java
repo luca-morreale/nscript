@@ -8,6 +8,8 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.util.logging.Logger;
+
 /**
  * A TclPatterns embodies the part of a snippet that translates the information
  * into Tcl code. A snippet can have one or more patterns.
@@ -87,4 +89,5 @@ public class TclPattern extends Object {
             return pattern;
         }
     }
+    private static final Logger LOG = Logger.getLogger(TclPattern.class.getName());
 }

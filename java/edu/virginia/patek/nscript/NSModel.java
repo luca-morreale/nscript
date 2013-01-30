@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.util.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -370,4 +371,5 @@ public class NSModel extends NSWorld implements DMModel {
     public void setDirty(boolean dirtyState) {
         isDirty = dirtyState;
     }
+    private static final Logger LOG = Logger.getLogger(NSModel.class.getName());
 }

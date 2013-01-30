@@ -8,6 +8,7 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.util.logging.Logger;
 import javax.swing.table.*;
 
 /**
@@ -133,4 +134,5 @@ public class SObjectTableModel extends AbstractTableModel {
             return true;
         }
     }
+    private static final Logger LOG = Logger.getLogger(SObjectTableModel.class.getName());
 }

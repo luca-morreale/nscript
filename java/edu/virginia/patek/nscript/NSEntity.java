@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.io.*;
+import java.util.logging.Logger;
 
 /**
  * Implements the abstract class NSEditableObject to behave as an icon on the
@@ -337,7 +338,8 @@ public class NSEntity extends NSEditableObject {
             setX(Double.parseDouble(br.readLine()));
             setY(Double.parseDouble(br.readLine()));
         } catch (IOException ioe) {
-            System.err.println(Messages.tr("reading_object_error") + ioe.toString());
+            LOG.severe(Messages.tr("reading_object_error") + ioe.toString());
         }
     }
+    private static final Logger LOG = Logger.getLogger(NSEntity.class.getName());
 }

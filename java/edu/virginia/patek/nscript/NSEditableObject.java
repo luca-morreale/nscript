@@ -9,6 +9,7 @@
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
+import java.util.logging.Logger;
 
 /**
  * A generic extension to NSObject that implements the DMObject interface to
@@ -106,4 +107,5 @@ public class NSEditableObject extends NSObject implements DMObject {
     @Override
     public void moveBy(Dimension r, Dimension byWhat) {
     }
+    private static final Logger LOG = Logger.getLogger(NSEditableObject.class.getName());
 }

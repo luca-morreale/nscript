@@ -10,6 +10,8 @@ package edu.virginia.patek.nscript;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Defines the basic behavior of an object that will be part of a simulation
@@ -183,7 +185,11 @@ public class NSObject extends Object {
                 setAttribute(i, br.readLine());
             }
         } catch (IOException ioe) {
-            System.out.println(Messages.tr("reading_object_error") + ioe.toString());
+            LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
+                Messages.tr("reading_object_error"),
+                ioe.toString()
+            });
         }
     }
+    private static final Logger LOG = Logger.getLogger(NSObject.class.getName());
 }

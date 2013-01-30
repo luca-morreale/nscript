@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -90,4 +91,5 @@ public class SAboutDialog extends JDialog implements ActionListener {
             dispose();
         }
     }
+    private static final Logger LOG = Logger.getLogger(SAboutDialog.class.getName());
 }

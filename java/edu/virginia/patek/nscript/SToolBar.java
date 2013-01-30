@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -172,4 +173,5 @@ public class SToolBar extends JPanel implements ActionListener {
             return lib.getSnippetCount();
         }
     }
+    private static final Logger LOG = Logger.getLogger(SToolBar.class.getName());
 }

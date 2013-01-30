@@ -9,6 +9,7 @@
 package edu.virginia.patek.nscript;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Messages singleton for holding all translations
@@ -42,4 +43,5 @@ public class Messages {
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }
+    private static final Logger LOG = Logger.getLogger(Messages.class.getName());
 }

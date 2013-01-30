@@ -9,6 +9,7 @@
 package edu.virginia.patek.nscript;
 
 import java.awt.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -89,4 +90,5 @@ public class NSWorldView extends JPanel {
             return W.getObjectCount();
         }
     }
+    private static final Logger LOG = Logger.getLogger(NSWorldView.class.getName());
 }

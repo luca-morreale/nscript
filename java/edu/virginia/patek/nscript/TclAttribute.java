@@ -8,6 +8,8 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.util.logging.Logger;
+
 /**
  * An attribute of a TclSnippet.
  */
@@ -118,4 +120,5 @@ public class TclAttribute extends Object {
     public String toString() {
         return name + " = " + defaultValue + " : " + options;
     }
+    private static final Logger LOG = Logger.getLogger(TclAttribute.class.getName());
 }

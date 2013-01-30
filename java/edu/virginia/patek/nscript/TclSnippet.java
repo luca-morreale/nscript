@@ -9,6 +9,8 @@
 package edu.virginia.patek.nscript;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents a template or class of objects in the simulation. A snippet
@@ -131,11 +133,11 @@ public class TclSnippet extends Object {
         endIdx = s.indexOf("end");
 
         head = s.substring(0, headEndIdx).trim();
-        // System.err.println("HEAD:\n"+head);
+        LOG.log(Level.INFO, "HEAD:\n{0}", head);
         attr = s.substring(headEndIdx + 1, beginIdx).trim();
-        //  System.err.println("ATTRIBUTES:\n"+attr);
+        LOG.log(Level.INFO, "ATTRIBUTES:\n{0}", attr);
         patt = s.substring(beginIdx + 5, endIdx).trim();
-        //  System.err.println("PATTERNS:\n"+patt);
+        LOG.log(Level.INFO, "PATTERNS:\n{0}", patt);
 
         StringTokenizer st = new StringTokenizer(head);
         a = st.nextToken();
@@ -170,7 +172,8 @@ public class TclSnippet extends Object {
             setLineStyle(Integer.parseInt(st.nextToken()));
             setLineWidth(Integer.parseInt(st.nextToken()));
             setEndStyle(Integer.parseInt(st.nextToken()));
-            //   System.err.println("Read relation snippet: " + baseStyle + "," + lineStyle + "," + lineWidth + "," + endStyle );
+            LOG.log(Level.INFO, "Read relation snippet: {0},{1},{2},{3}",
+                    new Object[]{baseStyle, lineStyle, lineWidth, endStyle});
         } else {
             setBase(st.nextToken());
             setIcon(Integer.parseInt(st.nextToken()));
@@ -582,4 +585,5 @@ public class TclSnippet extends Object {
             return o.getName();
         }
     }
+    private static final Logger LOG = Logger.getLogger(TclSnippet.class.getName());
 }

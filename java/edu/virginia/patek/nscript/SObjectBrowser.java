@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -212,4 +213,5 @@ public class SObjectBrowser extends JPanel implements ActionListener {
 //      M.setDirty(true);
 //    }
 //  }
+    private static final Logger LOG = Logger.getLogger(SObjectBrowser.class.getName());
 }

@@ -10,6 +10,8 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Implements the generic behavior of a relation element on the diagram. These
@@ -291,7 +293,11 @@ class NSRelation extends NSEditableObject implements DMObject {
             from = (NSEntity) M.getObject(br.readLine());
             to = (NSEntity) M.getObject(br.readLine());
         } catch (IOException ioe) {
-            System.out.println(Messages.tr("reading_object_error") + ioe.toString());
+            LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
+                Messages.tr("reading_object_error"),
+                ioe.toString()
+            });
         }
     }
+    private static final Logger LOG = Logger.getLogger(NSRelation.class.getName());
 }
