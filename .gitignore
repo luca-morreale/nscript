@@ -2,4 +2,6 @@ build
 .junk
 .classpath
 .project
-.settings
+nbproject
+packages/*.zip
+packages/*.pkg.*
