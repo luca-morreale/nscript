@@ -159,17 +159,16 @@ public class NSObject extends Object {
      */
     @Override
     public String toString() {
-        String str;
-        int i;
+        StringBuilder str = new StringBuilder();
 
-        str = snippet.getName() + "\n";
-        str = str + name + "\n";
-        str = str + Integer.toString(arrayIndex) + "\n";
+        str.append(snippet.getName()).append("\n")
+                .append(name).append("\n")
+                .append(Integer.toString(arrayIndex)).append("\n");
 
-        for (i = 0; i < attributes.size(); i++) {
-            str = str + attributes.get(i) + "\n";
+        for (int i = 0; i < attributes.size(); i++) {
+            str.append(attributes.get(i)).append("\n");
         }
-        return str;
+        return str.toString();
     }
 
     /**
@@ -178,10 +177,9 @@ public class NSObject extends Object {
      * @param br a BufferedReader object from which the values are read.
      */
     public void fromString(BufferedReader br) {
-        int i;
         try {
             setArrayIndex(Integer.parseInt(br.readLine()));
-            for (i = 0; i < attributes.size(); i++) {
+            for (int i = 0; i < attributes.size(); i++) {
                 setAttribute(i, br.readLine());
             }
         } catch (IOException ioe) {

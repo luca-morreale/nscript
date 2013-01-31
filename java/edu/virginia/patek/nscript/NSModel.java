@@ -322,15 +322,15 @@ public class NSModel extends NSWorld implements DMModel {
      * @return a String containing the Tcl script of the model.
      */
     public String toTcl() {
-        int i;
-        String s = "";
+        StringBuilder s = new StringBuilder();
 
-        for (i = 0; i < getSize(); i++) {
-            s = s + ((NSObject) getObjectAt(i)).getSnippet().toTcl(this, (NSObject) getObjectAt(i), '#') + '\n';
+        for (int i = 0; i < getSize(); i++) {
+            NSObject ob = (NSObject) getObjectAt(i);
+            s.append(ob.getSnippet().toTcl(this, ob, '#')).append('\n');
         }
 
-        s = s + "$" + ((NSObject) getObjectAt(0)).getName() + " run";
-        return s;
+        s.append("$").append(((NSObject) getObjectAt(0)).getName()).append(" run");
+        return s.toString();
     }
 
     /**
@@ -341,17 +341,17 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public String toString() {
-        int i;
+        StringBuilder s = new StringBuilder();
 
-        String s = Integer.toString(getArrayCount()) + "\n";
-        for (i = 0; i < getArrayCount(); i++) {
-            s += getArray(i).toString();
+        s.append(Integer.toString(getArrayCount())).append("\n");
+        for (int i = 0; i < getArrayCount(); i++) {
+            s.append(getArray(i).toString());
         }
-        s = s + Integer.toString(objects.size()) + "\n";
-        for (i = 0; i < objects.size(); i++) {
-            s += ((NSObject) getObjectAt(i)).toString();
+        s.append(Integer.toString(objects.size())).append("\n");
+        for (int i = 0; i < objects.size(); i++) {
+            s.append(((NSObject) getObjectAt(i)).toString());
         }
-        return s;
+        return s.toString();
     }
 
     /**

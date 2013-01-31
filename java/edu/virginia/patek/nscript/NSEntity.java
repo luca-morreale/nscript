@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.io.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -338,7 +339,8 @@ public class NSEntity extends NSEditableObject {
             setX(Double.parseDouble(br.readLine()));
             setY(Double.parseDouble(br.readLine()));
         } catch (IOException ioe) {
-            LOG.severe(Messages.tr("reading_object_error") + ioe.toString());
+            LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
+                Messages.tr("reading_object_error"), ioe.toString()});
         }
     }
     private static final Logger LOG = Logger.getLogger(NSEntity.class.getName());

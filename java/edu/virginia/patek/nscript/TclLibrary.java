@@ -143,22 +143,22 @@ public class TclLibrary extends Object {
 
     private boolean readSnippet(BufferedReader br) {
         TclSnippet t;
-        String s, newLine;
-        s = "";
+        StringBuilder s = new StringBuilder();
+        String newLine;
         try {
             do {
                 newLine = br.readLine();
                 if (newLine == null) {
                     return false;
                 } else {
-                    s += newLine;
+                    s.append(newLine);
                 }
             } while (newLine.indexOf("end") < 0);
         } catch (IOException ioe) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
                 Messages.tr("snippet_read_error"), ioe.toString()});
         }
-        t = new TclSnippet(s);
+        t = new TclSnippet(s.toString());
         if (!nameExists(t.getName())) {
             addSnippet(t);
         } else {

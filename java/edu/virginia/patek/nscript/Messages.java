@@ -16,22 +16,22 @@ import java.util.logging.Logger;
  */
 public class Messages {
 
-    private static ResourceBundle resources;
+    private static ResourceBundle resources =
+            ResourceBundle.getBundle("translations.strings",
+                Locale.getDefault());
     private static Messages instance;
 
     /**
      * Determines suitable locale and instantiate singleton
      */
     private Messages() {
-        // TODO
-        Locale locale = Locale.getDefault();
-        Messages.resources = ResourceBundle.getBundle("translations.strings", locale);
+        // nop
     }
 
     /**
      * Returns appropriate string for supplied ID
      */
-    public static String tr(String identifier) {
+    public synchronized static String tr(String identifier) {
         if (Messages.instance == null) {
             Messages.instance = new Messages();
         }

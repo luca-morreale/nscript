@@ -396,19 +396,17 @@ public class TclSnippet extends Object {
      */
     @Override
     public String toString() {
-        String s;
-        int i;
+        StringBuilder s = new StringBuilder(getName());
 
-        s = getName();
-        for (i = 0; i < attributes.size(); i++) {
-            s = s + "  " + attributes.get(i).toString() + "\n";
+        for (int i = 0; i < attributes.size(); i++) {
+            s.append("  ").append(attributes.get(i).toString()).append("\n");
         }
-        s += "begin\n";
-        for (i = 0; i < patterns.size(); i++) {
-            s = s + "  " + patterns.get(i).toString() + "\n";
+        s.append("begin\n");
+        for (int i = 0; i < patterns.size(); i++) {
+            s.append("  ").append(patterns.get(i).toString()).append("\n");
         }
-        s += "end\n";
-        return s;
+        s.append("end\n");
+        return s.toString();
     }
 
     /**
@@ -436,7 +434,9 @@ public class TclSnippet extends Object {
      * @return the Tcl code as a String.
      */
     public String toTcl(NSWorld w, NSObject o, char sep) {
-        String preamble = "", s, epilogue = "", aname;
+        String preamble = "";
+        String epilogue = "";
+        String aname;
         TclPattern p;
         NSRelation ro;
         NSArray a;
@@ -479,8 +479,8 @@ public class TclSnippet extends Object {
         }
 
         String sApp;
+        StringBuilder s = new StringBuilder();
         // Now pattern substitution
-        s = "";
         for (i = 0; i < patterns.size(); i++) {
             p = patterns.get(i);
             if (p.isConditional) {
@@ -493,11 +493,11 @@ public class TclSnippet extends Object {
                 sApp = patternToTcl(p.pattern, w, o, sep);
             }
             if (sApp.trim().length() != 0) {
-                s = s + sApp + "\n";
+                s.append(sApp).append("\n");
             }
         }
 
-        if (s.trim().length() == 0) {
+        if (s.toString().trim().length() == 0) {
             return "";
         } else {
             return (preamble + s + epilogue).trim();
@@ -515,21 +515,21 @@ public class TclSnippet extends Object {
      */
     String patternToTcl(String pattern, NSWorld w, NSObject o, char sep) {
         int i, iLast = 0;
-        String sNew = "";
+        StringBuilder sNew = new StringBuilder();
 
         while ((i = pattern.indexOf(sep, iLast)) >= 0) {
-            sNew += pattern.substring(iLast, i);
+            sNew.append(pattern.substring(iLast, i));
             iLast = pattern.indexOf(sep, i + 1);
             if (iLast < 0) {
                 return Messages.tr("bad_formed_pattern");
             }
-            sNew += valueOf(w, o, pattern.substring(i + 1, iLast));
+            sNew.append(valueOf(w, o, pattern.substring(i + 1, iLast)));
             iLast++;
         }
         if (iLast < pattern.length()) {
-            sNew += pattern.substring(iLast);
+            sNew.append(pattern.substring(iLast));
         }
-        return sNew;
+        return sNew.toString();
     }
 
     /**

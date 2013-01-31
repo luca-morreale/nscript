@@ -164,19 +164,19 @@ public class NScript extends JFrame {
         FileReader fr;
         BufferedReader br;
         NSObject o;
-        String s, newLine;
+        StringBuilder s = new StringBuilder();
+        String newLine;
 
         try {
             f = new File(envFileName);
             fr = new FileReader(f);
             br = new BufferedReader(fr);
-            s = "";
             do {
                 newLine = br.readLine();
-                s += newLine;
+                s.append(newLine);
             } while (newLine.indexOf("end") < 0);
             br.close();
-            env = new TclSnippet(s);
+            env = new TclSnippet(s.toString());
             o = new NSEntity(env, "ns", 0.01, 0.01);
             env.instantiateNSObject(o);
             return o;
@@ -289,6 +289,8 @@ public class NScript extends JFrame {
                             libManager.getLibrary(libManager.getLibraryCount() - 1));
                 }
             }
+            
+            br.close();
         } catch (FileNotFoundException fnfe) {
             LOG.log(Level.WARNING, "{0}{1}, {2}", new Object[]{
                 Messages.tr("lib_not_found"),
