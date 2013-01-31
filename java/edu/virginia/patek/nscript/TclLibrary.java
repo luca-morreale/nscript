@@ -113,10 +113,7 @@ public class TclLibrary extends Object {
     public boolean nameExists(String theName) {
         TclSnippet t;
         Iterator<TclSnippet> iter = snippets.iterator();
-        if (iter == null) {
-            return false;
-        }
-
+        
         while (iter.hasNext()) {
             t = iter.next();
             if (t.getName().equals(theName)) {
