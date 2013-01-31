@@ -64,6 +64,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     /**
      * The default constructor receives a reference to the current simulation
      * model.
+     * @param inModel 
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public SObjectBrowser(NSModel inModel) {
@@ -164,6 +165,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     /**
      * Implements the ActionListener interface by responding to the different
      * actions the interface elements generate when manipulated by the user.
+     * @param ae
      */
     @Override
     public void actionPerformed(ActionEvent ae) {

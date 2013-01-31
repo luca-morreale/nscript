@@ -38,6 +38,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
     /**
      * The constructor takes the object to be edited as an input, creates and
      * initializes the components in the application.
+     * @param inO 
      */
     public SObjectCellEditor(NSObject inO) {
         o = inO;
@@ -49,6 +50,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
      * Obtains the value obtained in the current cell. This correponds to the
      * selected item number if limited options exist, or the text if it is a
      * free entry field.
+     * @return
      */
     @Override
     public Object getCellEditorValue() {
@@ -69,6 +71,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
      * @param isSelected a flag indicating if the current cell is selected.
      * @param row the row position of the cell.
      * @param column the column position of the cell.
+     * @return
      */
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,

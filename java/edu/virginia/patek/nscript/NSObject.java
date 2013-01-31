@@ -40,6 +40,8 @@ public class NSObject extends Object {
 
     /**
      * Only constructor that requires a name and a class definition (Snippet).
+     * @param inSnippet
+     * @param inName 
      */
     public NSObject(TclSnippet inSnippet, String inName) {
         snippet = inSnippet;

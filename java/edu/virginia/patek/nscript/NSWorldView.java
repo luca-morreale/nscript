@@ -30,6 +30,7 @@ public class NSWorldView extends JPanel {
 
     /**
      * Constructor that copies a reference to the simulation model.
+     * @param inW 
      */
     public NSWorldView(NSWorld inW) {
         super();
