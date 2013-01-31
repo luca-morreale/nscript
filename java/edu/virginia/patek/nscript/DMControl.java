@@ -259,6 +259,10 @@ public class DMControl extends KeyAdapter
         int x1, x2, y1, y2;
 
         switch (action) {
+            case (0):
+                // FIXME workaround
+                break;
+
             case (DMControl.SELECTING):
                 if (start.getX() < end.getX()) {
                     x1 = (int) start.getX();
