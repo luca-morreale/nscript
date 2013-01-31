@@ -181,6 +181,9 @@ public class NSEntity extends NSEditableObject {
                     g.setColor(Color.white);
                     g.fillRect(dx - size2, dy - size2, size, size);
                     break;
+
+                default:
+                    throw new RuntimeException("Unexpected shape.");
             }
         }
 
@@ -218,6 +221,9 @@ public class NSEntity extends NSEditableObject {
                 g.drawOval(dx - size2, dy - size2, size, size);
                 g.drawRect(dx - size2, dy - size2, size, size);
                 break;
+
+            default:
+                throw new RuntimeException("Unexpected shape.");
 
         }
 

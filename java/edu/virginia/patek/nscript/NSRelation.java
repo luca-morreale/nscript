@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * Implements the generic behavior of a relation element on the diagram. These
  * objects are used to represent links, attach, and connect operations.
  */
-class NSRelation extends NSEditableObject implements DMObject {
+class NSRelation extends NSEditableObject {
 
     /**
      * The entity where the relation starts.

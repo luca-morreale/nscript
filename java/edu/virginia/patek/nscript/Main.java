@@ -24,13 +24,17 @@ public class Main {
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
         } catch (UnsupportedLookAndFeelException e) {
-            LOG.warning(Messages.tr("no_native_laf_error"));
+            LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
+                Messages.tr("no_native_laf_error"), e.toString()});
         } catch (ClassNotFoundException e) {
-            LOG.warning(Messages.tr("no_native_laf_error"));
+            LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
+                Messages.tr("no_native_laf_error"), e.toString()});
         } catch (InstantiationException e) {
-            LOG.warning(Messages.tr("no_native_laf_error"));
+            LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
+                Messages.tr("no_native_laf_error"), e.toString()});
         } catch (IllegalAccessException e) {
-            LOG.warning(Messages.tr("no_native_laf_error"));
+            LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
+                Messages.tr("no_native_laf_error"), e.toString()});
         }
 
         // Disabling INFO messages (debug)

@@ -38,7 +38,7 @@ public class NSWorld extends Object {
     public NSWorld(NSObject inEnvironment) {
         // For convenience, the environment is always at index 0, and cannot be deleted.
         objects = new ArrayList<NSObject>();
-        addObject(inEnvironment);
+        this.objects.add(inEnvironment);
         arrays = new ArrayList<NSArray>();
     }
 

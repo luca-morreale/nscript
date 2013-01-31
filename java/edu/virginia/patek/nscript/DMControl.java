@@ -188,6 +188,9 @@ public class DMControl extends KeyAdapter
                 M.addSimpleObject(V.getBounds().getSize(), me.getPoint(), true);
                 M.updateAllViews();
                 break;
+
+            default:
+                throw new RuntimeException("Unexpected edit state.");
         }
     }
 
@@ -238,6 +241,8 @@ public class DMControl extends KeyAdapter
                     action = DMControl.NONE;
                 }
                 break;
+            default:
+                throw new RuntimeException("Unexpected object mode.");
         }
 
     }
@@ -251,7 +256,7 @@ public class DMControl extends KeyAdapter
      * screen provided by the calling routine (in this case DMView).
      */
     public void drawControls(Graphics g) {
-        int x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+        int x1, x2, y1, y2;
 
         switch (action) {
             case (DMControl.SELECTING):
@@ -269,21 +274,19 @@ public class DMControl extends KeyAdapter
                     y2 = (int) start.getY();
                     y1 = (int) end.getY();
                 }
+                g.drawRect(x1, y1, x2 - x1, y2 - y1);
                 break;
+
             case (DMControl.LINKING):
                 x1 = (int) start.getX();
                 y1 = (int) start.getY();
                 x2 = (int) end.getX();
                 y2 = (int) end.getY();
-        }
-
-        switch (action) {
-            case (DMControl.SELECTING):
-                g.drawRect(x1, y1, x2 - x1, y2 - y1);
-                break;
-            case (DMControl.LINKING):
                 g.drawLine(x1, y1, x2, y2);
                 break;
+
+            default:
+                throw new RuntimeException("Unexpected action.");
         }
     }
 
@@ -327,7 +330,6 @@ public class DMControl extends KeyAdapter
                     M.setDirty(true);
                 }
                 M.updateAllViews();
-
                 break;
 
             case (DMControl.LINKING):
@@ -339,6 +341,10 @@ public class DMControl extends KeyAdapter
                         V.repaint();
                     }
                 }
+                break;
+
+            default:
+                throw new RuntimeException("Unexpected action.");
         }
         action = DMControl.NONE;
     }

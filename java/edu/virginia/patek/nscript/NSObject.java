@@ -47,7 +47,7 @@ public class NSObject extends Object {
         // Initialize the objects data structure
         attributes = new ArrayList<String>();
         arrayIndex = -1;
-        setName(inName);
+        this.name = inName;
     }
 
     /**

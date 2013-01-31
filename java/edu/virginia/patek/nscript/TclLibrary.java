@@ -170,14 +170,15 @@ public class TclLibrary extends Object {
 
     @Override
     public String toString() {
-        String s;
+        StringBuilder s = new StringBuilder();
         int i;
 
-        s = getName() + " : " + getTBName() + " : " + getVersion() + "\n";
+        s.append(getName()).append(" : ").append(getTBName())
+                .append(" : ").append(getVersion()).append("\n");
         for (i = 0; i < snippets.size(); i++) {
-            s = s + (snippets.get(i)).toString() + "\n";
+            s.append(snippets.get(i).toString()).append("\n");
         }
-        return s;
+        return s.toString();
     }
 
     private static final Logger LOG = Logger.getLogger(TclLibrary.class.getName());
