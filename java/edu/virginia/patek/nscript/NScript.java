@@ -88,7 +88,7 @@ public class NScript extends JFrame {
         toolBar.setOrientation(SwingConstants.HORIZONTAL);
 
         // Allows for "exit confirm"
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         // Set initial path
         this.lastpath = "examples";
@@ -289,7 +289,7 @@ public class NScript extends JFrame {
                             libManager.getLibrary(libManager.getLibraryCount() - 1));
                 }
             }
-            
+
             br.close();
         } catch (FileNotFoundException fnfe) {
             LOG.log(Level.WARNING, "{0}{1}, {2}", new Object[]{
@@ -324,6 +324,7 @@ public class NScript extends JFrame {
     /**
      * Handles the save script option, that allows the user to export the
      * current script as a Tcl script, runnable script.
+     * @return
      */
     public String saveScript() {
         File f;
@@ -364,6 +365,7 @@ public class NScript extends JFrame {
      * Handles the 'Save' item of the 'File' menu, by allowing the user to
      * select a place to store the current script in a propiertary format. This
      * will soon be replaced by an XML format.
+     * @return
      */
     public String saveFileAction() {
         File f;
@@ -404,6 +406,7 @@ public class NScript extends JFrame {
     /**
      * Handles closing of a model / application when the current simulation
      * script has suffered modifications.
+     * @return
      */
     public boolean reallyClose() {
         int selectedValue = JOptionPane.showConfirmDialog(
@@ -495,6 +498,8 @@ public class NScript extends JFrame {
     /**
      * Open a 'Open Lib' dialog box whenever a model is open that contains an
      * object that is not part of the currently opened library.
+     * @param snippetName
+     * @return
      */
     public TclSnippet searchLibAction(String snippetName) {
         TclSnippet s;
@@ -525,7 +530,6 @@ public class NScript extends JFrame {
         public void windowClosing(WindowEvent evt) {
             if (!model.dirty() || reallyClose()) {
                 dispose();
-                System.exit(0);
             }
         }
     }
@@ -623,13 +627,9 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (model.dirty()) {
-                if (!reallyClose()) {
-                    return;
-                }
+            if (!model.dirty() || reallyClose()) {
+                dispose();
             }
-
-            System.exit(0);
         }
     }
 
