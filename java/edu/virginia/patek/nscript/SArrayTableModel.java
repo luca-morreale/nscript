@@ -106,6 +106,7 @@ public class SArrayTableModel extends AbstractTableModel {
      * Name', and the second 'Size'.
      *
      * @param columnIndex the index of the column of interest.
+     * @return
      */
     @Override
     public String getColumnName(int columnIndex) {

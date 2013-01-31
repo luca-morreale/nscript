@@ -12,11 +12,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
+/**
+ *
+ * @author stefano
+ */
 public class Main {
 
     /**
      * Main procedure, simply creates a new NScript instance to initiate the
      * program.
+     * @param args
      */
     public static void main(String[] args) {
         // Set System LAF

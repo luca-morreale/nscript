@@ -40,6 +40,7 @@ public class DMView extends JPanel {
      * This constructor requires a reference to the model. It creates a new
      * controller object, and registers it as a listener for mouse, mouse
      * motion, and keyboard events.
+     * @param inM
      */
     public DMView(DMModel inM) {
         M = inM;
@@ -58,6 +59,7 @@ public class DMView extends JPanel {
      * information, and passing it to all of the register objects in the model.
      * It also calls the control so that it can display any auxiliary lines used
      * in the edition process.
+     * @param g
      */
     @Override
     public void paint(Graphics g) {
@@ -86,6 +88,7 @@ public class DMView extends JPanel {
      * Set a new scale for the drawing. Effectively, it resets the size of the
      * drawing pane, which is the used by the objects to rescale themselves
      * accordingly.
+     * @param inNewScale
      */
     public void changeScale(double inNewScale) {
         Dimension r = getBounds().getSize();

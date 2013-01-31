@@ -53,6 +53,8 @@ public class NSModel extends NSWorld implements DMModel {
      * The onlye constructor for this class of objects. Takes an initial
      * environment object (the ns object, that stores the simulation
      * environment), and a reference to the toolbox.
+     * @param inEnv
+     * @param inTBar
      */
     public NSModel(NSObject inEnv, SToolBar inTBar) {
         super(inEnv);
@@ -62,6 +64,10 @@ public class NSModel extends NSWorld implements DMModel {
 
     /**
      * Stores the references to all the views of the model.
+     * @param inEView
+     * @param inTclView
+     * @param inObjectPanel
+     * @param inWorldView
      */
     public void setViews(DMView inEView, JTextArea inTclView, SObjectBrowser inObjectPanel, NSWorldView inWorldView) {
         editView = inEView;
@@ -245,6 +251,7 @@ public class NSModel extends NSWorld implements DMModel {
 
     /**
      * Obtains the object at a given index.
+     * @param inIndex
      */
     @Override
     public DMObject getObjectAt(int inIndex) {
@@ -366,6 +373,7 @@ public class NSModel extends NSWorld implements DMModel {
 
     /**
      * Sets the state of the model to dirty. Called by all the editing methods.
+     * @param dirtyState
      */
     @Override
     public void setDirty(boolean dirtyState) {

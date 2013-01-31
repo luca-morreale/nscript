@@ -25,6 +25,7 @@ public class SObjectTableModel extends AbstractTableModel {
 
     /**
      * Constructor that takes a reference to the object to be edited.
+     * @param inObject
      */
     public SObjectTableModel(NSObject inObject) {
         o = inObject;
@@ -32,6 +33,7 @@ public class SObjectTableModel extends AbstractTableModel {
 
     /**
      * Updates the view by changing the object to be edited.
+     * @param inNewObject
      */
     public void updateView(NSObject inNewObject) {
         o = inNewObject;

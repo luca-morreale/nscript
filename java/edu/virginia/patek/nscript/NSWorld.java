@@ -185,6 +185,7 @@ public class NSWorld extends Object {
     /**
      * Returns the name of the environment variable.
      *
+     * @param dos
      * @return the name of the model's environment. (Unused).
      */
     public String toString(int dos) {

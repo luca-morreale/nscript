@@ -74,6 +74,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
     /**
      * Sets the message of the status label when the dialog box is used as a
      * progress bar (at startup to be specific.
+     * @param inMsg
      */
     public void setMessage(String inMsg) {
         ad.setText(inMsg);

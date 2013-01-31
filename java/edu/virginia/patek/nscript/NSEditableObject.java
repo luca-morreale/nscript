@@ -25,6 +25,8 @@ public class NSEditableObject extends NSObject implements DMObject {
 
     /**
      * Uses the constructor from NSObject.
+     * @param inSnippet
+     * @param inName
      */
     public NSEditableObject(TclSnippet inSnippet, String inName) {
         super(inSnippet, inName);

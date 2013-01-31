@@ -67,6 +67,8 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
     /**
      * Constructor that calls the father's constructor (JLabel), and initializes
      * the values of the icon and the label.
+     * @param inIconID
+     * @param inLabel
      */
     public NSIconPane(int inIconID, String inLabel) {
         super(inLabel);
@@ -77,6 +79,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
 
     /**
      * Displays the entry as an icon.
+     * @param g
      */
     public void paintMe(Graphics g) {
         paintIcon(g, new Point(0, 0), getBounds().getSize(), icon);
@@ -87,6 +90,11 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
     /**
      * Returns a component in which the element is displayed.
      *
+     * @param list
+     * @param value
+     * @param index
+     * @param cellHasFocus
+     * @param isSelected
      * @return components that displays the element.
      */
     @Override
@@ -117,6 +125,10 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
 
     /**
      * Displays the icon in the screen.
+     * @param g
+     * @param r
+     * @param p
+     * @param iconIndex
      */
     public void paintIcon(Graphics g, Point p, Dimension r, int iconIndex) {
         int x, y;

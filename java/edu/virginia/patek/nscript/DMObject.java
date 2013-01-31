@@ -65,11 +65,17 @@ public interface DMObject {
     /**
      * Similar to isHit, but in this case we are interested if the object is
      * contained in a rectangle with corners p1, p2.
+     * @param r
+     * @param p1
+     * @param p2
+     * @return
      */
     public boolean isContained(Dimension r, Point p1, Point p2);
 
     /**
      * What exactly are you try
+     * @param r
+     * @param byWhat
      */
     public void moveBy(Dimension r, Dimension byWhat);
 }

@@ -115,6 +115,7 @@ public class TclAttribute extends Object {
 
     /**
      * Puts the attribute information as a single string.
+     * @return
      */
     @Override
     public String toString() {

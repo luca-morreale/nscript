@@ -55,6 +55,7 @@ public interface DMModel {
      * relation.
      * @param oTo a reference to a 'node' object that marks the destination of
      * the relation.
+     * @param unselectOthers
      */
     public void addRelationObject(DMObject oFrom, DMObject oTo, boolean unselectOthers);
 
@@ -88,6 +89,7 @@ public interface DMModel {
 
     /**
      * Raise a flag if the model has been modified and requires saving.
+     * @param dirtyState
      */
     public void setDirty(boolean dirtyState);
 }

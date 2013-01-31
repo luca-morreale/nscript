@@ -30,6 +30,8 @@ public class Messages {
 
     /**
      * Returns appropriate string for supplied ID
+     * @param identifier
+     * @return
      */
     public synchronized static String tr(String identifier) {
         if (Messages.instance == null) {
@@ -39,6 +41,11 @@ public class Messages {
         return Messages.resources.getString(identifier);
     }
 
+    /**
+     *
+     * @return
+     * @throws CloneNotSupportedException
+     */
     @Override
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
