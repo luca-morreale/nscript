@@ -80,6 +80,7 @@ public class DMControl extends KeyAdapter
      *
      * @param r the dimension of the view.
      * @param p the location of the mouse when the button was pressed.
+     * @return
      */
     public DMObject modelIsHit(Dimension r, Point p) {
         int i;
@@ -145,10 +146,20 @@ public class DMControl extends KeyAdapter
         }
     }
 
+    /**
+     * Action on mouse entering the control.
+     *
+     * @param me
+     */
     @Override
     public void mouseEntered(MouseEvent me) {
     }
 
+    /**
+     * Action on mouse leaving the control.
+     *
+     * @param me
+     */
     @Override
     public void mouseExited(MouseEvent me) {
     }
@@ -353,6 +364,11 @@ public class DMControl extends KeyAdapter
         action = DMControl.NONE;
     }
 
+    /**
+     * Action on mouse moving inside the control.
+     * 
+     * @param me
+     */
     @Override
     public void mouseMoved(MouseEvent me) {
     }

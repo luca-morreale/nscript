@@ -51,6 +51,8 @@ public class TclLibrary extends Object {
     /**
      * Constructs itself as an empty library. This was used for testing only,
      * not in use anymore.
+     * @param libName
+     * @param tbName
      */
     public TclLibrary(String libName, String tbName) {
         setName(libName);
@@ -58,6 +60,11 @@ public class TclLibrary extends Object {
         snippets = new ArrayList<TclSnippet>();
     }
 
+    /**
+     * Get Library name as displayed in the toolbar.
+     *
+     * @return name of the Lib as displayed in the toolbar
+     */
     public String getTBName() {
         return TBName;
     }
@@ -66,6 +73,11 @@ public class TclLibrary extends Object {
         TBName = newTBName;
     }
 
+    /**
+     * Library name getter.
+     *
+     * @return library name
+     */
     public String getName() {
         return name;
     }
@@ -74,14 +86,30 @@ public class TclLibrary extends Object {
         name = newName;
     }
 
+    /**
+     * Get Library version.
+     *
+     * @return version
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     * Get number of elements contained in the library.
+     *
+     * @return size
+     */
     public int getSnippetCount() {
         return snippets.size();
     }
 
+    /**
+     * Get the snippet at a given index.
+     *
+     * @param index the index of the required snippet, zero based.
+     * @return TclSnipper or null if not found
+     */
     public TclSnippet getSnippet(int index) {
         if (index >= 0 && index < snippets.size()) {
             return snippets.get(index);
@@ -90,6 +118,13 @@ public class TclLibrary extends Object {
         }
     }
 
+    /**
+     * Get snippet by name. In case of multiple matches, only the first one
+     * is returned.
+     *
+     * @param theName name of the snippet
+     * @return TCLSnippet or null if not found
+     */
     public TclSnippet getSnippet(String theName) {
         TclSnippet t;
         Iterator<TclSnippet> iter = snippets.iterator();
@@ -102,18 +137,34 @@ public class TclLibrary extends Object {
         return null;
     }
 
+    /**
+     *
+     * @param index
+     * @param snippet
+     */
     public void setSnippet(int index, TclSnippet snippet) {
         snippets.set(index, snippet);
     }
 
+    /**
+     * Add a snippet to the library.
+     *
+     * @param snippet the snippet to add
+     */
     public void addSnippet(TclSnippet snippet) {
         snippets.add(snippet);
     }
 
+    /**
+     * Checks if a snippets with the same name is already registered.
+     *
+     * @param theName name to check against
+     * @return true if the name is already owned by a registred snippet
+     */
     public boolean nameExists(String theName) {
         TclSnippet t;
         Iterator<TclSnippet> iter = snippets.iterator();
-        
+
         while (iter.hasNext()) {
             t = iter.next();
             if (t.getName().equals(theName)) {
@@ -165,6 +216,12 @@ public class TclLibrary extends Object {
         return true;
     }
 
+    /**
+     * Gives a human readable representation of the Library.
+     * Current format is "$name:$toolbarname:$version"
+     *
+     * @return String representation
+     */
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
