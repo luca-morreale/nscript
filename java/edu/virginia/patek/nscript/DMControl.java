@@ -270,10 +270,6 @@ public class DMControl extends KeyAdapter
         int x1, x2, y1, y2;
 
         switch (action) {
-            case (0):
-                // FIXME workaround
-                break;
-
             case (DMControl.SELECTING):
                 if (start.getX() < end.getX()) {
                     x1 = (int) start.getX();
@@ -301,7 +297,7 @@ public class DMControl extends KeyAdapter
                 break;
 
             default:
-                throw new RuntimeException("Unexpected action.");
+                break;
         }
     }
 
@@ -366,7 +362,7 @@ public class DMControl extends KeyAdapter
 
     /**
      * Action on mouse moving inside the control.
-     * 
+     *
      * @param me
      */
     @Override
