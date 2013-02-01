@@ -331,7 +331,7 @@ public class NSModel extends NSWorld implements DMModel {
      * @return a String containing the Tcl script of the model.
      */
     public String toTcl() {
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder(getSize() + 1);
 
         for (int i = 0; i < getSize(); i++) {
             NSObject ob = (NSObject) getObjectAt(i);
@@ -350,7 +350,7 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder(getArrayCount() + objects.size() + 1);
 
         s.append(Integer.toString(getArrayCount())).append("\n");
         for (int i = 0; i < getArrayCount(); i++) {

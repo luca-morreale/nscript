@@ -232,7 +232,7 @@ public class TclLibrary extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder(snippets.size() + 1);
         int i;
 
         s.append(getName()).append(" : ").append(getTBName())

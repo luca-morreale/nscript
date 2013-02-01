@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * information on how to translate this information into a Tcl script.
  */
 public class TclSnippet extends Object implements Serializable {
+    /** */
     public static final long serialVersionUID = 42L;
 
     /**
@@ -109,6 +110,11 @@ public class TclSnippet extends Object implements Serializable {
      * Constant indating a DOTTED line style (for relations objects, only).
      */
     static final int DOTTED = 2;
+
+    /**
+     * Specify base allocated number of lines for pattern builders.
+     */
+    static int BASE_PATTERN_SIZE = 15;
 
     /**
      * Default constructor to implement Serializable protocol.
@@ -487,7 +493,7 @@ public class TclSnippet extends Object implements Serializable {
         }
 
         String sApp;
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder(patterns.size());
         // Now pattern substitution
         for (i = 0; i < patterns.size(); i++) {
             p = patterns.get(i);
@@ -523,7 +529,7 @@ public class TclSnippet extends Object implements Serializable {
      */
     String patternToTcl(String pattern, NSWorld w, NSObject o, char sep) {
         int i, iLast = 0;
-        StringBuilder sNew = new StringBuilder();
+        StringBuilder sNew = new StringBuilder(BASE_PATTERN_SIZE);
 
         while ((i = pattern.indexOf(sep, iLast)) >= 0) {
             sNew.append(pattern.substring(iLast, i));

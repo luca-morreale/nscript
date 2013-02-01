@@ -25,6 +25,7 @@ import java.util.logging.Logger;
  */
 public class DMControl extends KeyAdapter
         implements MouseListener, MouseMotionListener, Serializable {
+    /** */
     public static final long serialVersionUID = 42L;
 
     /**
