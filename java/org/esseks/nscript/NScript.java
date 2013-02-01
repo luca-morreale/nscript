@@ -277,15 +277,15 @@ public class NScript extends JFrame {
     private void addDefaultLibraries(String defFileName) {
         Reader reader;
         BufferedReader br = null;
-        String newLine = "";
+        String line = "";
 
         try {
             reader = new InputStreamReader(
                 new FileInputStream(defFileName), "utf-8");
             br = new BufferedReader(reader);
 
-            while ((newLine = br.readLine()) != null) {
-                if (libManager.addLibrary(newLine)) {
+            for (line = br.readLine(); line != null; line = br.readLine()) {
+                if (libManager.addLibrary(line)) {
                     toolBox.addLibraryPane(
                             libManager.getLibrary(libManager.getLibraryCount() - 1));
                 }
@@ -293,7 +293,7 @@ public class NScript extends JFrame {
         } catch (FileNotFoundException fnfe) {
             LOG.log(Level.WARNING, "{0}{1}, {2}", new Object[]{
                 Messages.tr("lib_not_found"),
-                newLine, fnfe.toString()
+                line, fnfe.toString()
             });
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{

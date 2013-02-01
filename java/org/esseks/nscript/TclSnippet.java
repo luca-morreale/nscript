@@ -194,19 +194,17 @@ public class TclSnippet extends Object implements Serializable {
         }
 
         // Now, read the attribute definitions.
-
-        int iStart = 0, iEnd;
-        while ((iEnd = attr.indexOf(';', iStart)) >= 0) {
+        int iStart = 0;
+        int iEnd = attr.indexOf(';', iStart);
+        for (; iEnd >= 0; iStart = iEnd + 1, iEnd = attr.indexOf(';', iStart)) {
             attributes.add(new TclAttribute(attr.substring(iStart, iEnd)));
-            iStart = iEnd + 1;
         }
 
         // Finally, read the patterns.
-
         iStart = 0;
-        while ((iEnd = patt.indexOf(';', iStart)) >= 0) {
+        iEnd = patt.indexOf(';', iStart);
+        for (; iEnd >= 0; iStart = iEnd + 1, iEnd = patt.indexOf(';', iStart)) {
             patterns.add(new TclPattern(patt.substring(iStart, iEnd)));
-            iStart = iEnd + 1;
         }
     }
 
@@ -528,17 +526,17 @@ public class TclSnippet extends Object implements Serializable {
      * @return a string with Tcl code corresponding to the pattern.
      */
     String patternToTcl(String pattern, NSWorld w, NSObject o, char sep) {
-        int i, iLast = 0;
         StringBuilder sNew = new StringBuilder(BASE_PATTERN_SIZE);
 
-        while ((i = pattern.indexOf(sep, iLast)) >= 0) {
+        int iLast = 0;
+        int i = pattern.indexOf(sep, iLast);
+        for (; i >= 0; iLast++, i = pattern.indexOf(sep, iLast)) {
             sNew.append(pattern.substring(iLast, i));
             iLast = pattern.indexOf(sep, i + 1);
             if (iLast < 0) {
                 return Messages.tr("bad_formed_pattern");
             }
             sNew.append(valueOf(w, o, pattern.substring(i + 1, iLast)));
-            iLast++;
         }
         if (iLast < pattern.length()) {
             sNew.append(pattern.substring(iLast));
