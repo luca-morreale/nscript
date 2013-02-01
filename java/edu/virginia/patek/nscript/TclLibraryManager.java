@@ -19,7 +19,9 @@ import java.util.logging.Logger;
  * prevent naming conflicts, verify uniqueness of library names, find a
  * reference, and finding a snippet, either by name or entry number.
  */
-public class TclLibraryManager extends Object {
+public class TclLibraryManager extends Object implements Serializable {
+    /** */
+    public static final long serialVersionUID = 42L;
 
     /**
      * The collection of libraries.

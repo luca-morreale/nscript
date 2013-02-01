@@ -17,8 +17,9 @@ import java.util.logging.Logger;
  * Defines the basic behavior of an object that will be part of a simulation
  * script.
  */
-public class NSObject extends Object {
-
+public class NSObject extends Object implements Serializable {
+    /** */
+    public static final long serialVersionUID = 42L;
     /**
      * The snippet is basically the Class of the object. It contains the
      * information that defines the object.
@@ -39,9 +40,16 @@ public class NSObject extends Object {
     int arrayIndex;
 
     /**
+     * Default constructor to implement Serialize protocol
+     */
+    private NSObject() {
+        this(null, "");
+    }
+
+    /**
      * Only constructor that requires a name and a class definition (Snippet).
      * @param inSnippet
-     * @param inName 
+     * @param inName
      */
     public NSObject(TclSnippet inSnippet, String inName) {
         snippet = inSnippet;

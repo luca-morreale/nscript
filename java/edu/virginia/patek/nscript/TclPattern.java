@@ -8,13 +8,16 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 /**
  * A TclPatterns embodies the part of a snippet that translates the information
  * into Tcl code. A snippet can have one or more patterns.
  */
-public class TclPattern extends Object {
+public class TclPattern extends Object implements Serializable {
+    /** */
+    private static final long serialVersionUID = 42L;
 
     /**
      * A flag that tells if the pattern is conditional (depends on a value) or
@@ -51,6 +54,13 @@ public class TclPattern extends Object {
      */
     public TclPattern(String s) {
         parseSelf(s);
+    }
+
+    /**
+     * Default constructor to implement Serializable protocol.
+     */
+    private TclPattern() {
+        // nop
     }
 
     /**

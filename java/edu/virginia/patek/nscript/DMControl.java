@@ -10,6 +10,7 @@ package edu.virginia.patek.nscript;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 /**
@@ -23,7 +24,8 @@ import java.util.logging.Logger;
  * which are stored in the model, including the use of key modifiers like shift.
  */
 public class DMControl extends KeyAdapter
-        implements MouseListener, MouseMotionListener {
+        implements MouseListener, MouseMotionListener, Serializable {
+    public static final long serialVersionUID = 42L;
 
     /**
      * A reference to the view object in charge of rendering the view.

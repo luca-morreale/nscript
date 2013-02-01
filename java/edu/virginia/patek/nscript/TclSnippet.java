@@ -8,6 +8,7 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,8 @@ import java.util.logging.Logger;
  * that it contains, their default values and options. It also contains
  * information on how to translate this information into a Tcl script.
  */
-public class TclSnippet extends Object {
+public class TclSnippet extends Object implements Serializable {
+    public static final long serialVersionUID = 42L;
 
     /**
      * The name of the snippet.
@@ -109,13 +111,19 @@ public class TclSnippet extends Object {
     static final int DOTTED = 2;
 
     /**
+     * Default constructor to implement Serializable protocol.
+     */
+    private TclSnippet() {
+        attributes = new ArrayList<TclAttribute>();
+        patterns = new ArrayList<TclPattern>();
+    }
+    /**
      * Constructor. Creates the snippet by parsing itself from a given string.
      *
      * @param s the string from which to read the snippet definition.
      */
     public TclSnippet(String s) {
-        attributes = new ArrayList<TclAttribute>();
-        patterns = new ArrayList<TclPattern>();
+        this();
         parseSelf(s);
     }
 

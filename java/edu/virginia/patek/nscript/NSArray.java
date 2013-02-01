@@ -8,6 +8,7 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 /**
@@ -15,7 +16,8 @@ import java.util.logging.Logger;
  * to do repetitive tasks such as creating 100 TCP sessions, all with the same
  * parameters.
  */
-public class NSArray extends Object {
+public class NSArray extends Object implements Serializable {
+    private static final long serialVersionUID = 42L;
 
     /**
      * The name of the array.
@@ -25,6 +27,13 @@ public class NSArray extends Object {
      * The number of instances that an array variable generates.
      */
     public int elements;
+
+    /**
+     * Default constructor to implement Serializable protocol.
+     */
+    private NSArray() {
+        this("", 0);
+    }
 
     /**
      * Constructor that takes the name and size as parameters.

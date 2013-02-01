@@ -17,6 +17,8 @@ import java.util.logging.Logger;
  * will be used through inheritance by other objects (NSRelation and NSIconic).
  */
 public class NSEditableObject extends NSObject implements DMObject {
+    /** */
+    public static final long serialVersionUID = 42L;
 
     /**
      * Flag to keep the 'Selected' state of the object.

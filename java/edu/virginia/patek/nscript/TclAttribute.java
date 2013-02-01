@@ -8,12 +8,15 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 /**
  * An attribute of a TclSnippet.
  */
-public class TclAttribute extends Object {
+public class TclAttribute extends Object implements Serializable {
+    /** */
+    public static final long serialVersionUID = 42L;
 
     /**
      * The name of the attribute.
@@ -45,7 +48,13 @@ public class TclAttribute extends Object {
         parseSelf(s);
     }
 
-    // Access methods
+    /**
+     * Default constructor to implement Serializable protocol.
+     */
+    private TclAttribute() {
+        // nop
+    }
+
     /**
      * @return the name of the attribute.
      */

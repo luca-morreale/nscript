@@ -8,6 +8,7 @@
  */
 package edu.virginia.patek.nscript;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -15,7 +16,9 @@ import java.util.logging.Logger;
  * Defines storage for the elements in a simulation. Stores objects, as well as
  * arrays (index definitions).
  */
-public class NSWorld extends Object {
+public class NSWorld extends Object implements Serializable {
+    /** */
+    public static final long serialVersionUID = 42L;
 
     /**
      * The objects that are part of a simulation script are stored here.

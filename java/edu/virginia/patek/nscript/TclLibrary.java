@@ -19,7 +19,8 @@ import java.util.logging.Logger;
  * "Transport", "Application", "Utilities". The library class knows how to parse
  * itself from a file.
  */
-public class TclLibrary extends Object {
+public class TclLibrary extends Object implements Serializable {
+    private static final long serialVersionUID = 42L;
 
     /**
      * The name of the library.
@@ -58,6 +59,13 @@ public class TclLibrary extends Object {
         setName(libName);
         setTBName(tbName);
         snippets = new ArrayList<TclSnippet>();
+    }
+
+    /**
+     * Default constructor to implement Serializable protocol.
+     */
+    private TclLibrary()  {
+        this("", "");
     }
 
     /**

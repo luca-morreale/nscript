@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * objects are used to represent links, attach, and connect operations.
  */
 class NSRelation extends NSEditableObject {
+    public static final long serialVersionUID = 42L;
 
     /**
      * The entity where the relation starts.

@@ -22,6 +22,8 @@ import java.util.logging.Logger;
  * like figure. GENERIC: a generic figure, a circle inside a square.
  */
 public class NSEntity extends NSEditableObject {
+    /** */
+    public static final long serialVersionUID = 42L;
 
     /**
      * The x coordinate of the position of the object. x is in the [0,1]
@@ -123,7 +125,6 @@ public class NSEntity extends NSEditableObject {
      */
     @Override
     public void drawSelf(Graphics g_, Dimension r) {
-
         Graphics2D g = (Graphics2D) g_;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);

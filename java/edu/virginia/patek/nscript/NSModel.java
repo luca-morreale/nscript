@@ -20,6 +20,8 @@ import javax.swing.*;
  * references to all the views of the model to inform them of model changes.
  */
 public class NSModel extends NSWorld implements DMModel {
+    /** */
+    public final static long serialVersionUID = 42L;
 
     /**
      * Reference to the tool box that stores the currently opened libraries.
