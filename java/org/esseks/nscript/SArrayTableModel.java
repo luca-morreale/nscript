@@ -9,7 +9,7 @@
 package org.esseks.nscript;
 
 import java.util.logging.Logger;
-import javax.swing.table.*;
+import javax.swing.table.AbstractTableModel;
 
 /**
  * Implements the AbstractTableModel to display the index Arrays that are part

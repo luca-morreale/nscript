@@ -8,11 +8,21 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Logger;
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.AbstractListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
  * Implements the "ToolBar" element, where the libraries and its elements are

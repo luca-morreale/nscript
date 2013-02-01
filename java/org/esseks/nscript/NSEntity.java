@@ -8,8 +8,14 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.io.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,9 +28,10 @@ import java.util.logging.Logger;
  * like figure. GENERIC: a generic figure, a circle inside a square.
  */
 public class NSEntity extends NSEditableObject {
-    /** */
-    public static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public static final long serialVersionUID = 42L;
     /**
      * The x coordinate of the position of the object. x is in the [0,1]
      * interval.
@@ -347,7 +354,7 @@ public class NSEntity extends NSEditableObject {
             setY(Double.parseDouble(br.readLine()));
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
-                Messages.tr("reading_object_error"), ioe.toString()});
+                        Messages.tr("reading_object_error"), ioe.toString()});
         }
     }
     private static final Logger LOG = Logger.getLogger(NSEntity.class.getName());

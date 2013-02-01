@@ -8,13 +8,43 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
 
 /**
  * Implements the main application object for nscript. Interface element objects
@@ -168,7 +198,7 @@ public class NScript extends JFrame {
 
         try {
             reader = new InputStreamReader(
-                new FileInputStream(envFileName), "utf-8");
+                    new FileInputStream(envFileName), "utf-8");
             br = new BufferedReader(reader);
             do {
                 newLine = br.readLine();
@@ -176,18 +206,17 @@ public class NScript extends JFrame {
             } while (newLine.indexOf("end") < 0);
         } catch (FileNotFoundException fnfe) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
-                Messages.tr("env_default_not_found"),
-                fnfe.toString()
-            });
+                        Messages.tr("env_default_not_found"),
+                        fnfe.toString()
+                    });
             return null;
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
-                Messages.tr("env_reading_error"),
-                ioe.toString()
-            });
+                        Messages.tr("env_reading_error"),
+                        ioe.toString()
+                    });
             return null;
-        }
-        finally {
+        } finally {
             close(br);
         }
 
@@ -281,7 +310,7 @@ public class NScript extends JFrame {
 
         try {
             reader = new InputStreamReader(
-                new FileInputStream(defFileName), "utf-8");
+                    new FileInputStream(defFileName), "utf-8");
             br = new BufferedReader(reader);
 
             for (line = br.readLine(); line != null; line = br.readLine()) {
@@ -292,14 +321,14 @@ public class NScript extends JFrame {
             }
         } catch (FileNotFoundException fnfe) {
             LOG.log(Level.WARNING, "{0}{1}, {2}", new Object[]{
-                Messages.tr("lib_not_found"),
-                line, fnfe.toString()
-            });
+                        Messages.tr("lib_not_found"),
+                        line, fnfe.toString()
+                    });
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
-                Messages.tr("lib_read_error"),
-                ioe.toString()
-            });
+                        Messages.tr("lib_read_error"),
+                        ioe.toString()
+                    });
         } finally {
             close(br);
         }
@@ -325,6 +354,7 @@ public class NScript extends JFrame {
     /**
      * Handles the save script option, that allows the user to export the
      * current script as a Tcl script, runnable script.
+     *
      * @return
      */
     public String saveScript() {
@@ -339,16 +369,16 @@ public class NScript extends JFrame {
             try {
                 this.updateLastPath(fch.getSelectedFile());
                 writer = new OutputStreamWriter(
-                    new FileOutputStream(fch.getSelectedFile()), "utf-8");
+                        new FileOutputStream(fch.getSelectedFile()), "utf-8");
                 writer.write(model.toTcl());
                 return fch.getSelectedFile().getAbsolutePath();
             } catch (FileNotFoundException e) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
-                    Messages.tr("file_open_error"), e.toString()});
+                            Messages.tr("file_open_error"), e.toString()});
                 return null;
             } catch (IOException ioe) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
-                    Messages.tr("file_write_error"), ioe.toString()});
+                            Messages.tr("file_write_error"), ioe.toString()});
                 return null;
             } finally {
                 close(writer);
@@ -361,6 +391,7 @@ public class NScript extends JFrame {
      * Handles the 'Save' item of the 'File' menu, by allowing the user to
      * select a place to store the current script in a propiertary format. This
      * will soon be replaced by an XML format.
+     *
      * @return
      */
     public String saveFileAction() {
@@ -375,7 +406,7 @@ public class NScript extends JFrame {
             try {
                 this.updateLastPath(fch.getSelectedFile());
                 writer = new OutputStreamWriter(
-                    new FileOutputStream(fch.getSelectedFile()), "utf-8");
+                        new FileOutputStream(fch.getSelectedFile()), "utf-8");
                 writer.write(model.toString());
                 writer.close();
                 model.setDirty(false);
@@ -398,6 +429,7 @@ public class NScript extends JFrame {
     /**
      * Handles closing of a model / application when the current simulation
      * script has suffered modifications.
+     *
      * @return
      */
     public boolean reallyClose() {
@@ -479,10 +511,10 @@ public class NScript extends JFrame {
                 model.setDirty(false);
             } catch (FileNotFoundException e) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
-                    Messages.tr("file_open_error"), e.toString()});
+                            Messages.tr("file_open_error"), e.toString()});
             } catch (IOException ioe) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
-                    Messages.tr("file_write_error"), ioe.toString()});
+                            Messages.tr("file_write_error"), ioe.toString()});
             }
         }
     }
@@ -490,6 +522,7 @@ public class NScript extends JFrame {
     /**
      * Open a 'Open Lib' dialog box whenever a model is open that contains an
      * object that is not part of the currently opened library.
+     *
      * @param snippetName
      * @return
      */

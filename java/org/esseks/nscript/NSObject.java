@@ -8,8 +8,10 @@
  */
 package org.esseks.nscript;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +20,9 @@ import java.util.logging.Logger;
  * script.
  */
 public class NSObject extends Object implements Serializable {
-    /** */
+
+    /**
+     *      */
     public static final long serialVersionUID = 42L;
     /**
      * The snippet is basically the Class of the object. It contains the
@@ -48,6 +52,7 @@ public class NSObject extends Object implements Serializable {
 
     /**
      * Only constructor that requires a name and a class definition (Snippet).
+     *
      * @param inSnippet
      * @param inName
      */
@@ -194,9 +199,9 @@ public class NSObject extends Object implements Serializable {
             }
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
-                Messages.tr("reading_object_error"),
-                ioe.toString()
-            });
+                        Messages.tr("reading_object_error"),
+                        ioe.toString()
+                    });
         }
     }
     private static final Logger LOG = Logger.getLogger(NSObject.class.getName());

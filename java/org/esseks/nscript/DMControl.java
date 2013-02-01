@@ -8,8 +8,14 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
@@ -25,9 +31,10 @@ import java.util.logging.Logger;
  */
 public class DMControl extends KeyAdapter
         implements MouseListener, MouseMotionListener, Serializable {
-    /** */
-    public static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public static final long serialVersionUID = 42L;
     /**
      * A reference to the view object in charge of rendering the view.
      */
@@ -57,7 +64,6 @@ public class DMControl extends KeyAdapter
      * Coordinates of the end of a dragging action.
      */
     private Point end;
-
     private static final int NONE = 0;
     private static final int MOVING = 1;
     private static final int SELECTING = 2;

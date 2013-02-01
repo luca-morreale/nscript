@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  * parameters.
  */
 public class NSArray extends Object implements Serializable {
-    private static final long serialVersionUID = 42L;
 
+    private static final long serialVersionUID = 42L;
     /**
      * The name of the array.
      */
@@ -49,6 +49,7 @@ public class NSArray extends Object implements Serializable {
 
     /**
      * Used to store the array on a stream of characters.
+     *
      * @return
      */
     @Override
@@ -87,6 +88,5 @@ public class NSArray extends Object implements Serializable {
     public void setSize(int elements) {
         this.elements = elements;
     }
-
     private static final Logger LOG = Logger.getLogger(NSArray.class.getName());
 }

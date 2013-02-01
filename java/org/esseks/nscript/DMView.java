@@ -8,9 +8,12 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.JPanel;
 
 /**
  * Implements the View part of the MVC paradigm by extending the JPanel object
@@ -40,6 +43,7 @@ public class DMView extends JPanel {
      * This constructor requires a reference to the model. It creates a new
      * controller object, and registers it as a listener for mouse, mouse
      * motion, and keyboard events.
+     *
      * @param inM
      */
     public DMView(DMModel inM) {
@@ -59,6 +63,7 @@ public class DMView extends JPanel {
      * information, and passing it to all of the register objects in the model.
      * It also calls the control so that it can display any auxiliary lines used
      * in the edition process.
+     *
      * @param g
      */
     @Override
@@ -88,6 +93,7 @@ public class DMView extends JPanel {
      * Set a new scale for the drawing. Effectively, it resets the size of the
      * drawing pane, which is the used by the objects to rescale themselves
      * accordingly.
+     *
      * @param inNewScale
      */
     public void changeScale(double inNewScale) {

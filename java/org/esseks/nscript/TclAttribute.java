@@ -15,9 +15,10 @@ import java.util.logging.Logger;
  * An attribute of a TclSnippet.
  */
 public class TclAttribute extends Object implements Serializable {
-    /** */
-    public static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public static final long serialVersionUID = 42L;
     /**
      * The name of the attribute.
      */
@@ -76,10 +77,18 @@ public class TclAttribute extends Object implements Serializable {
         return options;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasOptions() {
         return hasOptions;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDefaultValue() {
         return defaultValue;
     }
@@ -132,6 +141,7 @@ public class TclAttribute extends Object implements Serializable {
 
     /**
      * Puts the attribute information as a single string.
+     *
      * @return
      */
     @Override

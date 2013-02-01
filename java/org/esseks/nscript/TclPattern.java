@@ -16,9 +16,10 @@ import java.util.logging.Logger;
  * into Tcl code. A snippet can have one or more patterns.
  */
 public class TclPattern extends Object implements Serializable {
-    /** */
-    private static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    private static final long serialVersionUID = 42L;
     /**
      * A flag that tells if the pattern is conditional (depends on a value) or
      * not.
@@ -86,46 +87,85 @@ public class TclPattern extends Object implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isConditional() {
         return conditional;
     }
 
+    /**
+     *
+     * @param isConditional
+     */
     public void setConditional(boolean isConditional) {
         this.conditional = isConditional;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPattern() {
         return pattern;
     }
 
+    /**
+     *
+     * @param pattern
+     */
     public void setPattern(String pattern) {
         this.pattern = pattern;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAlternativePattern() {
         return alternativePattern;
     }
 
+    /**
+     *
+     * @param alternativePattern
+     */
     public void setAlternativePattern(String alternativePattern) {
         this.alternativePattern = alternativePattern;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAttribute() {
         return attribute;
     }
 
+    /**
+     *
+     * @param attribute
+     */
     public void setAttribute(String attribute) {
         this.attribute = attribute;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAttributeValue() {
         return attributeValue;
     }
 
+    /**
+     *
+     * @param attributeValue
+     */
     public void setAttributeValue(String attributeValue) {
         this.attributeValue = attributeValue;
     }
-
 
     /**
      * Represents the pattern as a String.

@@ -8,8 +8,11 @@
  */
 package org.esseks.nscript;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,8 +23,8 @@ import java.util.logging.Logger;
  * itself from a file.
  */
 public class TclLibrary extends Object implements Serializable {
-    private static final long serialVersionUID = 42L;
 
+    private static final long serialVersionUID = 42L;
     /**
      * The name of the library.
      */
@@ -52,6 +55,7 @@ public class TclLibrary extends Object implements Serializable {
     /**
      * Constructs itself as an empty library. This was used for testing only,
      * not in use anymore.
+     *
      * @param libName
      * @param tbName
      */
@@ -64,7 +68,7 @@ public class TclLibrary extends Object implements Serializable {
     /**
      * Default constructor to implement Serializable protocol.
      */
-    private TclLibrary()  {
+    private TclLibrary() {
         this("", "");
     }
 
@@ -127,8 +131,8 @@ public class TclLibrary extends Object implements Serializable {
     }
 
     /**
-     * Get snippet by name. In case of multiple matches, only the first one
-     * is returned.
+     * Get snippet by name. In case of multiple matches, only the first one is
+     * returned.
      *
      * @param theName name of the snippet
      * @return TCLSnippet or null if not found
@@ -188,10 +192,11 @@ public class TclLibrary extends Object implements Serializable {
             TBName = br.readLine();
             version = br.readLine();
 
-            while (readSnippet(br)) {}
+            while (readSnippet(br)) {
+            }
         } catch (IOException ioe) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
-                Messages.tr("library_read_error"), ioe.toString()});
+                        Messages.tr("library_read_error"), ioe.toString()});
             return false;
         }
         return true;
@@ -212,21 +217,21 @@ public class TclLibrary extends Object implements Serializable {
             } while (newLine.indexOf("end") < 0);
         } catch (IOException ioe) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
-                Messages.tr("snippet_read_error"), ioe.toString()});
+                        Messages.tr("snippet_read_error"), ioe.toString()});
         }
         t = new TclSnippet(s.toString());
         if (!nameExists(t.getName())) {
             addSnippet(t);
         } else {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
-                Messages.tr("snippet_already_in_library"), t.getName()});
+                        Messages.tr("snippet_already_in_library"), t.getName()});
         }
         return true;
     }
 
     /**
-     * Gives a human readable representation of the Library.
-     * Current format is "$name:$toolbarname:$version"
+     * Gives a human readable representation of the Library. Current format is
+     * "$name:$toolbarname:$version"
      *
      * @return String representation
      */
@@ -242,6 +247,5 @@ public class TclLibrary extends Object implements Serializable {
         }
         return s.toString();
     }
-
     private static final Logger LOG = Logger.getLogger(TclLibrary.class.getName());
 }

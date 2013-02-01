@@ -8,11 +8,14 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Component;
+import java.util.StringTokenizer;
 import java.util.logging.Logger;
-import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.AbstractCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.TableCellEditor;
 
 /**
  * Implements the abstract cell behavior by providing a way to edit the cells in
@@ -38,6 +41,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
     /**
      * The constructor takes the object to be edited as an input, creates and
      * initializes the components in the application.
+     *
      * @param inO
      */
     public SObjectCellEditor(NSObject inO) {
@@ -50,6 +54,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
      * Obtains the value obtained in the current cell. This correponds to the
      * selected item number if limited options exist, or the text if it is a
      * free entry field.
+     *
      * @return
      */
     @Override

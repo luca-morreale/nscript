@@ -9,7 +9,8 @@
 package org.esseks.nscript;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,9 +21,10 @@ import java.util.logging.Logger;
  * information on how to translate this information into a Tcl script.
  */
 public class TclSnippet extends Object implements Serializable {
-    /** */
-    public static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public static final long serialVersionUID = 42L;
     /**
      * The name of the snippet.
      */
@@ -110,7 +112,6 @@ public class TclSnippet extends Object implements Serializable {
      * Constant indating a DOTTED line style (for relations objects, only).
      */
     static final int DOTTED = 2;
-
     /**
      * Specify base allocated number of lines for pattern builders.
      */
@@ -123,6 +124,7 @@ public class TclSnippet extends Object implements Serializable {
         attributes = new ArrayList<TclAttribute>();
         patterns = new ArrayList<TclPattern>();
     }
+
     /**
      * Constructor. Creates the snippet by parsing itself from a given string.
      *
@@ -432,7 +434,6 @@ public class TclSnippet extends Object implements Serializable {
     public boolean isToBaseUnique() {
         return isToBaseUnique;
     }
-
 
     /**
      * Converts the snippet to a text representation.

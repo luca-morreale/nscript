@@ -8,9 +8,12 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.AbstractListModel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * Implements a view that lists the elements (objects) that are part of the
@@ -30,6 +33,7 @@ public class NSWorldView extends JPanel {
 
     /**
      * Constructor that copies a reference to the simulation model.
+     *
      * @param inW
      */
     public NSWorldView(NSWorld inW) {

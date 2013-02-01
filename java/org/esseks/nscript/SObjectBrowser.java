@@ -8,11 +8,19 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Logger;
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 /**
  * Creates a panel that allows the user to modify the properties of an object.
@@ -64,6 +72,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     /**
      * The default constructor receives a reference to the current simulation
      * model.
+     *
      * @param inModel
      */
     @SuppressWarnings("LeakingThisInConstructor")
@@ -165,6 +174,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     /**
      * Implements the ActionListener interface by responding to the different
      * actions the interface elements generate when manipulated by the user.
+     *
      * @param ae
      */
     @Override

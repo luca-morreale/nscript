@@ -8,9 +8,11 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
+import java.awt.Component;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 
 /**
  * A view that holds a list of the objects involved in a simulation. Not yet
@@ -31,6 +33,7 @@ public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
     /**
      * Class that implements the rendering of the cells (rows) in the world
      * view.
+     *
      * @param list
      * @param cellHasFocus
      * @param index

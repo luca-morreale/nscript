@@ -8,8 +8,14 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.io.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,8 +24,8 @@ import java.util.logging.Logger;
  * objects are used to represent links, attach, and connect operations.
  */
 class NSRelation extends NSEditableObject {
-    public static final long serialVersionUID = 42L;
 
+    public static final long serialVersionUID = 42L;
     /**
      * The entity where the relation starts.
      */
@@ -295,9 +301,9 @@ class NSRelation extends NSEditableObject {
             to = (NSEntity) M.getObject(br.readLine());
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
-                Messages.tr("reading_object_error"),
-                ioe.toString()
-            });
+                        Messages.tr("reading_object_error"),
+                        ioe.toString()
+                    });
         }
     }
     private static final Logger LOG = Logger.getLogger(NSRelation.class.getName());

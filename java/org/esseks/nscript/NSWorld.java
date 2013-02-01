@@ -9,7 +9,8 @@
 package org.esseks.nscript;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 /**
@@ -17,9 +18,10 @@ import java.util.logging.Logger;
  * arrays (index definitions).
  */
 public class NSWorld extends Object implements Serializable {
-    /** */
-    public static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public static final long serialVersionUID = 42L;
     /**
      * The objects that are part of a simulation script are stored here.
      */

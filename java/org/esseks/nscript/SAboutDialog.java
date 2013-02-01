@@ -8,10 +8,19 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * Implements an "About..." dialog box that serves two purposes: 1) Work as a
@@ -74,6 +83,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
     /**
      * Sets the message of the status label when the dialog box is used as a
      * progress bar (at startup to be specific.
+     *
      * @param inMsg
      */
     public void setMessage(String inMsg) {

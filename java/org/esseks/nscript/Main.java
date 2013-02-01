@@ -10,7 +10,8 @@ package org.esseks.nscript;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Main {
     /**
      * Main procedure, simply creates a new NScript instance to initiate the
      * program.
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -30,16 +32,16 @@ public class Main {
                     UIManager.getSystemLookAndFeelClassName());
         } catch (UnsupportedLookAndFeelException e) {
             LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
-                Messages.tr("no_native_laf_error"), e.toString()});
+                        Messages.tr("no_native_laf_error"), e.toString()});
         } catch (ClassNotFoundException e) {
             LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
-                Messages.tr("no_native_laf_error"), e.toString()});
+                        Messages.tr("no_native_laf_error"), e.toString()});
         } catch (InstantiationException e) {
             LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
-                Messages.tr("no_native_laf_error"), e.toString()});
+                        Messages.tr("no_native_laf_error"), e.toString()});
         } catch (IllegalAccessException e) {
             LOG.log(Level.WARNING, "{0}: {1}", new Object[]{
-                Messages.tr("no_native_laf_error"), e.toString()});
+                        Messages.tr("no_native_laf_error"), e.toString()});
         }
 
         // Disabling INFO messages (debug)

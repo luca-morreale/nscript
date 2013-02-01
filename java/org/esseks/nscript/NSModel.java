@@ -8,10 +8,11 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.util.Iterator;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.JTextArea;
 
 /**
  * Holds the current simulation script information. Inherits the object storing
@@ -20,9 +21,10 @@ import javax.swing.*;
  * references to all the views of the model to inform them of model changes.
  */
 public class NSModel extends NSWorld implements DMModel {
-    /** */
-    public final static long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public final static long serialVersionUID = 42L;
     /**
      * Reference to the tool box that stores the currently opened libraries.
      */
@@ -55,6 +57,7 @@ public class NSModel extends NSWorld implements DMModel {
      * The onlye constructor for this class of objects. Takes an initial
      * environment object (the ns object, that stores the simulation
      * environment), and a reference to the toolbox.
+     *
      * @param inEnv
      * @param inTBar
      */
@@ -66,6 +69,7 @@ public class NSModel extends NSWorld implements DMModel {
 
     /**
      * Stores the references to all the views of the model.
+     *
      * @param inEView
      * @param inTclView
      * @param inObjectPanel
@@ -253,6 +257,7 @@ public class NSModel extends NSWorld implements DMModel {
 
     /**
      * Obtains the object at a given index.
+     *
      * @param inIndex
      */
     @Override
@@ -373,6 +378,7 @@ public class NSModel extends NSWorld implements DMModel {
 
     /**
      * Sets the state of the model to dirty. Called by all the editing methods.
+     *
      * @param dirtyState
      */
     @Override

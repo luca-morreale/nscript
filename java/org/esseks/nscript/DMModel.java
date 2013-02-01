@@ -8,7 +8,8 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
 
 /**
  * Defines an interface to be implemented by objects that want to be controlled
@@ -89,6 +90,7 @@ public interface DMModel {
 
     /**
      * Raise a flag if the model has been modified and requires saving.
+     *
      * @param dirtyState
      */
     public void setDirty(boolean dirtyState);

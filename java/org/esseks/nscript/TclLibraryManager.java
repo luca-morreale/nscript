@@ -8,8 +8,17 @@
  */
 package org.esseks.nscript;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,9 +29,10 @@ import java.util.logging.Logger;
  * reference, and finding a snippet, either by name or entry number.
  */
 public class TclLibraryManager extends Object implements Serializable {
-    /** */
-    public static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public static final long serialVersionUID = 42L;
     /**
      * The collection of libraries.
      */
@@ -113,7 +123,7 @@ public class TclLibraryManager extends Object implements Serializable {
             }
         } catch (FileNotFoundException e) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
-                Messages.tr("library_not_found"), e.toString()});
+                        Messages.tr("library_not_found"), e.toString()});
             return false;
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0} {1}", new Object[]{

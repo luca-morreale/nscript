@@ -8,7 +8,8 @@
  */
 package org.esseks.nscript;
 
-import java.util.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 /**
@@ -18,7 +19,7 @@ public class Messages {
 
     private static ResourceBundle resources =
             ResourceBundle.getBundle("org.esseks.nscript.translations.strings",
-                Locale.getDefault());
+            Locale.getDefault());
     private static Messages instance;
 
     /**
@@ -30,6 +31,7 @@ public class Messages {
 
     /**
      * Returns appropriate string for supplied ID
+     *
      * @param identifier
      * @return
      */
@@ -42,8 +44,9 @@ public class Messages {
     }
 
     /**
+     * Dummy clone(), will not allow to deep copy object.
      *
-     * @return
+     * @return actually nothing, will always throw exception
      * @throws CloneNotSupportedException
      */
     @Override

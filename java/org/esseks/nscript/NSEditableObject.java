@@ -8,7 +8,9 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.util.logging.Logger;
 
 /**
@@ -17,9 +19,10 @@ import java.util.logging.Logger;
  * will be used through inheritance by other objects (NSRelation and NSIconic).
  */
 public class NSEditableObject extends NSObject implements DMObject {
-    /** */
-    public static final long serialVersionUID = 42L;
 
+    /**
+     *      */
+    public static final long serialVersionUID = 42L;
     /**
      * Flag to keep the 'Selected' state of the object.
      */
@@ -27,6 +30,7 @@ public class NSEditableObject extends NSObject implements DMObject {
 
     /**
      * Uses the constructor from NSObject.
+     *
      * @param inSnippet
      * @param inName
      */

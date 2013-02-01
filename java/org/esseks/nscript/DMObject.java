@@ -8,7 +8,9 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
 
 /**
  * Defines an interface to be implemented by any objects that wants to act as a
@@ -65,6 +67,7 @@ public interface DMObject {
     /**
      * Similar to isHit, but in this case we are interested if the object is
      * contained in a rectangle with corners p1, p2.
+     *
      * @param r
      * @param p1
      * @param p2
@@ -74,6 +77,7 @@ public interface DMObject {
 
     /**
      * What exactly are you try
+     *
      * @param r
      * @param byWhat
      */

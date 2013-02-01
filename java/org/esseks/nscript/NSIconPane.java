@@ -8,9 +8,14 @@
  */
 package org.esseks.nscript;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 
 /**
  * Implements the representation of a class of objects (TclSnippet) in the
@@ -67,6 +72,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
     /**
      * Constructor that calls the father's constructor (JLabel), and initializes
      * the values of the icon and the label.
+     *
      * @param inIconID
      * @param inLabel
      */
@@ -79,6 +85,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
 
     /**
      * Displays the entry as an icon.
+     *
      * @param g
      */
     public void paintMe(Graphics g) {
@@ -125,6 +132,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
 
     /**
      * Displays the icon in the screen.
+     *
      * @param g
      * @param r
      * @param p
