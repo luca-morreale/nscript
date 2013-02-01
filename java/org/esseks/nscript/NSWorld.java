@@ -185,10 +185,17 @@ public class NSWorld extends Object implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Iterator<NSObject> getObjectsIterator() {
         return objects.iterator();
     }
 
+    /**
+     *
+     */
     public void clearArrays() {
         arrays.clear();
     }

@@ -56,18 +56,34 @@ public class NSArray extends Object implements Serializable {
         return name + "\n" + Integer.toString(elements) + "\n";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSize() {
         return elements;
     }
 
-        public void setName(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @param elements
+     */
     public void setSize(int elements) {
         this.elements = elements;
     }

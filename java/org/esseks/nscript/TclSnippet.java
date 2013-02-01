@@ -401,18 +401,34 @@ public class TclSnippet extends Object implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isRelation() {
         return isRelation;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isUnique() {
         return isUnique;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isFromBaseUnique() {
         return isFromBaseUnique;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isToBaseUnique() {
         return isToBaseUnique;
     }
