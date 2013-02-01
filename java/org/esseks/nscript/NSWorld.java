@@ -147,7 +147,7 @@ public class NSWorld extends Object implements Serializable {
      *
      * @return the number of simulation objects.
      */
-    public int getObjectCount() {
+    public int getObjectsCount() {
         return objects.size();
     }
 
@@ -185,8 +185,8 @@ public class NSWorld extends Object implements Serializable {
         }
     }
 
-    public ArrayList<NSObject> getObjects() {
-        return objects;
+    public Iterator<NSObject> getObjectsIterator() {
+        return objects.iterator();
     }
 
     public void clearArrays() {

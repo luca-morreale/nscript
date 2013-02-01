@@ -248,7 +248,7 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public int getSize() {
-        return getObjects().size();
+        return getObjectsCount();
     }
 
     /**
@@ -257,8 +257,8 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public DMObject getObjectAt(int inIndex) {
-        if (inIndex >= 0 && inIndex < getObjects().size()) {
-            return (DMObject) (getObjects().get(inIndex));
+        if (inIndex >= 0 && inIndex < getObjectsCount()) {
+            return (DMObject) (getObject(inIndex));
         } else {
             return null;
         }
@@ -286,7 +286,7 @@ public class NSModel extends NSWorld implements DMModel {
 
         editView.repaint();
 
-        Iterator<NSObject> iter = getObjects().iterator();
+        Iterator<NSObject> iter = getObjectsIterator();
 
         iter.next();
         while (iter.hasNext()) {
@@ -308,7 +308,7 @@ public class NSModel extends NSWorld implements DMModel {
         // Clean
         clearArrays();
 
-        Iterator<NSObject> iter = getObjects().iterator();
+        Iterator<NSObject> iter = getObjectsIterator();
 
         iter.next();
         while (iter.hasNext()) {
@@ -348,14 +348,14 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder(getArrayCount() + getObjects().size() + 1);
+        StringBuilder s = new StringBuilder(getArrayCount() + getObjectsCount() + 1);
 
         s.append(Integer.toString(getArrayCount())).append("\n");
         for (int i = 0; i < getArrayCount(); i++) {
             s.append(getArray(i).toString());
         }
-        s.append(Integer.toString(getObjects().size())).append("\n");
-        for (int i = 0; i < getObjects().size(); i++) {
+        s.append(Integer.toString(getObjectsCount())).append("\n");
+        for (int i = 0; i < getObjectsCount(); i++) {
             s.append(((NSObject) getObjectAt(i)).toString());
         }
         return s.toString();

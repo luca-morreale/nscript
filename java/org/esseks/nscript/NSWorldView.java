@@ -88,7 +88,7 @@ public class NSWorldView extends JPanel {
          */
         @Override
         public int getSize() {
-            return W.getObjectCount();
+            return W.getObjectsCount();
         }
     }
     private static final Logger LOG = Logger.getLogger(NSWorldView.class.getName());
