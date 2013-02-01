@@ -12,7 +12,7 @@ See COPYING at top level for more information.
 
   <!-- General props -->
   <property name="version" value="1.1.2"/>
-  <property name="mainclass" value="edu.virginia.patek.nscript.Main"/>
+  <property name="mainclass" value="org.esseks.nscript.Main"/>
 
   <!-- Source and compilation paths -->
   <property name="src.dir" value="java"/>
@@ -47,6 +47,9 @@ See COPYING at top level for more information.
            includeantruntime="false" target="1.6" source="1.6">
       <compilerarg value="-Xlint"/>
     </javac>
+    <copy todir="${build.classes.dir}">
+      <fileset dir="${src.dir}" includes="**/*.properties" />
+    </copy>
   </target>
 
   <target name="jar" depends="compile">
@@ -57,7 +60,6 @@ See COPYING at top level for more information.
       </manifest>
       <fileset dir="${res.dir}">
         <include name="pixmaps/*.png" />
-        <include name="translations/*.properties" />
       </fileset>
       <fileset dir="." includes="AUTHORS,COPYING" />
     </jar>

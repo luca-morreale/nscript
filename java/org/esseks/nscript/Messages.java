@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Messages {
 
     private static ResourceBundle resources =
-            ResourceBundle.getBundle("translations.strings",
+            ResourceBundle.getBundle("org.esseks.nscript.translations.strings",
                 Locale.getDefault());
     private static Messages instance;
 
