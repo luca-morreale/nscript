@@ -21,7 +21,7 @@ public class SObjectTableModel extends AbstractTableModel {
     /**
      * A reference to the object being edited.
      */
-    NSObject o;
+    private NSObject o;
 
     /**
      * Constructor that takes a reference to the object to be edited.
@@ -83,7 +83,7 @@ public class SObjectTableModel extends AbstractTableModel {
         }
 
         if (col == 0) {
-            return o.getSnippet().getAttribute(row).name;
+            return o.getSnippet().getAttribute(row).getName();
         } else {
             return o.getAttribute(row);
         }

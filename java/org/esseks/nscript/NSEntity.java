@@ -29,12 +29,12 @@ public class NSEntity extends NSEditableObject {
      * The x coordinate of the position of the object. x is in the [0,1]
      * interval.
      */
-    double x;
+    private double x;
     /**
      * The y coordinate of the position of the object. y is in the [0,1]
      * interval.
      */
-    double y;
+    private double y;
     /**
      * Constant representing the NODE shape.
      */
@@ -147,7 +147,7 @@ public class NSEntity extends NSEditableObject {
 
         // If the element is indexed by an array, display it with a 'shadow'
         // to give the impresion of a stack of objects.
-        if (arrayIndex >= 0) {
+        if (getArrayIndex() >= 0) {
             switch (getSnippet().getIcon()) {
                 case NSEntity.NODE:
                     g.drawOval(dx - size2 + 2, dy - size2 + 2, size, size);

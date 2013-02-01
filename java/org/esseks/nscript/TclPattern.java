@@ -23,7 +23,7 @@ public class TclPattern extends Object implements Serializable {
      * A flag that tells if the pattern is conditional (depends on a value) or
      * not.
      */
-    public boolean isConditional;
+    private boolean conditional;
     /**
      * The pattern is a string with in-lines where the values of attributes will
      * substitute. For example the string 'set #name# [new Application/TCP]'
@@ -31,21 +31,21 @@ public class TclPattern extends Object implements Serializable {
      * When Tcl output is generated the actual value of the field 'name'
      * substitutes the inline to produce Tcl code.
      */
-    public String pattern;
+    private String pattern;
     /**
      * The alternative pattern is used in a conditional pattern.
      */
-    public String alternativePattern;
+    private String alternativePattern;
     /**
      * Attribute is used in a conditional pattern. If the given attribute has
      * value 'attributeValue' pattern is used, otherwise the
      * 'alternativePattern' is used.
      */
-    public String attribute;
+    private String attribute;
     /**
      * The value of the attribute that triggers the use of the default pattern.
      */
-    public String attributeValue;
+    private String attributeValue;
 
     /**
      * Constructor requires a string from which the pattern is parsed.
@@ -72,7 +72,7 @@ public class TclPattern extends Object implements Serializable {
         int equals, firstColon, secondColon;
         String s = field.trim();
         if (s.charAt(0) == '?') {
-            isConditional = true;
+            conditional = true;
             equals = s.indexOf('=');
             firstColon = s.indexOf(':');
             secondColon = s.indexOf(':', firstColon + 1);
@@ -81,10 +81,51 @@ public class TclPattern extends Object implements Serializable {
             pattern = s.substring(firstColon + 1, secondColon);
             alternativePattern = s.substring(secondColon + 1);
         } else {
-            isConditional = false;
+            conditional = false;
             pattern = s;
         }
     }
+
+    public boolean isConditional() {
+        return conditional;
+    }
+
+    public void setConditional(boolean isConditional) {
+        this.conditional = isConditional;
+    }
+
+    public String getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(String pattern) {
+        this.pattern = pattern;
+    }
+
+    public String getAlternativePattern() {
+        return alternativePattern;
+    }
+
+    public void setAlternativePattern(String alternativePattern) {
+        this.alternativePattern = alternativePattern;
+    }
+
+    public String getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
+
+    public String getAttributeValue() {
+        return attributeValue;
+    }
+
+    public void setAttributeValue(String attributeValue) {
+        this.attributeValue = attributeValue;
+    }
+
 
     /**
      * Represents the pattern as a String.
@@ -93,7 +134,7 @@ public class TclPattern extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        if (isConditional) {
+        if (conditional) {
             return attribute + " = " + attributeValue + " : " + pattern + " : " + alternativePattern;
         } else {
             return pattern;

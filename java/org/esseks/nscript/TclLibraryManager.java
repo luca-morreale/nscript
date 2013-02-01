@@ -26,7 +26,7 @@ public class TclLibraryManager extends Object implements Serializable {
     /**
      * The collection of libraries.
      */
-    ArrayList<TclLibrary> libraries;
+    private ArrayList<TclLibrary> libraries;
 
     /**
      * Default constructor, creates the container for libraries.

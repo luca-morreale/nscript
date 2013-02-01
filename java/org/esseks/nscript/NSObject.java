@@ -24,20 +24,20 @@ public class NSObject extends Object implements Serializable {
      * The snippet is basically the Class of the object. It contains the
      * information that defines the object.
      */
-    TclSnippet snippet;
+    private TclSnippet snippet;
     /**
      * The name of the object.
      */
-    String name;
+    private String name;
     /**
      * Attributes of the current object.
      */
-    ArrayList<String> attributes;
+    private ArrayList<String> attributes;
     /**
      * An object can be indexed by an array. arrayIndex stores a reference to
      * this array, or -1 if no array is in use.
      */
-    int arrayIndex;
+    private int arrayIndex;
 
     /**
      * Default constructor to implement Serialize protocol
@@ -169,7 +169,7 @@ public class NSObject extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
+        StringBuilder str = new StringBuilder(attributes.size() + 1);
 
         str.append(snippet.getName()).append("\n")
                 .append(name).append("\n")

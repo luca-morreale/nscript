@@ -21,23 +21,23 @@ public class TclAttribute extends Object implements Serializable {
     /**
      * The name of the attribute.
      */
-    String name;
+    private String name;
     /**
      * The default value of the attribute.
      */
-    String defaultValue;
+    private String defaultValue;
     /**
      * The list available options, as a String.
      */
-    String options;
+    private String options;
     /**
      * Flags if a class has a default value.
      */
-    public boolean hasDefault;
+    private boolean hasDefault;
     /**
      * FLags if a class has a finite set of options.
      */
-    public boolean hasOptions;
+    private boolean hasOptions;
 
     /**
      * Constructor takes a string and parses the information.
@@ -74,6 +74,14 @@ public class TclAttribute extends Object implements Serializable {
      */
     public String getOptions() {
         return options;
+    }
+
+    public boolean hasOptions() {
+        return hasOptions;
+    }
+
+    public String getDefaultValue() {
+        return defaultValue;
     }
 
     /**

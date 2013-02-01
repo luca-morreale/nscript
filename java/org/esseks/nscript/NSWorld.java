@@ -23,11 +23,11 @@ public class NSWorld extends Object implements Serializable {
     /**
      * The objects that are part of a simulation script are stored here.
      */
-    ArrayList<NSObject> objects;
+    private ArrayList<NSObject> objects;
     /**
      * The arrays that are part of the simulation script are stored here.
      */
-    ArrayList<NSArray> arrays;
+    private ArrayList<NSArray> arrays;
 //   /** Iterates over the list of objects for purposes of searching, saving, etc. */
 //   Iterator objIter;
 
@@ -183,6 +183,14 @@ public class NSWorld extends Object implements Serializable {
         } else {
             return null;
         }
+    }
+
+    public ArrayList<NSObject> getObjects() {
+        return objects;
+    }
+
+    public void clearArrays() {
+        arrays.clear();
     }
 
     /**

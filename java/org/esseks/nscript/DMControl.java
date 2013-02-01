@@ -31,36 +31,37 @@ public class DMControl extends KeyAdapter
     /**
      * A reference to the view object in charge of rendering the view.
      */
-    DMView V;
+    private DMView V;
     /**
      * A reference to the model which stores the actual information.
      */
-    DMModel M;
+    private DMModel M;
     /**
      * A reference where a link object starts, for the case when lines are being
      * created.
      */
-    DMObject startO;
+    private DMObject startO;
     /**
      * Action taken by the user.
      */
-    int action;
+    private int action;
     /**
      * Part of the state of the controller.
      */
-    boolean editing;
+    private boolean editing;
     /**
      * Coordinates of the start of a dragging action.
      */
-    Point start;
+    private Point start;
     /**
      * Coordinates of the end of a dragging action.
      */
-    Point end;
-    static final int NONE = 0;
-    static final int MOVING = 1;
-    static final int SELECTING = 2;
-    static final int LINKING = 3;
+    private Point end;
+
+    private static final int NONE = 0;
+    private static final int MOVING = 1;
+    private static final int SELECTING = 2;
+    private static final int LINKING = 3;
 
     /**
      * The only constructor requires references to the view object as well as

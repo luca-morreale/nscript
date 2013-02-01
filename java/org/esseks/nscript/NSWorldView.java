@@ -22,11 +22,11 @@ public class NSWorldView extends JPanel {
     /**
      * A reference to the simulation model.
      */
-    NSWorld w;
+    private NSWorld w;
     /**
      * The list GUI element.
      */
-    JList<String> l;
+    private JList<String> l;
 
     /**
      * Constructor that copies a reference to the simulation model.

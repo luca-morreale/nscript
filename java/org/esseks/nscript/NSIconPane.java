@@ -58,11 +58,11 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
     /**
      * The icon of the object.
      */
-    int icon;
+    private int icon;
     /**
      * The label of this entry.
      */
-    String label;
+    private String label;
 
     /**
      * Constructor that calls the father's constructor (JLabel), and initializes
@@ -105,7 +105,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
             boolean isSelected,
             boolean cellHasFocus) {
         icon = value.getIcon();
-        if (!value.isRelation) {
+        if (!value.isRelation()) {
             setText(value.getName() + "(" + value.getBase() + ")");
         } else {
             setText(value.getName() + "(" + value.getFromBase() + "," + value.getToBase() + ")");

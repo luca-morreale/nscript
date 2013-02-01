@@ -24,27 +24,27 @@ public class SArrayDialog extends JDialog implements ActionListener {
     /**
      * A reference to the simulation model.
      */
-    NSModel M;
+    private NSModel M;
     /**
      * A table where the information about the current arrays will be shown.
      */
-    JTable AT;
+    private JTable AT;
     /**
      * The 'Close' button. Finishes the edition process.
      */
-    JButton closeBtn;
+    private JButton closeBtn;
     /**
      * The 'Add' button. Adds a new index Array.
      */
-    JButton addBtn;
+    private JButton addBtn;
     /**
      * The 'Remove' button. Removes the currently selected array.
      */
-    JButton removeBtn;
+    private JButton removeBtn;
     /**
      * The 'Remove All' button. Removes all the index Arrays in the model.
      */
-    JButton removeAllBtn;
+    private JButton removeAllBtn;
 
     /**
      * The only constructor takes a reference to the model, and the main frame,

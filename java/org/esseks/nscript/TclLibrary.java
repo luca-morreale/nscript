@@ -25,19 +25,19 @@ public class TclLibrary extends Object implements Serializable {
     /**
      * The name of the library.
      */
-    String name;
+    private String name;
     /**
      * Internal name
      */
-    String TBName;
+    private String TBName;
     /**
      * The version number of the library.
      */
-    String version;
+    private String version;
     /**
      * The collection of TclSnippets.
      */
-    ArrayList<TclSnippet> snippets;
+    private ArrayList<TclSnippet> snippets;
 
     /**
      * Constructs itself from a buffer.
@@ -199,7 +199,7 @@ public class TclLibrary extends Object implements Serializable {
 
     private boolean readSnippet(BufferedReader br) {
         TclSnippet t;
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder(10); //FIXME magic number
         String newLine;
         try {
             do {

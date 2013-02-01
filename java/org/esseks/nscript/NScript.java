@@ -27,43 +27,43 @@ public class NScript extends JFrame {
     /**
      * Library manager for the application. Contains the opened libraries.
      */
-    TclLibraryManager libManager;
+    private TclLibraryManager libManager;
     /**
      * An object representing the ns simulation environment, present in every
      * simulation script.
      */
-    TclSnippet env;
+    private TclSnippet env;
     /**
      * A view containing the libraries and their available objects.
      */
-    SToolBar toolBox;
+    private SToolBar toolBox;
     /**
      * A view that imlements the edition of object attributes.
      */
-    SObjectBrowser objectBrowser;
+    private SObjectBrowser objectBrowser;
     /**
      * The main editing view, where the topology, transportation, and
      * application components can be edited.
      */
-    DMView mainView;
+    private DMView mainView;
     /**
      * The world view, which is a list of the available objects in the
      * simulation.
      */
-    NSWorldView worldView;
+    private NSWorldView worldView;
     /**
      * The model that stores the simulation objects.
      */
-    NSModel model;
+    private NSModel model;
     /**
      * The text view that shows the TclScript that results from the simulation
      * script.
      */
-    JTextArea tclView;
+    private JTextArea tclView;
     /**
      * Last path explored file File Chooser
      */
-    String lastpath;
+    private String lastpath;
 
     /**
      * Main constructor. Its responsibilities include creating the title dialog
@@ -164,7 +164,7 @@ public class NScript extends JFrame {
         Reader reader;
         NSObject o;
         String newLine;
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder(20); //FIXME magic number
 
         try {
             reader = new InputStreamReader(
@@ -463,7 +463,7 @@ public class NScript extends JFrame {
                         model.setDirty(false);
                         return;
                     }
-                    if (s.isRelation) {
+                    if (s.isRelation()) {
                         or = new NSRelation(s, br.readLine(), null, null);
                         s.instantiateNSObject(or);
                         or.fromString(br, model);

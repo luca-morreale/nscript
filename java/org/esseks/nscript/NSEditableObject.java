@@ -23,7 +23,7 @@ public class NSEditableObject extends NSObject implements DMObject {
     /**
      * Flag to keep the 'Selected' state of the object.
      */
-    boolean selected;
+    private boolean selected;
 
     /**
      * Uses the constructor from NSObject.

@@ -24,11 +24,11 @@ public class SAboutDialog extends JDialog implements ActionListener {
     /**
      * The close button (for the "About..." functionality).
      */
-    JButton closeBtn;
+    private JButton closeBtn;
     /**
      * A status string (for the progress dialog functionality).
      */
-    JLabel ad;
+    private JLabel ad;
 
     /**
      * Only constructor. Creates the frame and the interface elements depending

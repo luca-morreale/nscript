@@ -26,30 +26,30 @@ public class NSModel extends NSWorld implements DMModel {
     /**
      * Reference to the tool box that stores the currently opened libraries.
      */
-    SToolBar toolBox;
+    private SToolBar toolBox;
     /**
      * Reference to the main modeling and visualization view.
      */
-    DMView editView;
+    private DMView editView;
     /**
      * Reference to the view where the Tcl version of the simulation script is
      * represented.
      */
-    JTextArea tclView;
+    private JTextArea tclView;
     /**
      * Reference to the panel where individual objects can be edited.
      */
-    SObjectBrowser objectPanel;
+    private SObjectBrowser objectPanel;
     /**
      * Reference to the view that lists all the objects in the simulation (not
      * yet implemented).
      */
-    NSWorldView worldView;
+    private NSWorldView worldView;
     /**
      * Flag that tells if the model has been modified and needs to be saved to a
      * file.
      */
-    boolean isDirty;
+    private boolean isDirty;
 
     /**
      * The onlye constructor for this class of objects. Takes an initial
@@ -92,7 +92,7 @@ public class NSModel extends NSWorld implements DMModel {
             return DMModel.SELECT_MODE;
         }
 
-        if (s.isRelation) {
+        if (s.isRelation()) {
             return DMModel.RELATION_MODE;
         } else {
             return DMModel.ICON_MODE;
@@ -122,7 +122,7 @@ public class NSModel extends NSWorld implements DMModel {
         }
 
         // Check for uniqueness
-        if (s.isUnique && objectOfClassExists(s.getName())) {
+        if (s.isUnique() && objectOfClassExists(s.getName())) {
             return;
         }
 
@@ -156,14 +156,14 @@ public class NSModel extends NSWorld implements DMModel {
         TclSnippet s = toolBox.getSelectedSnippet();
         NSRelation o;
 
-        if (s == null || !s.isRelation) {
+        if (s == null || !s.isRelation()) {
             return;
         }
 
-        if (s.isFromBaseUnique && relationOfClassExists(oFrom, s.getName())) {
+        if (s.isFromBaseUnique() && relationOfClassExists(oFrom, s.getName())) {
             return;
         }
-        if (s.isToBaseUnique && relationOfClassExists(oTo, s.getName())) {
+        if (s.isToBaseUnique() && relationOfClassExists(oTo, s.getName())) {
             return;
         }
 
@@ -230,7 +230,7 @@ public class NSModel extends NSWorld implements DMModel {
         O = (NSObject) dmo;
         for (i = 0; i < getSize(); i++) {
             o = (NSObject) getObjectAt(i);
-            if (o.getSnippet().isRelation) {
+            if (o.getSnippet().isRelation()) {
                 or = (NSRelation) o;
                 if (or.getFrom() == O && or.getSnippet().getName().equals(theClass)
                         || or.getTo() == O && or.getSnippet().getName().equals(theClass)) {
@@ -248,7 +248,7 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public int getSize() {
-        return objects.size();
+        return getObjects().size();
     }
 
     /**
@@ -257,8 +257,8 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public DMObject getObjectAt(int inIndex) {
-        if (inIndex >= 0 && inIndex < objects.size()) {
-            return (DMObject) (objects.get(inIndex));
+        if (inIndex >= 0 && inIndex < getObjects().size()) {
+            return (DMObject) (getObjects().get(inIndex));
         } else {
             return null;
         }
@@ -276,7 +276,7 @@ public class NSModel extends NSWorld implements DMModel {
         // First, select also arcs attached to a entity to be deleted
         for (i = 0; i < getSize(); i++) {
             o = (NSEditableObject) getObjectAt(i);
-            if (o.getSnippet().isRelation) {
+            if (o.getSnippet().isRelation()) {
                 or = (NSRelation) o;
                 if (or.getFrom().isSelected() || or.getTo().isSelected()) {
                     or.select();
@@ -286,7 +286,7 @@ public class NSModel extends NSWorld implements DMModel {
 
         editView.repaint();
 
-        Iterator<NSObject> iter = objects.iterator();
+        Iterator<NSObject> iter = getObjects().iterator();
 
         iter.next();
         while (iter.hasNext()) {
@@ -305,12 +305,10 @@ public class NSModel extends NSWorld implements DMModel {
      * the ns environment object to its default values.
      */
     public void newModel() {
-        // Clean arrays
-        while (arrays.size() > 0) {
-            arrays.remove(0);
-        }
+        // Clean
+        clearArrays();
 
-        Iterator<NSObject> iter = objects.iterator();
+        Iterator<NSObject> iter = getObjects().iterator();
 
         iter.next();
         while (iter.hasNext()) {
@@ -350,14 +348,14 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder(getArrayCount() + objects.size() + 1);
+        StringBuilder s = new StringBuilder(getArrayCount() + getObjects().size() + 1);
 
         s.append(Integer.toString(getArrayCount())).append("\n");
         for (int i = 0; i < getArrayCount(); i++) {
             s.append(getArray(i).toString());
         }
-        s.append(Integer.toString(objects.size())).append("\n");
-        for (int i = 0; i < objects.size(); i++) {
+        s.append(Integer.toString(getObjects().size())).append("\n");
+        for (int i = 0; i < getObjects().size(); i++) {
             s.append(((NSObject) getObjectAt(i)).toString());
         }
         return s.toString();

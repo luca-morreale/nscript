@@ -23,43 +23,43 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     /**
      * A reference to the simulation model.
      */
-    NSModel M;
+    private NSModel M;
     /**
      * The default button from the interface.
      */
-    JButton defaultBtn;
+    private JButton defaultBtn;
     /**
      * The 'apply' button from the interface.
      */
-    JButton applyBtn;
+    private JButton applyBtn;
     /**
      * A label that describes the current object. Typically its class.
      */
-    JLabel description;
+    private JLabel description;
     /**
      * The name field, where the user sets and edits the name of the selected
      * object.
      */
-    JTextField nameField;
+    private JTextField nameField;
     /**
      * The name label. "Name: "
      */
-    JLabel name;
+    private JLabel name;
     /**
      * A drop down index containing the available indices + the 'None' entry.
      * Through this element, the user can specify if a given object is indexed
      * by a given array.
      */
-    JComboBox<NSArray> arrayIndex;
+    private JComboBox<NSArray> arrayIndex;
     /**
      * The attribute table, where the object properties are listed, and the user
      * can modify.
      */
-    JTable attrTable;
+    private JTable attrTable;
     /**
      * A reference to the current object being edited.
      */
-    NSObject o = null;
+    private NSObject o = null;
 
     /**
      * The default constructor receives a reference to the current simulation
@@ -127,7 +127,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
         }
         if (oc == 1) {
             nameField.setText(o.getName());
-            if (o.getSnippet().isRelation) {
+            if (o.getSnippet().isRelation()) {
                 or = (NSRelation) o;
                 description.setText(Messages.tr("relates") + " (" + or.getFrom().getName() + ", " + or.getTo().getName() + ")");
             } else {

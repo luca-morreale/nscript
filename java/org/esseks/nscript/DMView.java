@@ -26,15 +26,15 @@ public class DMView extends JPanel {
     /**
      * A reference to the model object.
      */
-    DMModel M;
+    private DMModel M;
     /**
      * A referebce to the control object.
      */
-    DMControl C;
+    private DMControl C;
     /**
      * The scale of the drawing
      */
-    double scale;
+    private double scale;
 
     /**
      * This constructor requires a reference to the model. It creates a new

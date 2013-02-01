@@ -24,25 +24,25 @@ public class SToolBar extends JPanel implements ActionListener {
     /**
      * A reference to the main application frame.
      */
-    NScript frame;
+    private NScript frame;
     /**
      * A reference to a Library Manager which stores libraries and their
      * information.
      */
-    TclLibraryManager libManager;
+    private TclLibraryManager libManager;
     /**
      * A tabbed pane. This interface elements contains a "tab" for each library
      * that is opened.
      */
-    JTabbedPane tabPane;
+    private JTabbedPane tabPane;
     /**
      * A label with a description of the current action.
      */
-    JLabel action;
+    private JLabel action;
     /**
      * A pane that knows how to display a library element (or class).
      */
-    NSIconPane nip;
+    private NSIconPane nip;
 
     /**
      * Constructor that takes the parent frame, and a reference to the library

@@ -23,18 +23,18 @@ class NSRelation extends NSEditableObject {
     /**
      * The entity where the relation starts.
      */
-    NSEntity from;
+    private NSEntity from;
     /**
      * The entity where the relation ends.
      */
-    NSEntity to;
+    private NSEntity to;
     /**
      * A constant that represents the selection distance to a line that
      * qualifies a click as a selection. In these case the radios is in terms of
      * the width of the line. The default value is 2.0 which means that if a
      * line has a width of 1 pixel, the selection tolerance is 2 pixels.
      */
-    public static final double SELECTION_RADIUS = 5.0;
+    private static final double SELECTION_RADIUS = 5.0;
 
     /**
      * Requires a base class definition (TclSnippet), a name, and the origin and

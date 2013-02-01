@@ -25,15 +25,15 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
     /**
      * The object to be edited.
      */
-    NSObject o;
+    private NSObject o;
     /**
      * A pull down for fields with limited options.
      */
-    JComboBox<String> cb;
+    private JComboBox<String> cb;
     /**
      * An editable text region for the fields with free input.
      */
-    JTextField tf;
+    private JTextField tf;
 
     /**
      * The constructor takes the object to be edited as an input, creates and
@@ -81,7 +81,7 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
         cb.setPopupVisible(false);
         if (column > 0) {
             if (o != null) {
-                if (o.getSnippet().getAttribute(row).hasOptions) {
+                if (o.getSnippet().getAttribute(row).hasOptions()) {
                     st = new StringTokenizer(o.getSnippet().getAttribute(row).getOptions());
                     cb.setEditable(false);
                     while (st.hasMoreTokens()) {

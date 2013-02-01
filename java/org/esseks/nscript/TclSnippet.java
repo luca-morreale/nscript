@@ -26,78 +26,78 @@ public class TclSnippet extends Object implements Serializable {
     /**
      * The name of the snippet.
      */
-    String name;
+    private String name;
     /**
      * Name of the base class. A snippet belongs to a given category, to provide
      * more flexibility. For example, TCP, TCPSink, UDP, and Null share the
      * 'agent' base class.
      */
-    String base;
+    private String base;
     /**
      * Tells if a given class is a relation or an entity.
      */
-    public boolean isRelation;
+    private boolean isRelation;
     /**
      * Tells if the given class should be uniquely instantiated. For example,
      * there can only be one ns environment class per simulation model. Also
      * there can only be a unique application attached to an agent.
      */
-    public boolean isUnique;
+    private boolean isUnique;
     /**
      * The icon used to represent objects of this class in the graphic
      * environment.
      */
-    int icon;
+    private int icon;
     /**
      * Describes the class base required to create a relation of this type. It
      * applies only to relation objects. For example a DuplexLink object can
      * only connect to node objects. In this case describes the base class of
      * the object where the relation starts.
      */
-    String fromBase;
+    private String fromBase;
     /**
      * Describes the class base of the object where the relation ends.
      */
-    String toBase;
+    private String toBase;
     /**
      * Flags if the relation start must be unique. This is that the start object
      * can only accept one relation of this class, and applies only to relation
      * objects.
      */
-    public boolean isFromBaseUnique;
+    private boolean isFromBaseUnique;
     /**
      * Flags if the relation end must be unique. This means that the end object
      * can only accept one relation of this class, and applies only to relation
      * objects.
      */
-    public boolean isToBaseUnique;
+    private boolean isToBaseUnique;
     /**
      * The style of the base of the relation (start of the relation), so that
      * objects can be drawn with different arrow styles.
      */
-    int baseStyle;
+    private int baseStyle;
     /**
      * The style of the line for a relation object. This is if the line should
      * be drawn solid, dotted, or dashed.
      */
-    int lineStyle;
+    private int lineStyle;
     /**
      * The width of the line for relation objects.
      */
-    int lineWidth;
+    private int lineWidth;
     /**
      * The style of the end of the relation, so that relation objects can be
      * drawn with different arrows styles.
      */
-    int endStyle;
+    private int endStyle;
     /**
      * The collection of attributes of the snippet.
      */
-    ArrayList<TclAttribute> attributes;
+    private ArrayList<TclAttribute> attributes;
     /**
      * The collection of patterns of the snippet.
      */
-    ArrayList<TclPattern> patterns;
+    private ArrayList<TclPattern> patterns;
     /**
      * Constant indicating a SOLID line style (for relation objects, only).
      */
@@ -114,7 +114,7 @@ public class TclSnippet extends Object implements Serializable {
     /**
      * Specify base allocated number of lines for pattern builders.
      */
-    static int BASE_PATTERN_SIZE = 15;
+    private static int BASE_PATTERN_SIZE = 15;
 
     /**
      * Default constructor to implement Serializable protocol.
@@ -401,6 +401,23 @@ public class TclSnippet extends Object implements Serializable {
         }
     }
 
+    public boolean isRelation() {
+        return isRelation;
+    }
+
+    public boolean isUnique() {
+        return isUnique;
+    }
+
+    public boolean isFromBaseUnique() {
+        return isFromBaseUnique;
+    }
+
+    public boolean isToBaseUnique() {
+        return isToBaseUnique;
+    }
+
+
     /**
      * Converts the snippet to a text representation.
      *
@@ -431,7 +448,7 @@ public class TclSnippet extends Object implements Serializable {
         int i;
 
         for (i = 0; i < attributes.size(); i++) {
-            o.setAttribute(i, attributes.get(i).defaultValue);
+            o.setAttribute(i, attributes.get(i).getDefaultValue());
         }
     }
 
@@ -457,8 +474,8 @@ public class TclSnippet extends Object implements Serializable {
         // Get the preamble and epilogue for the snippet.
         if (o.getArrayIndex() >= 0) {
             a = w.getArray(o.getArrayIndex());
-            aname = a.name;
-            asize = a.elements;
+            aname = a.getName();
+            asize = a.getSize();
             preamble = "for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
             epilogue = "}\n";
         } else {
@@ -468,20 +485,20 @@ public class TclSnippet extends Object implements Serializable {
                 i2 = ro.getTo().getArrayIndex();
                 if (i >= 0 || i2 >= 0) {
                     if (i == i2) {
-                        aname = w.getArray(i).name;
-                        asize = w.getArray(i).elements;
+                        aname = w.getArray(i).getName();
+                        asize = w.getArray(i).getSize();
                         preamble = "for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
                         epilogue = "}\n";
                     } else {
                         if (i >= 0) {
-                            aname = w.getArray(i).name;
-                            asize = w.getArray(i).elements;
+                            aname = w.getArray(i).getName();
+                            asize = w.getArray(i).getSize();
                             preamble = "for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
                             epilogue = "}\n";
                         }
                         if (i2 >= 0) {
-                            aname = w.getArray(i2).name;
-                            asize = w.getArray(i2).elements;
+                            aname = w.getArray(i2).getName();
+                            asize = w.getArray(i2).getSize();
                             preamble = preamble + "  for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
                             epilogue += "  }\n";
                         }
@@ -495,14 +512,14 @@ public class TclSnippet extends Object implements Serializable {
         // Now pattern substitution
         for (i = 0; i < patterns.size(); i++) {
             p = patterns.get(i);
-            if (p.isConditional) {
-                if (p.attributeValue.equals(valueOf(w, o, p.attribute))) {
-                    sApp = patternToTcl(p.pattern, w, o, sep);
+            if (p.isConditional()) {
+                if (p.getAttributeValue().equals(valueOf(w, o, p.getAttribute()))) {
+                    sApp = patternToTcl(p.getPattern(), w, o, sep);
                 } else {
-                    sApp = patternToTcl(p.alternativePattern, w, o, sep);
+                    sApp = patternToTcl(p.getAlternativePattern(), w, o, sep);
                 }
             } else {
-                sApp = patternToTcl(p.pattern, w, o, sep);
+                sApp = patternToTcl(p.getPattern(), w, o, sep);
             }
             if (sApp.trim().length() != 0) {
                 s.append(sApp).append("\n");
@@ -575,7 +592,7 @@ public class TclSnippet extends Object implements Serializable {
 
         // Variable attributes
         for (i = 0; i < attributes.size(); i++) {
-            if (attributes.get(i).name.equals(attrName)) {
+            if (attributes.get(i).getName().equals(attrName)) {
                 return o.getAttribute(i);
             }
         }
@@ -592,7 +609,7 @@ public class TclSnippet extends Object implements Serializable {
      */
     public String arrayedName(NSObject o, NSWorld w) {
         if (o.getArrayIndex() >= 0) {
-            return o.getName() + "($" + w.getArray(o.getArrayIndex()).name + ")";
+            return o.getName() + "($" + w.getArray(o.getArrayIndex()).getName() + ")";
         } else {
             return o.getName();
         }

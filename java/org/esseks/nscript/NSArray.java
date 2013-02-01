@@ -22,11 +22,11 @@ public class NSArray extends Object implements Serializable {
     /**
      * The name of the array.
      */
-    public String name;
+    private String name;
     /**
      * The number of instances that an array variable generates.
      */
-    public int elements;
+    private int elements;
 
     /**
      * Default constructor to implement Serializable protocol.
@@ -55,5 +55,22 @@ public class NSArray extends Object implements Serializable {
     public String toString() {
         return name + "\n" + Integer.toString(elements) + "\n";
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSize() {
+        return elements;
+    }
+
+        public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSize(int elements) {
+        this.elements = elements;
+    }
+
     private static final Logger LOG = Logger.getLogger(NSArray.class.getName());
 }

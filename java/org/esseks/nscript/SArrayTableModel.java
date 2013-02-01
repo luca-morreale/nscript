@@ -21,7 +21,7 @@ public class SArrayTableModel extends AbstractTableModel {
     /**
      * A reference to the simulation model.
      */
-    NSWorld M;
+    private NSWorld M;
 
     /**
      * Constructor the stores a reference to the simulation model.
@@ -75,9 +75,9 @@ public class SArrayTableModel extends AbstractTableModel {
         }
 
         if (col == 0) {
-            return M.getArray(row).name;
+            return M.getArray(row).getName();
         } else {
-            return Integer.toString(M.getArray(row).elements);
+            return Integer.toString(M.getArray(row).getSize());
         }
     }
 
@@ -95,9 +95,9 @@ public class SArrayTableModel extends AbstractTableModel {
         }
 
         if (column == 0) {
-            M.getArray(row).name = value.toString();
+            M.getArray(row).setName(value.toString());
         } else {
-            M.getArray(row).elements = Integer.parseInt(value.toString());
+            M.getArray(row).setSize(Integer.parseInt(value.toString()));
         }
     }
 
