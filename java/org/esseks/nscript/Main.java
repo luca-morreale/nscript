@@ -45,7 +45,7 @@ public class Main {
         // Disabling INFO messages (debug)
         Logger.getLogger("").setLevel(Level.WARNING);
 
-        new NScript();
+        NScript n = new NScript();
     }
     private static final Logger LOG = Logger.getLogger(Main.class.getName());
 }

@@ -80,15 +80,15 @@ public class TclAttribute extends Object implements Serializable {
      * Procedure that parses a string looking for the attribute name, its
      * default value, and (optionally) list of options.
      *
-     * @param s the string containing the information.
+     * @param field the string containing the information.
      */
-    private void parseSelf(String s) {
+    private void parseSelf(String field) {
         int defaultIndex, optionsIndex;
 
         defaultValue = "";
         options = "";
 
-        s = s.trim();
+        String s = field.trim();
         defaultIndex = s.indexOf('=');
         optionsIndex = s.indexOf(':');
         if (defaultIndex >= 0) {

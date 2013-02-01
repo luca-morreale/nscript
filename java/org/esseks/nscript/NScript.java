@@ -680,7 +680,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Edit Array...' menu option.
      */
-    class EditArrayAction extends AbstractAction {
+    private class EditArrayAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -698,7 +698,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Export...' menu option.
      */
-    class ExportAction extends AbstractAction {
+    private class ExportAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -715,7 +715,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Run...' menu option.
      */
-    class RunAction extends AbstractAction {
+    private class RunAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 

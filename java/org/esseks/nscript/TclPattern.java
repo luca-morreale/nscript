@@ -66,11 +66,11 @@ public class TclPattern extends Object implements Serializable {
     /**
      * Parses the pattern from a string.
      *
-     * @param s a string with the pattern information.
+     * @param field a string with the pattern information.
      */
-    private void parseSelf(String s) {
+    private void parseSelf(String field) {
         int equals, firstColon, secondColon;
-        s = s.trim();
+        String s = field.trim();
         if (s.charAt(0) == '?') {
             isConditional = true;
             equals = s.indexOf('=');
