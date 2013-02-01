@@ -74,6 +74,22 @@ boils down to the familiar:
 
 *NOTE*: that's only a convenience, you will need Apache Ant and a JDK anyway.
 
+Caveats
+=======
+
+I've been doing a lot of refactoring since the codebase was old (see Git log).
+Anyway, there are some rough edges that I don't think it's worth addressing,
+as they would require a massive redesign of NScript (which supports an outdated
+version of NS) and I'd rather rewrite it from scratches for NS3 rather
+than refigure class layout (maybe it will happen in the future, but
+do not count on it).
+
+Spefically, the distribution between *Object and Tcl* classes/interfaces
+is incorrect, since it forces to do unchecked casts to subclass
+in order to retrieve specific attributes. There are big `switch()` trees using
+"type" flags which should have been implemented as a subclassing mechanism
+instead.
+
 
 Notes applying to the original archive as downloaded from the Internet.
 =======================================================================
