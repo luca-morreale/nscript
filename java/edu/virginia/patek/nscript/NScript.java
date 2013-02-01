@@ -160,26 +160,20 @@ public class NScript extends JFrame {
      * from a file.
      */
     private NSObject readEnvironment(String envFileName) {
-        File f;
-        FileReader fr;
-        BufferedReader br;
+        BufferedReader br = null;
+        Reader reader;
         NSObject o;
-        StringBuilder s = new StringBuilder();
         String newLine;
+        StringBuilder s = new StringBuilder();
 
         try {
-            f = new File(envFileName);
-            fr = new FileReader(f);
-            br = new BufferedReader(fr);
+            reader = new InputStreamReader(
+                new FileInputStream(envFileName), "utf-8");
+            br = new BufferedReader(reader);
             do {
                 newLine = br.readLine();
                 s.append(newLine);
             } while (newLine.indexOf("end") < 0);
-            br.close();
-            env = new TclSnippet(s.toString());
-            o = new NSEntity(env, "ns", 0.01, 0.01);
-            env.instantiateNSObject(o);
-            return o;
         } catch (FileNotFoundException fnfe) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
                 Messages.tr("env_default_not_found"),
@@ -193,6 +187,14 @@ public class NScript extends JFrame {
             });
             return null;
         }
+        finally {
+            close(br);
+        }
+
+        env = new TclSnippet(s.toString());
+        o = new NSEntity(env, "ns", 0.01, 0.01);
+        env.instantiateNSObject(o);
+        return o;
     }
 
     /**
@@ -273,15 +275,14 @@ public class NScript extends JFrame {
      * subdirectory of the 'bin' directory.
      */
     private void addDefaultLibraries(String defFileName) {
-        File f;
-        FileReader fr;
-        BufferedReader br;
+        Reader reader;
+        BufferedReader br = null;
         String newLine = "";
 
         try {
-            f = new File(defFileName);
-            fr = new FileReader(f);
-            br = new BufferedReader(fr);
+            reader = new InputStreamReader(
+                new FileInputStream(defFileName), "utf-8");
+            br = new BufferedReader(reader);
 
             while ((newLine = br.readLine()) != null) {
                 if (libManager.addLibrary(newLine)) {
@@ -289,8 +290,6 @@ public class NScript extends JFrame {
                             libManager.getLibrary(libManager.getLibraryCount() - 1));
                 }
             }
-
-            br.close();
         } catch (FileNotFoundException fnfe) {
             LOG.log(Level.WARNING, "{0}{1}, {2}", new Object[]{
                 Messages.tr("lib_not_found"),
@@ -301,6 +300,8 @@ public class NScript extends JFrame {
                 Messages.tr("lib_read_error"),
                 ioe.toString()
             });
+        } finally {
+            close(br);
         }
     }
 
@@ -327,26 +328,19 @@ public class NScript extends JFrame {
      * @return
      */
     public String saveScript() {
-        File f;
-        FileOutputStream fos;
-        String tScript;
-        byte[] dataOut;
+        Writer writer = null;
 
         JFileChooser fch = new JFileChooser(this.lastpath);
         fch.setDialogTitle(Messages.tr("script_select_name"));
         // fch.setFileFilter(ff);
-        f = new File("Untitled.tcl");
-        fch.setSelectedFile(f);
+        fch.setSelectedFile(new File("Untitled.tcl"));
         int selected = fch.showSaveDialog(this.getContentPane());
         if (selected == JFileChooser.APPROVE_OPTION) {
             try {
                 this.updateLastPath(fch.getSelectedFile());
-                fos = new FileOutputStream(fch.getSelectedFile());
-                tScript = model.toTcl();
-                dataOut = tScript.getBytes();
-                fos.write(dataOut);
-                fos.flush();
-                fos.close();
+                writer = new OutputStreamWriter(
+                    new FileOutputStream(fch.getSelectedFile()), "utf-8");
+                writer.write(model.toTcl());
                 return fch.getSelectedFile().getAbsolutePath();
             } catch (FileNotFoundException e) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
@@ -356,6 +350,8 @@ public class NScript extends JFrame {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
                     Messages.tr("file_write_error"), ioe.toString()});
                 return null;
+            } finally {
+                close(writer);
             }
         }
         return null;
@@ -368,26 +364,20 @@ public class NScript extends JFrame {
      * @return
      */
     public String saveFileAction() {
-        File f;
-        FileOutputStream fos;
-        String tScript;
-        byte[] dataOut;
+        Writer writer = null;
 
         JFileChooser fch = new JFileChooser(this.lastpath);
         fch.setDialogTitle(Messages.tr("save_as"));
         // fch.setFileFilter(ff);
-        f = new File("Untitled.nss");
-        fch.setSelectedFile(f);
+        fch.setSelectedFile(new File("Untitled.nss"));
         int selected = fch.showSaveDialog(this.getContentPane());
         if (selected == JFileChooser.APPROVE_OPTION) {
             try {
                 this.updateLastPath(fch.getSelectedFile());
-                fos = new FileOutputStream(fch.getSelectedFile());
-                tScript = model.toString();
-                dataOut = tScript.getBytes();
-                fos.write(dataOut);
-                fos.flush();
-                fos.close();
+                writer = new OutputStreamWriter(
+                    new FileOutputStream(fch.getSelectedFile()), "utf-8");
+                writer.write(model.toString());
+                writer.close();
                 model.setDirty(false);
                 return fch.getSelectedFile().getAbsolutePath();
             } catch (FileNotFoundException e) {
@@ -398,6 +388,8 @@ public class NScript extends JFrame {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
                             Messages.tr("file_write_error"), ioe.toString()});
                 return null;
+            } finally {
+                close(writer);
             }
         }
         return null;
@@ -444,9 +436,9 @@ public class NScript extends JFrame {
             this.updateLastPath(fch.getSelectedFile());
             model.newModel();
             try {
-                File f = fch.getSelectedFile();
-                FileReader fr = new FileReader(f);
-                BufferedReader br = new BufferedReader(fr);
+                Reader reader = new InputStreamReader(
+                        new FileInputStream(fch.getSelectedFile()), "utf-8");
+                BufferedReader br = new BufferedReader(reader);
 
                 // Read arrays
                 nA = Integer.parseInt(br.readLine());
@@ -519,6 +511,23 @@ public class NScript extends JFrame {
             s = libManager.getSnippet(snippetName);
         } while (s == null);
         return s;
+    }
+
+    /**
+     * Safely close the passed in resource or log error.
+     *
+     * @param stream the stream to be closed
+     */
+    private void close(Closeable stream) {
+        if (stream == null) {
+            return;
+        }
+
+        try {
+            stream.close();
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, "Fatal I/O error: {0}", e.toString());
+        }
     }
 
     /**

@@ -93,9 +93,9 @@ public class TclLibraryManager extends Object {
         boolean go;
 
         try {
-            f = new File(fileName);
-            fr = new FileReader(f);
-            br = new BufferedReader(fr);
+            Reader reader = new InputStreamReader(
+                    new FileInputStream(fileName), "utf-8");
+            br = new BufferedReader(reader);
             tl = new TclLibrary(br);
             go = !libNameExists(tl.getName());
             for (i = 0; i < tl.getSnippetCount(); i++) {
@@ -112,6 +112,10 @@ public class TclLibraryManager extends Object {
         } catch (FileNotFoundException e) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
                 Messages.tr("library_not_found"), e.toString()});
+            return false;
+        } catch (IOException ioe) {
+            LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
+                        Messages.tr("file_read_error"), ioe.toString()});
             return false;
         }
     }
