@@ -30,7 +30,7 @@ public class NSWorldView extends JPanel {
 
     /**
      * Constructor that copies a reference to the simulation model.
-     * @param inW 
+     * @param inW
      */
     public NSWorldView(NSWorld inW) {
         super();
@@ -54,7 +54,7 @@ public class NSWorldView extends JPanel {
     /**
      * Implements the abstract list model to render the elements in the list.
      */
-    class SWPListModel extends AbstractListModel<String> {
+    private static class SWPListModel extends AbstractListModel<String> {
 
         static final long serialVersionUID = 42L;
         /**

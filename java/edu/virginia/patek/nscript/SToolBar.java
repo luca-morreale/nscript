@@ -133,7 +133,7 @@ public class SToolBar extends JPanel implements ActionListener {
      * Class that implements the AbstractListModel behavior to render the
      * elements of a library as a list.
      */
-    class STBListModel extends AbstractListModel<TclSnippet> {
+    private static class STBListModel extends AbstractListModel<TclSnippet> {
 
         static final long serialVersionUID = 42L;
         /**

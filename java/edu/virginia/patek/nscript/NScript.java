@@ -533,7 +533,7 @@ public class NScript extends JFrame {
     /**
      * Implements the handling of events at frame window level.
      */
-    class WindowEventHandler extends WindowAdapter {
+    private class WindowEventHandler extends WindowAdapter {
 
         @Override
         public void windowClosing(WindowEvent evt) {
@@ -546,7 +546,7 @@ public class NScript extends JFrame {
     /**
      * Action definitions for the 'New' action.
      */
-    class NewAction extends AbstractAction {
+    private class NewAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -569,7 +569,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Open' option.
      */
-    class OpenAction extends AbstractAction {
+    private class OpenAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -592,7 +592,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Open Library' option.
      */
-    class OpenLibAction extends AbstractAction {
+    private class OpenLibAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -609,7 +609,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Save' option.
      */
-    class SaveAction extends AbstractAction {
+    private class SaveAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -626,7 +626,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Quit' option.
      */
-    class QuitAction extends AbstractAction {
+    private class QuitAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -645,7 +645,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'Clear' option.
      */
-    class ClearAction extends AbstractAction {
+    private class ClearAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -662,7 +662,7 @@ public class NScript extends JFrame {
     /**
      * Action implementation of the 'About...' option.
      */
-    class AboutAction extends AbstractAction {
+    private static class AboutAction extends AbstractAction {
 
         static final long serialVersionUID = 42L;
 
@@ -744,7 +744,7 @@ public class NScript extends JFrame {
     /**
      * A filter of '.nss' files to be used in an 'Open File' dialog box.
      */
-    class LibFilter implements FileFilter {
+    private static class LibFilter implements FileFilter {
 
         LibFilter() {
             super();
