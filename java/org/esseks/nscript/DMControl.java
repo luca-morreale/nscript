@@ -210,6 +210,9 @@ public class DMControl extends KeyAdapter
                 M.updateAllViews();
                 break;
 
+            case DMModel.RELATION_MODE:
+                break;
+
             default:
                 throw new RuntimeException("Unexpected edit state.");
         }
@@ -262,6 +265,10 @@ public class DMControl extends KeyAdapter
                     action = DMControl.NONE;
                 }
                 break;
+
+            case DMModel.ICON_MODE:
+                break;
+
             default:
                 throw new RuntimeException("Unexpected object mode.");
         }
@@ -327,6 +334,8 @@ public class DMControl extends KeyAdapter
         boolean shift = me.isShiftDown();
 
         switch (action) {
+            case (DMControl.NONE):
+                break;
 
             case (DMControl.SELECTING):
                 for (i = 0; i < M.getSize(); i++) {
