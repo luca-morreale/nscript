@@ -324,6 +324,11 @@ public class NScript extends JFrame {
                         Messages.tr("lib_not_found"),
                         line, fnfe.toString()
                     });
+            JOptionPane.showMessageDialog(
+                getContentPane(),
+                fnfe.toString(),
+                Messages.tr("lib_not_found"),
+                JOptionPane.ERROR_MESSAGE);
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
                         Messages.tr("lib_read_error"),
