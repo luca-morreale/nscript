@@ -69,8 +69,8 @@ See COPYING at top level for more information.
     <javadoc sourcepath="${src.dir}" destdir="${build.javadoc.dir}"/>
   </target>
 
-  <target name="run" depends="jar">
-    <java jar="${install.jar.base}.jar" fork="true"/>
+  <target name="run" depends="install">
+    <java dir="${install.dir}" jar="${install.jar.base}.jar" fork="true"/>
   </target>
 
   <target name="clean-build" depends="clean,jar"/>
