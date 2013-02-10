@@ -39,10 +39,6 @@ public class SObjectBrowser extends JPanel implements ActionListener {
      */
     private JButton defaultBtn;
     /**
-     * The 'apply' button from the interface.
-     */
-    private JButton applyBtn;
-    /**
      * A label that describes the current object. Typically its class.
      */
     private JLabel description;
@@ -104,12 +100,9 @@ public class SObjectBrowser extends JPanel implements ActionListener {
 
         defaultBtn = new JButton(Messages.tr("use_defaults"));
         defaultBtn.addActionListener(this);
-        applyBtn = new JButton(Messages.tr("apply"));
-        applyBtn.addActionListener(this);
 
         JPanel p3 = new JPanel(new GridLayout(1, 2));
         p3.add(defaultBtn);
-        p3.add(applyBtn);
 
         add(p3, BorderLayout.SOUTH);
 
@@ -188,13 +181,6 @@ public class SObjectBrowser extends JPanel implements ActionListener {
 
         if (ae.getSource() == defaultBtn) {
             o.getSnippet().instantiateNSObject(o);
-        }
-        else if (ae.getSource() == applyBtn) {
-            o.setName(nameField.getText());
-            o.setArrayIndex(arrayIndex.getSelectedIndex() - 1);
-            for (int i = 0; i < o.getAttributeCount(); i++) {
-                o.setAttribute(i, (String) attrTable.getValueAt(i, 1));
-            }
         }
         else if (ae.getSource() == nameField) {
             o.setName(nameField.getText());
