@@ -21,6 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * Creates a panel that allows the user to modify the properties of an object.
@@ -113,6 +115,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
 
         // OK, the table
         attrTable = new JTable(new SObjectTableModel(null));
+        attrTable.getSelectionModel().addListSelectionListener(new PropertiesUpdater());
         JScrollPane sp_at = new JScrollPane(attrTable);
         add(sp_at, BorderLayout.CENTER);
         setBorder(new EmptyBorder(2, 2, 2, 2));
@@ -179,51 +182,41 @@ public class SObjectBrowser extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        int i;
+        if (o == null) {
+            return;
+        }
 
         if (ae.getSource() == defaultBtn) {
-            if (o != null) {
-                o.getSnippet().instantiateNSObject(o);
-                M.updateAllViews();
-                M.setDirty(true);
+            o.getSnippet().instantiateNSObject(o);
+        }
+        else if (ae.getSource() == applyBtn) {
+            o.setName(nameField.getText());
+            o.setArrayIndex(arrayIndex.getSelectedIndex() - 1);
+            for (int i = 0; i < o.getAttributeCount(); i++) {
+                o.setAttribute(i, (String) attrTable.getValueAt(i, 1));
             }
         }
-        if (ae.getSource() == applyBtn) {
-            if (o != null) {
-                o.setName(nameField.getText());
-                o.setArrayIndex(arrayIndex.getSelectedIndex() - 1);
-                for (i = 0; i < o.getAttributeCount(); i++) {
-                    o.setAttribute(i, (String) attrTable.getValueAt(i, 1));
-                }
-                M.updateAllViews();
-                M.setDirty(true);
-            }
+        else if (ae.getSource() == nameField) {
+            o.setName(nameField.getText());
         }
-        if (ae.getSource() == nameField) {
-            if (o != null) {
-                o.setName(nameField.getText());
-                o.setArrayIndex(arrayIndex.getSelectedIndex() - 1);
-                for (i = 0; i < o.getAttributeCount(); i++) {
+
+        M.updateAllViews(false);
+        M.setDirty(true);
+    }
+
+    class PropertiesUpdater implements ListSelectionListener {
+        /** Responds to changes in the selection of the list. */
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (!e.getValueIsAdjusting() && (o != null)) {
+                for (int i = e.getFirstIndex(); i <= e.getLastIndex(); ++i) {
                     o.setAttribute(i, (String) attrTable.getValueAt(i, 1));
                 }
-                M.updateAllViews();
+                M.updateAllViews(true);
                 M.setDirty(true);
             }
         }
     }
-//  /** Responds to changes in the selection of the list. */
-//  public void itemStateChanged(ItemEvent e)
-//  {
-//    int i;
-//    if (e.getStateChange()==2 && o!=null) {
-//      o.setName( nameField.getText() );
-//      o.setArrayIndex( arrayIndex.getSelectedIndex()-1 );
-//      for (i=0; i<o.getAttributeCount(); i++) {
-//        o.setAttribute( i, (String) attrTable.getValueAt(i,1) );
-//      }
-//      M.updateAllViews();
-//      M.setDirty(true);
-//    }
-//  }
+
     private static final Logger LOG = Logger.getLogger(SObjectBrowser.class.getName());
 }

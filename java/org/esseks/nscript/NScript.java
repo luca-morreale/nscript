@@ -497,7 +497,7 @@ public class NScript extends JFrame {
                     }
                     if (s == null) {
                         model.newModel();
-                        model.updateAllViews();
+                        model.updateAllViews(false);
                         model.setDirty(false);
                         return;
                     }
@@ -513,7 +513,7 @@ public class NScript extends JFrame {
                         model.addObject(o);
                     }
                 }
-                model.updateAllViews();
+                model.updateAllViews(false);
                 model.setDirty(false);
             } catch (FileNotFoundException e) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{

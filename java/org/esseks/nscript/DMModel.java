@@ -63,8 +63,11 @@ public interface DMModel {
     /**
      * To be called after modifying the model, so that all views dependent on it
      * render the model correctly.
+     *
+     * @param onTheFly if true, do not update properties table
+     *                 (for progressive table update).
      */
-    public void updateAllViews();
+    public void updateAllViews(boolean onTheFly);
 
     /**
      * Get the size of the model in number of objects stored.

@@ -202,12 +202,12 @@ public class DMControl extends KeyAdapter
                         unselectAll();
                     }
                 }
-                M.updateAllViews();
+                M.updateAllViews(false);
                 break;
 
             case DMModel.ICON_MODE:
                 M.addSimpleObject(V.getBounds().getSize(), me.getPoint(), true);
-                M.updateAllViews();
+                M.updateAllViews(false);
                 break;
 
             case DMModel.RELATION_MODE:
@@ -347,7 +347,7 @@ public class DMControl extends KeyAdapter
                         }
                     }
                 }
-                M.updateAllViews();
+                M.updateAllViews(false);
                 break;
 
             case (DMControl.MOVING):
@@ -359,14 +359,14 @@ public class DMControl extends KeyAdapter
                     }
                     M.setDirty(true);
                 }
-                M.updateAllViews();
+                M.updateAllViews(false);
                 break;
 
             case (DMControl.LINKING):
                 if (action == DMControl.LINKING) {
                     if (e != null) {
                         M.addRelationObject(startO, e, true);
-                        M.updateAllViews();
+                        M.updateAllViews(false);
                     } else {
                         V.repaint();
                     }
@@ -409,7 +409,7 @@ public class DMControl extends KeyAdapter
                     M.getObjectAt(i).moveBy(V.getBounds().getSize(), r);
                 }
             }
-            M.updateAllViews();
+            M.updateAllViews(false);
             start = me.getPoint();
         } else {
             end = me.getPoint();

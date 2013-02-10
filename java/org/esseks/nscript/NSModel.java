@@ -196,11 +196,14 @@ public class NSModel extends NSWorld implements DMModel {
      * response to a change in the model information.
      */
     @Override
-    public void updateAllViews() {
+    public void updateAllViews(boolean onTheFly) {
         editView.repaint();
-        objectPanel.selectionChanged();
         tclView.setText(toTcl());
         worldView.updateList();
+        
+        if (!onTheFly) {
+            objectPanel.selectionChanged();
+        }
     }
 
     /**
@@ -302,7 +305,7 @@ public class NSModel extends NSWorld implements DMModel {
             }
         }
 
-        updateAllViews();
+        updateAllViews(false);
     }
 
     /**
@@ -323,7 +326,7 @@ public class NSModel extends NSWorld implements DMModel {
 
         ((NSObject) getObjectAt(0)).getSnippet().instantiateNSObject((NSObject) getObjectAt(0));
         ((NSObject) getObjectAt(0)).setName("ns");
-        updateAllViews();
+        updateAllViews(false);
         setDirty(false);
     }
 
