@@ -190,7 +190,7 @@ public class SObjectBrowser extends JPanel implements ActionListener {
         M.setDirty(true);
     }
 
-    class PropertiesUpdater implements ListSelectionListener {
+    private class PropertiesUpdater implements ListSelectionListener {
         /** Responds to changes in the selection of the list. */
         @Override
         public void valueChanged(ListSelectionEvent e) {
