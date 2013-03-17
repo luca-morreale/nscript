@@ -16,12 +16,11 @@ The new icon set is taken from GNOME 3 icons, released under GPL.
 See AUTHORS for contact information.
 
 
-Downloading prebuilts
+Prebuilts for Windows
 =====================
-
-The download feature was retired. Now you can grab the last version
-directly from GIT (see above) as nscript-<some version number>.zip
-
+Windows executables for NS2, NAM and DLL for tcl are provided *for convenience
+only*. The author did not compile or audit the binaries and makes *NO* warranty.
+See README.prebuilts for specific information.
 
 Building
 ========
