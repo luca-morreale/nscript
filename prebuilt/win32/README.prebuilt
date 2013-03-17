@@ -1,0 +1,30 @@
+Origin
+======
+
+NAM and NS2 for Windows are provided since compilation might be difficult
+without pulling lots of binaries (i.e. gcc, headers, mingw runtime..).
+
+Refer to [1] for explanations.
+NS2 and NAM executables where downloaded from official release site at [2]
+
+Versions are:
+
+ns2: 2.1b9a (win32)
+nam: 1.0a11a (win32)
+
+Disclaimer
+==========
+
+The author provides these prebuilts only to simplify usage on Windows platforms
+and believes the aforementioned files to be accurate images of source code.
+Anyway *NO RESPONSIBILITY* is held by the author on the content or behaviour
+of such binary files and *NO WARRANTY* is made either.
+The author did not compile any of those files.
+In short: if those files turn out to embed a virus, you're on your own.
+
+See the final disclaimer of BSD license contained in COPYING for more legalese.
+
+---
+
+[1] http://www.item.ntnu.no/fag/ttm4150/labs/ns2win.html
+[2] http://www.isi.edu/nsnam/dist/binary/
