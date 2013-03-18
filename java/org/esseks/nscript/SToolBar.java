@@ -60,21 +60,21 @@ public class SToolBar extends JPanel implements ActionListener {
     @SuppressWarnings("LeakingThisInConstructor")
     public SToolBar(NScript inFrame, TclLibraryManager inLibManager) {
         super(new BorderLayout());
-        libManager = inLibManager;
-        action = new JLabel(Messages.tr("selection_tool"));
+        this.libManager = inLibManager;
+        this.action = new JLabel(Messages.tr("selection_tool"));
         JPanel panel = new JPanel(new BorderLayout());
-        panel.add(action, BorderLayout.NORTH);
+        panel.add(this.action, BorderLayout.NORTH);
         JPanel panel2 = new JPanel(new BorderLayout());
         JButton b = new JButton(new ImageIcon(SToolBar.class.getResource("/pixmaps/select.png")));
         b.setPreferredSize(new Dimension(22, 22));
         b.addActionListener(this);
         panel2.add(b, BorderLayout.NORTH);
         panel.add(panel2, BorderLayout.WEST);
-        tabPane = new JTabbedPane(SwingConstants.BOTTOM);
-        panel.add(tabPane, BorderLayout.CENTER);
-        nip = new NSIconPane(0, "NO ICON");
-        add(panel, BorderLayout.CENTER);
-        setBorder(new EmptyBorder(5, 5, 5, 5));
+        this.tabPane = new JTabbedPane(SwingConstants.BOTTOM);
+        panel.add(this.tabPane, BorderLayout.CENTER);
+        this.nip = new NSIconPane(0, "NO ICON");
+        this.add(panel, BorderLayout.CENTER);
+        this.setBorder(new EmptyBorder(5, 5, 5, 5));
     }
 
     /**
@@ -85,10 +85,10 @@ public class SToolBar extends JPanel implements ActionListener {
      */
     public void addLibraryPane(TclLibrary lib) {
         JList<TclSnippet> c = new JList<TclSnippet>(new STBListModel(lib));
-        c.setCellRenderer(nip);
+        c.setCellRenderer(this.nip);
         JScrollPane sp = new JScrollPane(c);
-        tabPane.addTab(lib.getTBName(), sp);
-        action.setText(Messages.tr("select_an_object"));
+        this.tabPane.addTab(lib.getTBName(), sp);
+        this.action.setText(Messages.tr("select_an_object"));
     }
 
     /**
@@ -100,18 +100,18 @@ public class SToolBar extends JPanel implements ActionListener {
     public TclSnippet getSelectedSnippet() {
         int libIndex, snippetIndex;
 
-        libIndex = tabPane.getSelectedIndex();
+        libIndex = this.tabPane.getSelectedIndex();
         if (libIndex < 0) {
             return null;
         }
 
         // TODO find more readable solution (here and below)
-        snippetIndex = ((JList<?>) (((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).getSelectedIndex();
+        snippetIndex = ((JList<?>) (((JScrollPane) this.tabPane.getSelectedComponent()).getViewport().getView())).getSelectedIndex();
 
         if (snippetIndex < 0) {
             return null;
         } else {
-            return libManager.getSnippet(libIndex, snippetIndex);
+            return this.libManager.getSnippet(libIndex, snippetIndex);
         }
     }
 
@@ -120,7 +120,7 @@ public class SToolBar extends JPanel implements ActionListener {
      * the user selecting the "Select" tool.
      */
     public void clearSelection() {
-        ((JList<?>) (((JScrollPane) tabPane.getSelectedComponent()).getViewport().getView())).clearSelection();
+        ((JList<?>) (((JScrollPane) this.tabPane.getSelectedComponent()).getViewport().getView())).clearSelection();
     }
 
     /**
@@ -131,7 +131,7 @@ public class SToolBar extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        clearSelection();
+        this.clearSelection();
     }
 
     /**
@@ -152,7 +152,7 @@ public class SToolBar extends JPanel implements ActionListener {
          * @param inLib a reference to the library.
          */
         STBListModel(TclLibrary inLib) {
-            lib = inLib;
+            this.lib = inLib;
         }
 
         /**
@@ -164,7 +164,7 @@ public class SToolBar extends JPanel implements ActionListener {
          */
         @Override
         public TclSnippet getElementAt(int index) {
-            return lib.getSnippet(index);  //.getName();
+            return this.lib.getSnippet(index);  //.getName();
         }
 
         /**
@@ -175,7 +175,7 @@ public class SToolBar extends JPanel implements ActionListener {
          */
         @Override
         public int getSize() {
-            return lib.getSnippetCount();
+            return this.lib.getSnippetCount();
         }
     }
     private static final Logger LOG = Logger.getLogger(SToolBar.class.getName());

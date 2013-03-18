@@ -46,28 +46,28 @@ public class TclAttribute extends Object implements Serializable {
      * @param s a string, usually read from a file.
      */
     public TclAttribute(String s) {
-        parseSelf(s);
+        this.parseSelf(s);
     }
 
     /**
      * @return the name of the attribute.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
      * @return the default value of the attribute.
      */
     public String getDefault() {
-        return defaultValue;
+        return this.defaultValue;
     }
 
     /**
      * @return the options from the attribute.
      */
     public String getOptions() {
-        return options;
+        return this.options;
     }
 
     /**
@@ -75,7 +75,7 @@ public class TclAttribute extends Object implements Serializable {
      * @return
      */
     public boolean hasOptions() {
-        return hasOptions;
+        return this.hasOptions;
     }
 
     /**
@@ -83,7 +83,7 @@ public class TclAttribute extends Object implements Serializable {
      * @return
      */
     public String getDefaultValue() {
-        return defaultValue;
+        return this.defaultValue;
     }
 
     /**
@@ -95,39 +95,39 @@ public class TclAttribute extends Object implements Serializable {
     private void parseSelf(String field) {
         int defaultIndex, optionsIndex;
 
-        defaultValue = "";
-        options = "";
+        this.defaultValue = "";
+        this.options = "";
 
         String s = field.trim();
         defaultIndex = s.indexOf('=');
         optionsIndex = s.indexOf(':');
         if (defaultIndex >= 0) {
-            hasDefault = true;
+            this.hasDefault = true;
         } else {
-            hasDefault = false;
+            this.hasDefault = false;
         }
         if (optionsIndex >= 0) {
-            hasOptions = true;
+            this.hasOptions = true;
         } else {
-            hasOptions = false;
+            this.hasOptions = false;
         }
 
         // Ok, now read
-        if (hasDefault) {
-            name = s.substring(0, defaultIndex);
-            if (hasOptions) {
-                defaultValue = s.substring(defaultIndex + 1, optionsIndex);
-                options = s.substring(optionsIndex + 1);
+        if (this.hasDefault) {
+            this.name = s.substring(0, defaultIndex);
+            if (this.hasOptions) {
+                this.defaultValue = s.substring(defaultIndex + 1, optionsIndex);
+                this.options = s.substring(optionsIndex + 1);
             } else {
 
-                defaultValue = s.substring(defaultIndex + 1);
+                this.defaultValue = s.substring(defaultIndex + 1);
             }
         } else {
-            if (hasOptions) {
-                name = s.substring(0, optionsIndex);
-                options = s.substring(optionsIndex + 1);
+            if (this.hasOptions) {
+                this.name = s.substring(0, optionsIndex);
+                this.options = s.substring(optionsIndex + 1);
             } else {
-                name = s;
+                this.name = s;
             }
         }
     }
@@ -139,7 +139,7 @@ public class TclAttribute extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        return name + " = " + defaultValue + " : " + options;
+        return this.name + " = " + this.defaultValue + " : " + this.options;
     }
     private static final Logger LOG = Logger.getLogger(TclAttribute.class.getName());
 }

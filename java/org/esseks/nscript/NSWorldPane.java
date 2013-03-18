@@ -27,7 +27,7 @@ public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
      */
     public NSWorldPane() {
         super(Messages.tr("empty"));
-        setOpaque(true);
+        this.setOpaque(true);
     }
 
     /**
@@ -48,14 +48,14 @@ public class NSWorldPane extends JLabel implements ListCellRenderer<String> {
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
-        setText(value);
+        this.setText(value);
 
         if (isSelected) {
-            setBackground(list.getSelectionBackground());
-            setForeground(list.getSelectionForeground());
+            this.setBackground(list.getSelectionBackground());
+            this.setForeground(list.getSelectionForeground());
         } else {
-            setBackground(list.getBackground());
-            setForeground(list.getForeground());
+            this.setBackground(list.getBackground());
+            this.setForeground(list.getForeground());
         }
 
         return this;

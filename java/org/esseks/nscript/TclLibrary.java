@@ -48,8 +48,8 @@ public class TclLibrary extends Object implements Serializable {
      * @param br a buffer (file) from which the library parses itself.
      */
     public TclLibrary(BufferedReader br) {
-        snippets = new ArrayList<TclSnippet>();
-        readFromDisk(br);
+        this.snippets = new ArrayList<TclSnippet>();
+        this.readFromDisk(br);
     }
 
     /**
@@ -60,9 +60,9 @@ public class TclLibrary extends Object implements Serializable {
      * @param tbName
      */
     public TclLibrary(String libName, String tbName) {
-        setName(libName);
-        setTBName(tbName);
-        snippets = new ArrayList<TclSnippet>();
+        this.setName(libName);
+        this.setTBName(tbName);
+        this.snippets = new ArrayList<TclSnippet>();
     }
 
     /**
@@ -71,11 +71,11 @@ public class TclLibrary extends Object implements Serializable {
      * @return name of the Lib as displayed in the toolbar
      */
     public String getTBName() {
-        return TBName;
+        return this.TBName;
     }
 
     private void setTBName(String newTBName) {
-        TBName = newTBName;
+        this.TBName = newTBName;
     }
 
     /**
@@ -84,11 +84,11 @@ public class TclLibrary extends Object implements Serializable {
      * @return library name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     private void setName(String newName) {
-        name = newName;
+        this.name = newName;
     }
 
     /**
@@ -97,7 +97,7 @@ public class TclLibrary extends Object implements Serializable {
      * @return version
      */
     public String getVersion() {
-        return version;
+        return this.version;
     }
 
     /**
@@ -106,7 +106,7 @@ public class TclLibrary extends Object implements Serializable {
      * @return size
      */
     public int getSnippetCount() {
-        return snippets.size();
+        return this.snippets.size();
     }
 
     /**
@@ -116,8 +116,8 @@ public class TclLibrary extends Object implements Serializable {
      * @return TclSnipper or null if not found
      */
     public TclSnippet getSnippet(int index) {
-        if ((index >= 0) && (index < snippets.size())) {
-            return snippets.get(index);
+        if ((index >= 0) && (index < this.snippets.size())) {
+            return this.snippets.get(index);
         } else {
             return null;
         }
@@ -132,7 +132,7 @@ public class TclLibrary extends Object implements Serializable {
      */
     public TclSnippet getSnippet(String theName) {
         TclSnippet t;
-        Iterator<TclSnippet> iter = snippets.iterator();
+        Iterator<TclSnippet> iter = this.snippets.iterator();
         while (iter.hasNext()) {
             t = iter.next();
             if (t.getName().equals(theName)) {
@@ -148,7 +148,7 @@ public class TclLibrary extends Object implements Serializable {
      * @param snippet
      */
     public void setSnippet(int index, TclSnippet snippet) {
-        snippets.set(index, snippet);
+        this.snippets.set(index, snippet);
     }
 
     /**
@@ -157,7 +157,7 @@ public class TclLibrary extends Object implements Serializable {
      * @param snippet the snippet to add
      */
     public void addSnippet(TclSnippet snippet) {
-        snippets.add(snippet);
+        this.snippets.add(snippet);
     }
 
     /**
@@ -168,7 +168,7 @@ public class TclLibrary extends Object implements Serializable {
      */
     public boolean nameExists(String theName) {
         TclSnippet t;
-        Iterator<TclSnippet> iter = snippets.iterator();
+        Iterator<TclSnippet> iter = this.snippets.iterator();
 
         while (iter.hasNext()) {
             t = iter.next();
@@ -181,11 +181,11 @@ public class TclLibrary extends Object implements Serializable {
 
     private boolean readFromDisk(BufferedReader br) {
         try {
-            name = br.readLine();
-            TBName = br.readLine();
-            version = br.readLine();
+            this.name = br.readLine();
+            this.TBName = br.readLine();
+            this.version = br.readLine();
 
-            while (readSnippet(br)) {
+            while (this.readSnippet(br)) {
             }
         } catch (IOException ioe) {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
@@ -213,8 +213,8 @@ public class TclLibrary extends Object implements Serializable {
                         Messages.tr("snippet_read_error"), ioe.toString()});
         }
         t = new TclSnippet(s.toString());
-        if (!nameExists(t.getName())) {
-            addSnippet(t);
+        if (!this.nameExists(t.getName())) {
+            this.addSnippet(t);
         } else {
             LOG.log(Level.WARNING, "{0}{1}", new Object[]{
                         Messages.tr("snippet_already_in_library"), t.getName()});
@@ -230,13 +230,13 @@ public class TclLibrary extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder(snippets.size() + 1);
+        StringBuilder s = new StringBuilder(this.snippets.size() + 1);
         int i;
 
-        s.append(getName()).append(" : ").append(getTBName())
-                .append(" : ").append(getVersion()).append("\n");
-        for (i = 0; i < snippets.size(); i++) {
-            s.append(snippets.get(i).toString()).append("\n");
+        s.append(this.getName()).append(" : ").append(this.getTBName())
+                .append(" : ").append(this.getVersion()).append("\n");
+        for (i = 0; i < this.snippets.size(); i++) {
+            s.append(this.snippets.get(i).toString()).append("\n");
         }
         return s.toString();
     }

@@ -63,8 +63,8 @@ public class NSModel extends NSWorld implements DMModel {
      */
     public NSModel(NSObject inEnv, SToolBar inTBar) {
         super(inEnv);
-        toolBox = inTBar;
-        isDirty = false;
+        this.toolBox = inTBar;
+        this.isDirty = false;
     }
 
     /**
@@ -76,10 +76,10 @@ public class NSModel extends NSWorld implements DMModel {
      * @param inWorldView
      */
     public void setViews(DMView inEView, JTextArea inTclView, SObjectBrowser inObjectPanel, NSWorldView inWorldView) {
-        editView = inEView;
-        tclView = inTclView;
-        objectPanel = inObjectPanel;
-        worldView = inWorldView;
+        this.editView = inEView;
+        this.tclView = inTclView;
+        this.objectPanel = inObjectPanel;
+        this.worldView = inWorldView;
     }
 
     /**
@@ -90,7 +90,7 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public int getEditionMode() {
-        TclSnippet s = toolBox.getSelectedSnippet();
+        TclSnippet s = this.toolBox.getSelectedSnippet();
 
         if (s == null) {
             return DMModel.SELECT_MODE;
@@ -114,7 +114,7 @@ public class NSModel extends NSWorld implements DMModel {
     @Override
     public void addSimpleObject(Dimension r, Point p, boolean unselectOther) {
         String newName;
-        TclSnippet s = toolBox.getSelectedSnippet();
+        TclSnippet s = this.toolBox.getSelectedSnippet();
         NSObject o;
         double x, y;
 
@@ -126,23 +126,23 @@ public class NSModel extends NSWorld implements DMModel {
         }
 
         // Check for uniqueness
-        if (s.isUnique() && objectOfClassExists(s.getName())) {
+        if (s.isUnique() && this.objectOfClassExists(s.getName())) {
             return;
         }
 
-        isDirty = true;
+        this.isDirty = true;
         // Get a new unique generic name
         int i = -1;
         do {
             i++;
             newName = s.getName() + i;
-        } while (!isValidName(newName));
+        } while (!this.isValidName(newName));
 
         o = new NSEntity(s, newName, x, y);
         s.instantiateNSObject(o);
-        addObject(o);
-        tclView.setText(toTcl());
-        worldView.updateList();
+        this.addObject(o);
+        this.tclView.setText(this.toTcl());
+        this.worldView.updateList();
     }
 
     /**
@@ -157,26 +157,26 @@ public class NSModel extends NSWorld implements DMModel {
     public void addRelationObject(DMObject oFrom, DMObject oTo, boolean unSelectOthers) {
         String newName;
         int i;
-        TclSnippet s = toolBox.getSelectedSnippet();
+        TclSnippet s = this.toolBox.getSelectedSnippet();
         NSRelation o;
 
         if ((s == null) || !s.isRelation()) {
             return;
         }
 
-        if (s.isFromBaseUnique() && relationOfClassExists(oFrom, s.getName())) {
+        if (s.isFromBaseUnique() && this.relationOfClassExists(oFrom, s.getName())) {
             return;
         }
-        if (s.isToBaseUnique() && relationOfClassExists(oTo, s.getName())) {
+        if (s.isToBaseUnique() && this.relationOfClassExists(oTo, s.getName())) {
             return;
         }
 
-        isDirty = true;
+        this.isDirty = true;
         i = -1;
         do {
             i++;
             newName = s.getName() + i;
-        } while (!isValidName(newName));
+        } while (!this.isValidName(newName));
 
         if (((NSEntity) oFrom).getSnippet().getBase().equals(s.getFromBase())
                 && ((NSEntity) oTo).getSnippet().getBase().equals(s.getToBase())) {
@@ -185,9 +185,9 @@ public class NSModel extends NSWorld implements DMModel {
             }
             o = new NSRelation(s, newName, (NSEntity) oFrom, (NSEntity) oTo);
             s.instantiateNSObject(o);
-            addObject(o);
-            tclView.setText(toTcl());
-            worldView.updateList();
+            this.addObject(o);
+            this.tclView.setText(this.toTcl());
+            this.worldView.updateList();
         }
     }
 
@@ -197,12 +197,12 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public void updateAllViews(boolean onTheFly) {
-        editView.repaint();
-        tclView.setText(toTcl());
-        worldView.updateList();
+        this.editView.repaint();
+        this.tclView.setText(this.toTcl());
+        this.worldView.updateList();
         
         if (!onTheFly) {
-            objectPanel.selectionChanged();
+            this.objectPanel.selectionChanged();
         }
     }
 
@@ -215,8 +215,8 @@ public class NSModel extends NSWorld implements DMModel {
         NSObject o;
         int i;
 
-        for (i = 0; i < getSize(); i++) {
-            o = (NSObject) getObjectAt(i);
+        for (i = 0; i < this.getSize(); i++) {
+            o = (NSObject) this.getObjectAt(i);
             if (o.getSnippet().getName().equals(theClass)) {
                 return true;
             }
@@ -235,8 +235,8 @@ public class NSModel extends NSWorld implements DMModel {
         int i;
 
         O = (NSObject) dmo;
-        for (i = 0; i < getSize(); i++) {
-            o = (NSObject) getObjectAt(i);
+        for (i = 0; i < this.getSize(); i++) {
+            o = (NSObject) this.getObjectAt(i);
             if (o.getSnippet().isRelation()) {
                 or = (NSRelation) o;
                 if (((or.getFrom() == O) && or.getSnippet().getName().equals(theClass))
@@ -255,7 +255,7 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public int getSize() {
-        return getObjectsCount();
+        return this.getObjectsCount();
     }
 
     /**
@@ -265,8 +265,8 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public DMObject getObjectAt(int inIndex) {
-        if ((inIndex >= 0) && (inIndex < getObjectsCount())) {
-            return (DMObject) (getObject(inIndex));
+        if ((inIndex >= 0) && (inIndex < this.getObjectsCount())) {
+            return (DMObject) (this.getObject(inIndex));
         } else {
             return null;
         }
@@ -282,8 +282,8 @@ public class NSModel extends NSWorld implements DMModel {
         NSRelation or;
 
         // First, select also arcs attached to a entity to be deleted
-        for (i = 0; i < getSize(); i++) {
-            o = (NSEditableObject) getObjectAt(i);
+        for (i = 0; i < this.getSize(); i++) {
+            o = (NSEditableObject) this.getObjectAt(i);
             if (o.getSnippet().isRelation()) {
                 or = (NSRelation) o;
                 if (or.getFrom().isSelected() || or.getTo().isSelected()) {
@@ -292,20 +292,20 @@ public class NSModel extends NSWorld implements DMModel {
             }
         }
 
-        editView.repaint();
+        this.editView.repaint();
 
-        Iterator<NSObject> iter = getObjectsIterator();
+        Iterator<NSObject> iter = this.getObjectsIterator();
 
         iter.next();
         while (iter.hasNext()) {
             o = (NSEditableObject) iter.next();
             if (o.isSelected()) {
-                isDirty = true;
+                this.isDirty = true;
                 iter.remove();
             }
         }
 
-        updateAllViews(false);
+        this.updateAllViews(false);
     }
 
     /**
@@ -314,9 +314,9 @@ public class NSModel extends NSWorld implements DMModel {
      */
     public void newModel() {
         // Clean
-        clearArrays();
+        this.clearArrays();
 
-        Iterator<NSObject> iter = getObjectsIterator();
+        Iterator<NSObject> iter = this.getObjectsIterator();
 
         iter.next();
         while (iter.hasNext()) {
@@ -324,10 +324,10 @@ public class NSModel extends NSWorld implements DMModel {
             iter.remove();
         }
 
-        ((NSObject) getObjectAt(0)).getSnippet().instantiateNSObject((NSObject) getObjectAt(0));
-        ((NSObject) getObjectAt(0)).setName("ns");
-        updateAllViews(false);
-        setDirty(false);
+        ((NSObject) this.getObjectAt(0)).getSnippet().instantiateNSObject((NSObject) this.getObjectAt(0));
+        ((NSObject) this.getObjectAt(0)).setName("ns");
+        this.updateAllViews(false);
+        this.setDirty(false);
     }
 
     /**
@@ -337,14 +337,14 @@ public class NSModel extends NSWorld implements DMModel {
      * @return a String containing the Tcl script of the model.
      */
     public String toTcl() {
-        StringBuilder s = new StringBuilder(getSize() + 1);
+        StringBuilder s = new StringBuilder(this.getSize() + 1);
 
-        for (int i = 0; i < getSize(); i++) {
-            NSObject ob = (NSObject) getObjectAt(i);
+        for (int i = 0; i < this.getSize(); i++) {
+            NSObject ob = (NSObject) this.getObjectAt(i);
             s.append(ob.getSnippet().toTcl(this, ob, '#')).append('\n');
         }
 
-        s.append("$").append(((NSObject) getObjectAt(0)).getName()).append(" run");
+        s.append("$").append(((NSObject) this.getObjectAt(0)).getName()).append(" run");
         return s.toString();
     }
 
@@ -356,15 +356,15 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder(getArrayCount() + getObjectsCount() + 1);
+        StringBuilder s = new StringBuilder(this.getArrayCount() + this.getObjectsCount() + 1);
 
-        s.append(Integer.toString(getArrayCount())).append("\n");
-        for (int i = 0; i < getArrayCount(); i++) {
-            s.append(getArray(i).toString());
+        s.append(Integer.toString(this.getArrayCount())).append("\n");
+        for (int i = 0; i < this.getArrayCount(); i++) {
+            s.append(this.getArray(i).toString());
         }
-        s.append(Integer.toString(getObjectsCount())).append("\n");
-        for (int i = 0; i < getObjectsCount(); i++) {
-            s.append(((NSObject) getObjectAt(i)).toString());
+        s.append(Integer.toString(this.getObjectsCount())).append("\n");
+        for (int i = 0; i < this.getObjectsCount(); i++) {
+            s.append(((NSObject) this.getObjectAt(i)).toString());
         }
         return s.toString();
     }
@@ -376,7 +376,7 @@ public class NSModel extends NSWorld implements DMModel {
      * @return true if the model needs to be saved, false otherwise.
      */
     public boolean dirty() {
-        return isDirty;
+        return this.isDirty;
     }
 
     /**
@@ -386,7 +386,7 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public void setDirty(boolean dirtyState) {
-        isDirty = dirtyState;
+        this.isDirty = dirtyState;
     }
     private static final Logger LOG = Logger.getLogger(NSModel.class.getName());
 }

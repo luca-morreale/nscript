@@ -61,23 +61,23 @@ public class SAboutDialog extends JDialog implements ActionListener {
             JPanel closePane = new JPanel();
             closePane.setLayout(new GridLayout(1, 3));
             closePane.add(new JLabel(""));
-            closeBtn = new JButton(Messages.tr("close"));
-            closeBtn.addActionListener(this);
-            closePane.add(closeBtn);
+            this.closeBtn = new JButton(Messages.tr("close"));
+            this.closeBtn.addActionListener(this);
+            closePane.add(this.closeBtn);
             closePane.add(new JLabel(""));
             this.getContentPane().add(closePane, BorderLayout.SOUTH);
-            setSize(400, 210);
+            this.setSize(400, 210);
         } else {
-            ad = new JLabel(Messages.tr("loading"));
-            this.getContentPane().add(ad, BorderLayout.SOUTH);
-            setSize(400, 210);
+            this.ad = new JLabel(Messages.tr("loading"));
+            this.getContentPane().add(this.ad, BorderLayout.SOUTH);
+            this.setSize(400, 210);
         }
 
-        Dimension dialogDim = getSize();
-        Dimension screenSize = getToolkit().getScreenSize();
-        setLocation((screenSize.width - dialogDim.width) / 2,
+        Dimension dialogDim = this.getSize();
+        Dimension screenSize = this.getToolkit().getScreenSize();
+        this.setLocation((screenSize.width - dialogDim.width) / 2,
                 (screenSize.height - dialogDim.height) / 2);
-        setVisible(true);
+        this.setVisible(true);
     }
 
     /**
@@ -87,7 +87,7 @@ public class SAboutDialog extends JDialog implements ActionListener {
      * @param inMsg
      */
     public void setMessage(String inMsg) {
-        ad.setText(inMsg);
+        this.ad.setText(inMsg);
     }
 
     /**
@@ -98,8 +98,8 @@ public class SAboutDialog extends JDialog implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         JButton b = (JButton) ae.getSource();
-        if (b == closeBtn) {
-            dispose();
+        if (b == this.closeBtn) {
+            this.dispose();
         }
     }
     private static final Logger LOG = Logger.getLogger(SAboutDialog.class.getName());

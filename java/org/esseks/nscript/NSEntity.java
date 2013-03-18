@@ -83,15 +83,15 @@ public class NSEntity extends NSEditableObject {
     public NSEntity(TclSnippet inSnippet, String inName, double inX, double inY) {
         super(inSnippet, inName);
 
-        setX(inX);
-        setY(inY);
+        this.setX(inX);
+        this.setY(inY);
     }
 
     /**
      * Sets the x coordinate position of the object.
      */
     private void setX(double inX) {
-        x = inX;
+        this.x = inX;
     }
 
     /**
@@ -100,7 +100,7 @@ public class NSEntity extends NSEditableObject {
      * @return the x position as a double in [0,1].
      */
     public double getX() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -109,7 +109,7 @@ public class NSEntity extends NSEditableObject {
      * @param inY the new position.
      */
     private void setY(double inY) {
-        y = inY;
+        this.y = inY;
     }
 
     /**
@@ -118,7 +118,7 @@ public class NSEntity extends NSEditableObject {
      * @return the y position as a double in [0,1].
      */
     public double getY() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -139,23 +139,23 @@ public class NSEntity extends NSEditableObject {
         Color color = Color.black;
         // Change the color to blue if the object has the 'Selected'
         // status (i.e. it is being modified).
-        if (isSelected()) {
+        if (this.isSelected()) {
             color = g.getColor();
             g.setColor(Color.blue);
         }
 
         // Transform the position of the object from the interval [0,1]
         // using the height and width of the view pane.
-        int dx = (int) Math.round(r.width * x);
-        int dy = (int) Math.round(r.height * y);
+        int dx = (int) Math.round(r.width * this.x);
+        int dy = (int) Math.round(r.height * this.y);
         // Calculate the size of the element according to the scale.
         int size = (NSEntity.SIZE * r.width) / NSEntity.NOMINAL_WIDTH;
         int size2 = size / 2;
 
         // If the element is indexed by an array, display it with a 'shadow'
         // to give the impresion of a stack of objects.
-        if (getArrayIndex() >= 0) {
-            switch (getSnippet().getIcon()) {
+        if (this.getArrayIndex() >= 0) {
+            switch (this.getSnippet().getIcon()) {
                 case NSEntity.NODE:
                     g.drawOval((dx - size2) + 2, (dy - size2) + 2, size, size);
                     g.setColor(Color.white);
@@ -195,14 +195,14 @@ public class NSEntity extends NSEditableObject {
             }
         }
 
-        if (isSelected()) {
+        if (this.isSelected()) {
             g.setColor(Color.blue);
         } else {
             g.setColor(color);
         }
 
         // Obtain the icon of this element, and display the element accordingly.
-        switch (getSnippet().getIcon()) {
+        switch (this.getSnippet().getIcon()) {
             case NSEntity.NODE:
                 g.drawOval(dx - size2, dy - size2, size, size);
                 break;
@@ -236,8 +236,8 @@ public class NSEntity extends NSEditableObject {
         }
 
         // Draw the name of the object to its right.
-        g.drawString(getName(), dx + size, dy);
-        if (isSelected()) {
+        g.drawString(this.getName(), dx + size, dy);
+        if (this.isSelected()) {
             g.setColor(color);
         }
     }
@@ -256,7 +256,7 @@ public class NSEntity extends NSEditableObject {
 
         inX = p.getX() / r.width;
         inY = p.getY() / r.height;
-        distance = Math.sqrt(Math.pow(getX() - inX, 2) + Math.pow(getY() - inY, 2));
+        distance = Math.sqrt(Math.pow(this.getX() - inX, 2) + Math.pow(this.getY() - inY, 2));
 
         if (distance < size2) {
             return true;
@@ -300,7 +300,7 @@ public class NSEntity extends NSEditableObject {
             maxY = y1;
         }
 
-        if ((getX() > minX) && (getX() < maxX) && (getY() > minY) && (getY() < maxY)) {
+        if ((this.getX() > minX) && (this.getX() < maxX) && (this.getY() > minY) && (this.getY() < maxY)) {
             return true;
         } else {
             return false;
@@ -320,8 +320,8 @@ public class NSEntity extends NSEditableObject {
         dx = (double) byWhat.width / r.width;
         dy = (double) byWhat.height / r.height;
 
-        setX(getX() + dx);
-        setY(getY() + dy);
+        this.setX(this.getX() + dx);
+        this.setY(this.getY() + dy);
     }
 
     /**
@@ -333,7 +333,7 @@ public class NSEntity extends NSEditableObject {
     @Override
     public String toString() {
         String s = super.toString();
-        s += Double.toString(x) + "\n" + Double.toString(y) + "\n";
+        s += Double.toString(this.x) + "\n" + Double.toString(this.y) + "\n";
 
         return s;
     }
@@ -350,8 +350,8 @@ public class NSEntity extends NSEditableObject {
     public void fromString(BufferedReader br) {
         super.fromString(br);
         try {
-            setX(Double.parseDouble(br.readLine()));
-            setY(Double.parseDouble(br.readLine()));
+            this.setX(Double.parseDouble(br.readLine()));
+            this.setY(Double.parseDouble(br.readLine()));
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
                         Messages.tr("reading_object_error"), ioe.toString()});

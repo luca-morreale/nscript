@@ -121,8 +121,8 @@ public class TclSnippet extends Object implements Serializable {
      * Default constructor to implement Serializable protocol.
      */
     private TclSnippet() {
-        attributes = new ArrayList<TclAttribute>();
-        patterns = new ArrayList<TclPattern>();
+        this.attributes = new ArrayList<TclAttribute>();
+        this.patterns = new ArrayList<TclPattern>();
     }
 
     /**
@@ -132,7 +132,7 @@ public class TclSnippet extends Object implements Serializable {
      */
     public TclSnippet(String s) {
         this();
-        parseSelf(s);
+        this.parseSelf(s);
     }
 
     /**
@@ -158,55 +158,55 @@ public class TclSnippet extends Object implements Serializable {
         StringTokenizer st = new StringTokenizer(head);
         a = st.nextToken();
         if (a.indexOf('!') >= 0) {
-            isUnique = true;
+            this.isUnique = true;
             a = a.substring(1);
         } else {
-            isUnique = false;
+            this.isUnique = false;
         }
 
-        isRelation = a.equals("relation");
+        this.isRelation = a.equals("relation");
         st.nextToken();
-        setName(st.nextToken());
-        if (isRelation) {
+        this.setName(st.nextToken());
+        if (this.isRelation) {
             a = st.nextToken();
             if (a.indexOf('!') >= 0) {
                 a = a.substring(1);
-                isFromBaseUnique = true;
+                this.isFromBaseUnique = true;
             } else {
-                isFromBaseUnique = false;
+                this.isFromBaseUnique = false;
             }
-            setFromBase(a);
+            this.setFromBase(a);
             a = st.nextToken();
             if (a.indexOf('!') >= 0) {
                 a = a.substring(1);
-                isToBaseUnique = true;
+                this.isToBaseUnique = true;
             } else {
-                isToBaseUnique = false;
+                this.isToBaseUnique = false;
             }
-            setToBase(a);
-            setBaseStyle(Integer.parseInt(st.nextToken()));
-            setLineStyle(Integer.parseInt(st.nextToken()));
-            setLineWidth(Integer.parseInt(st.nextToken()));
-            setEndStyle(Integer.parseInt(st.nextToken()));
+            this.setToBase(a);
+            this.setBaseStyle(Integer.parseInt(st.nextToken()));
+            this.setLineStyle(Integer.parseInt(st.nextToken()));
+            this.setLineWidth(Integer.parseInt(st.nextToken()));
+            this.setEndStyle(Integer.parseInt(st.nextToken()));
             LOG.log(Level.INFO, "Read relation snippet: {0},{1},{2},{3}",
-                    new Object[]{baseStyle, lineStyle, lineWidth, endStyle});
+                    new Object[]{this.baseStyle, this.lineStyle, this.lineWidth, this.endStyle});
         } else {
-            setBase(st.nextToken());
-            setIcon(Integer.parseInt(st.nextToken()));
+            this.setBase(st.nextToken());
+            this.setIcon(Integer.parseInt(st.nextToken()));
         }
 
         // Now, read the attribute definitions.
         int iStart = 0;
         int iEnd = attr.indexOf(';', iStart);
         for (; iEnd >= 0; iStart = iEnd + 1, iEnd = attr.indexOf(';', iStart)) {
-            attributes.add(new TclAttribute(attr.substring(iStart, iEnd)));
+            this.attributes.add(new TclAttribute(attr.substring(iStart, iEnd)));
         }
 
         // Finally, read the patterns.
         iStart = 0;
         iEnd = patt.indexOf(';', iStart);
         for (; iEnd >= 0; iStart = iEnd + 1, iEnd = patt.indexOf(';', iStart)) {
-            patterns.add(new TclPattern(patt.substring(iStart, iEnd)));
+            this.patterns.add(new TclPattern(patt.substring(iStart, iEnd)));
         }
     }
 
@@ -217,7 +217,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inName the new name for the snippet.
      */
     public void setName(String inName) {
-        name = inName;
+        this.name = inName;
     }
 
     /**
@@ -226,7 +226,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the name as a String object.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -236,7 +236,7 @@ public class TclSnippet extends Object implements Serializable {
      * object.
      */
     public void setBase(String inBase) {
-        base = inBase;
+        this.base = inBase;
     }
 
     /**
@@ -246,7 +246,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the name of the base class.
      */
     public String getBase() {
-        return base;
+        return this.base;
     }
 
     /**
@@ -256,7 +256,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inIcon the index of the icon to be used.
      */
     public void setIcon(int inIcon) {
-        icon = inIcon;
+        this.icon = inIcon;
     }
 
     /**
@@ -266,7 +266,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the index of the icon being used.
      */
     public int getIcon() {
-        return icon;
+        return this.icon;
     }
 
     /**
@@ -276,7 +276,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inFromBase the name of the base class.
      */
     public void setFromBase(String inFromBase) {
-        fromBase = inFromBase;
+        this.fromBase = inFromBase;
     }
 
     /**
@@ -285,7 +285,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the name of the base class as a String.
      */
     public String getFromBase() {
-        return fromBase;
+        return this.fromBase;
     }
 
     /**
@@ -294,7 +294,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inToBase the name of the base class for the destination.
      */
     public void setToBase(String inToBase) {
-        toBase = inToBase;
+        this.toBase = inToBase;
     }
 
     /**
@@ -303,7 +303,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the name of the base class for the destination object.
      */
     public String getToBase() {
-        return toBase;
+        return this.toBase;
     }
 
     /**
@@ -312,7 +312,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the index of the style.
      */
     public int getBaseStyle() {
-        return baseStyle;
+        return this.baseStyle;
     }
 
     /**
@@ -321,7 +321,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inBaseStyle the bew style.
      */
     public void setBaseStyle(int inBaseStyle) {
-        baseStyle = inBaseStyle;
+        this.baseStyle = inBaseStyle;
     }
 
     /**
@@ -330,7 +330,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the line style.
      */
     public int getLineStyle() {
-        return lineStyle;
+        return this.lineStyle;
     }
 
     /**
@@ -339,7 +339,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inLineStyle the new style for the line style.
      */
     public void setLineStyle(int inLineStyle) {
-        lineStyle = inLineStyle;
+        this.lineStyle = inLineStyle;
     }
 
     /**
@@ -348,7 +348,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the width of the line.
      */
     public int getLineWidth() {
-        return lineWidth;
+        return this.lineWidth;
     }
 
     /**
@@ -357,7 +357,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inLineWidth the new line width.
      */
     public void setLineWidth(int inLineWidth) {
-        lineWidth = inLineWidth;
+        this.lineWidth = inLineWidth;
     }
 
     /**
@@ -367,7 +367,7 @@ public class TclSnippet extends Object implements Serializable {
      * none, an arrow, a box, or a circle.
      */
     public int getEndStyle() {
-        return endStyle;
+        return this.endStyle;
     }
 
     /**
@@ -376,7 +376,7 @@ public class TclSnippet extends Object implements Serializable {
      * @param inEndStyle the new style of the line.
      */
     public void setEndStyle(int inEndStyle) {
-        endStyle = inEndStyle;
+        this.endStyle = inEndStyle;
     }
 
     /**
@@ -385,7 +385,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return the number of attributes.
      */
     public int getAttributeCount() {
-        return attributes.size();
+        return this.attributes.size();
     }
 
     /**
@@ -396,8 +396,8 @@ public class TclSnippet extends Object implements Serializable {
      * otherwise.
      */
     public TclAttribute getAttribute(int inIndex) {
-        if ((inIndex >= 0) && (inIndex < attributes.size())) {
-            return attributes.get(inIndex);
+        if ((inIndex >= 0) && (inIndex < this.attributes.size())) {
+            return this.attributes.get(inIndex);
         } else {
             return null;
         }
@@ -408,7 +408,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return
      */
     public boolean isRelation() {
-        return isRelation;
+        return this.isRelation;
     }
 
     /**
@@ -416,7 +416,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return
      */
     public boolean isUnique() {
-        return isUnique;
+        return this.isUnique;
     }
 
     /**
@@ -424,7 +424,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return
      */
     public boolean isFromBaseUnique() {
-        return isFromBaseUnique;
+        return this.isFromBaseUnique;
     }
 
     /**
@@ -432,7 +432,7 @@ public class TclSnippet extends Object implements Serializable {
      * @return
      */
     public boolean isToBaseUnique() {
-        return isToBaseUnique;
+        return this.isToBaseUnique;
     }
 
     /**
@@ -442,14 +442,14 @@ public class TclSnippet extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder(getName());
+        StringBuilder s = new StringBuilder(this.getName());
 
-        for (int i = 0; i < attributes.size(); i++) {
-            s.append("  ").append(attributes.get(i).toString()).append("\n");
+        for (int i = 0; i < this.attributes.size(); i++) {
+            s.append("  ").append(this.attributes.get(i).toString()).append("\n");
         }
         s.append("begin\n");
-        for (int i = 0; i < patterns.size(); i++) {
-            s.append("  ").append(patterns.get(i).toString()).append("\n");
+        for (int i = 0; i < this.patterns.size(); i++) {
+            s.append("  ").append(this.patterns.get(i).toString()).append("\n");
         }
         s.append("end\n");
         return s.toString();
@@ -464,8 +464,8 @@ public class TclSnippet extends Object implements Serializable {
     public void instantiateNSObject(NSObject o) {
         int i;
 
-        for (i = 0; i < attributes.size(); i++) {
-            o.setAttribute(i, attributes.get(i).getDefaultValue());
+        for (i = 0; i < this.attributes.size(); i++) {
+            o.setAttribute(i, this.attributes.get(i).getDefaultValue());
         }
     }
 
@@ -496,7 +496,7 @@ public class TclSnippet extends Object implements Serializable {
             preamble = "for {set " + aname + " 0} {$" + aname + "<" + Integer.toString(asize) + "} {incr " + aname + "} {\n";
             epilogue = "}\n";
         } else {
-            if (isRelation) {
+            if (this.isRelation) {
                 ro = (NSRelation) o;
                 i = ro.getFrom().getArrayIndex();
                 i2 = ro.getTo().getArrayIndex();
@@ -525,18 +525,18 @@ public class TclSnippet extends Object implements Serializable {
         }
 
         String sApp;
-        StringBuilder s = new StringBuilder(patterns.size());
+        StringBuilder s = new StringBuilder(this.patterns.size());
         // Now pattern substitution
-        for (i = 0; i < patterns.size(); i++) {
-            p = patterns.get(i);
+        for (i = 0; i < this.patterns.size(); i++) {
+            p = this.patterns.get(i);
             if (p.isConditional()) {
-                if (p.getAttributeValue().equals(valueOf(w, o, p.getAttribute()))) {
-                    sApp = patternToTcl(p.getPattern(), w, o, sep);
+                if (p.getAttributeValue().equals(this.valueOf(w, o, p.getAttribute()))) {
+                    sApp = this.patternToTcl(p.getPattern(), w, o, sep);
                 } else {
-                    sApp = patternToTcl(p.getAlternativePattern(), w, o, sep);
+                    sApp = this.patternToTcl(p.getAlternativePattern(), w, o, sep);
                 }
             } else {
-                sApp = patternToTcl(p.getPattern(), w, o, sep);
+                sApp = this.patternToTcl(p.getPattern(), w, o, sep);
             }
             if (sApp.trim().length() != 0) {
                 s.append(sApp).append("\n");
@@ -570,7 +570,7 @@ public class TclSnippet extends Object implements Serializable {
             if (iLast < 0) {
                 return Messages.tr("bad_formed_pattern");
             }
-            sNew.append(valueOf(w, o, pattern.substring(i + 1, iLast)));
+            sNew.append(this.valueOf(w, o, pattern.substring(i + 1, iLast)));
         }
         if (iLast < pattern.length()) {
             sNew.append(pattern.substring(iLast));
@@ -596,20 +596,20 @@ public class TclSnippet extends Object implements Serializable {
                     valueOf(w, w.getEnvironment(), attrName.substring(i + 4));
         }
         if (attrName.equals("from")) {
-            return arrayedName(((NSRelation) o).getFrom(), w);
+            return this.arrayedName(((NSRelation) o).getFrom(), w);
         }
         if (attrName.equals("to")) {
-            return arrayedName(((NSRelation) o).getTo(), w);
+            return this.arrayedName(((NSRelation) o).getTo(), w);
         }
 
         //  It's an array variable
         if (attrName.equals("name")) {
-            return arrayedName(o, w);
+            return this.arrayedName(o, w);
         }
 
         // Variable attributes
-        for (i = 0; i < attributes.size(); i++) {
-            if (attributes.get(i).getName().equals(attrName)) {
+        for (i = 0; i < this.attributes.size(); i++) {
+            if (this.attributes.get(i).getName().equals(attrName)) {
                 return o.getAttribute(i);
             }
         }

@@ -53,8 +53,8 @@ class NSRelation extends NSEditableObject {
      */
     NSRelation(TclSnippet inSnippet, String inName, NSEntity inFrom, NSEntity inTo) {
         super(inSnippet, inName);
-        from = inFrom;
-        to = inTo;
+        this.from = inFrom;
+        this.to = inTo;
     }
 
     /**
@@ -63,7 +63,7 @@ class NSRelation extends NSEditableObject {
      * @return a reference to a NSEntity object where the relation starts.
      */
     public NSEntity getFrom() {
-        return from;
+        return this.from;
     }
 
     /**
@@ -72,7 +72,7 @@ class NSRelation extends NSEditableObject {
      * @return a reference to a NSEntity object where the relation ends.
      */
     public NSEntity getTo() {
-        return to;
+        return this.to;
     }
 
     /**
@@ -88,16 +88,16 @@ class NSRelation extends NSEditableObject {
     public void drawSelf(Graphics g, Dimension r) {
         Graphics2D g2 = (Graphics2D) g;
         Color color = Color.black;
-        if (isSelected()) {
+        if (this.isSelected()) {
             color = g.getColor();
             g.setColor(Color.blue);
         }
         int baseStyle, lineStyle, lineWidth, endStyle;
 
-        baseStyle = getSnippet().getBaseStyle();
-        endStyle = getSnippet().getEndStyle();
-        lineStyle = getSnippet().getLineStyle();
-        lineWidth = getSnippet().getLineWidth();
+        baseStyle = this.getSnippet().getBaseStyle();
+        endStyle = this.getSnippet().getEndStyle();
+        lineStyle = this.getSnippet().getLineStyle();
+        lineWidth = this.getSnippet().getLineWidth();
         int aSize = lineWidth * 2;
 
         double size = (double) NSEntity.SIZE / NSEntity.NOMINAL_WIDTH;
@@ -110,17 +110,17 @@ class NSRelation extends NSEditableObject {
         double dx, dy;
         float dash[] = new float[2];
 
-        dx = getTo().getX() - getFrom().getX();
-        dy = getTo().getY() - getFrom().getY();
+        dx = this.getTo().getX() - this.getFrom().getX();
+        dy = this.getTo().getY() - this.getFrom().getY();
 
         vsize = Math.sqrt((dx * dx) + (dy * dy));
         ux = dx / vsize;
         uy = dy / vsize;
 
-        x1 = getFrom().getX() + (size2 * ux);
-        y1 = getFrom().getY() + (size2 * uy);
-        x2 = getTo().getX() - (size2 * ux);
-        y2 = getTo().getY() - (size2 * uy);
+        x1 = this.getFrom().getX() + (size2 * ux);
+        y1 = this.getFrom().getY() + (size2 * uy);
+        x2 = this.getTo().getX() - (size2 * ux);
+        y2 = this.getTo().getY() - (size2 * uy);
 
         // Now, create the stroke
 
@@ -188,7 +188,7 @@ class NSRelation extends NSEditableObject {
 
         g2.setStroke(new BasicStroke());
 
-        if (isSelected()) {
+        if (this.isSelected()) {
             g.setColor(color);
         }
     }
@@ -205,11 +205,11 @@ class NSRelation extends NSEditableObject {
      */
     @Override
     public void moveBy(Dimension r, Dimension byWhat) {
-        if (!getFrom().isSelected()) {
-            getFrom().select();
+        if (!this.getFrom().isSelected()) {
+            this.getFrom().select();
         }
-        if (!getTo().isSelected()) {
-            getTo().select();
+        if (!this.getTo().isSelected()) {
+            this.getTo().select();
         }
     }
 
@@ -229,10 +229,10 @@ class NSRelation extends NSEditableObject {
         double inY = p.getY() / r.height;
         double radius = NSRelation.SELECTION_RADIUS / NSEntity.NOMINAL_WIDTH;
 
-        x1 = getFrom().getX();
-        y1 = getFrom().getY();
-        x2 = getTo().getX();
-        y2 = getTo().getY();
+        x1 = this.getFrom().getX();
+        y1 = this.getFrom().getY();
+        x2 = this.getTo().getX();
+        y2 = this.getTo().getY();
 
         // If F is the origin point of the line, and D the destination point,
         // and P the provided point, this procedures calculates the projection
@@ -265,7 +265,7 @@ class NSRelation extends NSEditableObject {
      */
     @Override
     public boolean isContained(Dimension r, Point p1, Point p2) {
-        if (getFrom().isContained(r, p1, p2) && getTo().isContained(r, p1, p2)) {
+        if (this.getFrom().isContained(r, p1, p2) && this.getTo().isContained(r, p1, p2)) {
             return true;
         } else {
             return false;
@@ -282,7 +282,7 @@ class NSRelation extends NSEditableObject {
     public String toString() {
         String str;
         str = super.toString();
-        str = str + from.getName() + "\n" + to.getName() + "\n";
+        str = str + this.from.getName() + "\n" + this.to.getName() + "\n";
         return str;
     }
 
@@ -297,8 +297,8 @@ class NSRelation extends NSEditableObject {
     public void fromString(BufferedReader br, NSModel M) {
         try {
             super.fromString(br);
-            from = (NSEntity) M.getObject(br.readLine());
-            to = (NSEntity) M.getObject(br.readLine());
+            this.from = (NSEntity) M.getObject(br.readLine());
+            this.to = (NSEntity) M.getObject(br.readLine());
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{
                         Messages.tr("reading_object_error"),

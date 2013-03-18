@@ -78,9 +78,9 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
      */
     public NSIconPane(int inIconID, String inLabel) {
         super(inLabel);
-        icon = inIconID;
-        label = inLabel;
-        setOpaque(true);
+        this.icon = inIconID;
+        this.label = inLabel;
+        this.setOpaque(true);
     }
 
     /**
@@ -89,9 +89,9 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
      * @param g
      */
     public void paintMe(Graphics g) {
-        paintIcon(g, new Point(0, 0), getBounds().getSize(), icon);
-        int w = (int) getBounds().getHeight();
-        g.drawString(label, w + (w / 10), (w + 2) - 10);
+        this.paintIcon(g, new Point(0, 0), this.getBounds().getSize(), this.icon);
+        int w = (int) this.getBounds().getHeight();
+        g.drawString(this.label, w + (w / 10), (w + 2) - 10);
     }
 
     /**
@@ -111,20 +111,20 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
-        icon = value.getIcon();
+        this.icon = value.getIcon();
         if (!value.isRelation()) {
-            setText(value.getName() + "(" + value.getBase() + ")");
+            this.setText(value.getName() + "(" + value.getBase() + ")");
         } else {
-            setText(value.getName() + "(" + value.getFromBase() + "," + value.getToBase() + ")");
+            this.setText(value.getName() + "(" + value.getFromBase() + "," + value.getToBase() + ")");
         }
-        label = value.getName();
+        this.label = value.getName();
 
         if (isSelected) {
-            setBackground(list.getSelectionBackground());
-            setForeground(list.getSelectionForeground());
+            this.setBackground(list.getSelectionBackground());
+            this.setForeground(list.getSelectionForeground());
         } else {
-            setBackground(list.getBackground());
-            setForeground(list.getForeground());
+            this.setBackground(list.getBackground());
+            this.setForeground(list.getForeground());
         }
 
         return this;

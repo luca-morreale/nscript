@@ -40,7 +40,7 @@ public class TclLibraryManager extends Object implements Serializable {
      * Default constructor, creates the container for libraries.
      */
     public TclLibraryManager() {
-        libraries = new ArrayList<TclLibrary>();
+        this.libraries = new ArrayList<TclLibrary>();
     }
 
     /**
@@ -54,7 +54,7 @@ public class TclLibraryManager extends Object implements Serializable {
         TclLibrary l;
         Iterator<TclLibrary> i;
 
-        i = libraries.iterator();
+        i = this.libraries.iterator();
         while (i.hasNext()) {
             l = i.next();
             if (l.nameExists(snippetName)) {
@@ -75,7 +75,7 @@ public class TclLibraryManager extends Object implements Serializable {
         TclLibrary l;
         Iterator<TclLibrary> i;
 
-        i = libraries.iterator();
+        i = this.libraries.iterator();
         while (i.hasNext()) {
             l = i.next();
             if (libName.equals(l.getName())) {
@@ -105,14 +105,14 @@ public class TclLibraryManager extends Object implements Serializable {
                     new FileInputStream(fileName), "utf-8");
             br = new BufferedReader(reader);
             tl = new TclLibrary(br);
-            go = !libNameExists(tl.getName());
+            go = !this.libNameExists(tl.getName());
             for (i = 0; i < tl.getSnippetCount(); i++) {
-                if (snippetNameExists(tl.getSnippet(i).getName())) {
+                if (this.snippetNameExists(tl.getSnippet(i).getName())) {
                     go = false;
                 }
             }
             if (go) {
-                libraries.add(tl);
+                this.libraries.add(tl);
                 return true;
             } else {
                 return false;
@@ -134,7 +134,7 @@ public class TclLibraryManager extends Object implements Serializable {
      * @return the number of opened libraries.
      */
     public int getLibraryCount() {
-        return libraries.size();
+        return this.libraries.size();
     }
 
     /**
@@ -145,8 +145,8 @@ public class TclLibraryManager extends Object implements Serializable {
      * NULL is returned.
      */
     public TclLibrary getLibrary(int inIndex) {
-        if ((inIndex >= 0) && (inIndex < libraries.size())) {
-            return libraries.get(inIndex);
+        if ((inIndex >= 0) && (inIndex < this.libraries.size())) {
+            return this.libraries.get(inIndex);
         } else {
             return null;
         }
@@ -163,7 +163,7 @@ public class TclLibraryManager extends Object implements Serializable {
         Iterator<TclLibrary> i;
         TclLibrary l;
 
-        i = libraries.iterator();
+        i = this.libraries.iterator();
         while (i.hasNext()) {
             l = i.next();
             if (inLibName.equals(l.getName())) {
@@ -186,8 +186,8 @@ public class TclLibraryManager extends Object implements Serializable {
     public TclSnippet getSnippet(int inLibIndex, int inSnippetIndex) {
         TclLibrary l;
 
-        if ((inLibIndex >= 0) && (inLibIndex < libraries.size())) {
-            l = libraries.get(inLibIndex);
+        if ((inLibIndex >= 0) && (inLibIndex < this.libraries.size())) {
+            l = this.libraries.get(inLibIndex);
             if ((inSnippetIndex >= 0) && (inSnippetIndex < l.getSnippetCount())) {
                 return l.getSnippet(inSnippetIndex);
             } else {
@@ -207,7 +207,7 @@ public class TclLibraryManager extends Object implements Serializable {
      * @return a reference to the snippet if the name is found, NULL otherwise.
      */
     public TclSnippet getSnippet(String sName) {
-        Iterator<TclLibrary> i = libraries.iterator();
+        Iterator<TclLibrary> i = this.libraries.iterator();
         TclLibrary l;
         TclSnippet s;
 

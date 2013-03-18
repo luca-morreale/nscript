@@ -54,7 +54,7 @@ public class TclPattern extends Object implements Serializable {
      * @param s a string containing the pattern information.
      */
     public TclPattern(String s) {
-        parseSelf(s);
+        this.parseSelf(s);
     }
 
     /**
@@ -66,17 +66,17 @@ public class TclPattern extends Object implements Serializable {
         int equals, firstColon, secondColon;
         String s = field.trim();
         if (s.charAt(0) == '?') {
-            conditional = true;
+            this.conditional = true;
             equals = s.indexOf('=');
             firstColon = s.indexOf(':');
             secondColon = s.indexOf(':', firstColon + 1);
-            attribute = s.substring(1, equals).trim();
-            attributeValue = s.substring(equals + 1, firstColon).trim();
-            pattern = s.substring(firstColon + 1, secondColon);
-            alternativePattern = s.substring(secondColon + 1);
+            this.attribute = s.substring(1, equals).trim();
+            this.attributeValue = s.substring(equals + 1, firstColon).trim();
+            this.pattern = s.substring(firstColon + 1, secondColon);
+            this.alternativePattern = s.substring(secondColon + 1);
         } else {
-            conditional = false;
-            pattern = s;
+            this.conditional = false;
+            this.pattern = s;
         }
     }
 
@@ -85,7 +85,7 @@ public class TclPattern extends Object implements Serializable {
      * @return
      */
     public boolean isConditional() {
-        return conditional;
+        return this.conditional;
     }
 
     /**
@@ -101,7 +101,7 @@ public class TclPattern extends Object implements Serializable {
      * @return
      */
     public String getPattern() {
-        return pattern;
+        return this.pattern;
     }
 
     /**
@@ -117,7 +117,7 @@ public class TclPattern extends Object implements Serializable {
      * @return
      */
     public String getAlternativePattern() {
-        return alternativePattern;
+        return this.alternativePattern;
     }
 
     /**
@@ -133,7 +133,7 @@ public class TclPattern extends Object implements Serializable {
      * @return
      */
     public String getAttribute() {
-        return attribute;
+        return this.attribute;
     }
 
     /**
@@ -149,7 +149,7 @@ public class TclPattern extends Object implements Serializable {
      * @return
      */
     public String getAttributeValue() {
-        return attributeValue;
+        return this.attributeValue;
     }
 
     /**
@@ -167,10 +167,10 @@ public class TclPattern extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        if (conditional) {
-            return attribute + " = " + attributeValue + " : " + pattern + " : " + alternativePattern;
+        if (this.conditional) {
+            return this.attribute + " = " + this.attributeValue + " : " + this.pattern + " : " + this.alternativePattern;
         } else {
-            return pattern;
+            return this.pattern;
         }
     }
     private static final Logger LOG = Logger.getLogger(TclPattern.class.getName());

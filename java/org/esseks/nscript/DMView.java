@@ -47,15 +47,15 @@ public class DMView extends JPanel {
      * @param inM
      */
     public DMView(DMModel inM) {
-        M = inM;
-        C = new DMControl(this, inM); // Creates a new controller object.
+        this.M = inM;
+        this.C = new DMControl(this, inM); // Creates a new controller object.
         // Register the new control as a handler for mouse and key events.
-        addMouseListener(C);
-        addMouseMotionListener(C);
-        addKeyListener(C);
-        scale = 1.0; // Set the default scale of the drawing.
-        setBackground(Color.white); // Set the colors for the background of the view.
-        setForeground(Color.black); // Set the foreground color.
+        this.addMouseListener(this.C);
+        this.addMouseMotionListener(this.C);
+        this.addKeyListener(this.C);
+        this.scale = 1.0; // Set the default scale of the drawing.
+        this.setBackground(Color.white); // Set the colors for the background of the view.
+        this.setForeground(Color.black); // Set the foreground color.
     }
 
     /**
@@ -76,17 +76,17 @@ public class DMView extends JPanel {
         // of the objects can draw themselves.
         g.setFont(new Font("Helvetica", Font.PLAIN, 9));
         // LOG.info("Starting paint...");
-        r = getBounds().getSize();
+        r = this.getBounds().getSize();
 
         // Call each of the objects in the model, and tell them to draw
         // themselves on the screen.
-        for (i = 0; i < M.getSize(); i++) {
-            M.getObjectAt(i).drawSelf(g, r);
+        for (i = 0; i < this.M.getSize(); i++) {
+            this.M.getObjectAt(i).drawSelf(g, r);
         }
         // LOG.info("Ending paint...");
 
         // Draws the auxiliary controls (line or rectangle being drawn).
-        C.drawControls(g);
+        this.C.drawControls(g);
     }
 
     /**
@@ -97,11 +97,11 @@ public class DMView extends JPanel {
      * @param inNewScale
      */
     public void changeScale(double inNewScale) {
-        Dimension r = getBounds().getSize();
+        Dimension r = this.getBounds().getSize();
 
-        setSize((int) ((r.getWidth() * inNewScale) / scale), (int) ((r.getHeight() * inNewScale) / scale));
-        scale = inNewScale;
-        validate();
+        this.setSize((int) ((r.getWidth() * inNewScale) / this.scale), (int) ((r.getHeight() * inNewScale) / this.scale));
+        this.scale = inNewScale;
+        this.validate();
     }
     private static final Logger LOG = Logger.getLogger(DMView.class.getName());
 }

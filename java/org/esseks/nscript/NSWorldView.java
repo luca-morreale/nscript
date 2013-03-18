@@ -39,20 +39,20 @@ public class NSWorldView extends JPanel {
     public NSWorldView(NSWorld inW) {
         super();
 
-        w = inW;
-        l = new JList<String>(new SWPListModel(w));
-        l.setCellRenderer(new NSWorldPane());
-        JScrollPane sp = new JScrollPane(l);
-        setLayout(new BorderLayout());
-        add(sp, BorderLayout.CENTER);
+        this.w = inW;
+        this.l = new JList<String>(new SWPListModel(this.w));
+        this.l.setCellRenderer(new NSWorldPane());
+        JScrollPane sp = new JScrollPane(this.l);
+        this.setLayout(new BorderLayout());
+        this.add(sp, BorderLayout.CENTER);
     }
 
     /**
      * Updates the view when the model suffers changes.
      */
     public void updateList() {
-        l.setModel(new SWPListModel(w));
-        updateUI();
+        this.l.setModel(new SWPListModel(this.w));
+        this.updateUI();
     }
 
     /**
@@ -72,7 +72,7 @@ public class NSWorldView extends JPanel {
          * @param inW a reference to the simulation model.
          */
         SWPListModel(NSWorld inW) {
-            W = inW;
+            this.W = inW;
         }
 
         /**
@@ -82,7 +82,7 @@ public class NSWorldView extends JPanel {
          */
         @Override
         public String getElementAt(int index) {
-            return W.getObject(index).getName() + '(' + W.getObject(index).getSnippet().getName() + ')';
+            return this.W.getObject(index).getName() + '(' + this.W.getObject(index).getSnippet().getName() + ')';
         }
 
         /**
@@ -92,7 +92,7 @@ public class NSWorldView extends JPanel {
          */
         @Override
         public int getSize() {
-            return W.getObjectsCount();
+            return this.W.getObjectsCount();
         }
     }
     private static final Logger LOG = Logger.getLogger(NSWorldView.class.getName());

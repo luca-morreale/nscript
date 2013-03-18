@@ -106,48 +106,48 @@ public class NScript extends JFrame {
         Container c = this.getContentPane();
 
         // Create a new library manager
-        libManager = new TclLibraryManager();
-        toolBox = new SToolBar(this, libManager);
+        this.libManager = new TclLibraryManager();
+        this.toolBox = new SToolBar(this, this.libManager);
 
         // Prepare toolbar and menu (needs an initialized toolBox!)
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         JToolBar toolBar = new JToolBar();
-        prepareToolBarAndMenu(toolBar, menuBar);
+        this.prepareToolBarAndMenu(toolBar, menuBar);
         toolBar.setOrientation(SwingConstants.HORIZONTAL);
 
         // Allows for "exit confirm"
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         // Set initial path
         this.lastpath = "examples";
 
         // ------------- CREATE MODEL AND MAIN VIEW ---------------
         ad.setMessage(Messages.tr("reading_env"));
-        model = new NSModel(readEnvironment("settings/environment"), toolBox);
+        this.model = new NSModel(this.readEnvironment("settings/environment"), this.toolBox);
         ad.setMessage(Messages.tr("reading_libs"));
-        addDefaultLibraries("settings/deflibs");
-        mainView = new DMView(model);
+        this.addDefaultLibraries("settings/deflibs");
+        this.mainView = new DMView(this.model);
 
         ad.setMessage(Messages.tr("creating_gui"));
-        objectBrowser = new SObjectBrowser(model);
+        this.objectBrowser = new SObjectBrowser(this.model);
 
-        worldView = new NSWorldView(model);
+        this.worldView = new NSWorldView(this.model);
         JTabbedPane wv_tp = new JTabbedPane(SwingConstants.BOTTOM);
-        wv_tp.addTab(Messages.tr("object_browser"), objectBrowser);
-        wv_tp.addTab(Messages.tr("world_view"), worldView);
+        wv_tp.addTab(Messages.tr("object_browser"), this.objectBrowser);
+        wv_tp.addTab(Messages.tr("world_view"), this.worldView);
 
-        tclView = new JTextArea(model.toTcl());
+        this.tclView = new JTextArea(this.model.toTcl());
         Font tclFont = new Font("Monospaced", Font.PLAIN, 14);
-        tclView.setFont(tclFont);
-        tclView.setEditable(false);
-        JScrollPane sp_tcl = new JScrollPane(tclView);
+        this.tclView.setFont(tclFont);
+        this.tclView.setEditable(false);
+        JScrollPane sp_tcl = new JScrollPane(this.tclView);
 
-        model.setViews(mainView, tclView, objectBrowser, worldView);
-        JScrollPane sp_edit = new JScrollPane(mainView);
-        mainView.setPreferredSize(new Dimension(612, 792));
+        this.model.setViews(this.mainView, this.tclView, this.objectBrowser, this.worldView);
+        JScrollPane sp_edit = new JScrollPane(this.mainView);
+        this.mainView.setPreferredSize(new Dimension(612, 792));
 
-        JSplitPane helpers = new JSplitPane(JSplitPane.VERTICAL_SPLIT, toolBox, wv_tp);
+        JSplitPane helpers = new JSplitPane(JSplitPane.VERTICAL_SPLIT, this.toolBox, wv_tp);
         helpers.setOneTouchExpandable(true);
         helpers.setDividerSize(2);
         helpers.setDividerLocation(200);
@@ -176,12 +176,12 @@ public class NScript extends JFrame {
         // c.add(toolBar,BorderLayout.WEST);
         c.add(tabbedView, BorderLayout.CENTER);
 
-        addWindowListener(new WindowEventHandler());
+        this.addWindowListener(new WindowEventHandler());
         // getToolkit().getScreenSize();
-        setSize(800, 600);
-        setLocation(0, 0);
+        this.setSize(800, 600);
+        this.setLocation(0, 0);
         ad.setMessage(Messages.tr("done"));
-        setVisible(true);
+        this.setVisible(true);
         ad.dispose();
     }
 
@@ -217,12 +217,12 @@ public class NScript extends JFrame {
                     });
             return null;
         } finally {
-            close(br);
+            this.close(br);
         }
 
-        env = new TclSnippet(s.toString());
-        o = new NSEntity(env, "ns", 0.01, 0.01);
-        env.instantiateNSObject(o);
+        this.env = new TclSnippet(s.toString());
+        o = new NSEntity(this.env, "ns", 0.01, 0.01);
+        this.env.instantiateNSObject(o);
         return o;
     }
 
@@ -314,9 +314,9 @@ public class NScript extends JFrame {
             br = new BufferedReader(reader);
 
             for (line = br.readLine(); line != null; line = br.readLine()) {
-                if (libManager.addLibrary(line)) {
-                    toolBox.addLibraryPane(
-                            libManager.getLibrary(libManager.getLibraryCount() - 1));
+                if (this.libManager.addLibrary(line)) {
+                    this.toolBox.addLibraryPane(
+                            this.libManager.getLibrary(this.libManager.getLibraryCount() - 1));
                 }
             }
         } catch (FileNotFoundException fnfe) {
@@ -325,7 +325,7 @@ public class NScript extends JFrame {
                         line, fnfe.toString()
                     });
             JOptionPane.showMessageDialog(
-                getContentPane(),
+                this.getContentPane(),
                 fnfe.toString(),
                 Messages.tr("lib_not_found"),
                 JOptionPane.ERROR_MESSAGE);
@@ -335,7 +335,7 @@ public class NScript extends JFrame {
                         ioe.toString()
                     });
         } finally {
-            close(br);
+            this.close(br);
         }
     }
 
@@ -350,8 +350,8 @@ public class NScript extends JFrame {
         int selected = fch.showOpenDialog(this.getContentPane());
         if (selected == JFileChooser.APPROVE_OPTION) {
             f = fch.getSelectedFile();
-            if (libManager.addLibrary(f.getPath())) {
-                toolBox.addLibraryPane(libManager.getLibrary(libManager.getLibraryCount() - 1));
+            if (this.libManager.addLibrary(f.getPath())) {
+                this.toolBox.addLibraryPane(this.libManager.getLibrary(this.libManager.getLibraryCount() - 1));
             }
         }
     }
@@ -375,7 +375,7 @@ public class NScript extends JFrame {
                 this.updateLastPath(fch.getSelectedFile());
                 writer = new OutputStreamWriter(
                         new FileOutputStream(fch.getSelectedFile()), "utf-8");
-                writer.write(model.toTcl());
+                writer.write(this.model.toTcl());
                 return fch.getSelectedFile().getAbsolutePath();
             } catch (FileNotFoundException e) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
@@ -386,7 +386,7 @@ public class NScript extends JFrame {
                             Messages.tr("file_write_error"), ioe.toString()});
                 return null;
             } finally {
-                close(writer);
+                this.close(writer);
             }
         }
         return null;
@@ -412,9 +412,9 @@ public class NScript extends JFrame {
                 this.updateLastPath(fch.getSelectedFile());
                 writer = new OutputStreamWriter(
                         new FileOutputStream(fch.getSelectedFile()), "utf-8");
-                writer.write(model.toString());
+                writer.write(this.model.toString());
                 writer.close();
-                model.setDirty(false);
+                this.model.setDirty(false);
                 return fch.getSelectedFile().getAbsolutePath();
             } catch (FileNotFoundException e) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
@@ -425,7 +425,7 @@ public class NScript extends JFrame {
                             Messages.tr("file_write_error"), ioe.toString()});
                 return null;
             } finally {
-                close(writer);
+                this.close(writer);
             }
         }
         return null;
@@ -439,7 +439,7 @@ public class NScript extends JFrame {
      */
     public boolean reallyClose() {
         int selectedValue = JOptionPane.showConfirmDialog(
-                getContentPane(),
+                this.getContentPane(),
                 Messages.tr("close_confirm"),
                 Messages.tr("close_confirm_title"),
                 JOptionPane.YES_NO_OPTION,
@@ -471,7 +471,7 @@ public class NScript extends JFrame {
         selected = fch.showOpenDialog(this.getContentPane());
         if (selected == JFileChooser.APPROVE_OPTION) {
             this.updateLastPath(fch.getSelectedFile());
-            model.newModel();
+            this.model.newModel();
             try {
                 Reader reader = new InputStreamReader(
                         new FileInputStream(fch.getSelectedFile()), "utf-8");
@@ -480,40 +480,40 @@ public class NScript extends JFrame {
                 // Read arrays
                 nA = Integer.parseInt(br.readLine());
                 for (i = 0; i < nA; i++) {
-                    model.addArray(br.readLine(), Integer.parseInt(br.readLine()));
+                    this.model.addArray(br.readLine(), Integer.parseInt(br.readLine()));
                 }
 
                 // Read objects (gulp)
                 nO = Integer.parseInt(br.readLine());
                 br.readLine(); // Skip snippet and name information
-                ((NSObject) model.getObjectAt(0)).setName(br.readLine());
-                ((NSEntity) model.getObjectAt(0)).fromString(br);
+                ((NSObject) this.model.getObjectAt(0)).setName(br.readLine());
+                ((NSEntity) this.model.getObjectAt(0)).fromString(br);
                 for (i = 1; i < nO; i++) {
                     sName = br.readLine();
-                    s = libManager.getSnippet(sName);
+                    s = this.libManager.getSnippet(sName);
                     if (s == null) {
-                        s = searchLibAction(sName);
+                        s = this.searchLibAction(sName);
                     }
                     if (s == null) {
-                        model.newModel();
-                        model.updateAllViews(false);
-                        model.setDirty(false);
+                        this.model.newModel();
+                        this.model.updateAllViews(false);
+                        this.model.setDirty(false);
                         return;
                     }
                     if (s.isRelation()) {
                         or = new NSRelation(s, br.readLine(), null, null);
                         s.instantiateNSObject(or);
-                        or.fromString(br, model);
-                        model.addObject(or);
+                        or.fromString(br, this.model);
+                        this.model.addObject(or);
                     } else {
                         o = new NSEntity(s, br.readLine(), 0.0, 0.0);
                         s.instantiateNSObject(o);
                         o.fromString(br);
-                        model.addObject(o);
+                        this.model.addObject(o);
                     }
                 }
-                model.updateAllViews(false);
-                model.setDirty(false);
+                this.model.updateAllViews(false);
+                this.model.setDirty(false);
             } catch (FileNotFoundException e) {
                 LOG.log(Level.SEVERE, "{0} {1}", new Object[]{
                             Messages.tr("file_open_error"), e.toString()});
@@ -540,13 +540,13 @@ public class NScript extends JFrame {
             int selected = fch.showOpenDialog(this.getContentPane());
             if (selected == JFileChooser.APPROVE_OPTION) {
                 f = fch.getSelectedFile();
-                if (libManager.addLibrary(f.getPath())) {
-                    toolBox.addLibraryPane(libManager.getLibrary(libManager.getLibraryCount() - 1));
+                if (this.libManager.addLibrary(f.getPath())) {
+                    this.toolBox.addLibraryPane(this.libManager.getLibrary(this.libManager.getLibraryCount() - 1));
                 }
             } else {
                 return null;
             }
-            s = libManager.getSnippet(snippetName);
+            s = this.libManager.getSnippet(snippetName);
         } while (s == null);
         return s;
     }
@@ -575,8 +575,8 @@ public class NScript extends JFrame {
 
         @Override
         public void windowClosing(WindowEvent evt) {
-            if (!model.dirty() || reallyClose()) {
-                dispose();
+            if (!NScript.this.model.dirty() || NScript.this.reallyClose()) {
+                NScript.this.dispose();
             }
         }
     }
@@ -594,13 +594,13 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (model.dirty()) {
-                if (!reallyClose()) {
+            if (NScript.this.model.dirty()) {
+                if (!NScript.this.reallyClose()) {
                     return;
                 }
             }
 
-            model.newModel();
+            NScript.this.model.newModel();
         }
     }
 
@@ -617,13 +617,13 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (model.dirty()) {
-                if (!reallyClose()) {
+            if (NScript.this.model.dirty()) {
+                if (!NScript.this.reallyClose()) {
                     return;
                 }
             }
 
-            openFileAction();
+            NScript.this.openFileAction();
         }
     }
 
@@ -640,7 +640,7 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            openLibraryAction();
+            NScript.this.openLibraryAction();
         }
     }
 
@@ -657,7 +657,7 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            saveFileAction();
+            NScript.this.saveFileAction();
         }
     }
 
@@ -674,8 +674,8 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (!model.dirty() || reallyClose()) {
-                dispose();
+            if (!NScript.this.model.dirty() || NScript.this.reallyClose()) {
+                NScript.this.dispose();
             }
         }
     }
@@ -693,7 +693,7 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            model.removeSelected();
+            NScript.this.model.removeSelected();
         }
     }
 
@@ -729,7 +729,7 @@ public class NScript extends JFrame {
         @Override
         @SuppressWarnings("ResultOfObjectAllocationIgnored")
         public void actionPerformed(ActionEvent ae) {
-            new SArrayDialog(model, null);
+            new SArrayDialog(NScript.this.model, null);
         }
     }
 
@@ -746,7 +746,7 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            saveScript();
+            NScript.this.saveScript();
         }
     }
 
@@ -763,14 +763,14 @@ public class NScript extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String fName = saveScript();
+            String fName = NScript.this.saveScript();
 
             if (fName != null) {
                 try {
                     Runtime.getRuntime().exec("ns " + fName);
                 } catch (IOException ioe) {
                     JOptionPane.showMessageDialog(
-                            getContentPane(),
+                            NScript.this.getContentPane(),
                             ioe.toString(),
                             Messages.tr("ns_exec_error"),
                             JOptionPane.ERROR_MESSAGE);

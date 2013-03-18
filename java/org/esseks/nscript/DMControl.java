@@ -74,9 +74,9 @@ public class DMControl extends KeyAdapter
      */
     public DMControl(DMView inV, DMModel inM) {
         // Store the references
-        V = inV;
-        M = inM;
-        action = DMControl.NONE;
+        this.V = inV;
+        this.M = inM;
+        this.action = DMControl.NONE;
     }
 
     /**
@@ -89,9 +89,9 @@ public class DMControl extends KeyAdapter
      */
     public DMObject modelIsHit(Dimension r, Point p) {
         int i;
-        for (i = 0; i < M.getSize(); i++) {
-            if (M.getObjectAt(i).isHit(r, p)) {
-                return M.getObjectAt(i);
+        for (i = 0; i < this.M.getSize(); i++) {
+            if (this.M.getObjectAt(i).isHit(r, p)) {
+                return this.M.getObjectAt(i);
             }
         }
         return null;
@@ -106,8 +106,8 @@ public class DMControl extends KeyAdapter
         int i, count;
 
         count = 0;
-        for (i = 0; i < M.getSize(); i++) {
-            if (M.getObjectAt(i).isSelected()) {
+        for (i = 0; i < this.M.getSize(); i++) {
+            if (this.M.getObjectAt(i).isSelected()) {
                 count++;
             }
         }
@@ -127,10 +127,10 @@ public class DMControl extends KeyAdapter
 
         count = 1;
 
-        for (i = 0; i < M.getSize(); i++) {
-            if (M.getObjectAt(i).isSelected()) {
+        for (i = 0; i < this.M.getSize(); i++) {
+            if (this.M.getObjectAt(i).isSelected()) {
                 if (count == index) {
-                    return M.getObjectAt(i);
+                    return this.M.getObjectAt(i);
                 } else {
                     count++;
                 }
@@ -146,8 +146,8 @@ public class DMControl extends KeyAdapter
     public void unselectAll() {
         int i;
 
-        for (i = 0; i < M.getSize(); i++) {
-            M.getObjectAt(i).unselect();
+        for (i = 0; i < this.M.getSize(); i++) {
+            this.M.getObjectAt(i).unselect();
         }
     }
 
@@ -181,28 +181,28 @@ public class DMControl extends KeyAdapter
         DMObject e;
         boolean shift = me.isShiftDown();
 
-        switch (M.getEditionMode()) {
+        switch (this.M.getEditionMode()) {
 
             case DMModel.SELECT_MODE:
-                e = modelIsHit(V.getBounds().getSize(), me.getPoint());
+                e = this.modelIsHit(this.V.getBounds().getSize(), me.getPoint());
                 if (e != null) {
                     if (shift) {
                         e.toggleSelect();
                     } else {
-                        unselectAll();
+                        this.unselectAll();
                         e.select();
                     }
                 } else {
                     if (!shift) {
-                        unselectAll();
+                        this.unselectAll();
                     }
                 }
-                M.updateAllViews(false);
+                this.M.updateAllViews(false);
                 break;
 
             case DMModel.ICON_MODE:
-                M.addSimpleObject(V.getBounds().getSize(), me.getPoint(), true);
-                M.updateAllViews(false);
+                this.M.addSimpleObject(this.V.getBounds().getSize(), me.getPoint(), true);
+                this.M.updateAllViews(false);
                 break;
 
             case DMModel.RELATION_MODE:
@@ -230,34 +230,34 @@ public class DMControl extends KeyAdapter
         DMObject e;
         boolean shift = me.isShiftDown();
 
-        V.requestFocus();
+        this.V.requestFocus();
         // Check if someone is hit
-        e = modelIsHit(V.getBounds().getSize(), me.getPoint());
+        e = this.modelIsHit(this.V.getBounds().getSize(), me.getPoint());
 
-        switch (M.getEditionMode()) {
+        switch (this.M.getEditionMode()) {
 
             case DMModel.SELECT_MODE:
                 if ((e != null) && e.isSelected()) { // We have a hit
-                    action = DMControl.MOVING;
-                    start = me.getPoint();
+                    this.action = DMControl.MOVING;
+                    this.start = me.getPoint();
                 } else {
                     if (!shift) {
-                        unselectAll();
+                        this.unselectAll();
                     }
-                    action = DMControl.SELECTING;
-                    start = me.getPoint();
-                    end = start;
+                    this.action = DMControl.SELECTING;
+                    this.start = me.getPoint();
+                    this.end = this.start;
                 }
                 break;
 
             case DMModel.RELATION_MODE:
                 if (e != null) {  // we have a hit
-                    action = DMControl.LINKING;
-                    start = me.getPoint();
-                    end = start;
-                    startO = e;
+                    this.action = DMControl.LINKING;
+                    this.start = me.getPoint();
+                    this.end = this.start;
+                    this.startO = e;
                 } else {
-                    action = DMControl.NONE;
+                    this.action = DMControl.NONE;
                 }
                 break;
 
@@ -281,30 +281,30 @@ public class DMControl extends KeyAdapter
     public void drawControls(Graphics g) {
         int x1, x2, y1, y2;
 
-        switch (action) {
+        switch (this.action) {
             case (DMControl.SELECTING):
-                if (start.getX() < end.getX()) {
-                    x1 = (int) start.getX();
-                    x2 = (int) end.getX();
+                if (this.start.getX() < this.end.getX()) {
+                    x1 = (int) this.start.getX();
+                    x2 = (int) this.end.getX();
                 } else {
-                    x2 = (int) start.getX();
-                    x1 = (int) end.getX();
+                    x2 = (int) this.start.getX();
+                    x1 = (int) this.end.getX();
                 }
-                if (start.getY() < end.getY()) {
-                    y1 = (int) start.getY();
-                    y2 = (int) end.getY();
+                if (this.start.getY() < this.end.getY()) {
+                    y1 = (int) this.start.getY();
+                    y2 = (int) this.end.getY();
                 } else {
-                    y2 = (int) start.getY();
-                    y1 = (int) end.getY();
+                    y2 = (int) this.start.getY();
+                    y1 = (int) this.end.getY();
                 }
                 g.drawRect(x1, y1, x2 - x1, y2 - y1);
                 break;
 
             case (DMControl.LINKING):
-                x1 = (int) start.getX();
-                y1 = (int) start.getY();
-                x2 = (int) end.getX();
-                y2 = (int) end.getY();
+                x1 = (int) this.start.getX();
+                y1 = (int) this.start.getY();
+                x2 = (int) this.end.getX();
+                y2 = (int) this.end.getY();
                 g.drawLine(x1, y1, x2, y2);
                 break;
 
@@ -324,46 +324,46 @@ public class DMControl extends KeyAdapter
      */
     @Override
     public void mouseReleased(MouseEvent me) {
-        DMObject e = modelIsHit(V.getBounds().getSize(), me.getPoint());
+        DMObject e = this.modelIsHit(this.V.getBounds().getSize(), me.getPoint());
         int i;
         boolean shift = me.isShiftDown();
 
-        switch (action) {
+        switch (this.action) {
             case (DMControl.NONE):
                 break;
 
             case (DMControl.SELECTING):
-                for (i = 0; i < M.getSize(); i++) {
-                    if (M.getObjectAt(i).isContained(V.getBounds().getSize(), start, me.getPoint())) {
+                for (i = 0; i < this.M.getSize(); i++) {
+                    if (this.M.getObjectAt(i).isContained(this.V.getBounds().getSize(), this.start, me.getPoint())) {
                         if (shift) {
-                            M.getObjectAt(i).toggleSelect();
+                            this.M.getObjectAt(i).toggleSelect();
                         } else {
-                            M.getObjectAt(i).select();
+                            this.M.getObjectAt(i).select();
                         }
                     }
                 }
-                M.updateAllViews(false);
+                this.M.updateAllViews(false);
                 break;
 
             case (DMControl.MOVING):
-                Dimension r = new Dimension((int) (me.getPoint().getX() - start.getX()),
-                        (int) (me.getPoint().getY() - start.getY()));
-                for (i = 0; i < M.getSize(); i++) {
-                    if (M.getObjectAt(i).isSelected()) {
-                        M.getObjectAt(i).moveBy(V.getBounds().getSize(), r);
+                Dimension r = new Dimension((int) (me.getPoint().getX() - this.start.getX()),
+                        (int) (me.getPoint().getY() - this.start.getY()));
+                for (i = 0; i < this.M.getSize(); i++) {
+                    if (this.M.getObjectAt(i).isSelected()) {
+                        this.M.getObjectAt(i).moveBy(this.V.getBounds().getSize(), r);
                     }
-                    M.setDirty(true);
+                    this.M.setDirty(true);
                 }
-                M.updateAllViews(false);
+                this.M.updateAllViews(false);
                 break;
 
             case (DMControl.LINKING):
-                if (action == DMControl.LINKING) {
+                if (this.action == DMControl.LINKING) {
                     if (e != null) {
-                        M.addRelationObject(startO, e, true);
-                        M.updateAllViews(false);
+                        this.M.addRelationObject(this.startO, e, true);
+                        this.M.updateAllViews(false);
                     } else {
-                        V.repaint();
+                        this.V.repaint();
                     }
                 }
                 break;
@@ -371,7 +371,7 @@ public class DMControl extends KeyAdapter
             default:
                 throw new RuntimeException("Unexpected action.");
         }
-        action = DMControl.NONE;
+        this.action = DMControl.NONE;
     }
 
     /**
@@ -396,19 +396,19 @@ public class DMControl extends KeyAdapter
         Dimension r;
         int i;
 
-        if (action == DMControl.MOVING) {
-            r = new Dimension((int) (me.getPoint().getX() - start.getX()),
-                    (int) (me.getPoint().getY() - start.getY()));
-            for (i = 0; i < M.getSize(); i++) {
-                if (M.getObjectAt(i).isSelected()) {
-                    M.getObjectAt(i).moveBy(V.getBounds().getSize(), r);
+        if (this.action == DMControl.MOVING) {
+            r = new Dimension((int) (me.getPoint().getX() - this.start.getX()),
+                    (int) (me.getPoint().getY() - this.start.getY()));
+            for (i = 0; i < this.M.getSize(); i++) {
+                if (this.M.getObjectAt(i).isSelected()) {
+                    this.M.getObjectAt(i).moveBy(this.V.getBounds().getSize(), r);
                 }
             }
-            M.updateAllViews(false);
-            start = me.getPoint();
+            this.M.updateAllViews(false);
+            this.start = me.getPoint();
         } else {
-            end = me.getPoint();
-            V.repaint();
+            this.end = me.getPoint();
+            this.V.repaint();
         }
 
     }
@@ -423,7 +423,7 @@ public class DMControl extends KeyAdapter
     public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
         if ((c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)) {
-            M.removeSelected();
+            this.M.removeSelected();
         }
     }
     private static final Logger LOG = Logger.getLogger(DMControl.class.getName());

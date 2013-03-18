@@ -45,7 +45,7 @@ public class NSEditableObject extends NSObject implements DMObject {
      */
     @Override
     public boolean isSelected() {
-        return selected;
+        return this.selected;
     }
 
     /**
@@ -54,7 +54,7 @@ public class NSEditableObject extends NSObject implements DMObject {
      */
     @Override
     public void select() {
-        selected = true;
+        this.selected = true;
     }
 
     /**
@@ -63,7 +63,7 @@ public class NSEditableObject extends NSObject implements DMObject {
      */
     @Override
     public void unselect() {
-        selected = false;
+        this.selected = false;
     }
 
     /**
@@ -72,7 +72,7 @@ public class NSEditableObject extends NSObject implements DMObject {
      */
     @Override
     public void toggleSelect() {
-        selected = !selected;
+        this.selected = !this.selected;
     }
 
     /**

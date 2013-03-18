@@ -50,11 +50,11 @@ public class NSObject extends Object implements Serializable {
      * @param inName
      */
     public NSObject(TclSnippet inSnippet, String inName) {
-        snippet = inSnippet;
+        this.snippet = inSnippet;
 
         // Initialize the objects data structure
-        attributes = new ArrayList<String>();
-        arrayIndex = -1;
+        this.attributes = new ArrayList<String>();
+        this.arrayIndex = -1;
         this.name = inName;
     }
 
@@ -64,7 +64,7 @@ public class NSObject extends Object implements Serializable {
      * @return a reference to the TclSnippet object.
      */
     public TclSnippet getSnippet() {
-        return snippet;
+        return this.snippet;
     }
 
     /**
@@ -73,7 +73,7 @@ public class NSObject extends Object implements Serializable {
      * @param inName the new name for the object.
      */
     public void setName(String inName) {
-        name = inName;
+        this.name = inName;
     }
 
     /**
@@ -82,7 +82,7 @@ public class NSObject extends Object implements Serializable {
      * @return the name of the object as a string.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -92,7 +92,7 @@ public class NSObject extends Object implements Serializable {
      * by any array (default value).
      */
     public int getArrayIndex() {
-        return arrayIndex;
+        return this.arrayIndex;
     }
 
     /**
@@ -101,7 +101,7 @@ public class NSObject extends Object implements Serializable {
      * @param newArrayIndex the (new) number of the array that indices.
      */
     public void setArrayIndex(int newArrayIndex) {
-        arrayIndex = newArrayIndex;
+        this.arrayIndex = newArrayIndex;
     }
 
     /**
@@ -110,7 +110,7 @@ public class NSObject extends Object implements Serializable {
      * @return the array index.
      */
     public int getAttributeCount() {
-        return attributes.size();
+        return this.attributes.size();
     }
 
     /**
@@ -122,10 +122,10 @@ public class NSObject extends Object implements Serializable {
      * @param aig the index that was erased.
      */
     public void arrayIndexGone(int aig) {
-        if (arrayIndex > aig) {
-            arrayIndex--;
-        } else if (arrayIndex == aig) {
-            arrayIndex = -1;
+        if (this.arrayIndex > aig) {
+            this.arrayIndex--;
+        } else if (this.arrayIndex == aig) {
+            this.arrayIndex = -1;
         }
     }
 
@@ -136,10 +136,10 @@ public class NSObject extends Object implements Serializable {
      * @param inNewValue a String containing the new value.
      */
     public void setAttribute(int inAttrIndex, String inNewValue) {
-        if (inAttrIndex >= attributes.size()) {
-            attributes.add(inAttrIndex, inNewValue);
+        if (inAttrIndex >= this.attributes.size()) {
+            this.attributes.add(inAttrIndex, inNewValue);
         } else {
-            attributes.set(inAttrIndex, inNewValue);
+            this.attributes.set(inAttrIndex, inNewValue);
         }
     }
 
@@ -151,10 +151,10 @@ public class NSObject extends Object implements Serializable {
      * and an empty String otherwise.
      */
     public String getAttribute(int inAttrIndex) {
-        if (inAttrIndex >= attributes.size()) {
+        if (inAttrIndex >= this.attributes.size()) {
             return "";
         } else {
-            return attributes.get(inAttrIndex);
+            return this.attributes.get(inAttrIndex);
         }
     }
 
@@ -167,14 +167,14 @@ public class NSObject extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder(attributes.size() + 1);
+        StringBuilder str = new StringBuilder(this.attributes.size() + 1);
 
-        str.append(snippet.getName()).append("\n")
-                .append(name).append("\n")
-                .append(Integer.toString(arrayIndex)).append("\n");
+        str.append(this.snippet.getName()).append("\n")
+                .append(this.name).append("\n")
+                .append(Integer.toString(this.arrayIndex)).append("\n");
 
-        for (int i = 0; i < attributes.size(); i++) {
-            str.append(attributes.get(i)).append("\n");
+        for (int i = 0; i < this.attributes.size(); i++) {
+            str.append(this.attributes.get(i)).append("\n");
         }
         return str.toString();
     }
@@ -186,9 +186,9 @@ public class NSObject extends Object implements Serializable {
      */
     public void fromString(BufferedReader br) {
         try {
-            setArrayIndex(Integer.parseInt(br.readLine()));
-            for (int i = 0; i < attributes.size(); i++) {
-                setAttribute(i, br.readLine());
+            this.setArrayIndex(Integer.parseInt(br.readLine()));
+            for (int i = 0; i < this.attributes.size(); i++) {
+                this.setAttribute(i, br.readLine());
             }
         } catch (IOException ioe) {
             LOG.log(Level.SEVERE, "{0}{1}", new Object[]{

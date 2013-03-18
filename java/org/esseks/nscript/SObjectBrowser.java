@@ -76,42 +76,42 @@ public class SObjectBrowser extends JPanel implements ActionListener {
     @SuppressWarnings("LeakingThisInConstructor")
     public SObjectBrowser(NSModel inModel) {
         super();
-        M = inModel;
-        name = new JLabel(Messages.tr("name"));
-        nameField = new JTextField();
-        nameField.addActionListener(this);
-        description = new JLabel(Messages.tr("no_selection"));
+        this.M = inModel;
+        this.name = new JLabel(Messages.tr("name"));
+        this.nameField = new JTextField();
+        this.nameField.addActionListener(this);
+        this.description = new JLabel(Messages.tr("no_selection"));
         JPanel p = new JPanel(new GridLayout(1, 2));
         JPanel aiPanel = new JPanel(new BorderLayout());
-        arrayIndex = new JComboBox<NSArray>();
-        arrayIndex.addActionListener(this);
+        this.arrayIndex = new JComboBox<NSArray>();
+        this.arrayIndex.addActionListener(this);
         // arrayIndex.addItemListener(this);
-        aiPanel.add(arrayIndex, BorderLayout.CENTER);
+        aiPanel.add(this.arrayIndex, BorderLayout.CENTER);
         aiPanel.add(new JLabel(Messages.tr("indexed_by")), BorderLayout.WEST);
-        p.add(name);
-        p.add(nameField);
+        p.add(this.name);
+        p.add(this.nameField);
         JPanel p2 = new JPanel(new GridLayout(3, 1));
-        p2.add(description);
+        p2.add(this.description);
         p2.add(p);
         p2.add(aiPanel);
 
-        setLayout(new BorderLayout());
-        add(p2, BorderLayout.NORTH);
+        this.setLayout(new BorderLayout());
+        this.add(p2, BorderLayout.NORTH);
 
-        defaultBtn = new JButton(Messages.tr("use_defaults"));
-        defaultBtn.addActionListener(this);
+        this.defaultBtn = new JButton(Messages.tr("use_defaults"));
+        this.defaultBtn.addActionListener(this);
 
         JPanel p3 = new JPanel(new GridLayout(1, 2));
-        p3.add(defaultBtn);
+        p3.add(this.defaultBtn);
 
-        add(p3, BorderLayout.SOUTH);
+        this.add(p3, BorderLayout.SOUTH);
 
         // OK, the table
-        attrTable = new JTable(new SObjectTableModel(null));
-        attrTable.getSelectionModel().addListSelectionListener(new PropertiesUpdater());
-        JScrollPane sp_at = new JScrollPane(attrTable);
-        add(sp_at, BorderLayout.CENTER);
-        setBorder(new EmptyBorder(2, 2, 2, 2));
+        this.attrTable = new JTable(new SObjectTableModel(null));
+        this.attrTable.getSelectionModel().addListSelectionListener(new PropertiesUpdater());
+        JScrollPane sp_at = new JScrollPane(this.attrTable);
+        this.add(sp_at, BorderLayout.CENTER);
+        this.setBorder(new EmptyBorder(2, 2, 2, 2));
     }
 
     /**
@@ -124,46 +124,46 @@ public class SObjectBrowser extends JPanel implements ActionListener {
 
         SObjectTableModel tm;
         oc = 0;
-        for (i = 0; i < M.getSize(); i++) {
-            if (M.getObjectAt(i).isSelected()) {
+        for (i = 0; i < this.M.getSize(); i++) {
+            if (this.M.getObjectAt(i).isSelected()) {
                 oc++;
-                o = (NSObject) M.getObjectAt(i);
+                this.o = (NSObject) this.M.getObjectAt(i);
             }
         }
         if (oc == 1) {
-            nameField.setText(o.getName());
-            if (o.getSnippet().isRelation()) {
-                or = (NSRelation) o;
-                description.setText(Messages.tr("relates") + " (" + or.getFrom().getName() + ", " + or.getTo().getName() + ")");
+            this.nameField.setText(this.o.getName());
+            if (this.o.getSnippet().isRelation()) {
+                or = (NSRelation) this.o;
+                this.description.setText(Messages.tr("relates") + " (" + or.getFrom().getName() + ", " + or.getTo().getName() + ")");
             } else {
-                description.setText(Messages.tr("entity_class") + ": " + o.getSnippet().getName() + " : " + o.getSnippet().getBase());
+                this.description.setText(Messages.tr("entity_class") + ": " + this.o.getSnippet().getName() + " : " + this.o.getSnippet().getBase());
             }
             // Prepare array list
-            arrayIndex.removeAllItems();
-            arrayIndex.addItem(new NSArray(Messages.tr("no_index"), 0));
-            for (i = 0; i < M.getArrayCount(); i++) {
-                arrayIndex.addItem(M.getArray(i));
+            this.arrayIndex.removeAllItems();
+            this.arrayIndex.addItem(new NSArray(Messages.tr("no_index"), 0));
+            for (i = 0; i < this.M.getArrayCount(); i++) {
+                this.arrayIndex.addItem(this.M.getArray(i));
             }
-            if (o.getArrayIndex() >= 0) {
-                arrayIndex.setSelectedIndex(o.getArrayIndex() + 1);
+            if (this.o.getArrayIndex() >= 0) {
+                this.arrayIndex.setSelectedIndex(this.o.getArrayIndex() + 1);
             }
         }
         if (oc > 1) {
-            nameField.setText("");
-            description.setText(Messages.tr("multiple_selection"));
-            arrayIndex.setSelectedIndex(-1);
-            o = null;
+            this.nameField.setText("");
+            this.description.setText(Messages.tr("multiple_selection"));
+            this.arrayIndex.setSelectedIndex(-1);
+            this.o = null;
         }
         if (oc == 0) {
-            nameField.setText("");
-            description.setText(Messages.tr("no_selection"));
-            arrayIndex.setSelectedIndex(-1);
-            o = null;
+            this.nameField.setText("");
+            this.description.setText(Messages.tr("no_selection"));
+            this.arrayIndex.setSelectedIndex(-1);
+            this.o = null;
         }
-        tm = new SObjectTableModel(o);
-        attrTable.setModel(tm);
+        tm = new SObjectTableModel(this.o);
+        this.attrTable.setModel(tm);
         if (oc == 1) {
-            attrTable.getColumnModel().getColumn(1).setCellEditor(new SObjectCellEditor(o));
+            this.attrTable.getColumnModel().getColumn(1).setCellEditor(new SObjectCellEditor(this.o));
         }
     }
 
@@ -175,31 +175,31 @@ public class SObjectBrowser extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (o == null) {
+        if (this.o == null) {
             return;
         }
 
-        if (ae.getSource() == defaultBtn) {
-            o.getSnippet().instantiateNSObject(o);
+        if (ae.getSource() == this.defaultBtn) {
+            this.o.getSnippet().instantiateNSObject(this.o);
         }
-        else if (ae.getSource() == nameField) {
-            o.setName(nameField.getText());
+        else if (ae.getSource() == this.nameField) {
+            this.o.setName(this.nameField.getText());
         }
 
-        M.updateAllViews(false);
-        M.setDirty(true);
+        this.M.updateAllViews(false);
+        this.M.setDirty(true);
     }
 
     private class PropertiesUpdater implements ListSelectionListener {
         /** Responds to changes in the selection of the list. */
         @Override
         public void valueChanged(ListSelectionEvent e) {
-            if (!e.getValueIsAdjusting() && (o != null)) {
+            if (!e.getValueIsAdjusting() && (SObjectBrowser.this.o != null)) {
                 for (int i = e.getFirstIndex(); i <= e.getLastIndex(); ++i) {
-                    o.setAttribute(i, (String) attrTable.getValueAt(i, 1));
+                    SObjectBrowser.this.o.setAttribute(i, (String) SObjectBrowser.this.attrTable.getValueAt(i, 1));
                 }
-                M.updateAllViews(true);
-                M.setDirty(true);
+                SObjectBrowser.this.M.updateAllViews(true);
+                SObjectBrowser.this.M.setDirty(true);
             }
         }
     }

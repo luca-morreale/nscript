@@ -29,7 +29,7 @@ public class SObjectTableModel extends AbstractTableModel {
      * @param inObject
      */
     public SObjectTableModel(NSObject inObject) {
-        o = inObject;
+        this.o = inObject;
     }
 
     /**
@@ -38,7 +38,7 @@ public class SObjectTableModel extends AbstractTableModel {
      * @param inNewObject
      */
     public void updateView(NSObject inNewObject) {
-        o = inNewObject;
+        this.o = inNewObject;
     }
 
     /**
@@ -49,10 +49,10 @@ public class SObjectTableModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        if (o == null) {
+        if (this.o == null) {
             return 0;
         } else {
-            return o.getAttributeCount();
+            return this.o.getAttributeCount();
         }
     }
 
@@ -63,7 +63,7 @@ public class SObjectTableModel extends AbstractTableModel {
      */
     @Override
     public int getColumnCount() {
-        if (o == null) {
+        if (this.o == null) {
             return 0;
         } else {
             return 2;
@@ -80,14 +80,14 @@ public class SObjectTableModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(int row, int col) {
-        if (o == null) {
+        if (this.o == null) {
             return "";
         }
 
         if (col == 0) {
-            return o.getSnippet().getAttribute(row).getName();
+            return this.o.getSnippet().getAttribute(row).getName();
         } else {
-            return o.getAttribute(row);
+            return this.o.getAttribute(row);
         }
     }
 
@@ -102,8 +102,8 @@ public class SObjectTableModel extends AbstractTableModel {
      */
     @Override
     public void setValueAt(Object value, int row, int column) {
-        if ((column == 1) && (o != null)) {
-            o.setAttribute(row, value.toString());
+        if ((column == 1) && (this.o != null)) {
+            this.o.setAttribute(row, value.toString());
         }
     }
 

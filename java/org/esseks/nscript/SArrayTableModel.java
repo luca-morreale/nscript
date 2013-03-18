@@ -29,7 +29,7 @@ public class SArrayTableModel extends AbstractTableModel {
      * @param inM a reference to the current simulation model.
      */
     public SArrayTableModel(NSWorld inM) {
-        M = inM;
+        this.M = inM;
     }
 
     /**
@@ -40,10 +40,10 @@ public class SArrayTableModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        if (M == null) {
+        if (this.M == null) {
             return 0;
         } else {
-            return M.getArrayCount();
+            return this.M.getArrayCount();
         }
     }
 
@@ -54,7 +54,7 @@ public class SArrayTableModel extends AbstractTableModel {
      */
     @Override
     public int getColumnCount() {
-        if (M == null) {
+        if (this.M == null) {
             return 0;
         } else {
             return 2;
@@ -70,14 +70,14 @@ public class SArrayTableModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(int row, int col) {
-        if (M == null) {
+        if (this.M == null) {
             return "";
         }
 
         if (col == 0) {
-            return M.getArray(row).getName();
+            return this.M.getArray(row).getName();
         } else {
-            return Integer.toString(M.getArray(row).getSize());
+            return Integer.toString(this.M.getArray(row).getSize());
         }
     }
 
@@ -90,14 +90,14 @@ public class SArrayTableModel extends AbstractTableModel {
      */
     @Override
     public void setValueAt(Object value, int row, int column) {
-        if (M == null) {
+        if (this.M == null) {
             return;
         }
 
         if (column == 0) {
-            M.getArray(row).setName(value.toString());
+            this.M.getArray(row).setName(value.toString());
         } else {
-            M.getArray(row).setSize(Integer.parseInt(value.toString()));
+            this.M.getArray(row).setSize(Integer.parseInt(value.toString()));
         }
     }
 

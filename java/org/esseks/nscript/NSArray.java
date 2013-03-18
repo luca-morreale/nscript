@@ -36,8 +36,8 @@ public class NSArray extends Object implements Serializable {
      * @param inNumberOfElements is the size of the array.
      */
     public NSArray(String inName, int inNumberOfElements) {
-        name = inName;
-        elements = inNumberOfElements;
+        this.name = inName;
+        this.elements = inNumberOfElements;
     }
 
     /**
@@ -47,7 +47,7 @@ public class NSArray extends Object implements Serializable {
      */
     @Override
     public String toString() {
-        return name + "\n" + Integer.toString(elements) + "\n";
+        return this.name + "\n" + Integer.toString(this.elements) + "\n";
     }
 
     /**
@@ -55,7 +55,7 @@ public class NSArray extends Object implements Serializable {
      * @return
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -63,7 +63,7 @@ public class NSArray extends Object implements Serializable {
      * @return
      */
     public int getSize() {
-        return elements;
+        return this.elements;
     }
 
     /**

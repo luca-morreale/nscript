@@ -45,9 +45,9 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
      * @param inO
      */
     public SObjectCellEditor(NSObject inO) {
-        o = inO;
-        cb = new JComboBox<String>();
-        tf = new JTextField();
+        this.o = inO;
+        this.cb = new JComboBox<String>();
+        this.tf = new JTextField();
     }
 
     /**
@@ -59,10 +59,10 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
      */
     @Override
     public Object getCellEditorValue() {
-        if (cb.isEditable()) {
-            return tf.getText();
+        if (this.cb.isEditable()) {
+            return this.tf.getText();
         } else {
-            return cb.getSelectedItem();
+            return this.cb.getSelectedItem();
         }
     }
 
@@ -82,28 +82,28 @@ public class SObjectCellEditor extends AbstractCellEditor implements TableCellEd
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
             int row, int column) {
         StringTokenizer st;
-        cb.removeAllItems();
-        cb.setPopupVisible(false);
+        this.cb.removeAllItems();
+        this.cb.setPopupVisible(false);
         if (column > 0) {
-            if (o != null) {
-                if (o.getSnippet().getAttribute(row).hasOptions()) {
-                    st = new StringTokenizer(o.getSnippet().getAttribute(row).getOptions());
-                    cb.setEditable(false);
+            if (this.o != null) {
+                if (this.o.getSnippet().getAttribute(row).hasOptions()) {
+                    st = new StringTokenizer(this.o.getSnippet().getAttribute(row).getOptions());
+                    this.cb.setEditable(false);
                     while (st.hasMoreTokens()) {
-                        cb.addItem(st.nextToken());
+                        this.cb.addItem(st.nextToken());
                     }
-                    cb.setSelectedItem(o.getAttribute(row));
-                    return cb;
+                    this.cb.setSelectedItem(this.o.getAttribute(row));
+                    return this.cb;
                 } else {
-                    cb.setEditable(true);
-                    tf.setText(o.getAttribute(row));
-                    return tf;
+                    this.cb.setEditable(true);
+                    this.tf.setText(this.o.getAttribute(row));
+                    return this.tf;
                 }
             } else {
-                return cb;
+                return this.cb;
             }
         }
-        return cb;
+        return this.cb;
     }
     private static final Logger LOG = Logger.getLogger(SObjectCellEditor.class.getName());
 }

@@ -42,9 +42,9 @@ public class NSWorld extends Object implements Serializable {
      */
     public NSWorld(NSObject inEnvironment) {
         // For convenience, the environment is always at index 0, and cannot be deleted.
-        objects = new ArrayList<NSObject>();
+        this.objects = new ArrayList<NSObject>();
         this.objects.add(inEnvironment);
-        arrays = new ArrayList<NSArray>();
+        this.arrays = new ArrayList<NSArray>();
     }
 
     /**
@@ -53,7 +53,7 @@ public class NSWorld extends Object implements Serializable {
      * @return the ns environment object.
      */
     public NSObject getEnvironment() {
-        return objects.get(0);
+        return this.objects.get(0);
     }
 
     /**
@@ -64,7 +64,7 @@ public class NSWorld extends Object implements Serializable {
      * @param inNumberOfElements the number of elements of the array.
      */
     public void addArray(String inArrayName, int inNumberOfElements) {
-        arrays.add(new NSArray(inArrayName, inNumberOfElements));
+        this.arrays.add(new NSArray(inArrayName, inNumberOfElements));
     }
 
     /**
@@ -74,8 +74,8 @@ public class NSWorld extends Object implements Serializable {
      * @param inIndex the 0-based position of the array to remove.
      */
     public void removeArray(int inIndex) {
-        if ((inIndex >= 0) && (inIndex < arrays.size())) {
-            arrays.remove(inIndex);
+        if ((inIndex >= 0) && (inIndex < this.arrays.size())) {
+            this.arrays.remove(inIndex);
         }
     }
 
@@ -84,8 +84,8 @@ public class NSWorld extends Object implements Serializable {
      * user selects 'New' option of the 'File' menuu.
      */
     public void removeAllArrays() {
-        while (arrays.size() > 0) {
-            arrays.remove(0);
+        while (this.arrays.size() > 0) {
+            this.arrays.remove(0);
         }
     }
 
@@ -98,8 +98,8 @@ public class NSWorld extends Object implements Serializable {
      * @return the requested array if 0<=inIndex<=NoOfArrays-1, Null otherwise.
      */
     public NSArray getArray(int inIndex) {
-        if ((inIndex >= 0) && (inIndex < arrays.size())) {
-            return arrays.get(inIndex);
+        if ((inIndex >= 0) && (inIndex < this.arrays.size())) {
+            return this.arrays.get(inIndex);
         } else {
             LOG.severe(Messages.tr("array_out_of_bonds"));
             return null;
@@ -112,7 +112,7 @@ public class NSWorld extends Object implements Serializable {
      * @return the number of arrays.
      */
     public int getArrayCount() {
-        return arrays.size();
+        return this.arrays.size();
     }
 
     /**
@@ -124,7 +124,7 @@ public class NSWorld extends Object implements Serializable {
      */
     public boolean isValidName(String theName) {
         NSObject o;
-        Iterator<NSObject> i = objects.iterator();
+        Iterator<NSObject> i = this.objects.iterator();
         while (i.hasNext()) {
             o = i.next();
             if (o.getName().equals(theName)) {
@@ -141,7 +141,7 @@ public class NSWorld extends Object implements Serializable {
      * @return true if the object was correctly stored, false otherwise.
      */
     public boolean addObject(NSObject newObject) {
-        return (objects.add(newObject));
+        return (this.objects.add(newObject));
     }
 
     /**
@@ -150,7 +150,7 @@ public class NSWorld extends Object implements Serializable {
      * @return the number of simulation objects.
      */
     public int getObjectsCount() {
-        return objects.size();
+        return this.objects.size();
     }
 
     /**
@@ -161,7 +161,7 @@ public class NSWorld extends Object implements Serializable {
      */
     public NSObject getObject(String theName) {
         NSObject o;
-        Iterator<NSObject> i = objects.iterator();
+        Iterator<NSObject> i = this.objects.iterator();
 
         while (i.hasNext()) {
             o = i.next();
@@ -180,8 +180,8 @@ public class NSWorld extends Object implements Serializable {
      * @return the NSObject if the index was appropiate, null otherwise.
      */
     public NSObject getObject(int index) {
-        if ((index >= 0) && (index < objects.size())) {
-            return objects.get(index);
+        if ((index >= 0) && (index < this.objects.size())) {
+            return this.objects.get(index);
         } else {
             return null;
         }
@@ -192,14 +192,14 @@ public class NSWorld extends Object implements Serializable {
      * @return
      */
     public Iterator<NSObject> getObjectsIterator() {
-        return objects.iterator();
+        return this.objects.iterator();
     }
 
     /**
      *
      */
     public void clearArrays() {
-        arrays.clear();
+        this.arrays.clear();
     }
 
     /**
@@ -209,7 +209,7 @@ public class NSWorld extends Object implements Serializable {
      * @return the name of the model's environment. (Unused).
      */
     public String toString(int dos) {
-        return getEnvironment().getName();
+        return this.getEnvironment().getName();
     }
     private static final Logger LOG = Logger.getLogger(NSWorld.class.getName());
 }
