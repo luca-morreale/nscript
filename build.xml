@@ -92,14 +92,14 @@ See COPYING at top level for more information.
     </copy>
     <copy todir="${install.bin.dir}">
       <fileset dir="scripts" includes="fixnss.py,nscript.bat,nscript.sh"/>
-      <fileset dir="${prebuilt.win32.dir}" includes="*.exe,*.dll"/>
+      <!-- <fileset dir="${prebuilt.win32.dir}" includes="*.exe,*.dll"/> -->
     </copy>
     <copy todir="${install.jar.dir}">
       <fileset dir="${build.dir}" includes="${ant.project.name}.jar"/>
     </copy>
     <copy todir="${install.doc.dir}">
       <fileset dir="." includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
-      <fileset dir="${prebuilt.win32.dir}" includes="README.prebuilt"/>
+      <!-- <fileset dir="${prebuilt.win32.dir}" includes="README.prebuilt"/> -->
     </copy>
     <copy todir="${install.examples.dir}">
       <fileset dir="resources/examples" includes="*.nss"/>
