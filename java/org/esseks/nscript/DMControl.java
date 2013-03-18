@@ -237,7 +237,7 @@ public class DMControl extends KeyAdapter
         switch (M.getEditionMode()) {
 
             case DMModel.SELECT_MODE:
-                if (e != null && e.isSelected()) { // We have a hit
+                if ((e != null) && e.isSelected()) { // We have a hit
                     action = DMControl.MOVING;
                     start = me.getPoint();
                 } else {
@@ -422,7 +422,7 @@ public class DMControl extends KeyAdapter
     @Override
     public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
-        if (c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE) {
+        if ((c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)) {
             M.removeSelected();
         }
     }

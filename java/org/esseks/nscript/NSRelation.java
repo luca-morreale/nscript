@@ -113,14 +113,14 @@ class NSRelation extends NSEditableObject {
         dx = getTo().getX() - getFrom().getX();
         dy = getTo().getY() - getFrom().getY();
 
-        vsize = Math.sqrt(dx * dx + dy * dy);
+        vsize = Math.sqrt((dx * dx) + (dy * dy));
         ux = dx / vsize;
         uy = dy / vsize;
 
-        x1 = getFrom().getX() + size2 * ux;
-        y1 = getFrom().getY() + size2 * uy;
-        x2 = getTo().getX() - size2 * ux;
-        y2 = getTo().getY() - size2 * uy;
+        x1 = getFrom().getX() + (size2 * ux);
+        y1 = getFrom().getY() + (size2 * uy);
+        x2 = getTo().getX() - (size2 * ux);
+        y2 = getTo().getY() - (size2 * uy);
 
         // Now, create the stroke
 
@@ -155,9 +155,9 @@ class NSRelation extends NSEditableObject {
                 break;
             case 1:
                 g2.drawLine((int) Math.round(x1 * r.width), (int) Math.round(y1 * r.height),
-                        (int) Math.round(x1 * r.width + 2 * ux - 2 * uy), (int) Math.round(y1 * r.height + 2 * uy + aSize * ux));
+                        (int) Math.round(((x1 * r.width) + (2 * ux)) - (2 * uy)), (int) Math.round((y1 * r.height) + (2 * uy) + (aSize * ux)));
                 g2.drawLine((int) Math.round(x1 * r.width), (int) Math.round(y1 * r.height),
-                        (int) Math.round(x1 * r.width + 2 * ux + 2 * uy), (int) Math.round(y1 * r.height + 2 * uy - aSize * ux));
+                        (int) Math.round((x1 * r.width) + (2 * ux) + (2 * uy)), (int) Math.round(((y1 * r.height) + (2 * uy)) - (aSize * ux)));
                 break;
             case 2:
                 g2.fillRect((int) Math.round(x1 * r.width) - aSize - 1, (int) Math.round(y1 * r.height) - aSize - 1, (aSize + 1) * 2, (aSize + 1) * 2);
@@ -173,16 +173,16 @@ class NSRelation extends NSEditableObject {
                 break;
             case 1:
                 g2.drawLine((int) Math.round(x2 * r.width), (int) Math.round(y2 * r.height),
-                        (int) Math.round(x2 * r.width - aSize * ux - aSize * uy), (int) Math.round(y2 * r.height - aSize * uy + aSize * ux));
+                        (int) Math.round((x2 * r.width) - (aSize * ux) - (aSize * uy)), (int) Math.round(((y2 * r.height) - (aSize * uy)) + (aSize * ux)));
                 g2.drawLine((int) Math.round(x2 * r.width), (int) Math.round(y2 * r.height),
-                        (int) Math.round(x2 * r.width - aSize * ux + aSize * uy), (int) Math.round(y2 * r.height - aSize * uy - aSize * ux));
+                        (int) Math.round(((x2 * r.width) - (aSize * ux)) + (aSize * uy)), (int) Math.round((y2 * r.height) - (aSize * uy) - (aSize * ux)));
                 break;
             case 2:
-                g2.drawRect((int) Math.round(x1 * r.width) - aSize, (int) Math.round(y1 * r.height) - aSize, 2 * aSize + 1, 2 * aSize + 1);
+                g2.drawRect((int) Math.round(x1 * r.width) - aSize, (int) Math.round(y1 * r.height) - aSize, (2 * aSize) + 1, (2 * aSize) + 1);
                 break;
             case 3:
             default:
-                g2.drawOval((int) Math.round(x1 * r.width) - aSize, (int) Math.round(y1 * r.height) - aSize, 2 * aSize + 1, 2 * aSize + 1);
+                g2.drawOval((int) Math.round(x1 * r.width) - aSize, (int) Math.round(y1 * r.height) - aSize, (2 * aSize) + 1, (2 * aSize) + 1);
                 break;
         }
 
@@ -240,11 +240,11 @@ class NSRelation extends NSEditableObject {
         // expressed as a multiple (t0) of the (D-F) vector. If t0 is in the
         // interval [0,1], and the distance to the line is less than the
         // radius, return true, otherwise false.
-        t0 = ((inX - x1) * (x2 - x1) + (inY - y1) * (y2 - y1))
+        t0 = (((inX - x1) * (x2 - x1)) + ((inY - y1) * (y2 - y1)))
                 / (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-        if (t0 > 0 && t0 < 1) {
-            xp = x1 + t0 * (x2 - x1);
-            yp = y1 + t0 * (y2 - y1);
+        if ((t0 > 0) && (t0 < 1)) {
+            xp = x1 + (t0 * (x2 - x1));
+            yp = y1 + (t0 * (y2 - y1));
             if (Math.sqrt(Math.pow(inX - xp, 2) + Math.pow(inY - yp, 2)) < radius) {
                 return true;
             }

@@ -9,10 +9,8 @@
 package org.esseks.nscript;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -147,7 +145,7 @@ public class TclLibraryManager extends Object implements Serializable {
      * NULL is returned.
      */
     public TclLibrary getLibrary(int inIndex) {
-        if (inIndex >= 0 && inIndex < libraries.size()) {
+        if ((inIndex >= 0) && (inIndex < libraries.size())) {
             return libraries.get(inIndex);
         } else {
             return null;
@@ -188,9 +186,9 @@ public class TclLibraryManager extends Object implements Serializable {
     public TclSnippet getSnippet(int inLibIndex, int inSnippetIndex) {
         TclLibrary l;
 
-        if (inLibIndex >= 0 && inLibIndex < libraries.size()) {
+        if ((inLibIndex >= 0) && (inLibIndex < libraries.size())) {
             l = libraries.get(inLibIndex);
-            if (inSnippetIndex >= 0 && inSnippetIndex < l.getSnippetCount()) {
+            if ((inSnippetIndex >= 0) && (inSnippetIndex < l.getSnippetCount())) {
                 return l.getSnippet(inSnippetIndex);
             } else {
                 return null;

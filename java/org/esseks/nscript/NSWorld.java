@@ -74,7 +74,7 @@ public class NSWorld extends Object implements Serializable {
      * @param inIndex the 0-based position of the array to remove.
      */
     public void removeArray(int inIndex) {
-        if (inIndex >= 0 && inIndex < arrays.size()) {
+        if ((inIndex >= 0) && (inIndex < arrays.size())) {
             arrays.remove(inIndex);
         }
     }
@@ -98,7 +98,7 @@ public class NSWorld extends Object implements Serializable {
      * @return the requested array if 0<=inIndex<=NoOfArrays-1, Null otherwise.
      */
     public NSArray getArray(int inIndex) {
-        if (inIndex >= 0 && inIndex < arrays.size()) {
+        if ((inIndex >= 0) && (inIndex < arrays.size())) {
             return arrays.get(inIndex);
         } else {
             LOG.severe(Messages.tr("array_out_of_bonds"));
@@ -180,7 +180,7 @@ public class NSWorld extends Object implements Serializable {
      * @return the NSObject if the index was appropiate, null otherwise.
      */
     public NSObject getObject(int index) {
-        if (index >= 0 && index < objects.size()) {
+        if ((index >= 0) && (index < objects.size())) {
             return objects.get(index);
         } else {
             return null;

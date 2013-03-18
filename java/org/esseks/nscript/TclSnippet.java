@@ -396,7 +396,7 @@ public class TclSnippet extends Object implements Serializable {
      * otherwise.
      */
     public TclAttribute getAttribute(int inIndex) {
-        if (inIndex >= 0 && inIndex < attributes.size()) {
+        if ((inIndex >= 0) && (inIndex < attributes.size())) {
             return attributes.get(inIndex);
         } else {
             return null;
@@ -500,7 +500,7 @@ public class TclSnippet extends Object implements Serializable {
                 ro = (NSRelation) o;
                 i = ro.getFrom().getArrayIndex();
                 i2 = ro.getTo().getArrayIndex();
-                if (i >= 0 || i2 >= 0) {
+                if ((i >= 0) || (i2 >= 0)) {
                     if (i == i2) {
                         aname = w.getArray(i).getName();
                         asize = w.getArray(i).getSize();

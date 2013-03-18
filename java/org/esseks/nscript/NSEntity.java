@@ -149,7 +149,7 @@ public class NSEntity extends NSEditableObject {
         int dx = (int) Math.round(r.width * x);
         int dy = (int) Math.round(r.height * y);
         // Calculate the size of the element according to the scale.
-        int size = NSEntity.SIZE * r.width / NSEntity.NOMINAL_WIDTH;
+        int size = (NSEntity.SIZE * r.width) / NSEntity.NOMINAL_WIDTH;
         int size2 = size / 2;
 
         // If the element is indexed by an array, display it with a 'shadow'
@@ -157,35 +157,35 @@ public class NSEntity extends NSEditableObject {
         if (getArrayIndex() >= 0) {
             switch (getSnippet().getIcon()) {
                 case NSEntity.NODE:
-                    g.drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
+                    g.drawOval((dx - size2) + 2, (dy - size2) + 2, size, size);
                     g.setColor(Color.white);
                     g.fillOval(dx - size2, dy - size2, size, size);
                     break;
 
                 case NSEntity.AGENT:
-                    g.drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
-                    g.drawLine(dx - size2 + 2, dy + 2, dx + size2 + 2, dy + 2);
+                    g.drawRect((dx - size2) + 2, (dy - size2) + 2, size, size);
+                    g.drawLine((dx - size2) + 2, dy + 2, dx + size2 + 2, dy + 2);
                     g.setColor(Color.white);
                     g.fillRect(dx - size2, dy - size2, size, size);
                     break;
 
                 case NSEntity.APPLICATION:
-                    g.drawLine(dx, dy - size2 + 2, dx + size2, dy + 2);
+                    g.drawLine(dx, (dy - size2) + 2, dx + size2, dy + 2);
                     g.drawLine(dx + size2, dy + 2, dx, dy + size2 + 2);
                     g.drawLine(dx, dy + size2 + 2, dx - size2, dy + 2);
-                    g.drawLine(dx - size2, dy + 2, dx, dy - size2 + 2);
+                    g.drawLine(dx - size2, dy + 2, dx, (dy - size2) + 2);
                     break;
 
                 case NSEntity.TIMER:
-                    g.drawOval(dx - size2 + 2, dy - size2 + 2, size, size);
-                    g.drawLine(dx + size2 / 2 + 2, dy - size2 / 2 + 2, dx + 2, dy + 2);
+                    g.drawOval((dx - size2) + 2, (dy - size2) + 2, size, size);
+                    g.drawLine(dx + (size2 / 2) + 2, (dy - (size2 / 2)) + 2, dx + 2, dy + 2);
                     g.drawLine(dx + 2, dy + 2, dx + 2, dy + size2 + 2);
                     g.setColor(Color.white);
                     g.fillOval(dx - size2, dy - size2, size, size);
                     break;
 
                 case NSEntity.GENERIC:
-                    g.drawRect(dx - size2 + 2, dy - size2 + 2, size, size);
+                    g.drawRect((dx - size2) + 2, (dy - size2) + 2, size, size);
                     g.setColor(Color.white);
                     g.fillRect(dx - size2, dy - size2, size, size);
                     break;
@@ -221,7 +221,7 @@ public class NSEntity extends NSEditableObject {
 
             case NSEntity.TIMER:
                 g.drawOval(dx - size2, dy - size2, size, size);
-                g.drawLine(dx + size2 / 2, dy - size2 / 2, dx, dy);
+                g.drawLine(dx + (size2 / 2), dy - (size2 / 2), dx, dy);
                 g.drawLine(dx, dy, dx, dy + size2);
                 break;
 
@@ -300,7 +300,7 @@ public class NSEntity extends NSEditableObject {
             maxY = y1;
         }
 
-        if (getX() > minX && getX() < maxX && getY() > minY && getY() < maxY) {
+        if ((getX() > minX) && (getX() < maxX) && (getY() > minY) && (getY() < maxY)) {
             return true;
         } else {
             return false;

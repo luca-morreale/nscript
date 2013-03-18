@@ -160,7 +160,7 @@ public class NSModel extends NSWorld implements DMModel {
         TclSnippet s = toolBox.getSelectedSnippet();
         NSRelation o;
 
-        if (s == null || !s.isRelation()) {
+        if ((s == null) || !s.isRelation()) {
             return;
         }
 
@@ -239,8 +239,8 @@ public class NSModel extends NSWorld implements DMModel {
             o = (NSObject) getObjectAt(i);
             if (o.getSnippet().isRelation()) {
                 or = (NSRelation) o;
-                if (or.getFrom() == O && or.getSnippet().getName().equals(theClass)
-                        || or.getTo() == O && or.getSnippet().getName().equals(theClass)) {
+                if (((or.getFrom() == O) && or.getSnippet().getName().equals(theClass))
+                        || ((or.getTo() == O) && or.getSnippet().getName().equals(theClass))) {
                     return true;
                 }
             }
@@ -265,7 +265,7 @@ public class NSModel extends NSWorld implements DMModel {
      */
     @Override
     public DMObject getObjectAt(int inIndex) {
-        if (inIndex >= 0 && inIndex < getObjectsCount()) {
+        if ((inIndex >= 0) && (inIndex < getObjectsCount())) {
             return (DMObject) (getObject(inIndex));
         } else {
             return null;

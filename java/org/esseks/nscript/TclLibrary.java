@@ -116,7 +116,7 @@ public class TclLibrary extends Object implements Serializable {
      * @return TclSnipper or null if not found
      */
     public TclSnippet getSnippet(int index) {
-        if (index >= 0 && index < snippets.size()) {
+        if ((index >= 0) && (index < snippets.size())) {
             return snippets.get(index);
         } else {
             return null;

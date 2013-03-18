@@ -102,7 +102,7 @@ public class SObjectTableModel extends AbstractTableModel {
      */
     @Override
     public void setValueAt(Object value, int row, int column) {
-        if (column == 1 && o != null) {
+        if ((column == 1) && (o != null)) {
             o.setAttribute(row, value.toString());
         }
     }

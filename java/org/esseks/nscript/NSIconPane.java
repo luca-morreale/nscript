@@ -91,7 +91,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
     public void paintMe(Graphics g) {
         paintIcon(g, new Point(0, 0), getBounds().getSize(), icon);
         int w = (int) getBounds().getHeight();
-        g.drawString(label, w + w / 10, w + 2 - 10);
+        g.drawString(label, w + (w / 10), (w + 2) - 10);
     }
 
     /**
@@ -167,7 +167,7 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
                 g.drawRect(x, y, h - 1, h - 1);
                 g.drawLine(x + 1, y + h, x + h, y + h);
                 g.drawLine(x + h, y + h, x + h, y + 1);
-                g.drawLine(x + h10, y + h10, x + h10, y + h - h10);
+                g.drawLine(x + h10, y + h10, x + h10, (y + h) - h10);
                 break;
 
             case TIMER:
@@ -185,14 +185,14 @@ public class NSIconPane extends JLabel implements ListCellRenderer<TclSnippet> {
 
             case ATTACH:
                 g.drawLine(x, y + h, x + h, y);
-                g.drawLine(x + h, y, x + h - h10, y);
+                g.drawLine(x + h, y, (x + h) - h10, y);
                 g.drawLine(x + h, y, x + h, y + h10);
-                g.drawOval(x + h10, y - h10 + h, h10, h10);
+                g.drawOval(x + h10, (y - h10) + h, h10, h10);
                 break;
 
             case CONNECT:
                 g.drawLine(x, y + h, x + h, y);
-                g.drawLine(x + h, y, x + h - h10, y);
+                g.drawLine(x + h, y, (x + h) - h10, y);
                 g.drawLine(x + h, y, x + h, y + h10);
                 break;
 

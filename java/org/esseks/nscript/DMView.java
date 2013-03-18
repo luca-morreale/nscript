@@ -99,7 +99,7 @@ public class DMView extends JPanel {
     public void changeScale(double inNewScale) {
         Dimension r = getBounds().getSize();
 
-        setSize((int) (r.getWidth() * inNewScale / scale), (int) (r.getHeight() * inNewScale / scale));
+        setSize((int) ((r.getWidth() * inNewScale) / scale), (int) ((r.getHeight() * inNewScale) / scale));
         scale = inNewScale;
         validate();
     }
