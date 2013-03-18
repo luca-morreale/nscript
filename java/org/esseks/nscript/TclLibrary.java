@@ -66,13 +66,6 @@ public class TclLibrary extends Object implements Serializable {
     }
 
     /**
-     * Default constructor to implement Serializable protocol.
-     */
-    private TclLibrary() {
-        this("", "");
-    }
-
-    /**
      * Get Library name as displayed in the toolbar.
      *
      * @return name of the Lib as displayed in the toolbar

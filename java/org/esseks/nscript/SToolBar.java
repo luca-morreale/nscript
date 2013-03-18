@@ -32,10 +32,6 @@ public class SToolBar extends JPanel implements ActionListener {
 
     static final long serialVersionUID = 42L;
     /**
-     * A reference to the main application frame.
-     */
-    private NScript frame;
-    /**
      * A reference to a Library Manager which stores libraries and their
      * information.
      */
@@ -64,7 +60,6 @@ public class SToolBar extends JPanel implements ActionListener {
     @SuppressWarnings("LeakingThisInConstructor")
     public SToolBar(NScript inFrame, TclLibraryManager inLibManager) {
         super(new BorderLayout());
-        frame = inFrame;
         libManager = inLibManager;
         action = new JLabel(Messages.tr("selection_tool"));
         JPanel panel = new JPanel(new BorderLayout());

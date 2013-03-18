@@ -29,13 +29,6 @@ public class NSArray extends Object implements Serializable {
     private int elements;
 
     /**
-     * Default constructor to implement Serializable protocol.
-     */
-    private NSArray() {
-        this("", 0);
-    }
-
-    /**
      * Constructor that takes the name and size as parameters.
      *
      * @param inName the name of the array, which be listed in the object

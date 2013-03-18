@@ -97,8 +97,6 @@ public class TclLibraryManager extends Object implements Serializable {
      * parsed, false otherwise.
      */
     public boolean addLibrary(String fileName) {
-        File f;
-        FileReader fr;
         BufferedReader br;
         TclLibrary tl;
         int i;

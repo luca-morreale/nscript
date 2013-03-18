@@ -44,13 +44,6 @@ public class NSObject extends Object implements Serializable {
     private int arrayIndex;
 
     /**
-     * Default constructor to implement Serialize protocol
-     */
-    private NSObject() {
-        this(null, "");
-    }
-
-    /**
      * Only constructor that requires a name and a class definition (Snippet).
      *
      * @param inSnippet

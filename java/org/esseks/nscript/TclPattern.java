@@ -58,13 +58,6 @@ public class TclPattern extends Object implements Serializable {
     }
 
     /**
-     * Default constructor to implement Serializable protocol.
-     */
-    private TclPattern() {
-        // nop
-    }
-
-    /**
      * Parses the pattern from a string.
      *
      * @param field a string with the pattern information.

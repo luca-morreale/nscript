@@ -50,13 +50,6 @@ public class TclAttribute extends Object implements Serializable {
     }
 
     /**
-     * Default constructor to implement Serializable protocol.
-     */
-    private TclAttribute() {
-        // nop
-    }
-
-    /**
      * @return the name of the attribute.
      */
     public String getName() {

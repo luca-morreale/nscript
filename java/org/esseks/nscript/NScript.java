@@ -780,23 +780,5 @@ public class NScript extends JFrame {
         }
     }
 
-    /**
-     * A filter of '.nss' files to be used in an 'Open File' dialog box.
-     */
-    private static class LibFilter implements FileFilter {
-
-        LibFilter() {
-            super();
-        }
-
-        @Override
-        public boolean accept(File f) {
-            return (f.getName().indexOf(".lib") == f.getName().length() - 4);
-        }
-
-        public String getDescription() {
-            return Messages.tr("lib_description");
-        }
-    }
     private static final Logger LOG = Logger.getLogger(NScript.class.getName());
 }

@@ -53,10 +53,6 @@ public class DMControl extends KeyAdapter
      */
     private int action;
     /**
-     * Part of the state of the controller.
-     */
-    private boolean editing;
-    /**
      * Coordinates of the start of a dragging action.
      */
     private Point start;
@@ -80,7 +76,6 @@ public class DMControl extends KeyAdapter
         // Store the references
         V = inV;
         M = inM;
-        editing = false;
         action = DMControl.NONE;
     }
 
