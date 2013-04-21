@@ -65,7 +65,7 @@ See COPYING at top level for more information.
       <fileset dir="${res.dir}">
         <include name="pixmaps/*.png" />
       </fileset>
-      <fileset dir="doc" includes="AUTHORS,LICENSE" />
+      <fileset dir="doc" includes="AUTHORS,COPYING" />
     </jar>
   </target>
 
@@ -100,7 +100,8 @@ See COPYING at top level for more information.
       <fileset dir="${build.dir}" includes="${ant.project.name}.jar"/>
     </copy>
     <copy todir="${install.doc.dir}">
-      <fileset dir="." includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
+      <fileset dir="doc" includes="README.md,COPYING,ChangeLog.*,AUTHORS"/>
+      <fileset dir="." includes="README.md"/>
       <!-- <fileset dir="${prebuilt.win32.dir}" includes="README.prebuilt"/> -->
     </copy>
     <copy todir="${install.examples.dir}">
