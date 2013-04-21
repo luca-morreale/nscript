@@ -15,10 +15,11 @@ See COPYING at top level for more information.
   <property name="mainclass" value="org.esseks.nscript.Main"/>
 
   <!-- Source and compilation paths -->
-  <property name="src.dir" value="java"/>
+  <property name="src.dir" value="src/main/java"/>
+  <property name="internalres.dir" value="src/main/resources"/>
   <property name="res.dir" value="resources"/>
   <property name="build.dir" value="build"/>
-  <property name="prebuilt.dir" value="prebuilt"/>
+  <property name="prebuilt.dir" value="resources/prebuilt"/>
   <property name="build.javadoc.dir" value="${build.dir}/javadoc"/>
   <property name="build.classes.dir" value="${build.dir}/classes"/>
   <property name="build.jar.dir" value="${build.dir}"/>
@@ -50,7 +51,8 @@ See COPYING at top level for more information.
       <compilerarg value="-Xlint"/>
     </javac>
     <copy todir="${build.classes.dir}">
-      <fileset dir="${src.dir}" includes="**/*.properties" />
+      <fileset dir="${internalres.dir}" includes="**/*.properties" />
+      <fileset dir="${internalres.dir}" includes="**/*.png" />
     </copy>
   </target>
 
@@ -63,7 +65,7 @@ See COPYING at top level for more information.
       <fileset dir="${res.dir}">
         <include name="pixmaps/*.png" />
       </fileset>
-      <fileset dir="." includes="AUTHORS,COPYING" />
+      <fileset dir="doc" includes="AUTHORS,LICENSE" />
     </jar>
   </target>
 

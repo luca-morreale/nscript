@@ -13,7 +13,13 @@ should be reachable at the email address at the bottom of this file).
 
 The new icon set is taken from GNOME 3 icons, released under GPL.
 
-See AUTHORS for contact information.
+Refer to doc/AUTHORS for contact information.
+
+LICENSE
+=======
+
+This project is released under BSD-permissive. Exact license terms are contained
+in doc/LICENSE
 
 
 Prebuilts for Windows

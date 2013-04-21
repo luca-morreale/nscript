@@ -1,7 +1,4 @@
 build
 .junk
-.classpath
-.project
-nbproject
-packages/*.zip
-packages/*.pkg.*
+out
+.idea
