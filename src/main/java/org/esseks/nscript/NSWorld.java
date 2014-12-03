@@ -171,7 +171,15 @@ public class NSWorld extends Object implements Serializable {
         }
         return null;
     }
-
+    
+    /**
+     * Order objects to show the entity in a correct order
+     * @see NSObject.setPrecedence
+     */
+    public void orderObjects(){
+    	Collections.sort(this.objects);
+    }
+    
     /**
      * Returns the i-th object in the simulation script. Notice that a bad
      * position returns a Null object with no warnings.
@@ -188,7 +196,7 @@ public class NSWorld extends Object implements Serializable {
     }
 
     /**
-     *
+     * Get an iterator to scan objects.
      * @return
      */
     public Iterator<NSObject> getObjectsIterator() {
@@ -196,7 +204,7 @@ public class NSWorld extends Object implements Serializable {
     }
 
     /**
-     *
+     * Removes all of the elements from this list.
      */
     public void clearArrays() {
         this.arrays.clear();
