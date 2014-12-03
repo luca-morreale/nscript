@@ -85,6 +85,7 @@ public class NSEntity extends NSEditableObject {
 
         this.setX(inX);
         this.setY(inY);
+        this.setPrecedence();
     }
 
     /**
@@ -93,7 +94,32 @@ public class NSEntity extends NSEditableObject {
     private void setX(double inX) {
         this.x = inX;
     }
-
+    
+    /**
+     * Set the precedence of the object according to the type of entity.
+     */
+    private void setPrecedence(){
+    	switch (this.getSnippet().getIcon()) {
+	    	case NSEntity.NODE:
+	    		super.setPrecedence(1);
+	    		break;
+	    	case NSEntity.AGENT:
+	    		super.setPrecedence(3);
+	    		break;
+	    	case NSEntity.APPLICATION:
+	    		super.setPrecedence(5);
+	    		break;
+	        case NSEntity.TIMER:
+	        	super.setPrecedence(7);
+	            break;
+	        case NSEntity.GENERIC:
+	        	super.setPrecedence(9);
+	            break;
+	        default:
+	        	super.setPrecedence(11);
+	    }
+    }
+    
     /**
      * Obtains the x coordinate position of the object.
      *
@@ -337,7 +363,20 @@ public class NSEntity extends NSEditableObject {
 
         return s;
     }
-
+    
+    /**
+	 * Compare this object to another according the attribute precedence
+     * @param nsobj		object to compare with
+     * @return int		0 if these objects are equal, less than 0 if this comes first, more than 0 if is after the other object.
+     */
+    @Override
+    public int compareTo(NSObject nsobj){
+    	if (this.getPrecedence() == nsobj.getPrecedence())
+    		return ( this.getName().compareTo(nsobj.getName()) );
+    	else
+    		return ( this.getPrecedence() - nsobj.getPrecedence() );
+    }
+    
     /**
      * Reads the element from a budderedReader (stream), basically reading its
      * coordinates. The rest of the information is carried on higher levels of
