@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * Defines the basic behavior of an object that will be part of a simulation
  * script.
  */
-public class NSObject extends Object implements Serializable {
+public class NSObject extends Object implements Serializable, Comparable<NSObject>{
 
     /**
      *      */
@@ -42,6 +42,11 @@ public class NSObject extends Object implements Serializable {
      * this array, or -1 if no array is in use.
      */
     private int arrayIndex;
+    
+    /**
+     * Precedence to print neatly the tcl script
+     */
+    private int precedence;
 
     /**
      * Only constructor that requires a name and a class definition (Snippet).
@@ -57,7 +62,35 @@ public class NSObject extends Object implements Serializable {
         this.arrayIndex = -1;
         this.name = inName;
     }
-
+    
+    /**
+     * Obtains the precedence of the object.
+     * 
+     * @return int	precedence of the object {2, 4, 6, 8, 10}.
+     */
+    public int getPrecedence(){
+    	return this.precedence;
+    }
+    
+    /**
+     * Set the precedence of the object according to the type of entity
+     * 
+     * 1 is for Node Entity
+     * 2 is for Relation between two Node
+     * 3 is for Agent Entity
+     * 4 is for Relation between Node and Agent or Agent and Agent
+     * 5 is for Application Entity
+     * 6 is for Relation between Agent and Application
+     * 7 is for Timer Entity
+     * 8 is for Relation between Timer and Application
+     * 9 is for Generic Entity
+     * 10 is for any other Relation
+     * 11 is for any other Entity
+     */
+    protected void setPrecedence(int v){
+    	this.precedence = v;
+    }
+    
     /**
      * Returns the class definition snippet for this object.
      *
@@ -156,6 +189,15 @@ public class NSObject extends Object implements Serializable {
         } else {
             return this.attributes.get(inAttrIndex);
         }
+    }
+    
+    /**
+     * Compare this object to another according the attribute precedence
+     * @param nsobj		object to compare with
+     * @return int		0 if these objects are equal, less than 0 if this comes first, more than 0 if is after the other object.
+     */
+    public int compareTo(NSObject nsobj){
+    	return ( this.getPrecedence() - nsobj.getPrecedence() );
     }
 
     /**
