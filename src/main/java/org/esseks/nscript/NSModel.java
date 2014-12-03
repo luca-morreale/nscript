@@ -338,7 +338,8 @@ public class NSModel extends NSWorld implements DMModel {
      */
     public String toTcl() {
         StringBuilder s = new StringBuilder(this.getSize() + 1);
-
+        this.orderObjects();
+        
         for (int i = 0; i < this.getSize(); i++) {
             NSObject ob = (NSObject) this.getObjectAt(i);
             s.append(ob.getSnippet().toTcl(this, ob, '#')).append('\n');
