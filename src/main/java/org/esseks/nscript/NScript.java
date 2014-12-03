@@ -223,6 +223,7 @@ public class NScript extends JFrame {
         this.env = new TclSnippet(s.toString());
         o = new NSEntity(this.env, "ns", 0.01, 0.01);
         this.env.instantiateNSObject(o);
+        o.setPrecedence(-1);
         return o;
     }
 
