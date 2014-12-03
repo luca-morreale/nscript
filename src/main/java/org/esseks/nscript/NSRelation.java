@@ -55,8 +55,73 @@ class NSRelation extends NSEditableObject {
         super(inSnippet, inName);
         this.from = inFrom;
         this.to = inTo;
+        this.setPrecedence();
     }
-
+    
+    /**
+     * Set the precedence of the object according to the types of entities connected.
+     */
+    private void setPrecedence(){
+    	if (this.isNode2Node())
+    		super.setPrecedence(2);
+    	else if (this.isAgent2Node() || this.isAgent2Agent())
+    		super.setPrecedence(4);
+    	else if (this.isApplication2Agent())
+    		super.setPrecedence(6);
+    	else if (this.isTimer2Application())
+    		super.setPrecedence(8);
+    	else
+    		super.setPrecedence(10);
+    	
+    }
+    
+    /**
+     * Returns true if the Relation is between two Nodes else returns false.
+     *
+     * @return boolean	true is the Relation is between two Node, false otherwise.
+     */
+    public boolean isNode2Node(){
+    	return (this.from.getSnippet().getIcon() == NSEntity.NODE && this.to.getSnippet().getIcon() == NSEntity.NODE);
+    }
+    
+    /**
+     * Returns true if the Relation is between a Node and an Agent else returns false.
+     *
+     * @return boolean	true is the Relation is between a Node and an Agent, false otherwise.
+     */
+    public boolean isAgent2Node(){
+    	return (this.from.getSnippet().getIcon() == NSEntity.NODE && this.to.getSnippet().getIcon() == NSEntity.AGENT || 
+				this.from.getSnippet().getIcon() == NSEntity.AGENT && this.to.getSnippet().getIcon() == NSEntity.NODE);
+    }
+    
+    /**
+     * Returns true if the Relation is between two Agents else returns false.
+     *
+     * @return boolean	true is the Relation is between two Agents, false otherwise.
+     */
+    public boolean isAgent2Agent(){
+    	return (this.from.getSnippet().getIcon() == NSEntity.AGENT && this.to.getSnippet().getIcon() == NSEntity.AGENT);
+    }
+    
+    /**
+     * Returns true if the Relation is between an Application and an Agent else returns false.
+     *
+     * @return boolean	true is the Relation is between an Agent and an Application, false otherwise.
+     */
+    public boolean isApplication2Agent(){
+    	return (this.from.getSnippet().getIcon() == NSEntity.AGENT && this.to.getSnippet().getIcon() == NSEntity.APPLICATION ||
+				this.from.getSnippet().getIcon() == NSEntity.APPLICATION && this.to.getSnippet().getIcon() == NSEntity.AGENT);
+    }
+    
+    /**
+     * Returns true if the Relation is between an Application and a Timer else returns false.
+     *
+     * @return boolean	true is the Relation is between an Application and a Timer, false otherwise.
+     */
+    public boolean isTimer2Application(){
+    	return (this.from.getSnippet().getIcon() == NSEntity.TIMER || this.to.getSnippet().getIcon() == NSEntity.TIMER);
+    }
+    
     /**
      * Returns the object where the relation starts.
      *
