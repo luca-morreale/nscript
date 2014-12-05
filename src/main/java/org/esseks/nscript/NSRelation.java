@@ -3,6 +3,7 @@
  *
  * Copyright (C) 2000-2001 Enrique Campos-Nanez
  * Copyright (C) 2012 Stefano Sanfilippo
+ * Copyright (C) 2014 Luca Morreale
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
@@ -62,17 +63,16 @@ class NSRelation extends NSEditableObject {
      * Set the precedence of the object according to the types of entities connected.
      */
     private void setPrecedence(){
-    	if (this.isNode2Node())
-    		super.setPrecedence(2);
-    	else if (this.isAgent2Node() || this.isAgent2Agent())
-    		super.setPrecedence(4);
-    	else if (this.isApplication2Agent())
-    		super.setPrecedence(6);
-    	else if (this.isFromTimer())
-    		super.setPrecedence(8);
-    	else
-    		super.setPrecedence(10);
-    	
+        if (this.isNode2Node())
+            super.setPrecedence(2);
+        else if (this.isAgent2Node() || this.isAgent2Agent())
+            super.setPrecedence(4);
+        else if (this.isApplication2Agent())
+            super.setPrecedence(6);
+        else if (this.isFromTimer())
+            super.setPrecedence(8);
+        else
+            super.setPrecedence(10);	
     }
     
     /**
@@ -81,7 +81,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between two Node, false otherwise.
      */
     public boolean isNode2Node(){
-    	return (this.from.isNode() && this.to.isNode());
+        return this.from.isNode() && this.to.isNode();
     }
     
     /**
@@ -90,7 +90,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between a Node and an Agent, false otherwise.
      */
     public boolean isAgent2Node(){
-    	return (this.from.isNode() && this.to.isAgent() || this.from.isAgent() && this.to.isNode());
+        return this.from.isNode() && this.to.isAgent() || this.from.isAgent() && this.to.isNode();
     }
     
     /**
@@ -99,7 +99,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between two Agents, false otherwise.
      */
     public boolean isAgent2Agent(){
-    	return (this.from.isAgent() && this.to.isAgent());
+        return this.from.isAgent() && this.to.isAgent();
     }
     
     /**
@@ -108,7 +108,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between an Agent and an Application, false otherwise.
      */
     public boolean isApplication2Agent(){
-    	return (this.from.isAgent() && this.to.isApplication() || this.from.isApplication() && this.to.isAgent());
+        return this.from.isAgent() && this.to.isApplication() || this.from.isApplication() && this.to.isAgent();
     }
     
     /**
@@ -117,7 +117,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between an Application and a Timer, false otherwise.
      */
     public boolean isFromTimer(){
-    	return (this.from.isTimer() || this.to.isTimer());
+        return this.from.isTimer() || this.to.isTimer();
     }
     
     /**

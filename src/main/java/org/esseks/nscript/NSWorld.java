@@ -178,7 +178,7 @@ public class NSWorld extends Object implements Serializable {
      * @see NSObject.setPrecedence
      */
     public void orderObjects(){
-    	Collections.sort(this.objects);
+        Collections.sort(this.objects);
     }
     
     /**

@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * Defines the basic behavior of an object that will be part of a simulation
  * script.
  */
-public class NSObject extends Object implements Serializable, Comparable<NSObject>{
+public class NSObject extends Object implements Serializable, Comparable<NSObject> {
 
     /**
      *      */
@@ -69,7 +69,7 @@ public class NSObject extends Object implements Serializable, Comparable<NSObjec
      * @return int	precedence of the object {2, 4, 6, 8, 10}.
      */
     public int getPrecedence(){
-    	return this.precedence;
+        return this.precedence;
     }
     
     /**
@@ -88,7 +88,7 @@ public class NSObject extends Object implements Serializable, Comparable<NSObjec
      * 11 is for any other Entity
      */
     protected void setPrecedence(int v){
-    	this.precedence = v;
+        this.precedence = v;
     }
     
     /**
@@ -193,11 +193,11 @@ public class NSObject extends Object implements Serializable, Comparable<NSObjec
     
     /**
      * Compare this object to another according the attribute precedence
-     * @param nsobj		object to compare with
-     * @return int		0 if these objects are equal, less than 0 if this comes first, more than 0 if is after the other object.
+     * @param nsobj     object to compare with
+     * @return int      0 if these objects are equal, less than 0 if this comes first, more than 0 if is after the other object.
      */
     public int compareTo(NSObject nsobj){
-    	return ( this.getPrecedence() - nsobj.getPrecedence() );
+        return this.getPrecedence() - nsobj.getPrecedence();
     }
 
     /**

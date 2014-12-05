@@ -3,6 +3,7 @@
  *
  * Copyright (C) 2000-2001 Enrique Campos-Nanez
  * Copyright (C) 2012 Stefano Sanfilippo
+ * Copyright (C) 2014 Luca Morreale
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
@@ -87,37 +88,37 @@ public class NSEntity extends NSEditableObject {
         this.setY(inY);
         this.setPrecedence();
     }
-
-    /**
-     * Sets the x coordinate position of the object.
-     */
-    private void setX(double inX) {
-        this.x = inX;
-    }
     
     /**
      * Set the precedence of the object according to the type of entity.
      */
     private void setPrecedence(){
-    	switch (this.getSnippet().getIcon()) {
-	    	case NSEntity.NODE:
-	    		super.setPrecedence(1);
-	    		break;
-	    	case NSEntity.AGENT:
-	    		super.setPrecedence(3);
-	    		break;
-	    	case NSEntity.APPLICATION:
-	    		super.setPrecedence(5);
-	    		break;
-	        case NSEntity.TIMER:
-	        	super.setPrecedence(7);
-	            break;
-	        case NSEntity.GENERIC:
-	        	super.setPrecedence(9);
-	            break;
-	        default:
-	        	super.setPrecedence(11);
-	    }
+        switch (this.getSnippet().getIcon()) {
+            case NSEntity.NODE:
+                super.setPrecedence(1);
+                break;
+            case NSEntity.AGENT:
+                super.setPrecedence(3);
+                break;
+            case NSEntity.APPLICATION:
+                super.setPrecedence(5);
+                break;
+            case NSEntity.TIMER:
+                super.setPrecedence(7);
+                break;
+            case NSEntity.GENERIC:
+                super.setPrecedence(9);
+                break;
+            default:
+                super.setPrecedence(11);
+        }
+    }
+    
+    /**
+     * Sets the x coordinate position of the object.
+     */
+    private void setX(double inX) {
+        this.x = inX;
     }
     
     /**
@@ -152,7 +153,7 @@ public class NSEntity extends NSEditableObject {
      * @return boolean
      */
     public boolean isNode(){
-    	return this.getSnippet().getIcon() == NSEntity.NODE;
+        return this.getSnippet().getIcon() == NSEntity.NODE;
     }
     
     /**
@@ -160,7 +161,7 @@ public class NSEntity extends NSEditableObject {
      * @return boolean
      */
     public boolean isAgent(){
-    	return this.getSnippet().getIcon() == NSEntity.AGENT;
+        return this.getSnippet().getIcon() == NSEntity.AGENT;
     }
     
     /**
@@ -168,7 +169,7 @@ public class NSEntity extends NSEditableObject {
      * @return boolean
      */
     public boolean isApplication(){
-    	return this.getSnippet().getIcon() == NSEntity.APPLICATION;
+        return this.getSnippet().getIcon() == NSEntity.APPLICATION;
     }
     
     /**
@@ -176,7 +177,7 @@ public class NSEntity extends NSEditableObject {
      * @return boolean
      */
     public boolean isTimer(){
-    	return this.getSnippet().getIcon() == NSEntity.TIMER;
+        return this.getSnippet().getIcon() == NSEntity.TIMER;
     }
     
     /**
@@ -184,7 +185,7 @@ public class NSEntity extends NSEditableObject {
      * @return boolean
      */
     public boolean isGeneric(){
-    	return this.getSnippet().getIcon() == NSEntity.GENERIC;
+        return this.getSnippet().getIcon() == NSEntity.GENERIC;
     }
     
     /**
@@ -405,16 +406,17 @@ public class NSEntity extends NSEditableObject {
     }
     
     /**
-	 * Compare this object to another according the attribute precedence
-     * @param nsobj		object to compare with
-     * @return int		0 if these objects are equal, less than 0 if this comes first, more than 0 if is after the other object.
+     * Compare this object to another according the attribute precedence
+     * @param nsobj	    object to compare with
+     * @return int      0 if these objects are equal, less than 0 if this comes first, more than 0 if is after the other object.
      */
     @Override
     public int compareTo(NSObject nsobj){
-    	if (this.getPrecedence() == nsobj.getPrecedence())
-    		return ( this.getName().compareTo(nsobj.getName()) );
-    	else
-    		return ( this.getPrecedence() - nsobj.getPrecedence() );
+        if (this.getPrecedence() == nsobj.getPrecedence()){
+            return this.getName().compareTo(nsobj.getName());
+        } else {
+            return this.getPrecedence() - nsobj.getPrecedence();
+        }
     }
     
     /**

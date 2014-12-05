@@ -3,6 +3,7 @@
  *
  * Copyright (C) 2000-2001 Enrique Campos-Nanez
  * Copyright (C) 2012 Stefano Sanfilippo
+ * Copyright (C) 2014 Luca Morreale
  *
  * See README.* at top level for copying, contacts, history and notes.
  */
@@ -10,6 +11,8 @@ package org.esseks.nscript;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -487,7 +490,10 @@ public class TclSnippet extends Object implements Serializable {
         NSRelation ro;
         NSArray a;
         int i, i2, asize;
-
+        if(this.name.equals("Colors")){
+            this.fixColors(o);
+        }
+        
         // Get the preamble and epilogue for the snippet.
         if (o.getArrayIndex() >= 0) {
             a = w.getArray(o.getArrayIndex());
@@ -548,6 +554,77 @@ public class TclSnippet extends Object implements Serializable {
         } else {
             return (preamble + s + epilogue).trim();
         }
+    }
+    
+    /**
+     * Switches color chosen more than one time with one not selected
+     * @param o	    NSObject to fix
+     */
+    private void fixColors(NSObject o){
+        Map<String,Integer> colors = new HashMap<String,Integer>();
+        colors.put("black",0);
+        colors.put("white",0);
+        colors.put("red",0);
+        colors.put("green",0);
+        colors.put("blue",0);
+        colors.put("yellow",0);
+        colors.put("pink",0);
+        colors.put("orange",0);
+        colors.put("cyan",0);
+        colors.put("magenta",0);
+        
+        String key;
+        for(int i=0;i<o.getAttributeCount();i++){
+            try{
+                key = o.getAttribute(i);
+	            if(colors.containsKey(key)){
+    	            this.changeMapValue(colors, key, 1);
+                }
+            }catch(ClassCastException e){
+                LOG.warning("Tries to add an inappropriate object to a Map");
+            }
+        }
+        
+        for(int i=o.getAttributeCount(); i>=0;i--){
+            try{
+                key = o.getAttribute(i);
+                if( colors.get(key) > 1 ){
+                    this.changeMapValue(colors, key, -1);
+                    o.setAttribute(i,this.getUnusedColor(colors));
+                }
+            }catch(ClassCastException e){
+                LOG.warning("Tries to add an inappropriate object to a Map");
+            }
+        }
+    }
+        
+    /**
+     * Returns the first unused color from the list
+     * @param list      list of usage of colors.
+     * @return          string corresponding to the color.
+     */
+    private String getUnusedColor(Map<String,Integer> list){
+        
+        for(Map.Entry<String, Integer> entry : list.entrySet()) {
+            String key = entry.getKey();
+            if(entry.getValue() == 0){
+                this.changeMapValue(list, key, +1);
+                return key;
+            }		
+        }
+        return "";
+    }
+    
+    /**
+     * Substitutes the value corresponding of the key in the given Map adding the value add.
+     * @param list	Map to work with
+     * @param key	identifier of the value to substitute
+     * @param add	value to add
+     */
+    private void changeMapValue(Map<String,Integer> list, String key, int add){
+        int value = list.get(key)+add;
+        list.remove(key);
+        list.put(key, value);
     }
 
     /**
