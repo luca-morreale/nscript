@@ -68,7 +68,7 @@ class NSRelation extends NSEditableObject {
     		super.setPrecedence(4);
     	else if (this.isApplication2Agent())
     		super.setPrecedence(6);
-    	else if (this.isTimer2Application())
+    	else if (this.isFromTimer())
     		super.setPrecedence(8);
     	else
     		super.setPrecedence(10);
@@ -81,7 +81,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between two Node, false otherwise.
      */
     public boolean isNode2Node(){
-    	return (this.from.getSnippet().getIcon() == NSEntity.NODE && this.to.getSnippet().getIcon() == NSEntity.NODE);
+    	return (this.from.isNode() && this.to.isNode());
     }
     
     /**
@@ -90,8 +90,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between a Node and an Agent, false otherwise.
      */
     public boolean isAgent2Node(){
-    	return (this.from.getSnippet().getIcon() == NSEntity.NODE && this.to.getSnippet().getIcon() == NSEntity.AGENT || 
-				this.from.getSnippet().getIcon() == NSEntity.AGENT && this.to.getSnippet().getIcon() == NSEntity.NODE);
+    	return (this.from.isNode() && this.to.isAgent() || this.from.isAgent() && this.to.isNode());
     }
     
     /**
@@ -100,7 +99,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between two Agents, false otherwise.
      */
     public boolean isAgent2Agent(){
-    	return (this.from.getSnippet().getIcon() == NSEntity.AGENT && this.to.getSnippet().getIcon() == NSEntity.AGENT);
+    	return (this.from.isAgent() && this.to.isAgent());
     }
     
     /**
@@ -109,8 +108,7 @@ class NSRelation extends NSEditableObject {
      * @return boolean	true is the Relation is between an Agent and an Application, false otherwise.
      */
     public boolean isApplication2Agent(){
-    	return (this.from.getSnippet().getIcon() == NSEntity.AGENT && this.to.getSnippet().getIcon() == NSEntity.APPLICATION ||
-				this.from.getSnippet().getIcon() == NSEntity.APPLICATION && this.to.getSnippet().getIcon() == NSEntity.AGENT);
+    	return (this.from.isAgent() && this.to.isApplication() || this.from.isApplication() && this.to.isAgent());
     }
     
     /**
@@ -118,8 +116,8 @@ class NSRelation extends NSEditableObject {
      *
      * @return boolean	true is the Relation is between an Application and a Timer, false otherwise.
      */
-    public boolean isTimer2Application(){
-    	return (this.from.getSnippet().getIcon() == NSEntity.TIMER || this.to.getSnippet().getIcon() == NSEntity.TIMER);
+    public boolean isFromTimer(){
+    	return (this.from.isTimer() || this.to.isTimer());
     }
     
     /**
