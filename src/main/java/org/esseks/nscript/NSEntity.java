@@ -146,7 +146,47 @@ public class NSEntity extends NSEditableObject {
     public double getY() {
         return this.y;
     }
-
+    
+    /**
+     * Returns true if this Entity is a Node
+     * @return boolean
+     */
+    public boolean isNode(){
+    	return this.getSnippet().getIcon() == NSEntity.NODE;
+    }
+    
+    /**
+     * Returns true if this Entity is an Agent
+     * @return boolean
+     */
+    public boolean isAgent(){
+    	return this.getSnippet().getIcon() == NSEntity.AGENT;
+    }
+    
+    /**
+     * Returns true if this Entity is an Application
+     * @return boolean
+     */
+    public boolean isApplication(){
+    	return this.getSnippet().getIcon() == NSEntity.APPLICATION;
+    }
+    
+    /**
+     * Returns true if this Entity is a Timer
+     * @return boolean
+     */
+    public boolean isTimer(){
+    	return this.getSnippet().getIcon() == NSEntity.TIMER;
+    }
+    
+    /**
+     * Returns true if this Entity is Generic
+     * @return boolean
+     */
+    public boolean isGeneric(){
+    	return this.getSnippet().getIcon() == NSEntity.GENERIC;
+    }
+    
     /**
      * Draw itself on the screen taken into consideration the 'selected' status
      * (selected object are drawn in blue color), the scale of the drawing, the
